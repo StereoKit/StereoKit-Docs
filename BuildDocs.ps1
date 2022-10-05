@@ -1,5 +1,8 @@
 git clone --depth=1 --branch=master https://github.com/StereoKit/StereoKit.git repos/StereoKit
+Push-Location repos/StereoKit
+git fetch
 git pull
+Pop-Location
 
 # Get the Visual Studio executable for building
 $vsWhere        = 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe'

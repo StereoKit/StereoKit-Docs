@@ -5,8 +5,8 @@ var documents =
 	 pages:[
 		{name:'Getting Started'},
 		{name:'Getting Started Native'},
-		{name:'User Interface'},
 		{name:'Learning Resources'},
+		{name:'User Interface'},
 		{name:'Using Hands'},
 		{name:'Using QR Codes'},
 		{name:'Using The Simulator'},
