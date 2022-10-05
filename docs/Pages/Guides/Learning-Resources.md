@@ -12,7 +12,7 @@ external learning and sample resources to get you off the ground a little
 faster! If you have your own resources that you'd like to see linked
 here, just let us know!
 
-## Sample Projects
+## Official Sample Projects
 
 ### [StereoKit Ink](https://github.com/StereoKit/StereoKit-PaintTutorial)
 
@@ -39,12 +39,34 @@ features released in StereoKit v0.3.1! Not every release has a demo like
 this, but it can be pretty enlightening to browse through a code-base
 such as this one for reference.
 
-### [GitHub Demos folder](https://github.com/StereoKit/StereoKit/tree/master/Examples/StereoKitTest/Demos)
+### [StereoKit Demos]({{site.url}}/Pages/Guides/Sample-Code.html)
 
-These are the demos I build to test StereoKit features and APIs! They
-are occasionally documented, but frequently short and concise. They
-can be great to check out for a focused example of certain parts of
-the API!
+These are the demos that test StereoKit features and APIs! They are
+occasionally documented, but frequently short and concise. They can be
+great to check out for a focused example of certain parts of the API!
+
+## Community Projects
+
+### [Nakamir - Azure Active Directory Auth](https://github.com/Nakamir-Code/AzureStereoKitUWPSamples)
+
+This repo contains a StereoKit sample application (for Microsoft HoloLens
+2) that demonstrates user authentication using Microsoft Azure Active
+Directory.
+
+### [brunoshine - Azure Spatial Anchors](https://github.com/brunoshine/StereoKit.Samples.AzureSpatialAnchors)
+
+This is a demo application on how to use Azure Spatial Anchors with
+StereoKit to persist world anchors between sessions and devices.
+
+### [Marc Plogas - Azure Spatial Anchors](https://github.com/mplogas/stereokit.azure.spatialanchors)
+
+Another ASA demo from Microsoft Cloud Advocate, Mark Plogas.
+
+### [Nakamir](https://github.com/Nakamir-Code/SKRiggedHandVisualizer) and [ClonedPuppy](https://github.com/ClonedPuppy/SKHands) - Rigged Hands
+
+Attaching a skinned mesh/model to StereoKit's hand joint data.
+
+## Sites and Places
 
 ### [GitHub Discussions/Issues](https://github.com/StereoKit/StereoKit/discussions)
 

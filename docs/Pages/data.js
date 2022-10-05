@@ -15,6 +15,7 @@ var documents =
 		{name:'Working with Materials'},
 		{name:'Debugging your App'},
 		{name:'Sample Code'},
+		{name:'Tools and Extensions'},
 	]
 	},
 	{name:'StereoKit',
