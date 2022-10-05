@@ -95,6 +95,13 @@ video {
     padding-top: 2em;
 }
 
+blockquote {
+    background: #151515;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin: 0px;
+}
+
 h1:after
 {
     content:' ';
