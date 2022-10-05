@@ -5,6 +5,7 @@ var documents =
 	 pages:[
 		{name:'Getting Started'},
 		{name:'Getting Started Native'},
+		{name:'Getting Started VS Code'},
 		{name:'Learning Resources'},
 		{name:'User Interface'},
 		{name:'Using Hands'},
