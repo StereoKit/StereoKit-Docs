@@ -4,19 +4,12 @@ git fetch
 git pull
 Pop-Location
 
-# Get the Visual Studio executable for building
-$vsWhere        = 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe'
-$vsVersionRange = '[16.0,18.0)'
-$vsExe          = & $vsWhere -latest -property productPath -version $vsVersionRange
-if (!$vsExe) {
-    Write-Host "error: Valid Visual Studio version not found!" -ForegroundColor red
-    exit 
-}
-$vsExe = [io.path]::ChangeExtension($vsExe, '.com')
-
 Push-Location repos/StereoKit
-Write-Host $vsExe 'StereoKit.sln' '/Build' 'Release|x64' '/Project' 'StereoKitC'
-& $vsExe 'StereoKit.sln' '/Build' 'Release|x64' '/Project' 'StereoKitC' | Write-Host
+mkdir build
+Push-Location build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build . -j8 --config Release
+Pop-Location
 Push-Location StereoKit
 dotnet build
 Pop-Location
