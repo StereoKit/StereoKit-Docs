@@ -179,6 +179,11 @@ namespace StereoKitDocumenter
 		static void ParseMemberSig(string signature, out string nameSpace, out string className, out string member)
 		{
 			nameSpace = GetNamespace(signature);
+			string trimmedSignature = signature.Split('(')[0];
+			if (trimmedSignature.Length > 0)
+			{
+				signature = trimmedSignature;
+			}
 			int last  = signature.LastIndexOf('.');
 			member    = signature[(last+1)..];
 			className = signature[(nameSpace.Length > 0 ? nameSpace.Length + 1 : 0)..last];
@@ -209,6 +214,11 @@ namespace StereoKitDocumenter
 
 		static void ReadField(string signature, XmlReader reader)
 		{
+			// Indexers have P: as type even though they are not fields. We ignore indexers
+			if (signature.Contains("("))
+			{
+				return;
+			}
 			// Get names
 			ParseMemberSig(signature, out string nameSpace, out string className, out string memberName);
 

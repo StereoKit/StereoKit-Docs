@@ -31,6 +31,11 @@ namespace StereoKitDocumenter
 			Type result = classType.GetField(name)?.FieldType;
 			if (result == null)
 				result = classType.GetProperty(name)?.PropertyType;
+			// Handle private fields & Properties
+			if (result == null)
+				result = classType.GetTypeInfo().GetDeclaredField(name)?.FieldType;
+			if (result == null)
+				result = classType.GetTypeInfo().GetDeclaredProperty(name)?.PropertyType;
 			return result;
 		}
 		public bool GetStatic(Type classType)

@@ -46,7 +46,7 @@ namespace StereoKitDocumenter
 				{
 					ParameterInfo p = param.Find(a => a.Name == parameters[i].name);
 					if (p == null)
-						throw new Exception($"Can't find document paramter {parameters[i].name} in {rootMethod.name}");
+						throw new Exception($"Can't find document parameter {parameters[i].name} in {rootMethod.name}");
 					paramText += $"|{StringHelper.TypeName(p.ParameterType.Name)} {parameters[i].name}|{StringHelper.CleanForTable(parameters[i].summary)}|\n";
 				}
 
@@ -99,9 +99,9 @@ namespace StereoKitDocumenter
 					if (t == null && action && commas == 0)
 						t = typeof(Action<>).MakeGenericType(Type.GetType(cleanName));
 					if (t == null && action && commas == 1)
-						t = typeof(Action<,>).MakeGenericType(cleanName.Split(',').Select(n => Type.GetType(n)).ToArray());
+						t = typeof(Action<,>).MakeGenericType(cleanName.Split(',').Select(n => InferType(n)).ToArray());
 					if (t == null && action && commas == 2)
-						t = typeof(Action<,,>).MakeGenericType(cleanName.Split(',').Select(n => Type.GetType(n)).ToArray());
+						t = typeof(Action<,,>).MakeGenericType(cleanName.Split(',').Select(n => InferType(n)).ToArray());
 					if (t == null) 
 						t = Type.GetType(cleanName);
 					if (t == null)
@@ -138,9 +138,38 @@ namespace StereoKitDocumenter
 			if (result == null && methodName != "#ctor" && paramTypes.Contains(typeof(object)) && parent.GetMethods().Where(m=>m.Name==methodName).Count() == 1)
 				result = parent.GetMethod(methodName);
 
+            // If it is generic, and there is overloads, try to infer the method by iterating over all the methods.
+            if (result == null && methodName != "#ctor" && paramTypes.Contains(typeof(object)) && parent.GetMethods().Where(m => m.Name == methodName).Count() > 1)
+			{
+				bool isGenericMethodName = rootMethod.name.Contains("`");
+				foreach (MethodInfo m in parent.GetMethods())
+				{
+					if (m.Name == methodName)
+					{
+						// Check if match for myMethod<T>
+						if ((isGenericMethodName && m.GetGenericArguments().Length > 0) || (!isGenericMethodName && m.GetGenericArguments().Length == 0))
+						{
+							// Check if match for Params
+							if (paramTypes.Length == m.GetParameters().Length)
+							{
+								result = m;
+							}
+						}
+					}
+				}
+            }
+
 			if (result == null)
 				throw new Exception("Can't find info for method " + rootMethod.name);
 			return result;
+		}
+
+		private static Type InferType(String typeName)
+		{
+			Type t = Type.GetType(typeName);
+			if (t == null)
+				t = Type.GetType(typeName + ", StereoKit");
+			return t;
 		}
 	}
 }
