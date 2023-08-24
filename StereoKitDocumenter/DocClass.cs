@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace StereoKitDocumenter
 {
@@ -52,9 +53,21 @@ namespace StereoKitDocumenter
 			memberText += string.Join("\n", methodsInstance
 				.Select(methodToString));
 
-			string fieldText = fieldsInstance.Count == 0 ? 
+			// Filter Public fields and properties to display.
+			List<DocField> fieldsInstanceToDisplay = fieldsInstance.FindAll(f => {
+				TypeInfo ti = t.GetTypeInfo();
+				FieldInfo fi = ti.GetDeclaredField(f.name);
+				if (fi != null)
+				{
+					return fi.IsPublic;
+				}
+				PropertyInfo pi = ti.GetDeclaredProperty(f.name);
+				return pi.DeclaringType.IsPublic;
+			});
+
+			string fieldText = fieldsInstanceToDisplay.Count == 0 ?
 				"" : "\n\n## Instance Fields and Properties\n\n|  |  |\n|--|--|\n";
-			fieldText += string.Join("\n", fieldsInstance
+			fieldText += string.Join("\n", fieldsInstanceToDisplay
 				.Select(fieldToString));
 
 			string memberTextStatic = methodsStatic.Count == 0 ?
