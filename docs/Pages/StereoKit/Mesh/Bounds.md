@@ -32,7 +32,7 @@ Model model      = Model.FromFile("DamagedHelmet.gltf");
 Pose  handlePose = new Pose(0,0,0, Quat.Identity);
 float scale      = .15f;
 
-public void Step() {
+public void StepHandle() {
 	UI.HandleBegin("Model Handle", ref handlePose, model.Bounds*scale);
 
 	model.Draw(Matrix.S(scale));

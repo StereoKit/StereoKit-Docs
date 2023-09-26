@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Time.TotalUnscaled
-description: How much time has elapsed since StereoKit was initialized? 64 bit time precision. This version is unaffected by the Time.Scale value!
+description: How many seconds have elapsed since StereoKit was initialized? 64 bit time precision, calculated at the start of the frame. This version is unaffected by the Time.Scale value!
 ---
 # [Time]({{site.url}}/Pages/StereoKit/Time.html).TotalUnscaled
 
@@ -10,6 +10,7 @@ static double TotalUnscaled{ get }
 </div>
 
 ## Description
-How much time has elapsed since StereoKit was initialized? 64 bit time precision.
-This version is unaffected by the Time.Scale value!
+How many seconds have elapsed since StereoKit was
+initialized? 64 bit time precision, calculated at the start of the
+frame. This version is unaffected by the Time.Scale value!
 

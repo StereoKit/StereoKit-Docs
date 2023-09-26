@@ -21,17 +21,24 @@ muscle memory for.
 |  |  |
 |--|--|
 |bool [Enabled]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/Enabled.html)|HandMenuRadial is always Enabled.|
+|[HandRadialLayer]({{site.url}}/Pages/StereoKit.Framework/HandRadialLayer.html) [RootLayer]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/RootLayer.html)|This returns the root menu layer, this is always the first layer added to the list of layers. There should always be a root layer, and if the HandMenuRadial is created without any layers, a root layer will be added automatically.|
 
 ## Instance Methods
 
 |  |  |
 |--|--|
-|[HandMenuRadial]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/HandMenuRadial.html)|Creates a hand menu from the provided array of menu layers! HandMenuRadial is an IStepper, so proper usage is to add it to the Stepper list via `StereoKitApp.AddStepper`.|
+|[HandMenuRadial]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/HandMenuRadial.html)|Creates a hand menu from the provided array of menu layers! HandMenuRadial is an IStepper, so proper usage is to add it to the Stepper list via `StereoKitApp.AddStepper`. If no layers are provided to this constructor, a default root layer will be automatically added.|
 |[Close]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/Close.html)|Closes the menu if it's open! Plays a closing sound.|
 |[Initialize]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/Initialize.html)|Part of IStepper, you shouldn't be calling this yourself.|
 |[Show]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/Show.html)|Force the hand menu to show at a specific location. This will close the hand menu if it was already open, and resets it to the root menu layer. Also plays an opening sound.|
 |[Shutdown]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/Shutdown.html)|Part of IStepper, you shouldn't be calling this yourself.|
 |[Step]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/Step.html)|Part of IStepper, you shouldn't be calling this yourself.|
+
+## Static Fields and Properties
+
+|  |  |
+|--|--|
+|[Key]({{site.url}}/Pages/StereoKit/Key.html) [simulatorKey]({{site.url}}/Pages/StereoKit.Framework/HandMenuRadial/simulatorKey.html)|When using the Simulator, this key will activate the menu on the current hand, regardless of which direction it is facing.|
 
 ## Examples
 
@@ -50,21 +57,21 @@ that!
 handMenu = SK.AddStepper(new HandMenuRadial(
 	new HandRadialLayer("Root",
 		new HandMenuItem("File",   null, null, "File"),
-		new HandMenuItem("Edit",   null, null, "Edit"),
-		new HandMenuItem("About",  null, () => Log.Info(SK.VersionName)),
+		new HandMenuItem("Search", null, null, "Edit"),
+		new HandMenuItem("About",  Sprite.FromFile("search.png"), () => Log.Info(SK.VersionName)),
 		new HandMenuItem("Cancel", null, null)),
 	new HandRadialLayer("File", 
-		new HandMenuItem("New",   null, () => Log.Info("New")),
-		new HandMenuItem("Open",  null, () => Log.Info("Open")),
-		new HandMenuItem("Close", null, () => Log.Info("Close")),
-		new HandMenuItem("Back",  null, null, HandMenuAction.Back)),
+		new HandMenuItem("New",    null, () => Log.Info("New")),
+		new HandMenuItem("Open",   null, () => Log.Info("Open")),
+		new HandMenuItem("Close",  null, () => Log.Info("Close")),
+		new HandMenuItem("Back",   null, null, HandMenuAction.Back)),
 	new HandRadialLayer("Edit",
-		new HandMenuItem("Copy",  null, () => Log.Info("Copy")),
-		new HandMenuItem("Paste", null, () => Log.Info("Paste")),
-		new HandMenuItem("Back", null, null, HandMenuAction.Back))));
+		new HandMenuItem("Copy",   null, () => Log.Info("Copy")),
+		new HandMenuItem("Paste",  null, () => Log.Info("Paste")),
+		new HandMenuItem("Back",   null, null, HandMenuAction.Back))));
 ```
 
 ```csharp
-SK.RemoveStepper(handMenu); 
+SK.RemoveStepper(handMenu);
 ```
 

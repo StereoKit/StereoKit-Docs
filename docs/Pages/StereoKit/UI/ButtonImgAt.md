@@ -19,7 +19,7 @@ system, and instead goes exactly where you put it.
 |[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) image|This is the image that will be drawn along with             the text. See imageLayout for where the image gets drawn!|
 |[UIBtnLayout]({{site.url}}/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
+|[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 

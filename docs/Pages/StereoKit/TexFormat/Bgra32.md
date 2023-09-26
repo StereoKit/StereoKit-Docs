@@ -1,7 +1,7 @@
 ---
 layout: default
 title: TexFormat.Bgra32
-description: Red/Green/Blue/Transparency data channels, at 8 bits per-channel in linear color space. This is what you'll want most of the time you're dealing with color data! Matches well with the Color32 struct.
+description: Blue/Green/Red/Transparency data channels, at 8 bits per-channel in sRGB color space. This is a common swapchain format on Windows.
 ---
 # [TexFormat]({{site.url}}/Pages/StereoKit/TexFormat.html).Bgra32
 
@@ -10,8 +10,7 @@ static [TexFormat]({{site.url}}/Pages/StereoKit/TexFormat.html) Bgra32
 </div>
 
 ## Description
-Red/Green/Blue/Transparency data channels, at 8 bits
-per-channel in linear color space. This is what you'll want most
-of the time you're dealing with color data! Matches well with the
-Color32 struct.
+Blue/Green/Red/Transparency data channels, at 8 bits
+per-channel in sRGB color space. This is a common swapchain format
+on Windows.
 

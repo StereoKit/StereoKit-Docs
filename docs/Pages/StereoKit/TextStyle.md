@@ -22,3 +22,9 @@ project. See Text.MakeStyle for making a TextStyle object.
 |  |  |
 |--|--|
 |[TextStyle]({{site.url}}/Pages/StereoKit/TextStyle.html) [Default]({{site.url}}/Pages/StereoKit/TextStyle/Default.html)|This is the default text style used by StereoKit.|
+
+## Static Methods
+
+|  |  |
+|--|--|
+|[FromFont]({{site.url}}/Pages/StereoKit/TextStyle/FromFont.html)|Create a text style for use with other text functions! A text style is a font plus size/color/material parameters, and are used to keep text looking more consistent through the application by encouraging devs to re-use styles throughout the project.  This overload will create a unique Material for this style based on Default.ShaderFont.|

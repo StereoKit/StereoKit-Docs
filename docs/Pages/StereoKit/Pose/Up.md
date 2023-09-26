@@ -10,6 +10,6 @@ description: Calculates the up (+Y) direction from this pose. This is done by mu
 </div>
 
 ## Description
-Calculates the up (+Y) direction from this pose. This is done by
-multiplying the orientation with Vec3.Up.
+Calculates the up (+Y) direction from this pose. This is
+done by multiplying the orientation with Vec3.Up.
 

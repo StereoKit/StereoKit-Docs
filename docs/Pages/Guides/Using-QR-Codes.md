@@ -121,7 +121,7 @@ With the text, all we're doing is squeezing the text into
 the bounds of the QR code, and shifting it to be a little
 forward, in front of the code!
 ```csharp
-public void Update()
+public void Step()
 {
 	foreach(QRData d in poses.Values)
 	{ 

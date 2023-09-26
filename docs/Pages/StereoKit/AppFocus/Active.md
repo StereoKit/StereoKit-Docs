@@ -10,6 +10,6 @@ static [AppFocus]({{site.url}}/Pages/StereoKit/AppFocus.html) Active
 </div>
 
 ## Description
-This StereoKit app is active, focused, and receiving input from the
-user. Application should behave as normal.
+This StereoKit app is active, focused, and receiving input
+from the user. Application should behave as normal.
 

@@ -14,6 +14,7 @@ the directly adjacent tree nodes.
 |  |  |
 |--|--|
 |[ModelNode]({{site.url}}/Pages/StereoKit/ModelNode.html) [Child]({{site.url}}/Pages/StereoKit/ModelNode/Child.html)|The first child node "below" on the hierarchy tree, or null if there are none. To see all children, get the Child and then iterate through its Siblings.|
+|[ModelNodeInfoCollection]({{site.url}}/Pages/StereoKit/ModelNodeInfoCollection.html) [Info]({{site.url}}/Pages/StereoKit/ModelNode/Info.html)|A collection of key/value pairs that add additional information to this node. If this comes from a GLTF model, this will be populated with the contents of the "extras" section of the node.|
 |[Matrix]({{site.url}}/Pages/StereoKit/Matrix.html) [LocalTransform]({{site.url}}/Pages/StereoKit/ModelNode/LocalTransform.html)|The transform of this node relative to the Parent node. Setting this transform will update the ModelTransform, as well as all Child nodes below this one.|
 |[Material]({{site.url}}/Pages/StereoKit/Material.html) [Material]({{site.url}}/Pages/StereoKit/ModelNode/Material.html)|The Model associated with this node. May be null, or may also be re-used elsewhere.|
 |[Mesh]({{site.url}}/Pages/StereoKit/Mesh.html) [Mesh]({{site.url}}/Pages/StereoKit/ModelNode/Mesh.html)|The Mesh associated with this node. May be null, or may also be re-used elsewhere.|
@@ -29,6 +30,8 @@ the directly adjacent tree nodes.
 |  |  |
 |--|--|
 |[AddChild]({{site.url}}/Pages/StereoKit/ModelNode/AddChild.html)|Adds a Child node below this node, at the end of the child chain!|
+|[GetInfo]({{site.url}}/Pages/StereoKit/ModelNode/GetInfo.html)|Get a Key/Value pair associated with this ModelNode. This is auto-populated from the GLTF extras, and you can also add your own items here as well.|
 |[MoveChild]({{site.url}}/Pages/StereoKit/ModelNode/MoveChild.html)|Moves this ModelNode class to the first Child of this node. If it cannot, then it remains the same.|
 |[MoveParent]({{site.url}}/Pages/StereoKit/ModelNode/MoveParent.html)|Moves this ModelNode class to the Parent up the hierarchy tree. If it cannot, then it remains the same.|
 |[MoveSibling]({{site.url}}/Pages/StereoKit/ModelNode/MoveSibling.html)|Advances this ModelNode class to the next Sibling in the hierarchy tree. If it cannot, then it remains the same.|
+|[SetInfo]({{site.url}}/Pages/StereoKit/ModelNode/SetInfo.html)|Set a Key/Value pair associated with this ModelNode. This is auto-populated from the GLTF extras, and you can also add your own items here as well.|

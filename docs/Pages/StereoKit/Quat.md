@@ -34,6 +34,8 @@ about them!
 |[Quat]({{site.url}}/Pages/StereoKit/Quat/Quat.html)|You may want to use static creation methods, like Quat.LookAt, or Quat.Identity instead of this one! Unless you know what you're doing.|
 |[Invert]({{site.url}}/Pages/StereoKit/Quat/Invert.html)|Makes this Quat the reverse rotation! If this quat goes from A to B, the inverse will go from B to A.|
 |[Normalize]({{site.url}}/Pages/StereoKit/Quat/Normalize.html)|A normalized quaternion has the same orientation, and a length of 1.|
+|[Relative]({{site.url}}/Pages/StereoKit/Quat/Relative.html)|Rotates a quaternion making it relative to another rotation while preserving it's "Length"!|
+|[Rotate]({{site.url}}/Pages/StereoKit/Quat/Rotate.html)|This rotates a point around the origin by the Quat.|
 |[ToString]({{site.url}}/Pages/StereoKit/Quat/ToString.html)|Mostly for debug purposes, this is a decent way to log or inspect the quaternion in debug mode. Looks like "[x, y, z, w]"|
 
 ## Static Fields and Properties
@@ -46,6 +48,7 @@ about them!
 
 |  |  |
 |--|--|
+|[Delta]({{site.url}}/Pages/StereoKit/Quat/Delta.html)|Creates a quaternion that goes from one rotation to another.|
 |[Difference]({{site.url}}/Pages/StereoKit/Quat/Difference.html)|This gives a relative rotation between the first and second quaternion rotations. Remember that order is important here!|
 |[FromAngles]({{site.url}}/Pages/StereoKit/Quat/FromAngles.html)|Creates a Roll/Pitch/Yaw rotation (applied in that order) from the provided angles in degrees!|
 |[LookAt]({{site.url}}/Pages/StereoKit/Quat/LookAt.html)|Creates a rotation that describes looking from a point, to another point! This is a great function for camera style rotation, or other facing behavior when you know where an object is, and where you want it to look at. This rotation works best when applied to objects that face Vec3.Forward in their resting/model space pose.|
@@ -57,6 +60,8 @@ about them!
 |  |  |
 |--|--|
 |[Implicit Conversions]({{site.url}}/Pages/StereoKit/Quat/op_Implicit.html)|Allows implicit conversion from System.Numerics.Quaternion to StereoKit.Quat.|
+|[*]({{site.url}}/Pages/StereoKit/Quat/op_Multiply.html)|This is the combination of rotations `a` and `b`. Note that order matters here.|
+|[-]({{site.url}}/Pages/StereoKit/Quat/op_Subtraction.html)|Gets a Quat representing the rotation from `a` to `b`.|
 
 ## Examples
 

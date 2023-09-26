@@ -10,6 +10,6 @@ static [LogLevel]({{site.url}}/Pages/StereoKit/LogLevel.html) Info
 </div>
 
 ## Description
-This is non-critical information, just to let you know what's
-going on.
+This is non-critical information, just to let you know
+what's going on.
 

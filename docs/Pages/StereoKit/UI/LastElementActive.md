@@ -1,7 +1,7 @@
 ---
 layout: default
 title: UI.LastElementActive
-description: Tells the Active state of the most recent UI element that used an id.
+description: Tells the Active state of the most recently called UI element that used an id.
 ---
 # [UI]({{site.url}}/Pages/StereoKit/UI.html).LastElementActive
 
@@ -10,8 +10,8 @@ static [BtnState]({{site.url}}/Pages/StereoKit/BtnState.html) LastElementActive{
 </div>
 
 ## Description
-Tells the Active state of the most recent UI element that
-used an id.
+Tells the Active state of the most recently called UI
+element that used an id.
 
 
 ## Examples
@@ -32,10 +32,12 @@ UI.WindowBegin("Last Element API", ref windowPose);
 
 UI.HSlider("Slider", ref sliderVal, 0, 1, 0.1f, 0, UIConfirm.Pinch);
 UI.Text("Element Info:", TextAlign.TopCenter);
-if (UI.LastElementHandUsed(Handed.Left ).IsActive()) UI.Label("Left");
-if (UI.LastElementHandUsed(Handed.Right).IsActive()) UI.Label("Right");
-if (UI.LastElementFocused               .IsActive()) UI.Label("Focused");
-if (UI.LastElementActive                .IsActive()) UI.Label("Active");
+if (UI.LastElementHandActive (Handed.Left ).IsActive()) UI.Label("Left Active");
+if (UI.LastElementHandActive (Handed.Right).IsActive()) UI.Label("Right Active");
+if (UI.LastElementHandFocused(Handed.Left ).IsActive()) UI.Label("Left Focused");
+if (UI.LastElementHandFocused(Handed.Right).IsActive()) UI.Label("Right Focused");
+if (UI.LastElementFocused                  .IsActive()) UI.Label("Focused");
+if (UI.LastElementActive                   .IsActive()) UI.Label("Active");
 
 UI.WindowEnd();
 ```

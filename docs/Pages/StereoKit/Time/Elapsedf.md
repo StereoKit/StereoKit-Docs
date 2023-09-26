@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Time.Elapsedf
-description: How much time elapsed during the last frame? 32 bit time precision.
+description: (Deprecated, use Time.Stepf) How many seconds have elapsed since the last frame? 32 bit time precision, calculated at the start of the frame.
 ---
 # [Time]({{site.url}}/Pages/StereoKit/Time.html).Elapsedf
 
@@ -10,5 +10,7 @@ static float Elapsedf{ get }
 </div>
 
 ## Description
-How much time elapsed during the last frame? 32 bit time precision.
+(Deprecated, use Time.Stepf) How many seconds have
+elapsed since the last frame? 32 bit time precision, calculated at
+the start of the frame.
 

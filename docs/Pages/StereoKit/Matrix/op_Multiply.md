@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Matrix.*
-description: Multiplies two matrices together! This is a great way to combine transform operations. Note that StereoKit's matrices are row-major, and multiplication order is important! To translate, then scale, multiple in order of 'translate * scale'.
+description: Multiplies two matrices together! This is a great way to combine transform operations. Note that StereoKit's matrices are row-major, and multiplication order is important! To translate, then scale, multiply in order of 'translate * scale'.
 ---
 # [Matrix]({{site.url}}/Pages/StereoKit/Matrix.html).*
 
@@ -12,7 +12,7 @@ static Matrix *(Matrix a, Matrix b)
 Multiplies two matrices together! This is a great way to
 combine transform operations. Note that StereoKit's matrices are
 row-major, and multiplication order is important! To translate,
-then scale, multiple in order of 'translate * scale'.
+then scale, multiply in order of 'translate * scale'.
 </div>
 
 |  |  |

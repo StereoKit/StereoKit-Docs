@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Model.RemoveSubset
-description: Removes and dereferences a subset from the model.
+description: [Obsolete] For removal in v0.4. Removes and dereferences a subset from the model.
 ---
 # [Model]({{site.url}}/Pages/StereoKit/Model.html).RemoveSubset
 
@@ -9,7 +9,8 @@ description: Removes and dereferences a subset from the model.
 ```csharp
 void RemoveSubset(int subsetIndex)
 ```
-Removes and dereferences a subset from the model.
+[Obsolete] For removal in v0.4. Removes and dereferences a
+subset from the model.
 </div>
 
 |  |  |

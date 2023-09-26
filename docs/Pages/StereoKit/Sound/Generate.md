@@ -17,7 +17,7 @@ second of duration.
 
 |  |  |
 |--|--|
-|AudioGenerator generator|This function takes a time value as an             argument, which will range from 0-duration, and should return a             value from -1 - +1 representing the audio wave at that point in             time.|
+|[AudioGenerator]({{site.url}}/Pages/StereoKit/AudioGenerator.html) generator|This function takes a time value as an             argument, which will range from 0-duration, and should return a             value from -1 - +1 representing the audio wave at that point in             time.|
 |float duration|In seconds, how long should the sound be?|
 |RETURNS: [Sound]({{site.url}}/Pages/StereoKit/Sound.html)|Returns a generated sound effect! Or null if something went wrong.|
 

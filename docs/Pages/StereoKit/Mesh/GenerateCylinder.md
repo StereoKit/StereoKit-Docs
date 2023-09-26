@@ -49,16 +49,16 @@ we just loaded up the default Material here.
 ```csharp
 // Call this code every Step
 
-Matrix cylinderTransform = Matrix.T(-.5f, 1, 0);
+Matrix cylinderTransform = Matrix.T(0, 1, 0);
 cylinderMesh.Draw(Default.Material, cylinderTransform);
 
-cylinderTransform = Matrix.T(.5f, 1, 0);
+cylinderTransform = Matrix.T(1, 1, 0);
 cylinderModel.Draw(cylinderTransform);
 ```
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Cube Mesh]({{site.screen_url}}/ProcGeoCylinder.jpg)
+![Procedural Cylinder Mesh]({{site.screen_url}}/ProcGeoCylinder.jpg)
 ```csharp
 meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
 ```

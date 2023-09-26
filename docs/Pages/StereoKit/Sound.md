@@ -1,13 +1,12 @@
 ---
 layout: default
 title: Sound
-description: This class represents a sound effect! Excellent for blips and bloops and little clips that you might play around your scene. Not great for long streams of audio like you might see in a podcast. Right now, this supports .wav, .mp3, and procedurally generated noises!  On HoloLens 2, sounds are automatically processed on the HPU, freeing up the CPU for more of your app's code. To simulate this same effect on your development PC, you need to enable spatial sound on your audio endpoint. To do this, right click the speaker icon in your system tray, navigate to "Spatial sound", and choose "Windows Sonic for Headphones." For more information, visit https.//docs.microsoft.com/en-us/windows/win32/coreaudio/spatial-sound
+description: This class represents a sound effect! Excellent for blips and bloops and little clips that you might play around your scene. Right now, this supports .wav, .mp3, and procedurally generated noises!  On HoloLens 2, sounds are automatically processed on the HPU, freeing up the CPU for more of your app's code. To simulate this same effect on your development PC, you need to enable spatial sound on your audio endpoint. To do this, right click the speaker icon in your system tray, navigate to "Spatial sound", and choose "Windows Sonic for Headphones." For more information, visit https.//docs.microsoft.com/en-us/windows/win32/coreaudio/spatial-sound
 ---
 # class Sound
 
 This class represents a sound effect! Excellent for blips
 and bloops and little clips that you might play around your scene.
-Not great for long streams of audio like you might see in a podcast.
 Right now, this supports .wav, .mp3, and procedurally generated
 noises!
 
@@ -25,6 +24,7 @@ https://docs.microsoft.com/en-us/windows/win32/coreaudio/spatial-sound
 |--|--|
 |int [CursorSamples]({{site.url}}/Pages/StereoKit/Sound/CursorSamples.html)|This is the current position of the playback cursor, measured in samples from the start of the audio data.|
 |float [Duration]({{site.url}}/Pages/StereoKit/Sound/Duration.html)|This will return the total length of the sound in seconds.|
+|string [Id]({{site.url}}/Pages/StereoKit/Sound/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
 |int [TotalSamples]({{site.url}}/Pages/StereoKit/Sound/TotalSamples.html)|This will return the total number of audio samples used by the sound! StereoKit currently uses 48,000 samples per second for all audio.|
 |int [UnreadSamples]({{site.url}}/Pages/StereoKit/Sound/UnreadSamples.html)|This is the maximum number of samples in the sound that are currently available for reading via ReadSamples! ReadSamples will reduce this number by the amount of samples read.  This is only really valid for Stream sounds, all other sound types will just return 0.|
 

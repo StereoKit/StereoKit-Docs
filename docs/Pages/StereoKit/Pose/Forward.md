@@ -10,7 +10,7 @@ description: Calculates the forward direction from this pose. This is done by mu
 </div>
 
 ## Description
-Calculates the forward direction from this pose. This is done by
-multiplying the orientation with Vec3.Forward. Remember that Forward points
-down the -Z axis!
+Calculates the forward direction from this pose. This is
+done by multiplying the orientation with Vec3.Forward. Remember
+that Forward points down the -Z axis!
 

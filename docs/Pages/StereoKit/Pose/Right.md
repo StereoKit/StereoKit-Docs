@@ -10,6 +10,6 @@ description: Calculates the right (+X) direction from this pose. This is done by
 </div>
 
 ## Description
-Calculates the right (+X) direction from this pose. This is done by
-multiplying the orientation with Vec3.Right.
+Calculates the right (+X) direction from this pose. This
+is done by multiplying the orientation with Vec3.Right.
 

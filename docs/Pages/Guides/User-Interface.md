@@ -29,7 +29,7 @@ Pose for the window, off to the left and facing to the right, as well
 as a boolean for a toggle, and a float that we'll use as a slider!
 We'll add this code to our initialization section.
 ```csharp
-Pose  windowPose = new Pose(-.4f, 0, 0, Quat.LookDir(1,0,1));
+Pose  windowPose = new Pose(-.2f, 0, -0.6f, Quat.LookDir(0,0,1));
 
 bool  showHeader = true;
 float slider     = 0.5f;
@@ -138,7 +138,7 @@ model, so you'll need to plan this around the size of your
 object!
 
 ```csharp
-UI.LayoutArea(new Vec3(12, 15, 0) * U.cm, new Vec2(24, 30) * U.cm);
+UI.LayoutArea(new Vec3(13, 15, 0) * U.cm, new Vec2(26, 30) * U.cm);
 ```
 
 Then after that? We can just add UI elements like normal!
@@ -147,7 +147,7 @@ Then after that? We can just add UI elements like normal!
 UI.Image(logoSprite, new Vec2(22,0) * U.cm);
 
 UI.Toggle("Toggle", ref clipToggle);
-UI.HSlider("Slide", ref clipSlider, 0, 1, 0, 22 * U.cm);
+UI.HSlider("Slide", ref clipSlider, 0, 1, 0);
 ```
 
 And while we're at it, here's a quick example of doing a radio
@@ -155,11 +155,11 @@ button group! Not much 'radio' actually happening, but it's still
 pretty simple. Pair it with an enum, or an integer, and have fun!
 
 ```csharp
-if (UI.Radio("Radio1", clipOption == 1)) clipOption = 1;
+if (UI.Radio("Opt1", clipOption == 1)) clipOption = 1;
 UI.SameLine();
-if (UI.Radio("Radio2", clipOption == 2)) clipOption = 2;
+if (UI.Radio("Opt2", clipOption == 2)) clipOption = 2;
 UI.SameLine();
-if (UI.Radio("Radio3", clipOption == 3)) clipOption = 3;
+if (UI.Radio("Opt3", clipOption == 3)) clipOption = 3;
 ```
 
 As with windows, Handles need an End call.

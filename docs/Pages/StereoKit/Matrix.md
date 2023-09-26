@@ -39,15 +39,18 @@ Matrices are prominently used within shaders for mesh transforms!
 |[Quat]({{site.url}}/Pages/StereoKit/Quat.html) [Rotation]({{site.url}}/Pages/StereoKit/Matrix/Rotation.html)|A slow function that returns the rotation quaternion embedded in this transform matrix. This is backed by Decompose, so if you need any additional info, it's better to just call Decompose instead.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [Scale]({{site.url}}/Pages/StereoKit/Matrix/Scale.html)|Returns the scale embedded in this transform matrix. Not exactly cheap, requires 3 sqrt calls, but is cheaper than calling Decompose.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [Translation]({{site.url}}/Pages/StereoKit/Matrix/Translation.html)|A fast Property that will return or set the translation component embedded in this transform matrix.|
+|[Matrix]({{site.url}}/Pages/StereoKit/Matrix.html) [Transposed]({{site.url}}/Pages/StereoKit/Matrix/Transposed.html)|Creates a matrix that has been transposed! Transposing is like rotating the matrix 90 clockwise, or turning the rows into columns. This can be useful for inverting orthogonal matrices, or converting matrices for use in a math library that uses different conventions!|
 
 ## Instance Methods
 
 |  |  |
 |--|--|
+|[Matrix]({{site.url}}/Pages/StereoKit/Matrix/Matrix.html)|This constructor is for manually creating a matrix from a grid of floats! You'll likely want to use one of the static Matrix functions to create a Matrix instead.|
 |[Decompose]({{site.url}}/Pages/StereoKit/Matrix/Decompose.html)|Returns this transformation matrix to its original translation, rotation and scale components. Not exactly a cheap function. If this is not a transform matrix, there's a chance this call will fail, and return false.|
 |[Invert]({{site.url}}/Pages/StereoKit/Matrix/Invert.html)|Inverts this Matrix! If the matrix takes a point from a -> b, then its inverse takes the point from b -> a.|
 |[Transform]({{site.url}}/Pages/StereoKit/Matrix/Transform.html)|Transforms a point through the Matrix! This is basically just multiplying a vector (x,y,z,1) with the Matrix.|
 |[TransformNormal]({{site.url}}/Pages/StereoKit/Matrix/TransformNormal.html)|Transforms a point through the Matrix, but excluding translation! This is great for transforming vectors that are -directions- rather than points in space. Use this to transform normals and directions. The same as multiplying (x,y,z,0) with the Matrix.|
+|[Transpose]({{site.url}}/Pages/StereoKit/Matrix/Transpose.html)|Transposes this Matrix! Transposing is like rotating the matrix 90 clockwise, or turning the rows into columns. This can be useful for inverting orthogonal matrices, or converting matrices for use in a math library that uses different conventions!|
 
 ## Static Fields and Properties
 
@@ -73,4 +76,4 @@ Matrices are prominently used within shaders for mesh transforms!
 |  |  |
 |--|--|
 |[Implicit Conversions]({{site.url}}/Pages/StereoKit/Matrix/op_Implicit.html)|Allows implicit conversion from System.Numerics.Matrix4x4 to StereoKit.Matrix.|
-|[*]({{site.url}}/Pages/StereoKit/Matrix/op_Multiply.html)|Multiplies two matrices together! This is a great way to combine transform operations. Note that StereoKit's matrices are row-major, and multiplication order is important! To translate, then scale, multiple in order of 'translate * scale'.|
+|[*]({{site.url}}/Pages/StereoKit/Matrix/op_Multiply.html)|Multiplies two matrices together! This is a great way to combine transform operations. Note that StereoKit's matrices are row-major, and multiplication order is important! To translate, then scale, multiply in order of 'translate * scale'.|

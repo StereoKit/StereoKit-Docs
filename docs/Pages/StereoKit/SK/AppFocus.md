@@ -21,8 +21,8 @@ visible behind the app that _does_ have focus.
 
 ### Checking for changes in application focus
 ```csharp
-AppFocus lastFocus = AppFocus.Hidden;
-void CheckFocus()
+static AppFocus lastFocus = AppFocus.Hidden;
+static void CheckFocus()
 {
 	if (lastFocus != SK.AppFocus)
 	{

@@ -33,7 +33,7 @@ Information about a hand!
 |bool [Solid]({{site.url}}/Pages/StereoKit/Hand/Solid.html)|Does StereoKit register the hand with the physics system? By default, this is true. Right now this is just a single block collider, but later will involve per-joint colliders!|
 |[BtnState]({{site.url}}/Pages/StereoKit/BtnState.html) [tracked]({{site.url}}/Pages/StereoKit/Hand/tracked.html)|Is the hand being tracked by the sensors right now?|
 |bool [Visible]({{site.url}}/Pages/StereoKit/Hand/Visible.html)|Sets whether or not StereoKit should render this hand for you. Turn this to false if you're going to render your own, or don't need the hand itself to be visible.|
-|[Pose]({{site.url}}/Pages/StereoKit/Pose.html) [wrist]({{site.url}}/Pages/StereoKit/Hand/wrist.html)|Pose of the wrist. TODO: Not populated right now.|
+|[Pose]({{site.url}}/Pages/StereoKit/Pose.html) [wrist]({{site.url}}/Pages/StereoKit/Hand/wrist.html)|Pose of the wrist. This is located at the base of your hand, and has a rigid orientation that points forward towards your fingers. Its orientation is unrelated to the forearm. This pose can be useful for making a hand relative coordinate space!|
 
 ## Instance Methods
 
@@ -55,6 +55,9 @@ for (int h = 0; h < (int)Handed.Max; h++)
 	// Get the pose for the index fingertip
 	Hand hand      = Input.Hand((Handed)h);
 	Pose fingertip = hand[FingerId.Index, JointId.Tip].Pose;
+
+	// Skip this hand if it's not tracked
+	if (!hand.IsTracked) continue;
 
 	// Draw the fingertip pose axis if it's inside the volume
 	if (testArea.Contains(fingertip.position))

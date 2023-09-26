@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Model.GetMesh
-description: Gets a link to the Mesh asset used by the model subset! Note that this is not necessarily a unique mesh, and could be shared in a number of other places. Consider copying and replacing it if you intend to modify it!
+description: [Obsolete] For removal in v0.4. Use Nodes/Visuals.Mesh instead. Gets a link to the Mesh asset used by the model subset! Note that this is not necessarily a unique mesh, and could be shared in a number of other places. Consider copying and replacing it if you intend to modify it!
 ---
 # [Model]({{site.url}}/Pages/StereoKit/Model.html).GetMesh
 
@@ -9,7 +9,8 @@ description: Gets a link to the Mesh asset used by the model subset! Note that t
 ```csharp
 Mesh GetMesh(int subsetIndex)
 ```
-Gets a link to the Mesh asset used by the model subset!
+[Obsolete] For removal in v0.4. Use Nodes/Visuals.Mesh
+instead. Gets a link to the Mesh asset used by the model subset!
 Note that this is not necessarily a unique mesh, and could be
 shared in a number of other places. Consider copying and
 replacing it if you intend to modify it!

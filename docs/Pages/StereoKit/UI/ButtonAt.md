@@ -17,7 +17,7 @@ and instead goes exactly where you put it.
 |--|--|
 |string text|Text to display on the button and id for             tracking element state. MUST be unique within current hierarchy.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
+|[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 

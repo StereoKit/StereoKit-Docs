@@ -58,10 +58,10 @@ we just loaded up the default Material here.
 ```csharp
 // Call this code every Step
 
-Matrix roundedCubeTransform = Matrix.T(-.5f, 0, 0);
+Matrix roundedCubeTransform = Matrix.T(0, 0, 0);
 roundedCubeMesh.Draw(Default.Material, roundedCubeTransform);
 
-roundedCubeTransform = Matrix.T(.5f, 0, 0);
+roundedCubeTransform = Matrix.T(1, 0, 0);
 roundedCubeModel.Draw(roundedCubeTransform);
 ```
 

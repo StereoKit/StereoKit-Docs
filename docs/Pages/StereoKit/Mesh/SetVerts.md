@@ -1,25 +1,30 @@
 ---
 layout: default
 title: Mesh.SetVerts
-description: Assigns the vertices for this Mesh! This will create a vertex buffer object on the graphics card right away. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!
+description: Assigns the vertices for this Mesh! This will create a vertex buffer object on the graphics card. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!  Remember to set all the relevant values! Your material will often show black if the Normals or Colors are left at their default values.
 ---
 # [Mesh]({{site.url}}/Pages/StereoKit/Mesh.html).SetVerts
 
 <div class='signature' markdown='1'>
 ```csharp
-void SetVerts(Vertex[] verts)
+void SetVerts(Vertex[] vertices, bool calculateBounds)
 ```
 Assigns the vertices for this Mesh! This will create a
-vertex buffer object on the graphics card right away. If you're
+vertex buffer object on the graphics card. If you're
 calling this a second time, the buffer will be marked as dynamic
 and re-allocated. If you're calling this a third time, the buffer
 will only re-allocate if the buffer is too small, otherwise it
 just copies in the data!
+
+Remember to set all the relevant values! Your material will often
+show black if the Normals or Colors are left at their default
+values.
 </div>
 
 |  |  |
 |--|--|
-|Vertex[] verts|An array of vertices to add to the mesh.             Remember to set all the relevant values! Your material will often             show black if the Normals or Colors are left at their default             values.|
+|Vertex[] vertices|An array of vertices to add to the mesh.             Remember to set all the relevant values! Your material will often             show black if the Normals or Colors are left at their default             values.|
+|bool calculateBounds|If true, this will also update the             Mesh's bounds based on the vertices provided. Since this does             require iterating through all the verts with some logic, there is             performance cost to doing this. If you're updating a mesh             frequently or need all the performance you can get, setting this to             false is a nice way to gain some speed!|
 
 
 
@@ -55,12 +60,12 @@ for (int x = 0; x < gridSize; x++) {
 	// value!
 	verts[x+y*gridSize] = new Vertex(
 		new Vec3(
-			x/gridMaxF-0.5f, 
-			SKMath.Sin((x+y) * 0.7f)*0.1f, 
+			x/gridMaxF-0.5f,
+			SKMath.Sin((x+y) * 0.7f)*0.1f,
 			y/gridMaxF-0.5f),
 		new Vec3(
-			-SKMath.Cos((x+y) * 0.7f), 
-			1, 
+			-SKMath.Cos((x+y) * 0.7f),
+			1,
 			-SKMath.Cos((x+y) * 0.7f)).Normalized,
 		new Vec2(
 			x / gridMaxF,
@@ -82,7 +87,6 @@ for (int x = 0; x < gridSize; x++) {
 	}
 } }
 demoProcMesh = new Mesh();
-demoProcMesh.SetVerts(verts);
-demoProcMesh.SetInds (inds);
+demoProcMesh.SetData(verts, inds);
 ```
 

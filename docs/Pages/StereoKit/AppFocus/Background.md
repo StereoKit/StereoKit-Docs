@@ -10,8 +10,9 @@ static [AppFocus]({{site.url}}/Pages/StereoKit/AppFocus.html) Background
 </div>
 
 ## Description
-This StereoKit app has been unfocused, something may be compositing
-on top of the app such as an OS dashboard. The app is still visible,
-but some other thing has focus and is receiving input. You may wish
-to pause, disable input tracking, or other such things.
+This StereoKit app has been unfocused, something may be
+compositing on top of the app such as an OS dashboard. The app is
+still visible, but some other thing has focus and is receiving
+input. You may wish to pause, disable input tracking, or other such
+things.
 

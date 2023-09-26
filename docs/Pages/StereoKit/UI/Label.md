@@ -21,7 +21,7 @@ contain newlines!
 
 <div class='signature' markdown='1'>
 ```csharp
-static void Label(string text, Vec2 size)
+static void Label(string text, Vec2 size, bool usePadding)
 ```
 Adds some text to the layout, but this overload allows you
 can specify the size that you want it to use. Text uses the UI's
@@ -33,6 +33,7 @@ UI.Push/PopTextStyle. Can contain newlines!
 |--|--|
 |string text|Label text to display. Can contain newlines!             Doesn't use text as id, so it can be non-unique.|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
+|bool usePadding|Should padding be included for             positioning this text? Sometimes you just want un-padded text!|
 
 
 

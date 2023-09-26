@@ -61,6 +61,17 @@ enforced through syntax!
 |[Hex]({{site.url}}/Pages/StereoKit/Color/Hex.html)|Create a color from an integer based hex value! This can make it easier to copy over colors from the web. This isn't a string function though, so you'll need to fill it out the whole way. Ex: `Color.Hex(0x0000FFFF)` would be RGBA(0,0,1,1).|
 |[HSV]({{site.url}}/Pages/StereoKit/Color/HSV.html)|Creates a Red/Green/Blue gamma space color from Hue/Saturation/Value information.|
 |[LAB]({{site.url}}/Pages/StereoKit/Color/LAB.html)|Creates a gamma space RGB color from a CIE-L*ab color space. CIE-L*ab is a color space that models human perception, and has significantly more accurate to perception lightness values, so this is an excellent color space for color operations that wish to preserve color brightness properly.  Traditionally, values are L [0,100], a,b [-200,+200] but here we normalize them all to the 0-1 range. If you hate it, let me know why!|
+|[Lerp]({{site.url}}/Pages/StereoKit/Color/Lerp.html)|This will linearly blend between two different colors! Best done on linear colors, rather than gamma corrected colors, but will work either way. This will not clamp the percentage to the 0-1 range.|
+
+## Operators
+
+|  |  |
+|--|--|
+|[+]({{site.url}}/Pages/StereoKit/Color/op_Addition.html)|This will add a color component-wise with another color, including alpha. Best done on colors in linear space. No clamping is applied.|
+|[/]({{site.url}}/Pages/StereoKit/Color/op_Division.html)|This will divide a color linearly, including alpha. Best done on a color in linear space. No clamping is applied.|
+|[Implicit Conversions]({{site.url}}/Pages/StereoKit/Color/op_Implicit.html)|This allows for implicit conversion to Color32. This does _not_ convert from linear to gamma corrected, or clamp to 0-1 first.|
+|[*]({{site.url}}/Pages/StereoKit/Color/op_Multiply.html)|This will multiply a color linearly, including alpha. Best done on a color in linear space. No clamping is applied.|
+|[-]({{site.url}}/Pages/StereoKit/Color/op_Subtraction.html)|This will subtract color `b` component-wise from color `a`, including alpha. Best done on colors in linear space. No clamping is applied.|
 
 ## Examples
 

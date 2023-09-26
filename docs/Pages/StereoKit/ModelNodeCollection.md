@@ -18,3 +18,4 @@ An enumerable for Model's ModelNodes
 |  |  |
 |--|--|
 |[Add]({{site.url}}/Pages/StereoKit/ModelNodeCollection/Add.html)|This adds a root node to the `Model`'s node hierarchy! If There is already an initial root node, this node will still be a root node, but will be a `Sibling` of the `Model`'s `RootNode`. If this is the first root node added, you'll be able to access it via `RootNode`.|
+|[GetEnumerator]({{site.url}}/Pages/StereoKit/ModelNodeCollection/GetEnumerator.html)|Gets an enumerator for the collection.|

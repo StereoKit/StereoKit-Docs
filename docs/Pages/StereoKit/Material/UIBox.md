@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Material.UIBox
-description: A material for indicating interaction volumes! It renders a border around the edges of the UV coordinates that will 'grow' on proximity to the user's finger. It will discard pixels outside of that border, but will also show the finger shadow. This is meant to be an opaque material, so it works well for depth LSR.  This material works best on cube-like meshes where each face has UV coordinates from 0-1.  Shader Parameters. color                - color border_size          - meters border_size_grow     - meters border_affect_radius - meters
+description: A material for indicating interaction volumes! It renders a border around the edges of the UV coordinates that will 'grow' on proximity to the user's finger. It will discard pixels outside of that border, but will also show the finger shadow. This is meant to be an opaque material, so it works well for depth LSR.  This material works best on cube-like meshes where each face has UV coordinates from 0-1.  Shader Parameters.  color                - color border_size          - meters border_size_grow     - meters border_affect_radius - meters 
 ---
 # [Material]({{site.url}}/Pages/StereoKit/Material.html).UIBox
 
@@ -21,10 +21,12 @@ This material works best on cube-like meshes where each face has
 UV coordinates from 0-1.
 
 Shader Parameters:
-```color                - color
+```
+color                - color
 border_size          - meters
 border_size_grow     - meters
-border_affect_radius - meters```
+border_affect_radius - meters
+```
 
 
 ## Examples
@@ -56,7 +58,7 @@ Model model      = Model.FromFile("DamagedHelmet.gltf");
 Pose  handlePose = new Pose(0,0,0, Quat.Identity);
 float scale      = .15f;
 
-public void Step() {
+public void StepHandle() {
 	UI.HandleBegin("Model Handle", ref handlePose, model.Bounds*scale);
 
 	model.Draw(Matrix.S(scale));

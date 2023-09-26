@@ -7,7 +7,7 @@ description: Manually define what area is used for the UI layout. This is in the
 
 <div class='signature' markdown='1'>
 ```csharp
-static void LayoutArea(Vec3 start, Vec2 dimensions)
+static void LayoutArea(Vec3 start, Vec2 dimensions, bool addMargin)
 ```
 Manually define what area is used for the UI layout. This
 is in the current Hierarchy's coordinate space on the X/Y plane.

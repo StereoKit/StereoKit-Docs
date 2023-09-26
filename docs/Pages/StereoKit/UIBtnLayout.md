@@ -16,4 +16,5 @@ the text filling the remaining space.
 |Center|Image will be centered in the button, and fill up the button as though it was the only element. Text will cram itself under the padding below the image.|
 |CenterNoText|Same as `Center`, but omitting the text.|
 |Left|Image to the left, text to the right. Image will take up no more than half the width.|
+|None|Hide the image, and only show text.|
 |Right|Image to the right, text to the left. Image will take up no more than half the width.|

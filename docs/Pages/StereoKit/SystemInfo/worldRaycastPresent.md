@@ -33,7 +33,7 @@ public void Start()
 
 public void Stop() => World.RaycastEnabled = false;
 
-public void Step()
+public void StepRaycast()
 {
 	// Raycast out the index finger of each hand, and draw a red sphere
 	// at the intersection point.

@@ -10,5 +10,6 @@ static float LineHeight{ get }
 </div>
 
 ## Description
-This is the height of a single line of text with padding in the UI's layout system!
+This is the height of a single line of text with padding
+in the UI's layout system!
 

@@ -33,3 +33,9 @@ the normal is a,b,c, and the d is, well, d.
 |--|--|
 |[FromPoint]({{site.url}}/Pages/StereoKit/Plane/FromPoint.html)|Creates a plane from a normal, and any point on the plane!|
 |[FromPoints]({{site.url}}/Pages/StereoKit/Plane/FromPoints.html)|Creates a plane from 3 points that are directly on that plane.|
+
+## Operators
+
+|  |  |
+|--|--|
+|[Implicit Conversions]({{site.url}}/Pages/StereoKit/Plane/op_Implicit.html)|Implicit conversion from the System.Numerics backing type.|

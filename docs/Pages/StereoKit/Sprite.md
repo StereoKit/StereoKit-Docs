@@ -31,6 +31,7 @@ another, so you can apply different
 |--|--|
 |float [Aspect]({{site.url}}/Pages/StereoKit/Sprite/Aspect.html)|The aspect ratio of the sprite! This is width/height. You may also be interested in the NormalizedDimensions property, which are normalized to the 0-1 range.|
 |int [Height]({{site.url}}/Pages/StereoKit/Sprite/Height.html)|Height of the sprite, in pixels.|
+|string [Id]({{site.url}}/Pages/StereoKit/Sprite/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) [NormalizedDimensions]({{site.url}}/Pages/StereoKit/Sprite/NormalizedDimensions.html)|Width and height of the sprite, normalized so the maximum value is 1.|
 |int [Width]({{site.url}}/Pages/StereoKit/Sprite/Width.html)|Width of the sprite, in pixels.|
 
@@ -40,9 +41,19 @@ another, so you can apply different
 |--|--|
 |[Draw]({{site.url}}/Pages/StereoKit/Sprite/Draw.html)|Draw the sprite on a quad with the provided transform!|
 
+## Static Fields and Properties
+
+|  |  |
+|--|--|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [RadioOff]({{site.url}}/Pages/StereoKit/Sprite/RadioOff.html)|This is a 64x64 image of an empty hole. This is common iconography for radio buttons which use an empty hole to indicate an un-selected radio, and a filled hole for a selected radio. This is used by the UI for radio buttons!|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [RadioOn]({{site.url}}/Pages/StereoKit/Sprite/RadioOn.html)|This is a 64x64 image of a filled hole. This is common iconography for radio buttons which use an empty hole to indicate an un-selected radio, and a filled hole for a selected radio. This is used by the UI for radio buttons!|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ToggleOff]({{site.url}}/Pages/StereoKit/Sprite/ToggleOff.html)|This is a 64x64 image of an empty rounded square. This is common iconography for checkboxes which use an empty square to indicate an un-selected checkbox, and a filled square for a selected checkbox. This is used by the UI for toggle buttons!|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ToggleOn]({{site.url}}/Pages/StereoKit/Sprite/ToggleOn.html)|This is a 64x64 image of a filled rounded square. This is common iconography for checkboxes which use an empty square to indicate an un-selected checkbox, and a filled square for a selected checkbox. This is used by the UI for toggle buttons!|
+
 ## Static Methods
 
 |  |  |
 |--|--|
+|[Find]({{site.url}}/Pages/StereoKit/Sprite/Find.html)|Finds a sprite that matches the given id! Check out the DefaultIds static class for some built-in ids. Sprites will auto-id themselves using this pattern if single sprites: {Tex.Id}/spr, and this pattern if atlased sprites: atlas_spr/{atlas}/{Tex.Id}.|
 |[FromFile]({{site.url}}/Pages/StereoKit/Sprite/FromFile.html)|Create a sprite from an image file! This loads a Texture from file, and then uses that Texture as the source for the Sprite.|
 |[FromTex]({{site.url}}/Pages/StereoKit/Sprite/FromTex.html)|Create a sprite from a Texture object!|

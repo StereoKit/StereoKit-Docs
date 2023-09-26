@@ -10,6 +10,6 @@ static [LogLevel]({{site.url}}/Pages/StereoKit/LogLevel.html) Error
 </div>
 
 ## Description
-Danger Will Robinson! Something really bad just happened and
-needs fixing!
+Danger Will Robinson! Something really bad just happened
+and needs fixing!
 

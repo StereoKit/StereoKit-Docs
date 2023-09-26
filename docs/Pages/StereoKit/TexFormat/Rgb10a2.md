@@ -1,7 +1,7 @@
 ---
 layout: default
 title: TexFormat.Rgb10a2
-description: Red/Green/Blue/Transparency data channels, at 8 bits per-channel in linear color space. This is what you'll want most of the time you're dealing with color data! Matches well with the Color32 struct.
+description: Red/Green/Blue/Transparency data channels, with 10 bits for R, G, and B, and 2 for alpha. This is a great presentation format for high bit depth displays that still fits in 32 bits, and also includes at least a bit of transparency!
 ---
 # [TexFormat]({{site.url}}/Pages/StereoKit/TexFormat.html).Rgb10a2
 
@@ -10,8 +10,8 @@ static [TexFormat]({{site.url}}/Pages/StereoKit/TexFormat.html) Rgb10a2
 </div>
 
 ## Description
-Red/Green/Blue/Transparency data channels, at 8 bits
-per-channel in linear color space. This is what you'll want most
-of the time you're dealing with color data! Matches well with the
-Color32 struct.
+Red/Green/Blue/Transparency data channels, with 10
+bits for R, G, and B, and 2 for alpha. This is a great presentation
+format for high bit depth displays that still fits in 32 bits, and
+also includes at least a bit of transparency!
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Model.SetTransform
-description: Changes the transform for the subset to a new one! This is in Model space, so it's relative to the origin of the model.
+description: [Obsolete] For removal in v0.4. Use Nodes / Visuals.ModelTransform instead. Changes the transform for the subset to a new one! This is in Model space, so it's relative to the origin of the model.
 ---
 # [Model]({{site.url}}/Pages/StereoKit/Model.html).SetTransform
 
@@ -9,8 +9,10 @@ description: Changes the transform for the subset to a new one! This is in Model
 ```csharp
 void SetTransform(int subsetIndex, Matrix& transform)
 ```
-Changes the transform for the subset to a new one! This
-is in Model space, so it's relative to the origin of the model.
+[Obsolete] For removal in v0.4. Use Nodes /
+Visuals.ModelTransform instead. Changes the transform for the
+subset to a new one! This is in Model space, so it's relative to
+the origin of the model.
 </div>
 
 |  |  |

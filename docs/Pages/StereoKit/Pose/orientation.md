@@ -10,5 +10,6 @@ description: Orientation of the pose, stored as a rotation from Vec3.Forward.
 </div>
 
 ## Description
-Orientation of the pose, stored as a rotation from Vec3.Forward.
+Orientation of the pose, stored as a rotation from
+Vec3.Forward.
 

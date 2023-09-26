@@ -27,6 +27,7 @@ instead of `new Pose()` for creating a default pose.
 |--|--|
 |[Pose]({{site.url}}/Pages/StereoKit/Pose/Pose.html)|Basic initialization constructor! Just copies in the provided values directly.|
 |[ToMatrix]({{site.url}}/Pages/StereoKit/Pose/ToMatrix.html)|Converts this pose into a transform matrix, incorporating a provided scale value.|
+|[ToString]({{site.url}}/Pages/StereoKit/Pose/ToString.html)|A string representation of the Pose, in the format of "position, Forward". Mostly for debug visualization.|
 
 ## Static Fields and Properties
 
@@ -38,4 +39,5 @@ instead of `new Pose()` for creating a default pose.
 
 |  |  |
 |--|--|
-|[Lerp]({{site.url}}/Pages/StereoKit/Pose/Lerp.html)|Interpolates between two poses! t is unclamped, so values outside of (0,1) will extrapolate their position.|
+|[Lerp]({{site.url}}/Pages/StereoKit/Pose/Lerp.html)|Interpolates between two poses! It is unclamped, so values outside of (0,1) will extrapolate their position.|
+|[LookAt]({{site.url}}/Pages/StereoKit/Pose/LookAt.html)|Creates a Pose that looks from one location in the direction of another location. This leaves "Up" as the +Y axis.|

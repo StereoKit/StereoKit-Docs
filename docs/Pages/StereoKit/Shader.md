@@ -18,6 +18,7 @@ sometimes!
 
 |  |  |
 |--|--|
+|string [Id]({{site.url}}/Pages/StereoKit/Shader/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
 |string [Name]({{site.url}}/Pages/StereoKit/Shader/Name.html)|The name of the shader, provided in the shader file itself. Not the filename or id.|
 
 ## Static Fields and Properties
@@ -28,7 +29,7 @@ sometimes!
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [PBR]({{site.url}}/Pages/StereoKit/Shader/PBR.html)|A physically based shader.|
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [PBRClip]({{site.url}}/Pages/StereoKit/Shader/PBRClip.html)|Same as ShaderPBR, but with a discard clip for transparency.|
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [UI]({{site.url}}/Pages/StereoKit/Shader/UI.html)|A shader for UI or interactable elements, this'll be the same as the Shader, but with an additional finger 'shadow' and distance circle effect that helps indicate finger distance from the surface of the object.|
-|[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [UIBox]({{site.url}}/Pages/StereoKit/Shader/UIBox.html)|A shader for indicating interaction volumes! It renders a border around the edges of the UV coordinates that will 'grow' on proximity to the user's finger. It will discard pixels outside of that border, but will also show the finger shadow. This is meant to be an opaque shader, so it works well for depth LSR.  This shader works best on cube-like meshes where each face has UV coordinates from 0-1.  Shader Parameters: ```color                - color border_size          - meters border_size_grow     - meters border_affect_radius - meters```|
+|[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [UIBox]({{site.url}}/Pages/StereoKit/Shader/UIBox.html)|A shader for indicating interaction volumes! It renders a border around the edges of the UV coordinates that will 'grow' on proximity to the user's finger. It will discard pixels outside of that border, but will also show the finger shadow. This is meant to be an opaque shader, so it works well for depth LSR.  This shader works best on cube-like meshes where each face has UV coordinates from 0-1.  Shader Parameters: ``` color                - color border_size          - meters border_size_grow     - meters border_affect_radius - meters ```|
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [Unlit]({{site.url}}/Pages/StereoKit/Shader/Unlit.html)|Sometimes lighting just gets in the way! This is an extremely simple and fast shader that uses a 'diffuse' texture and a 'color' tint property to draw a model without any lighting at all!|
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [UnlitClip]({{site.url}}/Pages/StereoKit/Shader/UnlitClip.html)|Sometimes lighting just gets in the way! This is an extremely simple and fast shader that uses a 'diffuse' texture and a 'color' tint property to draw a model without any lighting at all! This shader will also discard pixels with an alpha of zero.|
 

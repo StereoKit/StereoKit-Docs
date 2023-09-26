@@ -10,5 +10,6 @@ static [RenderLayer]({{site.url}}/Pages/StereoKit/RenderLayer.html) AllRegular
 </div>
 
 ## Description
-This is a combination of all layers that are not the VFX layer.
+This is a combination of all layers that are not the VFX
+layer.
 

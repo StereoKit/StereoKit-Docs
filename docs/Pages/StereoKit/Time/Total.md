@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Time.Total
-description: How much time has elapsed since StereoKit was initialized? 64 bit time precision.
+description: How many seconds have elapsed since StereoKit was initialized? 64 bit time precision, calculated at the start of the frame.
 ---
 # [Time]({{site.url}}/Pages/StereoKit/Time.html).Total
 
@@ -10,5 +10,7 @@ static double Total{ get }
 </div>
 
 ## Description
-How much time has elapsed since StereoKit was initialized? 64 bit time precision.
+How many seconds have elapsed since StereoKit was
+initialized? 64 bit time precision, calculated at the start of the
+frame.
 

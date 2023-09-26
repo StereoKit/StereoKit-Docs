@@ -1,26 +1,26 @@
 ---
 layout: default
 title: Mesh.SetInds
-description: Assigns the face indices for this Mesh! Faces are always triangles, there are only ever three indices per face. This function will create a index buffer object on the graphics card right away. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!
+description: Assigns the face indices for this Mesh! Faces are always triangles, there are only ever three indices per face. This function will create a index buffer object on the graphics card. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!
 ---
 # [Mesh]({{site.url}}/Pages/StereoKit/Mesh.html).SetInds
 
 <div class='signature' markdown='1'>
 ```csharp
-void SetInds(UInt32[] inds)
+void SetInds(UInt32[] indices)
 ```
 Assigns the face indices for this Mesh! Faces are always
 triangles, there are only ever three indices per face. This
-function will create a index buffer object on the graphics card
-right away. If you're calling this a second time, the buffer will
-be marked as dynamic and re-allocated. If you're calling this a
-third time, the buffer will only re-allocate if the buffer is too
-small, otherwise it just copies in the data!
+function will create a index buffer object on the graphics card. If
+you're calling this a second time, the buffer will be marked as
+dynamic and re-allocated. If you're calling this a third time, the
+buffer will only re-allocate if the buffer is too small, otherwise
+it just copies in the data!
 </div>
 
 |  |  |
 |--|--|
-|UInt32[] inds|A list of face indices, must be a multiple of             3. Each index represents a vertex from the array assigned using             SetVerts.|
+|UInt32[] indices|A list of face indices, must be a multiple of             3. Each index represents a vertex from the array assigned using             SetVerts.|
 
 
 
@@ -56,12 +56,12 @@ for (int x = 0; x < gridSize; x++) {
 	// value!
 	verts[x+y*gridSize] = new Vertex(
 		new Vec3(
-			x/gridMaxF-0.5f, 
-			SKMath.Sin((x+y) * 0.7f)*0.1f, 
+			x/gridMaxF-0.5f,
+			SKMath.Sin((x+y) * 0.7f)*0.1f,
 			y/gridMaxF-0.5f),
 		new Vec3(
-			-SKMath.Cos((x+y) * 0.7f), 
-			1, 
+			-SKMath.Cos((x+y) * 0.7f),
+			1,
 			-SKMath.Cos((x+y) * 0.7f)).Normalized,
 		new Vec2(
 			x / gridMaxF,
@@ -83,7 +83,6 @@ for (int x = 0; x < gridSize; x++) {
 	}
 } }
 demoProcMesh = new Mesh();
-demoProcMesh.SetVerts(verts);
-demoProcMesh.SetInds (inds);
+demoProcMesh.SetData(verts, inds);
 ```
 

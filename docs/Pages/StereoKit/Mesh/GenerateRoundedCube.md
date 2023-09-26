@@ -47,16 +47,16 @@ we just loaded up the default Material here.
 ```csharp
 // Call this code every Step
 
-Matrix roundedCubeTransform = Matrix.T(-.5f, 0, 0);
+Matrix roundedCubeTransform = Matrix.T(0, 0, 0);
 roundedCubeMesh.Draw(Default.Material, roundedCubeTransform);
 
-roundedCubeTransform = Matrix.T(.5f, 0, 0);
+roundedCubeTransform = Matrix.T(1, 0, 0);
 roundedCubeModel.Draw(roundedCubeTransform);
 ```
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Cube Mesh]({{site.screen_url}}/ProcGeoRoundedCube.jpg)
+![Procedural Rounded Cube Mesh]({{site.screen_url}}/ProcGeoRoundedCube.jpg)
 ```csharp
 meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
 ```

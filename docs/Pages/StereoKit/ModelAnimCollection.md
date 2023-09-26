@@ -12,3 +12,9 @@ An enumerable for Model's Anims
 |  |  |
 |--|--|
 |int [Count]({{site.url}}/Pages/StereoKit/ModelAnimCollection/Count.html)|This is the total number of animations attached to the model.|
+
+## Instance Methods
+
+|  |  |
+|--|--|
+|[GetEnumerator]({{site.url}}/Pages/StereoKit/ModelAnimCollection/GetEnumerator.html)|Gets an enumerator for the collection.|

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Model.SetMaterial
-description: Changes the Material for the subset to a new one!
+description: [Obsolete] For removal in v0.4. Use Nodes/Visuals.Material instead. Changes the Material for the subset to a new one!
 ---
 # [Model]({{site.url}}/Pages/StereoKit/Model.html).SetMaterial
 
@@ -9,29 +9,15 @@ description: Changes the Material for the subset to a new one!
 ```csharp
 void SetMaterial(int subsetIndex, Material material)
 ```
-Changes the Material for the subset to a new one!
+[Obsolete] For removal in v0.4. Use Nodes/Visuals.Material
+instead. Changes the Material for the subset to a new one!
 </div>
 
 |  |  |
 |--|--|
-|int subsetIndex|Index of the model subset to replace,              should be less than SubsetCount.|
+|int subsetIndex|Index of the model subset to replace,             should be less than SubsetCount.|
 |[Material]({{site.url}}/Pages/StereoKit/Material.html) material|The new Material, cannot be null.|
 
 
 
-
-
-## Examples
-
-```csharp
-for (int i = 0; i < model.SubsetCount; i++)
-{
-	// GetMaterial will often returned a shared resource, so 
-	// copy it if you don't wish to change all assets that 
-	// share it.
-	Material mat = model.GetMaterial(i).Copy();
-	mat[MatParamName.ColorTint] = Color.HSV(0, 1, 1);
-	model.SetMaterial(i, mat);
-}
-```
 

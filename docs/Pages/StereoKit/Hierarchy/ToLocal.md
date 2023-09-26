@@ -42,7 +42,7 @@ hierarchy stack into local space!
 |  |  |
 |--|--|
 |[Pose]({{site.url}}/Pages/StereoKit/Pose.html) worldPose|A pose in world space.|
-|RETURNS: [Pose]({{site.url}}/Pages/StereoKit/Pose.html)|The provided pose now in world space!|
+|RETURNS: [Pose]({{site.url}}/Pages/StereoKit/Pose.html)|The provided pose now in local hierarchy space!|
 
 
 

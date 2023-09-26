@@ -20,7 +20,7 @@ into model space, see the example in the docs!
 |  |  |
 |--|--|
 |[Ray]({{site.url}}/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the             intersection point will be in model space too. You can use the             inverse of the mesh's world transform matrix to bring the ray             into model space, see the example in the docs!|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
+|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,             especially if your own model->world transform contains scale/skew             in it.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -38,8 +38,26 @@ into model space, see the example in the docs!
 |  |  |
 |--|--|
 |[Ray]({{site.url}}/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the             intersection point will be in model space too. You can use the             inverse of the mesh's world transform matrix to bring the ray             into model space, see the example in the docs!|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
+|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,             especially if your own model->world transform contains scale/skew             in it.|
 |UInt32& outStartInds|The index of the first index of the triangle that was hit|
+|RETURNS: bool|True if an intersection occurs, false otherwise!|
+
+<div class='signature' markdown='1'>
+```csharp
+bool Intersect(Ray modelSpaceRay, Vec3& modelSpaceAt)
+```
+Checks the intersection point of this ray and a Mesh
+with collision data stored on the CPU. A mesh without collision
+data will always return false. Ray must be in model space,
+intersection point will be in model space too. You can use the
+inverse of the mesh's world transform matrix to bring the ray
+into model space, see the example in the docs!
+</div>
+
+|  |  |
+|--|--|
+|[Ray]({{site.url}}/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the             intersection point will be in model space too. You can use the             inverse of the mesh's world transform matrix to bring the ray             into model space, see the example in the docs!|
+|Vec3& modelSpaceAt|The intersection point of the ray and             the mesh, if an intersection occurs. This is in model space, and             must be transformed back into world space later.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 
@@ -58,10 +76,10 @@ and displaying it back in world space.
 ```csharp
 Mesh sphereMesh = Default.MeshSphere;
 Mesh boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
-Pose boxPose    = new Pose(0,     0,     -0.5f,  Quat.Identity);
-Pose castPose   = new Pose(0.25f, 0.21f, -0.36f, Quat.Identity);
+Pose boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
+Pose castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
 
-public void Update()
+public void StepRayMesh()
 {
 	// Draw our setup, and make the visuals grab/moveable!
 	UI.Handle("Box",  ref boxPose,  boxMesh.Bounds);
@@ -91,6 +109,7 @@ public void Update()
 			Lines.Add(cPt, aPt, new Color32(0,255,0,255), 0.005f);
 		}
 	}
+
 }
 ```
 

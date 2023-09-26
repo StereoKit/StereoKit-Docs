@@ -9,24 +9,26 @@ description: Converts this pose into a transform matrix, incorporating a provide
 ```csharp
 Matrix ToMatrix(Vec3 scale)
 ```
-Converts this pose into a transform matrix, incorporating a provided scale value.
+Converts this pose into a transform matrix, incorporating
+a provided scale value.
 </div>
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) scale|A scale vector! Vec3.One would be an identity scale.|
+|[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) scale|A scale vector! Vec3.One would be an identity             scale.|
 |RETURNS: [Matrix]({{site.url}}/Pages/StereoKit/Matrix.html)|A Matrix that transforms to the given pose.|
 
 <div class='signature' markdown='1'>
 ```csharp
 Matrix ToMatrix(float scale)
 ```
-Converts this pose into a transform matrix, incorporating a provided scale value.
+Converts this pose into a transform matrix, incorporating
+a provided scale value.
 </div>
 
 |  |  |
 |--|--|
-|float scale|A uniform scale factor! 1 would be an identity scale.|
+|float scale|A uniform scale factor! 1 would be an identity             scale.|
 |RETURNS: [Matrix]({{site.url}}/Pages/StereoKit/Matrix.html)|A Matrix that transforms to the given pose.|
 
 <div class='signature' markdown='1'>

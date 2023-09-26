@@ -43,7 +43,7 @@ recording with a device other than the default. NOTE: this example
 is designed with the assumption that Microphone.Start() has been
 called already.
 ```csharp
-Pose     micSelectPose   = new Pose(0.5f, 0, -0.5f, Quat.LookDir(-1, 0, 1));
+Pose     micSelectPose   = new Pose(Demo.contentPose.Translation + V.XYZ(0,-0.12f,0), Demo.contentPose.Rotation);
 string[] micDevices      = null;
 string   micDeviceActive = null;
 void ShowMicDeviceWindow()

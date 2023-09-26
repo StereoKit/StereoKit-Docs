@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SK.AddStepper
-description: This creates and registers an instance the IStepper type provided as the generic parameter. SK will hold onto it, Initialize it, Step it every frame, and call Shutdown when the application ends. This is generally safe to do before SK.Initialize is called, the constructor is called right away, and Initialize is called right after SK.Initialize, or right away if SK is already initialized.
+description: This instantiates and registers an instance of the IStepper type provided as the generic parameter. SK will hold onto it, Initialize it, Step it every frame, and call Shutdown when the application ends. This is generally safe to do before SK.Initialize is called, the constructor is called right away, and Initialize is called right after SK.Initialize, or at the start of the next frame before the next main Step callback if SK is already initialized.
 ---
 # [SK]({{site.url}}/Pages/StereoKit/SK.html).AddStepper
 
@@ -9,12 +9,13 @@ description: This creates and registers an instance the IStepper type provided a
 ```csharp
 static Object AddStepper(Type type)
 ```
-This creates and registers an instance the `IStepper` type
-provided as the generic parameter. SK will hold onto it, Initialize
-it, Step it every frame, and call Shutdown when the application
-ends. This is generally safe to do before SK.Initialize is called,
-the constructor is called right away, and Initialize is called
-right after SK.Initialize, or right away if SK is already
+This instantiates and registers an instance of the
+`IStepper` type provided as the generic parameter. SK will hold
+onto it, Initialize it, Step it every frame, and call Shutdown when
+the application ends. This is generally safe to do before
+SK.Initialize is called, the constructor is called right away, and
+Initialize is called right after SK.Initialize, or at the start of
+the next frame before the next main Step callback if SK is already
 initialized.
 </div>
 

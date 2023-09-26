@@ -7,7 +7,7 @@ description: This begins and ends a handle so you can just use  its grabbable/mo
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool Handle(string id, Pose& pose, Bounds handle, bool drawHandle, UIMove moveType)
+static bool Handle(string id, Pose& pose, Bounds handle, bool drawHandle, UIMove moveType, UIGesture allowedGestures)
 ```
 This begins and ends a handle so you can just use  its
 grabbable/moveable functionality! Behaves much like a window,
@@ -23,6 +23,7 @@ every frame the user is grabbing the handle.
 |[Bounds]({{site.url}}/Pages/StereoKit/Bounds.html) handle|Size and location of the handle, relative to              the pose.|
 |bool drawHandle|Should this function draw the handle for              you, or will you draw that yourself?|
 |[UIMove]({{site.url}}/Pages/StereoKit/UIMove.html) moveType|Describes how the handle will move when              dragged around.|
+|[UIGesture]({{site.url}}/Pages/StereoKit/UIGesture.html) allowedGestures|Which hand gestures are used for             interacting with this Handle?|
 |RETURNS: bool|Returns true for every frame the user is grabbing the handle.|
 
 

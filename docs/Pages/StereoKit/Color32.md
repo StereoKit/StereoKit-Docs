@@ -1,14 +1,19 @@
 ---
 layout: default
 title: Color32
-description: A 32 bit color struct! This is often directly used by StereoKit data structures, and so is often necessary for setting texture data, or mesh data. Note that the Color type implicitly converts to Color32, so you can use the static methods there to create Color32 values!
+description: A 32 bit color struct! This is often directly used by StereoKit data structures, and so is often necessary for setting texture data, or mesh data. Note that the Color type implicitly converts to Color32, so you can use the static methods there to create Color32 values!  It's generally best to avoid doing math on 32-bit color values, as they lack the precision necessary to create results. It's best to think of a Color32 as an optimized end stage format of a color.
 ---
 # struct Color32
 
-A 32 bit color struct! This is often directly used by StereoKit data
-structures, and so is often necessary for setting texture data, or mesh data.
-Note that the Color type implicitly converts to Color32, so you can use the
-static methods there to create Color32 values!
+A 32 bit color struct! This is often directly used by
+StereoKit data structures, and so is often necessary for setting
+texture data, or mesh data. Note that the Color type implicitly
+converts to Color32, so you can use the static methods there to create
+Color32 values!
+
+It's generally best to avoid doing math on 32-bit color values, as they
+lack the precision necessary to create results. It's best to think of
+a Color32 as an optimized end stage format of a color.
 
 ## Instance Fields and Properties
 
@@ -23,6 +28,7 @@ static methods there to create Color32 values!
 
 |  |  |
 |--|--|
+|[Color32]({{site.url}}/Pages/StereoKit/Color32/Color32.html)|Constructs a 32-bit color from bytes! You may also be interested in `Color32.Hex`.|
 |[ToString]({{site.url}}/Pages/StereoKit/Color32/ToString.html)|Mostly for debug purposes, this is a decent way to log or inspect the color in debug mode. Looks like "[r, g, b, a]"|
 
 ## Static Fields and Properties

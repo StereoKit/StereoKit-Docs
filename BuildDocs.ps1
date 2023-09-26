@@ -1,21 +1,18 @@
-git clone --depth=1 --branch=master https://github.com/StereoKit/StereoKit.git repos/StereoKit
+git clone --depth=1 --branch=develop https://github.com/StereoKit/StereoKit.git repos/StereoKit
 Push-Location repos/StereoKit
 git fetch
 git pull
 Pop-Location
 
 Push-Location repos/StereoKit
-mkdir build
-Push-Location build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-cmake --build . -j8 --config Release
-Pop-Location
+cmake --preset Win32_x64_Release
+cmake --build --preset Win32_x64_Release
 Push-Location StereoKit
 dotnet build
 Pop-Location
 Push-Location Examples/StereoKitTest
-dotnet build StereoKitTest.csproj
-dotnet run --project StereoKitTest.csproj -- -test -screenfolder ../../../../../docs/img/screenshots/
+dotnet build -c Release StereoKitTest.csproj
+dotnet run --project StereoKitTest.csproj -c Release -- -test -screenfolder ../../../../../docs/img/screenshots/
 Pop-Location
 Pop-Location
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Time.Totalf
-description: How much time has elapsed since StereoKit was initialized? 32 bit time precision.
+description: How many seconds have elapsed since StereoKit was initialized? 32 bit time precision, calculated at the start of the frame.
 ---
 # [Time]({{site.url}}/Pages/StereoKit/Time.html).Totalf
 
@@ -10,5 +10,7 @@ static float Totalf{ get }
 </div>
 
 ## Description
-How much time has elapsed since StereoKit was initialized? 32 bit time precision.
+How many seconds have elapsed since StereoKit was
+initialized? 32 bit time precision, calculated at the start of the
+frame.
 

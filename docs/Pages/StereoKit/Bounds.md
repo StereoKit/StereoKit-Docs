@@ -26,9 +26,12 @@ from different types of data!
 |--|--|
 |[Bounds]({{site.url}}/Pages/StereoKit/Bounds/Bounds.html)|Creates a bounding box object!|
 |[Contains]({{site.url}}/Pages/StereoKit/Bounds/Contains.html)|Does the Bounds contain the given point? This includes points that are on the surface of the Bounds.|
+|[Grown]({{site.url}}/Pages/StereoKit/Bounds/Grown.html)|Grow the Bounds to encapsulate the provided point. Returns the result, and does NOT modify the current bounds.|
 |[Intersect]({{site.url}}/Pages/StereoKit/Bounds/Intersect.html)|Calculate the intersection between a Ray, and these bounds. Returns false if no intersection occurred, and 'at' will contain the nearest intersection point to the start of the ray if an intersection is found!|
 |[Scale]({{site.url}}/Pages/StereoKit/Bounds/Scale.html)|Scale this bounds. It will scale the center as well as	the dimensions! Modifies this bounds object.|
 |[Scaled]({{site.url}}/Pages/StereoKit/Bounds/Scaled.html)|Scale the bounds. It will scale the center as well as	the dimensions! Returns a new Bounds.|
+|[ToString]({{site.url}}/Pages/StereoKit/Bounds/ToString.html)|Creates a text description of the Bounds, in the format of "[center:X dimensions:X]"|
+|[Transformed]({{site.url}}/Pages/StereoKit/Bounds/Transformed.html)|This returns a Bounds that encapsulates the transformed points of the current Bounds's corners. Note that this will likely introduce a lot of extra empty volume in many cases, as the result is still always axis aligned.|
 
 ## Static Methods
 
@@ -36,6 +39,12 @@ from different types of data!
 |--|--|
 |[FromCorner]({{site.url}}/Pages/StereoKit/Bounds/FromCorner.html)|Create a bounding box from a corner, plus box dimensions.|
 |[FromCorners]({{site.url}}/Pages/StereoKit/Bounds/FromCorners.html)|Create a bounding box between two corner points.|
+
+## Operators
+
+|  |  |
+|--|--|
+|[*]({{site.url}}/Pages/StereoKit/Bounds/op_Multiply.html)|This operator will create a new Bounds that has been properly scaled up by the float. This does affect the center position of the Bounds.|
 
 ## Examples
 
@@ -87,7 +96,7 @@ Model model      = Model.FromFile("DamagedHelmet.gltf");
 Pose  handlePose = new Pose(0,0,0, Quat.Identity);
 float scale      = .15f;
 
-public void Step() {
+public void StepHandle() {
 	UI.HandleBegin("Model Handle", ref handlePose, model.Bounds*scale);
 
 	model.Draw(Matrix.S(scale));

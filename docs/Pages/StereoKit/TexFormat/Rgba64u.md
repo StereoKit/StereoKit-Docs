@@ -1,7 +1,7 @@
 ---
 layout: default
 title: TexFormat.Rgba64u
-description: 16 bits of depth is not a lot, but it can be enough if your far clipping plane is pretty close. If you're seeing lots of flickering where two objects overlap, you either need to bring your far clip in, or switch to 32/24 bit depth.
+description: Red/Green/Blue/Transparency data channels, at 16 bits per-channel! This is not common, but you might encounter it with raw photos, or HDR images. The u postfix indicates that the raw color data is stored as an unsigned 16 bit integer, which is then normalized into the 0, 1 floating point range on the GPU.
 ---
 # [TexFormat]({{site.url}}/Pages/StereoKit/TexFormat.html).Rgba64u
 
@@ -10,8 +10,9 @@ static [TexFormat]({{site.url}}/Pages/StereoKit/TexFormat.html) Rgba64u
 </div>
 
 ## Description
-16 bits of depth is not a lot, but it can be enough if
-your far clipping plane is pretty close. If you're seeing lots of
-flickering where two objects overlap, you either need to bring
-your far clip in, or switch to 32/24 bit depth.
+Red/Green/Blue/Transparency data channels, at 16 bits
+per-channel! This is not common, but you might encounter it with
+raw photos, or HDR images. The u postfix indicates that the raw
+color data is stored as an unsigned 16 bit integer, which is then
+normalized into the 0, 1 floating point range on the GPU.
 

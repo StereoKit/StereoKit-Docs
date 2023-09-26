@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Hand.wrist
-description: Pose of the wrist. TODO. Not populated right now.
+description: Pose of the wrist. This is located at the base of your hand, and has a rigid orientation that points forward towards your fingers. Its orientation is unrelated to the forearm. This pose can be useful for making a hand relative coordinate space!
 ---
 # [Hand]({{site.url}}/Pages/StereoKit/Hand.html).wrist
 
@@ -10,5 +10,8 @@ description: Pose of the wrist. TODO. Not populated right now.
 </div>
 
 ## Description
-Pose of the wrist. TODO: Not populated right now.
+Pose of the wrist. This is located at the base of your
+hand, and has a rigid orientation that points forward towards your
+fingers. Its orientation is unrelated to the forearm. This pose can
+be useful for making a hand relative coordinate space!
 

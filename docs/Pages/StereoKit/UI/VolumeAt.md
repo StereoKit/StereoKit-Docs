@@ -1,9 +1,23 @@
 ---
 layout: default
 title: UI.VolumeAt
-description: A volume for helping to build one handed interactions. This checks for the presence of a hand inside the bounds, and if found, return that hand along with activation and focus information defined by the interactType.
+description: This Method is obsolete and will be removed soon. Please use any other overload of this method.
 ---
 # [UI]({{site.url}}/Pages/StereoKit/UI.html).VolumeAt
+
+<div class='signature' markdown='1'>
+```csharp
+static bool VolumeAt(string id, Bounds bounds)
+```
+This Method is obsolete and will be removed soon. Please
+use any other overload of this method.
+</div>
+
+|  |  |
+|--|--|
+|string id|An id for tracking element state. MUST be unique             within current hierarchy.|
+|[Bounds]({{site.url}}/Pages/StereoKit/Bounds.html) bounds|Size and position of the volume, relative to             the current Hierarchy.|
+|RETURNS: bool|True if a hand is in the volume, false if not.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -72,11 +86,11 @@ the user pinches while inside a VolumeAt.
 
 ```csharp
 // Draw a transparent volume so the user can see this space
-Vec3  volumeAt   = new Vec3(0,0.2f,-0.4f);
+Vec3  volumeAt   = new Vec3(0, 0.2f, -0.4f);
 float volumeSize = 0.2f;
 Default.MeshCube.Draw(Default.MaterialUIBox, Matrix.TS(volumeAt, volumeSize));
 
-BtnState volumeState = UI.VolumeAt("Volume", new Bounds(volumeAt, Vec3.One*volumeSize), UIConfirm.Pinch, out Handed hand);
+BtnState volumeState = UI.VolumeAt("Volume", new Bounds(volumeAt, Vec3.One * volumeSize), UIConfirm.Pinch, out Handed hand);
 if (volumeState != BtnState.Inactive)
 {
 	// If it just changed interaction state, make it jump in size

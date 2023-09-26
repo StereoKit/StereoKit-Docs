@@ -47,10 +47,10 @@ we just loaded up the default Material here.
 ```csharp
 // Call this code every Step
 
-Matrix cubeTransform = Matrix.T(-.5f, -.5f, 0);
+Matrix cubeTransform = Matrix.T(0, -.5f, 0);
 cubeMesh.Draw(Default.Material, cubeTransform);
 
-cubeTransform = Matrix.T(.5f, -.5f, 0);
+cubeTransform = Matrix.T(1, -.5f, 0);
 cubeModel.Draw(cubeTransform);
 ```
 ### UV and Face layout

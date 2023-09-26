@@ -23,6 +23,7 @@ a single item on the hand menu.
 |  |  |
 |--|--|
 |[HandMenuItem]({{site.url}}/Pages/StereoKit.Framework/HandMenuItem/HandMenuItem.html)|A menu item that'll load another layer when selected.|
+|[Draw]({{site.url}}/Pages/StereoKit.Framework/HandMenuItem/Draw.html)|This draws the menu item on the radial menu!|
 
 ## Examples
 
@@ -41,21 +42,21 @@ that!
 handMenu = SK.AddStepper(new HandMenuRadial(
 	new HandRadialLayer("Root",
 		new HandMenuItem("File",   null, null, "File"),
-		new HandMenuItem("Edit",   null, null, "Edit"),
-		new HandMenuItem("About",  null, () => Log.Info(SK.VersionName)),
+		new HandMenuItem("Search", null, null, "Edit"),
+		new HandMenuItem("About",  Sprite.FromFile("search.png"), () => Log.Info(SK.VersionName)),
 		new HandMenuItem("Cancel", null, null)),
 	new HandRadialLayer("File", 
-		new HandMenuItem("New",   null, () => Log.Info("New")),
-		new HandMenuItem("Open",  null, () => Log.Info("Open")),
-		new HandMenuItem("Close", null, () => Log.Info("Close")),
-		new HandMenuItem("Back",  null, null, HandMenuAction.Back)),
+		new HandMenuItem("New",    null, () => Log.Info("New")),
+		new HandMenuItem("Open",   null, () => Log.Info("Open")),
+		new HandMenuItem("Close",  null, () => Log.Info("Close")),
+		new HandMenuItem("Back",   null, null, HandMenuAction.Back)),
 	new HandRadialLayer("Edit",
-		new HandMenuItem("Copy",  null, () => Log.Info("Copy")),
-		new HandMenuItem("Paste", null, () => Log.Info("Paste")),
-		new HandMenuItem("Back", null, null, HandMenuAction.Back))));
+		new HandMenuItem("Copy",   null, () => Log.Info("Copy")),
+		new HandMenuItem("Paste",  null, () => Log.Info("Paste")),
+		new HandMenuItem("Back",   null, null, HandMenuAction.Back))));
 ```
 
 ```csharp
-SK.RemoveStepper(handMenu); 
+SK.RemoveStepper(handMenu);
 ```
 
