@@ -107,6 +107,11 @@ description: {GetSummary(data)}
 ";
 		}
 
+		public string ToStringSinglePage(bool links)
+		{
+			return data;
+		}
+
 		private string GetSummary(string text)
 		{
 			int newline = 0;

@@ -32,11 +32,11 @@ namespace StereoKitDocumenter
 			MethodBase m = methodInfo;
 			Type   returnType = m is MethodInfo ? ((MethodInfo)m).ReturnType : typeof(void);
 			string methodName = rootMethod.ShowName;
-			string returnName = m is MethodInfo ? StringHelper.TypeName(returnType.Name) : "";
+			string returnName = m is MethodInfo ? StringHelper.TypeName(returnType.Name, LinkType.MDWeb) : "";
 			List<ParameterInfo> param = m == null ? new List<ParameterInfo>() : new List<ParameterInfo>(m.GetParameters());
 
-			string paramList = string.Join(", ", param.Select(a => $"{StringHelper.TypeName(a.ParameterType.Name, false)} {a.Name}"));
-			string signature = (m.IsStatic ? "static " : "") + $"{StringHelper.TypeName(returnType.Name, false)} {methodName}({paramList})";
+			string paramList = string.Join(", ", param.Select(a => $"{StringHelper.TypeName(a.ParameterType.Name, LinkType.None)} {a.Name}"));
+			string signature = (m.IsStatic ? "static " : "") + $"{StringHelper.TypeName(returnType.Name, LinkType.None)} {methodName}({paramList})";
 
 			string paramText = "";
 			if (parameters.Count > 0 || returnType != typeof(void))
@@ -47,7 +47,7 @@ namespace StereoKitDocumenter
 					ParameterInfo p = param.Find(a => a.Name == parameters[i].name);
 					if (p == null)
 						throw new Exception($"Can't find document paramter {parameters[i].name} in {rootMethod.name}");
-					paramText += $"|{StringHelper.TypeName(p.ParameterType.Name)} {parameters[i].name}|{StringHelper.CleanForTable(parameters[i].summary)}|\n";
+					paramText += $"|{StringHelper.TypeName(p.ParameterType.Name, LinkType.MDWeb)} {parameters[i].name}|{StringHelper.CleanForTable(parameters[i].summary)}|\n";
 				}
 
 				if (returnType != typeof(void)) {
@@ -63,6 +63,42 @@ namespace StereoKitDocumenter
 ```
 {summary}
 </div>
+{paramText}";
+		}
+		public string ToStringSinglePage(bool links)
+		{
+			LinkType linkType = links? LinkType.MDSingle : LinkType.None;
+
+			MethodBase m = methodInfo;
+			Type   returnType = m is MethodInfo ? ((MethodInfo)m).ReturnType : typeof(void);
+			string methodName = rootMethod.ShowName;
+			string returnName = m is MethodInfo ? StringHelper.TypeName(returnType.Name, linkType) : "";
+			List<ParameterInfo> param = m == null ? new List<ParameterInfo>() : new List<ParameterInfo>(m.GetParameters());
+
+			string paramList = string.Join(", ", param.Select(a => $"{StringHelper.TypeName(a.ParameterType.Name, linkType)} {a.Name}"));
+			string signature = (m.IsStatic ? "static " : "") + $"{StringHelper.TypeName(returnType.Name, linkType)} {methodName}({paramList})";
+
+			string paramText = "";
+			if (parameters.Count > 0 || returnType != typeof(void))
+			{
+				for (int i = 0; i < parameters.Count; i++)
+				{
+					ParameterInfo p = param.Find(a => a.Name == parameters[i].name);
+					if (p == null)
+						throw new Exception($"Can't find document paramter {parameters[i].name} in {rootMethod.name}");
+					paramText += $"- {StringHelper.TypeName(p.ParameterType.Name, linkType)} {parameters[i].name}: {StringHelper.CleanForTable(StringHelper.CleanMultiLine(parameters[i].summary))}\n";
+				}
+
+				if (returnType != typeof(void)) {
+					if (string.IsNullOrEmpty( returns ))
+						throw new Exception("Missing doc tag for the return value of " + rootMethod.Name);
+					paramText += $"- RETURNS {returnName}: {StringHelper.CleanForTable(StringHelper.CleanMultiLine(returns))}\n";
+				}
+			}
+
+			return $@"`{signature}`
+
+{summary}
 {paramText}
 ";
 		}

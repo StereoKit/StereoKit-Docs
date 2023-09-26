@@ -4,6 +4,12 @@ using System.Xml;
 
 namespace StereoKitDocumenter
 {
+	enum LinkType
+	{
+		None,
+		MDWeb,
+		MDSingle
+	}
 	static class StringHelper
 	{
 		public static string CleanForDescription(string text)
@@ -12,6 +18,12 @@ namespace StereoKitDocumenter
 						.Replace('\r', ' ')
 						.Replace(':', '.')
 						.Replace("`", "");
+		}
+		public static string MarkdownLink(string header)
+		{
+			return "#" + header
+				.Replace("#", "")
+				.Replace(' ', '-');
 		}
 
 		public static string XmlReaderToString(XmlReader reader)
@@ -24,7 +36,7 @@ namespace StereoKitDocumenter
 					// TODO: This doesn't work, but it also doesn't crash
 					if (r.Name == "see" || r.Name == "seealso")
 					{
-						contents += $"`{TypeName(r.GetAttribute("cref"), false)}`";
+						contents += $"`{TypeName(r.GetAttribute("cref"), LinkType.None)}`";
 					}
 					continue;
 				}
@@ -48,7 +60,7 @@ namespace StereoKitDocumenter
 				.ToArray());
 		}
 
-		public static string TypeName(string type, bool embedLink = true)
+		public static string TypeName(string type, LinkType embedLink)
 		{
 			switch(type)
 			{
@@ -60,8 +72,8 @@ namespace StereoKitDocumenter
 				case "Boolean": return "bool";
 				case "Void"   : return "void";
 				default: {
-					return embedLink && Program.TryGetClass(type, out DocClass typeDoc)
-						? $"[{type}]({typeDoc.UrlName})"
+					return embedLink != LinkType.None && Program.TryGetClass(type, out DocClass typeDoc)
+						? $"[{type}]({(embedLink == LinkType.MDWeb ? typeDoc.UrlName : MarkdownLink(typeDoc.Name))})"
 						: type;
 				}
 			}

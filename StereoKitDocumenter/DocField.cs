@@ -48,6 +48,7 @@ namespace StereoKitDocumenter
 
 		public void AddExample(DocExample aExample) => examples.Add(aExample);
 
+
 		public override string ToString()
 		{
 			Type   classType   = parent.ClassType;
@@ -58,9 +59,10 @@ namespace StereoKitDocumenter
 				for (int i = 0; i < examples.Count; i++) {
 					exampleText += examples[i].data;
 				}
+				exampleText += "\n";
 			}
 
-			string signature = (GetStatic(classType) ? "static " : "") + $"{StringHelper.TypeName(fieldType.Name)} {name}";
+			string signature = (GetStatic(classType) ? "static " : "") + $"{StringHelper.TypeName(fieldType.Name, LinkType.MDWeb)} {name}";
 			PropertyInfo pInfo = classType.GetProperty(name);
 			if (pInfo != null)
 				signature += $"{{ {(pInfo.CanRead?"get ":"")}{(pInfo.CanWrite ? "set " : "")}}}";
@@ -75,10 +77,28 @@ description: {StringHelper.CleanForDescription(summary)}
 <div class='signature' markdown='1'>
 {signature}
 </div>
-
-## Description
 {summary}
-{exampleText}
+{exampleText}";
+
+		}
+
+		public string ToStringSinglePage(bool links)
+		{
+			Type   classType   = parent.ClassType;
+			Type   fieldType   = GetFieldType(classType);
+
+			string signature = (GetStatic(classType) ? "static " : "") + $"{StringHelper.TypeName(fieldType.Name, links?LinkType.MDSingle:LinkType.None)} {name}";
+			PropertyInfo pInfo = classType.GetProperty(name);
+			if (pInfo != null)
+				signature += $"{{ {(pInfo.CanRead?"get ":"")}{(pInfo.CanWrite ? "set " : "")}}}";
+
+			string title = links ? $"[{parent.Name}]({parent.UrlName}).{name}" : $"{parent.Name}.{name}";
+			return $@"## {title}
+
+`{signature}`
+
+{summary}
+
 ";
 
 		}

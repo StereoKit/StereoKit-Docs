@@ -68,6 +68,7 @@ namespace StereoKitDocumenter
 				for (int i = 0; i < examples.Count; i++) {
 					exampleText += examples[i].data;
 				}
+				exampleText += "\n";
 			}
 
 			return $@"---
@@ -79,9 +80,15 @@ description: {StringHelper.CleanForDescription(overloads[0].summary)}
 
 {string.Join("",overloads.Select(a=>a.ToString()).ToArray())}
 
-{exampleText}
-";
+{exampleText}";
 
+		}
+		public string ToStringSinglePage(bool links)
+		{
+			string title = links ? $"[{parent.Name}]({StringHelper.MarkdownLink(parent.Name)}).{ShowName}" : $"{parent.Name}.{ShowName}";
+			return $@"## {title}
+
+{string.Join("",overloads.Select(a=>a.ToStringSinglePage(links)).ToArray())}";
 		}
 
 	}

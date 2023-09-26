@@ -7,5 +7,6 @@
 		string UrlName  { get; }
 
 		void AddExample(DocExample aExample);
+		string ToStringSinglePage(bool links);
 	}
 }

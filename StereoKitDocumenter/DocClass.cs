@@ -26,7 +26,7 @@ namespace StereoKitDocumenter
 
 		public void AddExample(DocExample aExample) => examples.Add(aExample);
 
-		public override string ToString()
+		private string ToStringBase(Func<DocField, string> fieldToString, Func<DocField, string> enumToString, Func<DocMethod, string> methodToString, bool addExamples)
 		{
 			Type t = ClassType;
 			methods.Sort((a,b)=>a.name.CompareTo(b.name));
@@ -36,10 +36,6 @@ namespace StereoKitDocumenter
 			List<DocMethod> methodsOperator = methods.FindAll(a =>  a.isOp);
 			List<DocField>  fieldsStatic    = fields.FindAll(a =>  a.GetStatic(t));
 			List<DocField>  fieldsInstance  = fields.FindAll(a => !a.GetStatic(t));
-
-			Func<DocField,  string> fieldToString  = (f) => { return $"|{StringHelper.TypeName(f.GetFieldType(t).Name)} [{f.name}]({f.UrlName})|{StringHelper.CleanForTable(f.summary)}|"; };
-			Func<DocField,  string> enumToString   = (e) => { return $"|{e.name}|{StringHelper.CleanForTable(e.summary)}|"; };
-			Func<DocMethod, string> methodToString = (m) => { return $"|[{m.ShowName}]({m.UrlName})|{StringHelper.CleanForTable(m.overloads[0].summary)}|"; };
 
 			string classDescription = "";
 			if      (t.IsEnum)      classDescription = "enum";
@@ -80,20 +76,63 @@ namespace StereoKitDocumenter
 					.Select(fieldToString));
 			}
 
-			string exampleText = examples.Count == 0 ?
-				"" : "\n\n## Examples\n\n";
-			exampleText += string.Join("\n", examples.Select(e=>e.data));
+			string exampleText = "";
+			if (examples.Count > 0 && addExamples == true)
+			{
+				exampleText = "\n\n## Examples\n\n";
+				for (int i = 0; i < examples.Count; i++) {
+					exampleText += examples[i].data;
+				}
+				exampleText = exampleText.TrimEnd() + "\n";
+			}
+
+			return $@"
+# {classDescription} {Name}
+
+{summary}{fieldText}{memberText}{fieldTextStatic}{memberTextStatic}{memberTextOps}{exampleText}";
+		}
+
+		public override string ToString()
+		{
+			Type t = ClassType;
+			Func<DocField,  string> fieldToString  = (f) => { return $"|{StringHelper.TypeName(f.GetFieldType(t).Name, LinkType.MDWeb)} [{f.name}]({f.UrlName})|{StringHelper.CleanForTable(f.summary)}|"; };
+			Func<DocField,  string> enumToString   = (e) => { return $"|{e.name}|{StringHelper.CleanForTable(e.summary)}|"; };
+			Func<DocMethod, string> methodToString = (m) => { return $"|[{m.ShowName}]({m.UrlName})|{StringHelper.CleanForTable(m.overloads[0].summary)}|"; };
 
 			return $@"---
 layout: default
 title: {Name}
 description: {StringHelper.CleanForDescription(summary)}
 ---
-# {classDescription} {Name}
+{ToStringBase(fieldToString, enumToString, methodToString, true)}";
+		}
 
-{summary}{fieldText}{memberText}{fieldTextStatic}{memberTextStatic}{memberTextOps}{exampleText}
+		public string ToStringSinglePage(bool links)
+		{
+			Type t = ClassType;
+
+			string classDescription = "";
+			if      (t.IsEnum)      classDescription = "enum";
+			else if (t.IsClass)     classDescription = "class";
+			else if (t.IsValueType) classDescription = "struct";
+			if (t.IsAbstract && t.IsSealed) classDescription = "static " + classDescription;
+			return $@"# {classDescription} {Name}
+
+{summary}
+
 ";
 
+			Func<DocField,  string> fieldToString  = (f) => { return $"|{StringHelper.TypeName(f.GetFieldType(t).Name, LinkType.MDSingle)} [{f.name}]({StringHelper.MarkdownLink(f.Name)})|{StringHelper.CleanForTable(f.summary)}|"; };
+			Func<DocField,  string> enumToString   = (e) => { return $"|{e.name}|{StringHelper.CleanForTable(e.summary)}|"; };
+			Func<DocMethod, string> methodToString = (m) => { return $"|[{m.ShowName}]({StringHelper.MarkdownLink(m.Name)})|{StringHelper.CleanForTable(m.overloads[0].summary)}|"; };
+			if (!links)
+			{
+				fieldToString  = (f) => { return $"|{StringHelper.TypeName(f.GetFieldType(t).Name, LinkType.None)} {f.name}|{StringHelper.CleanForTable(f.summary)}|"; };
+				enumToString   = (e) => { return $"|{e.name}|{StringHelper.CleanForTable(e.summary)}|"; };
+				methodToString = (m) => { return $"|{m.ShowName}|{StringHelper.CleanForTable(m.overloads[0].summary)}|"; };
+			}
+
+			return ToStringBase(fieldToString, enumToString, methodToString, false);
 		}
 	}
 }

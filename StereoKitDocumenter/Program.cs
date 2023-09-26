@@ -120,6 +120,20 @@ namespace StereoKitDocumenter
 				writer.Write(WriteIndex());
 				writer.Close();
 			}
+
+
+			StreamWriter singleWriter = new StreamWriter(options.PagesOut + "SKSinglePage.md");
+			for (int i = 0; i < items.Count; i++)
+			{
+				singleWriter.Write(items[i].ToStringSinglePage(false));
+			}
+			singleWriter.Write("\n# Examples\n\n");
+			for (int i = 0; i < DocExampleFinder.examples.Count; i++)
+			{
+				singleWriter.Write(DocExampleFinder.examples[i].ToStringSinglePage(false));
+				singleWriter.Write("\n");
+			}
+			singleWriter.Close();
 		}
 
 		private static void ScrapeData()
