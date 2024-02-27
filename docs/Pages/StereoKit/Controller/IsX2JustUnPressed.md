@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Controller.IsX2JustUnPressed
-description: Has the controller's X2 button just been released this frame? Depending on the specific hardware, this is the second general purpose button on the controller. For example, on an Oculus Quest Touch controller this would represent 'X' on the left controller, and 'A' on the right controller.
+description: Has the controller's X2 button just been released this frame? Depending on the specific hardware, this is the second general purpose button on the controller. For example, on an Oculus Quest Touch controller this would represent 'Y' on the left controller, and 'B' on the right controller.
 ---
 # [Controller]({{site.url}}/Pages/StereoKit/Controller.html).IsX2JustUnPressed
 
@@ -13,6 +13,6 @@ bool IsX2JustUnPressed{ get }
 Has the controller's X2 button just been released this
 frame? Depending on the specific hardware, this is the second
 general purpose button on the controller. For example, on an
-Oculus Quest Touch controller this would represent 'X' on the
-left controller, and 'A' on the right controller.
+Oculus Quest Touch controller this would represent 'Y' on the
+left controller, and 'B' on the right controller.
 

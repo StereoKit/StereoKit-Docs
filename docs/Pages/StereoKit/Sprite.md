@@ -45,8 +45,15 @@ another, so you can apply different
 
 |  |  |
 |--|--|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ArrowDown]({{site.url}}/Pages/StereoKit/Sprite/ArrowDown.html)|This is a 64x64 image of a slightly rounded triangle pointing down.|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ArrowLeft]({{site.url}}/Pages/StereoKit/Sprite/ArrowLeft.html)|This is a 64x64 image of a slightly rounded triangle pointing left.|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ArrowRight]({{site.url}}/Pages/StereoKit/Sprite/ArrowRight.html)|This is a 64x64 image of a slightly rounded triangle pointing right.|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ArrowUp]({{site.url}}/Pages/StereoKit/Sprite/ArrowUp.html)|This is a 64x64 image of a slightly rounded triangle pointing up.|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [Backspace]({{site.url}}/Pages/StereoKit/Sprite/Backspace.html)|This is a 64x64 image of a backspace action button, similar to a backspace button you might find on a mobile keyboard.|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [Close]({{site.url}}/Pages/StereoKit/Sprite/Close.html)|This is a 64x64 image of a square aspect X, with rounded edge. It's used to indicate a 'close' icon.|
 |[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [RadioOff]({{site.url}}/Pages/StereoKit/Sprite/RadioOff.html)|This is a 64x64 image of an empty hole. This is common iconography for radio buttons which use an empty hole to indicate an un-selected radio, and a filled hole for a selected radio. This is used by the UI for radio buttons!|
 |[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [RadioOn]({{site.url}}/Pages/StereoKit/Sprite/RadioOn.html)|This is a 64x64 image of a filled hole. This is common iconography for radio buttons which use an empty hole to indicate an un-selected radio, and a filled hole for a selected radio. This is used by the UI for radio buttons!|
+|[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [Shift]({{site.url}}/Pages/StereoKit/Sprite/Shift.html)|This is a 64x64 image of an upward facing rounded arrow. This is a triangular top with a narrow rectangular base, and is used to indicate a 'shift' icon on a keyboard.|
 |[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ToggleOff]({{site.url}}/Pages/StereoKit/Sprite/ToggleOff.html)|This is a 64x64 image of an empty rounded square. This is common iconography for checkboxes which use an empty square to indicate an un-selected checkbox, and a filled square for a selected checkbox. This is used by the UI for toggle buttons!|
 |[Sprite]({{site.url}}/Pages/StereoKit/Sprite.html) [ToggleOn]({{site.url}}/Pages/StereoKit/Sprite/ToggleOn.html)|This is a 64x64 image of a filled rounded square. This is common iconography for checkboxes which use an empty square to indicate an un-selected checkbox, and a filled square for a selected checkbox. This is used by the UI for toggle buttons!|
 

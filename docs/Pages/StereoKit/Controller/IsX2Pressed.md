@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Controller.IsX2Pressed
-description: Is the controller's X2 button currently pressed? Depending on the specific hardware, this is the second general purpose button on the controller. For example, on an Oculus Quest Touch controller this would represent 'X' on the left controller, and 'A' on the right controller.
+description: Is the controller's X2 button currently pressed? Depending on the specific hardware, this is the second general purpose button on the controller. For example, on an Oculus Quest Touch controller this would represent 'Y' on the left controller, and 'B' on the right controller.
 ---
 # [Controller]({{site.url}}/Pages/StereoKit/Controller.html).IsX2Pressed
 
@@ -13,8 +13,8 @@ bool IsX2Pressed{ get }
 Is the controller's X2 button currently pressed?
 Depending on the specific hardware, this is the second general
 purpose button on the controller. For example, on an Oculus Quest
-Touch controller this would represent 'X' on the left controller,
-and 'A' on the right controller.
+Touch controller this would represent 'Y' on the left controller,
+and 'B' on the right controller.
 
 
 ## Examples

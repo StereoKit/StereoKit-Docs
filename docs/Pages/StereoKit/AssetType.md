@@ -11,6 +11,7 @@ A flag for what 'type' an Asset may store.
 
 |  |  |
 |--|--|
+|Anchor|An Anchor.|
 |Font|A Font.|
 |Material|A Material.|
 |Mesh|A Mesh.|

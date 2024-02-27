@@ -24,6 +24,7 @@ and other various things.
 |float [RefreshInterval]({{site.url}}/Pages/StereoKit/World/RefreshInterval.html)|The refresh interval speed, in seconds. This is only applicable when using `WorldRefresh.Timer` for the refresh type. Note that the system may not be able to refresh as fast as you wish, and in that case, StereoKit will always refresh as soon as the previous refresh finishes.|
 |float [RefreshRadius]({{site.url}}/Pages/StereoKit/World/RefreshRadius.html)|Radius, in meters, of the area that StereoKit should scan for world data. Default is 4. When using the `WorldRefresh.Area` refresh type, the world data will refresh when the user has traveled half this radius from the center of where the most recent refresh occurred.|
 |[WorldRefresh]({{site.url}}/Pages/StereoKit/WorldRefresh.html) [RefreshType]({{site.url}}/Pages/StereoKit/World/RefreshType.html)|What information should StereoKit use to determine when the next world data refresh happens? See the `WorldRefresh` enum for details.|
+|[BtnState]({{site.url}}/Pages/StereoKit/BtnState.html) [Tracked]({{site.url}}/Pages/StereoKit/World/Tracked.html)|This reports the status of the device's positional tracking. If the room is too dark, or a hand is covering tracking sensors, or some other similar 6dof tracking failure, this would report as not tracked.  Note that this does not factor in the status of rotational tracking. Rotation is typically done via gyroscopes/accelerometers, which don't really fail the same way positional tracking system can.|
 
 ## Static Methods
 

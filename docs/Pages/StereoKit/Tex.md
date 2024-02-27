@@ -32,6 +32,7 @@ plus more later on, and you can also create textures procedurally.
 |--|--|
 |[Tex]({{site.url}}/Pages/StereoKit/Tex/Tex.html)|Sets up an empty texture container! Fill it with data using SetColors next! Creates a default unique asset Id.|
 |[AddZBuffer]({{site.url}}/Pages/StereoKit/Tex/AddZBuffer.html)|Only applicable if this texture is a rendertarget! This creates and attaches a zbuffer surface to the texture for use when rendering to it.|
+|[GetColorData]({{site.url}}/Pages/StereoKit/Tex/GetColorData.html)|Retrieve the color data of the texture from the GPU. This can be a very slow operation, so use it cautiously.|
 |[GetColors]({{site.url}}/Pages/StereoKit/Tex/GetColors.html)|Retrieve the color data of the texture from the GPU. This can be a very slow operation, so use it cautiously. If the color array is the correct size, it will not be re-allocated.|
 |[GetNativeSurface]({{site.url}}/Pages/StereoKit/Tex/GetNativeSurface.html)|This will return the texture's native resource for use with external libraries. For D3D, this will be an ID3D11Texture2D*, and for GL, this will be a uint32_t from a glGenTexture call, coerced into the IntPtr. This call will block execution until the texture is loaded, if it is not already.|
 |[SetColors]({{site.url}}/Pages/StereoKit/Tex/SetColors.html)|Set the texture's pixels using a pointer to a chunk of memory! This is great if you're pulling in some color data from native code, and don't want to pay the cost of trying to marshal that data around.|

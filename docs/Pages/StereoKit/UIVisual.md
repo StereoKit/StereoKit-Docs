@@ -12,6 +12,7 @@ element visual.
 
 |  |  |
 |--|--|
+|Aura|Refers to the grabbable area indicator outside a window.|
 |Button|Refers to UI.Button elements.|
 |ButtonRound|Refers to UI.ButtonRound elements.|
 |Carat|Refers to the text position indicator carat on text input elements.|

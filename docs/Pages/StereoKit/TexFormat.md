@@ -18,7 +18,10 @@ good default here is Rgba32.
 |Depth32|32 bits of data per depth value! This is pretty detailed, and is excellent for experiences that have a very far view distance.|
 |DepthStencil|A depth data format, 24 bits for depth data, and 8 bits to store stencil information! Stencil data can be used for things like clipping effects, deferred rendering, or shadow effects.|
 |None|A default zero value for TexFormat! Uninitialized formats will get this value and **** **** up so you know to assign it properly :)|
-|R16|A single channel of data, with 16 bits per-pixel! This is a good format for height maps, since it stores a fair bit of information in it. Values in the shader are always 0.0-1.0.|
+|R16|A single channel of data, with 16 bits per-pixel! This is a good format for height maps, since it stores a fair bit of information in it. Values in the shader are always 0.0-1.0. TODO: remove during major version update, prefer s, f, or u postfixed versions of this format, this item is the same as r16u.|
+|R16f|A single channel of data, with 16 bits per-pixel! This is a good format for height maps, since it stores a fair bit of information in it. The f postfix indicates that the raw color data is stored as 16 bit floats, which may be tricky to work with in most languages.|
+|R16s|A single channel of data, with 16 bits per-pixel! This is a good format for height maps, since it stores a fair bit of information in it. The s postfix indicates that the raw color data is stored as a signed 16 bit integer, which is then normalized into the -1, +1 floating point range on the GPU.|
+|R16u|A single channel of data, with 16 bits per-pixel! This is a good format for height maps, since it stores a fair bit of information in it. The u postfix indicates that the raw color data is stored as an unsigned 16 bit integer, which is then normalized into the 0, 1 floating point range on the GPU.|
 |R32|A single channel of data, with 32 bits per-pixel! This basically treats each pixel as a generic float, so you can do all sorts of strange and interesting things with this.|
 |R8|A single channel of data, with 8 bits per-pixel! This can be great when you're only using one channel, and want to reduce memory usage. Values in the shader are always 0.0-1.0.|
 |R8g8|A double channel of data that supports 8 bits for the red channel and 8 bits for the green channel.|
