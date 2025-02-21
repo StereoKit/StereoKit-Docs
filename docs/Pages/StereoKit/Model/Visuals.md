@@ -41,7 +41,7 @@ data attached to it!
 ```csharp
 Log.Info("Iterate visuals:");
 foreach (ModelNode node in model.Visuals)
-	Log.Info("  "+ node.Name);
+	Log.Info($"  {node.Name}");
 ```
 ### Tagged Nodes
 You can search through Visuals and Nodes for nodes with some sort

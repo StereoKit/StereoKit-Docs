@@ -7,24 +7,6 @@ description: Schedules a screenshot for the end of the frame! The view will be r
 
 <div class='signature' markdown='1'>
 ```csharp
-static void Screenshot(Vec3 from, Vec3 at, int width, int height, string filename)
-```
-Schedules a screenshot for the end of the frame! The view
-will be rendered from the given position at the given point, with a
-resolution the same size as the screen's surface. It'll be saved as
-a JPEG or PNG file depending on the filename extension provided.
-</div>
-
-|  |  |
-|--|--|
-|[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) from|Viewpoint location.|
-|[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) at|Direction the viewpoint is looking at.|
-|int width|Size of the screenshot horizontally, in pixels.|
-|int height|Size of the screenshot vertically, in pixels.|
-|string filename|Filename to write the screenshot to! This             will be a PNG if the extension ends with (case insensitive)             ".png", and will be a 90 quality JPEG if it ends with anything             else.|
-
-<div class='signature' markdown='1'>
-```csharp
 static void Screenshot(string filename, Vec3 from, Vec3 at, int width, int height, float fieldOfViewDegrees)
 ```
 Schedules a screenshot for the end of the frame! The view

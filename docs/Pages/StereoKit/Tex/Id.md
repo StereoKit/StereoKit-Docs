@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tex.Id
-description: Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!
+description: Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on!
 ---
 # [Tex]({{site.url}}/Pages/StereoKit/Tex.html).Id
 
@@ -11,6 +11,6 @@ string Id{ get set }
 
 ## Description
 Gets or sets the unique identifier of this asset resource!
-This can be helpful for debugging, managine your assets, or finding
+This can be helpful for debugging, managing your assets, or finding
 them later on!
 

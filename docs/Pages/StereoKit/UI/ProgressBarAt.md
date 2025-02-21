@@ -7,7 +7,7 @@ description: This is a simple horizontal progress indicator bar. This is used by
 
 <div class='signature' markdown='1'>
 ```csharp
-static void ProgressBarAt(float percent, Vec3 topLeftCorner, Vec2 size)
+static void ProgressBarAt(float percent, Vec3 topLeftCorner, Vec2 size, UIDir barDirection, bool flipFillDirection)
 ```
 This is a simple horizontal progress indicator bar. This
 is used by the HSlider to draw the slider bar beneath the

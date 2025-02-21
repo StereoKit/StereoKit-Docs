@@ -109,7 +109,7 @@ public void AssetWindow()
 			case Sound    item: VisualizeSound   (item); break;
 		}
 		UI.PopId();
-		UI.Label(string.IsNullOrEmpty(asset.Id) ? "(null)" : asset.Id);
+		UI.Label(string.IsNullOrEmpty(asset.Id) ? "(null)" : asset.Id, V.XY(UI.LayoutRemaining.x, 0));
 	}
 	
 	UI.WindowEnd();
@@ -152,7 +152,7 @@ void VisualizeModel(Model item)
 
 void VisualizeSound(Sound item)
 {
-	if (UI.Button(">", V.XX(UI.LineHeight)))
+	if (UI.ButtonImg(">", Sprite.ArrowRight, UIBtnLayout.CenterNoText, V.XX(UI.LineHeight)))
 		item.Play(Hierarchy.ToWorld(UI.LayoutLast.center));
 	UI.SameLine();
 }
@@ -164,6 +164,6 @@ Assets! Here's a quick example of iterating through all assets and
 dumping a quick summary to the log.
 ```csharp
 foreach (var asset in Assets.All)
-	Log.Info($"{asset.GetType().Name} - {asset.Id}");
+	Log.Info($"{asset.GetType().Name,-10} - {asset.Id}");
 ```
 

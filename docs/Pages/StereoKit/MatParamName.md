@@ -25,6 +25,7 @@ this is checked and verified by the compiler!
 |OcclusionTex|Used by physically based shaders, this can be used for baked ambient occlusion lighting, or to remove specular reflections from areas that are surrounded by geometry that would likely block reflections.  This represents the texture param 'occlusion'.|
 |RoughnessAmount|For physically based shader, this is a multiplier to scale the roughness properties of the material.  This represents the float param 'roughness'.|
 |TexScale|Not necessarily present in all shaders, this multiplies the UV coordinates of the mesh, so that the texture will repeat. This is great for tiling textures!  This represents the float param 'tex_scale'.|
+|TexTransform|Not necessarily present in all shaders, this transforms the UV coordinates of the mesh, so that the texture can repeat and scroll. XY components are offset, and ZW components are scale.  This represents the float param 'tex_trans'.|
 
 ## Examples
 
@@ -34,7 +35,7 @@ shader parameters really quickly! You can do this with strings
 representing shader parameter names, or use the MatParamName
 enum for compile safety.
 ```csharp
-exampleMaterial[MatParamName.DiffuseTex] = gridTex;
-exampleMaterial[MatParamName.TexScale  ] = 2.0f;
+exampleMaterial[MatParamName.DiffuseTex  ] = gridTex;
+exampleMaterial[MatParamName.TexTransform] = new Vec4(0,0,2,2);
 ```
 

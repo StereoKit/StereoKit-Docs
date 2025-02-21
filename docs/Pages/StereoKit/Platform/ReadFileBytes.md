@@ -16,7 +16,7 @@ Platform.FilePicker. Returns null on failure.
 
 |  |  |
 |--|--|
-|string filename|Path to the file. Not affected by Assets             folder path.|
+|string filename|Path to the file.|
 |RETURNS: Byte[]|A raw byte array if successful, null if not.|
 
 

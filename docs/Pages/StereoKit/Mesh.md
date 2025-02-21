@@ -24,7 +24,7 @@ a fudgeton of verts! 4 billion or so :)
 |  |  |
 |--|--|
 |[Bounds]({{site.url}}/Pages/StereoKit/Bounds.html) [Bounds]({{site.url}}/Pages/StereoKit/Mesh/Bounds.html)|This is a bounding box that encapsulates the Mesh! It's used for collision, visibility testing, UI layout, and probably other things. While it's normally calculated from the mesh vertices, you can also override this to suit your needs.|
-|string [Id]({{site.url}}/Pages/StereoKit/Mesh/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
+|string [Id]({{site.url}}/Pages/StereoKit/Mesh/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on!|
 |int [IndCount]({{site.url}}/Pages/StereoKit/Mesh/IndCount.html)|The number of indices stored in this Mesh! This is available to you regardless of whether or not KeepData is set.|
 |bool [KeepData]({{site.url}}/Pages/StereoKit/Mesh/KeepData.html)|Should StereoKit keep the mesh data on the CPU for later access, or collision detection? Defaults to true. If you set this to false before setting data, the data won't be stored. If you call this after setting data, that stored data will be freed! If you set this to true again later on, it will not contain data until it's set again.|
 |int [VertCount]({{site.url}}/Pages/StereoKit/Mesh/VertCount.html)|The number of vertices stored in this Mesh! This is available to you regardless of whether or not KeepData is set.|
@@ -55,7 +55,7 @@ a fudgeton of verts! 4 billion or so :)
 
 |  |  |
 |--|--|
-|[Find]({{site.url}}/Pages/StereoKit/Mesh/Find.html)|Finds the Mesh with the matching id, and returns a reference to it. If no Mesh it found, it returns null.|
+|[Find]({{site.url}}/Pages/StereoKit/Mesh/Find.html)|Finds the Mesh with the matching id, and returns a reference to it. If no Mesh is found, it returns null.|
 |[GenerateCircle]({{site.url}}/Pages/StereoKit/Mesh/GenerateCircle.html)|Generates a circle on the XZ axis facing up that is pre-sized to the given diameter. UV coordinates correspond to a unit circle centered at 0.5, 0.5! That is, the right-most point on the circle has UV coordinates 1, 0.5 and the top-most point has UV coordinates 0.5, 1.  NOTE: This generates a completely new Mesh asset on the GPU, and is best done during 'initialization' of your app/scene.|
 |[GenerateCube]({{site.url}}/Pages/StereoKit/Mesh/GenerateCube.html)|Generates a flat-shaded cube mesh, pre-sized to the given dimensions. UV coordinates are projected flat on each face, 0,0 -> 1,1.  NOTE: This generates a completely new Mesh asset on the GPU, and is best done during 'initialization' of your app/scene. You may also be interested in using the pre-generated `Mesh.Cube` asset if it already meets your needs.|
 |[GenerateCylinder]({{site.url}}/Pages/StereoKit/Mesh/GenerateCylinder.html)|Generates a cylinder mesh, pre-sized to the given diameter and depth, UV coordinates are from a flattened top view right now. Additional development is needed for making better UVs for the edges.  NOTE: This generates a completely new Mesh asset on the GPU, and is best done during 'initialization' of your app/scene.|

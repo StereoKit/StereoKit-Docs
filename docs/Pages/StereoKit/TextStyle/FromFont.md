@@ -7,7 +7,7 @@ description: Create a text style for use with other text functions! A text style
 
 <div class='signature' markdown='1'>
 ```csharp
-static TextStyle FromFont(Font font, float characterHeightMeters, Color colorGamma)
+static TextStyle FromFont(Font font, float layoutHeightMeters, Color colorGamma)
 ```
 Create a text style for use with other text functions! A
 text style is a font plus size/color/material parameters, and are
@@ -21,13 +21,13 @@ on Default.ShaderFont.
 |  |  |
 |--|--|
 |[Font]({{site.url}}/Pages/StereoKit/Font.html) font|Font asset you want attached to this style.|
-|float characterHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on the letter 'T'.|
+|float layoutHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on CapHeight.|
 |[Color]({{site.url}}/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text             style. This will be embedded in the vertex color of the text             mesh.|
 |RETURNS: [TextStyle]({{site.url}}/Pages/StereoKit/TextStyle.html)|A text style id for use with text rendering functions.|
 
 <div class='signature' markdown='1'>
 ```csharp
-static TextStyle FromFont(Font font, float characterHeightMeters, Shader shader, Color colorGamma)
+static TextStyle FromFont(Font font, float layoutHeightMeters, Shader shader, Color colorGamma)
 ```
 Create a text style for use with other text functions! A
 text style is a font plus size/color/material parameters, and are
@@ -41,14 +41,14 @@ on the provided Shader.
 |  |  |
 |--|--|
 |[Font]({{site.url}}/Pages/StereoKit/Font.html) font|Font asset you want attached to this style.|
-|float characterHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on the letter 'T'.|
+|float layoutHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on CapHeight.|
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) shader|This style will create and use a unique             Material based on the Shader that you provide here.|
 |[Color]({{site.url}}/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text             style. This will be embedded in the vertex color of the text             mesh.|
 |RETURNS: [TextStyle]({{site.url}}/Pages/StereoKit/TextStyle.html)|A text style id for use with text rendering functions.|
 
 <div class='signature' markdown='1'>
 ```csharp
-static TextStyle FromFont(Font font, float characterHeightMeters, Material material, Color colorGamma)
+static TextStyle FromFont(Font font, float layoutHeightMeters, Material material, Color colorGamma)
 ```
 Create a text style for use with other text functions! A
 text style is a font plus size/color/material parameters, and are
@@ -65,7 +65,7 @@ Shader, or takes neither a Shader nor a Material!
 |  |  |
 |--|--|
 |[Font]({{site.url}}/Pages/StereoKit/Font.html) font|Font asset you want attached to this style.|
-|float characterHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on the letter 'T'.|
+|float layoutHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on CapHeight.|
 |[Material]({{site.url}}/Pages/StereoKit/Material.html) material|Which material should be used to render             the text with? Note that this does NOT duplicate the material, so             some parameters of this Material instance will get overwritten,              like the texture used for the glyph atlas. You should either use             a new Material, or a Material that was already used with this             same font.|
 |[Color]({{site.url}}/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text             style. This will be embedded in the vertex color of the text             mesh.|
 |RETURNS: [TextStyle]({{site.url}}/Pages/StereoKit/TextStyle.html)|A text style id for use with text rendering functions.|

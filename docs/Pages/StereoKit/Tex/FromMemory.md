@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tex.FromMemory
-description: Loads an image file stored in memory directly into a texture! Supported formats are. jpg, png, tga, bmp, psd, gif, hdr, pic. Asset Id will be the same as the filename.
+description: Loads an image file stored in memory directly into a texture! Supported formats are. jpg, png, tga, bmp, psd, gif, hdr, pic, ktx2. Asset Id will be the same as the filename.
 ---
 # [Tex]({{site.url}}/Pages/StereoKit/Tex.html).FromMemory
 
@@ -11,7 +11,7 @@ static Tex FromMemory(Byte[]& imageFileData, bool sRGBData, int priority)
 ```
 Loads an image file stored in memory directly into a
 texture! Supported formats are: jpg, png, tga, bmp, psd, gif,
-hdr, pic. Asset Id will be the same as the filename.
+hdr, pic, ktx2. Asset Id will be the same as the filename.
 </div>
 
 |  |  |

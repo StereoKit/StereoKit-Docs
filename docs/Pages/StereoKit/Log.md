@@ -35,6 +35,7 @@ Text colors can be set with a tag, and reset back to default with
 
 |  |  |
 |--|--|
+|[Diag]({{site.url}}/Pages/StereoKit/Log/Diag.html)|Writes a formatted line to the log using a LogLevel.Diagnostic severity level!|
 |[Err]({{site.url}}/Pages/StereoKit/Log/Err.html)|Writes a formatted line to the log using a LogLevel.Error severity level!|
 |[Info]({{site.url}}/Pages/StereoKit/Log/Info.html)|Writes a formatted line to the log using a LogLevel.Info severity level!|
 |[Subscribe]({{site.url}}/Pages/StereoKit/Log/Subscribe.html)|Allows you to listen in on log events! Any callback subscribed here will be called when something is logged. This does honor the Log.Filter, so filtered logs will not be received here. This method can safely be called before SK initialization.|

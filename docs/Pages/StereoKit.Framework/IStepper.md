@@ -95,7 +95,8 @@ class Win32PerformanceCounterExt : IStepper
 		return xrConvertTimeToWin32PerformanceCounterKHR != null;
 	}
 
-	// A more complicated extension might use these, but 
+	// A more complicated extension might use these, but this EXT does not
+	// require any actions on-Step.
 	public void Shutdown() { }
 	public void Step() { }
 }

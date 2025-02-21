@@ -1,32 +1,9 @@
 ---
 layout: default
 title: Sprite.Draw
-description: Draw the sprite on a quad with the provided transform!
+description: Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.
 ---
 # [Sprite]({{site.url}}/Pages/StereoKit/Sprite.html).Draw
-
-<div class='signature' markdown='1'>
-```csharp
-void Draw(Matrix& transform, Color32 color)
-```
-Draw the sprite on a quad with the provided transform!
-</div>
-
-|  |  |
-|--|--|
-|Matrix& transform|A Matrix describing a transform from              model space to world space.|
-|[Color32]({{site.url}}/Pages/StereoKit/Color32.html) color|Per-instance color data for this render item.|
-
-<div class='signature' markdown='1'>
-```csharp
-void Draw(Matrix& transform)
-```
-Draw the sprite on a quad with the provided transform!
-</div>
-
-|  |  |
-|--|--|
-|Matrix& transform|A Matrix describing a transform from              model space to world space.|
 
 <div class='signature' markdown='1'>
 ```csharp

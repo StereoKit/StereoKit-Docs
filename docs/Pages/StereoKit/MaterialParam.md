@@ -27,7 +27,6 @@ to on the shader.
 |UInt3|A 3 component vector composed of unsigned integers.|
 |UInt4|A 4 component vector composed of unsigned integers.|
 |Unknown|This data type is not currently recognized. Please report your case on GitHub Issues!|
-|Vector|A 4 component vector composed of floating point values. TODO: Remove in v0.4|
 |Vector2|A 2 component vector composed of floating point values.|
 |Vector3|A 3 component vector composed of floating point values.|
 |Vector4|A 4 component vector composed of floating point values.|

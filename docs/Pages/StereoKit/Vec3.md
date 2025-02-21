@@ -26,6 +26,7 @@ right, +y is upwards, and -z is forward.
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [X0Z]({{site.url}}/Pages/StereoKit/Vec3/X0Z.html)|This returns a Vec3 that has been flattened to 0 on the Y axis. No other changes are made.|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) [XY]({{site.url}}/Pages/StereoKit/Vec3/XY.html)|This extracts a Vec2 from the X and Y axes.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [XY0]({{site.url}}/Pages/StereoKit/Vec3/XY0.html)|This returns a Vec3 that has been flattened to 0 on the Z axis. No other changes are made.|
+|[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [XY1]({{site.url}}/Pages/StereoKit/Vec3/XY1.html)|This returns a Vec3 that has been set to 1 on the Z axis. No other changes are made.|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) [XZ]({{site.url}}/Pages/StereoKit/Vec3/XZ.html)|This extracts a Vec2 from the X and Z axes.|
 |float [y]({{site.url}}/Pages/StereoKit/Vec3/y.html)|Y component.|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) [YZ]({{site.url}}/Pages/StereoKit/Vec3/YZ.html)|This extracts a Vec2 from the Y and Z axes.|

@@ -1,14 +1,14 @@
 ---
 layout: default
 title: SystemInfo.displayType
-description: The type of display this device has.
+description: Obsolete, please use Device.DisplayBlend
 ---
 # [SystemInfo]({{site.url}}/Pages/StereoKit/SystemInfo.html).displayType
 
 <div class='signature' markdown='1'>
-[Display]({{site.url}}/Pages/StereoKit/Display.html) displayType
+[DisplayBlend]({{site.url}}/Pages/StereoKit/DisplayBlend.html) displayType{ get set }
 </div>
 
 ## Description
-The type of display this device has.
+Obsolete, please use Device.DisplayBlend
 

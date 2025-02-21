@@ -23,7 +23,7 @@ be helpful.
 
 |  |  |
 |--|--|
-|[UIVisual]({{site.url}}/Pages/StereoKit/UIVisual.html) visual|Which UI visual element to override.|
+|[UIVisual]({{site.url}}/Pages/StereoKit/UIVisual.html) visual|Which UI visual element to override. This can             be a value _past_ UIVisual.Max if you need extra UIVisual slots for             your own custom UI elements.|
 |[Mesh]({{site.url}}/Pages/StereoKit/Mesh.html) mesh|The Mesh to use for the UI element's visual             component. The Mesh will be scaled to match the dimensions of the             UI element.|
 |[Material]({{site.url}}/Pages/StereoKit/Material.html) material|The Material to use when rendering the UI             element. The default Material is specifically designed to work             with quadrant sizing formatted meshes.|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) minSize|For some meshes, such as quadrant sized             meshes, there's a minimum size where the mesh turns inside out.             This lets UI elements to accommodate for this minimum size, and             behave somewhat more appropriately.|

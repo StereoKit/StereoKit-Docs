@@ -62,6 +62,7 @@ Matrices are prominently used within shaders for mesh transforms!
 
 |  |  |
 |--|--|
+|[LookAt]({{site.url}}/Pages/StereoKit/Matrix/LookAt.html)|A transformation that describes one position looking at another point. This is particularly useful for describing camera transforms!|
 |[Orthographic]({{site.url}}/Pages/StereoKit/Matrix/Orthographic.html)|This creates a matrix used for projecting 3D geometry onto a 2D surface for rasterization. Orthographic projection matrices will preserve parallel lines. This is great for 2D scenes or content.|
 |[Perspective]({{site.url}}/Pages/StereoKit/Matrix/Perspective.html)|This creates a matrix used for projecting 3D geometry onto a 2D surface for rasterization. Perspective projection matrices will cause parallel lines to converge at the horizon. This is great for normal looking content.|
 |[R]({{site.url}}/Pages/StereoKit/Matrix/R.html)|Create a rotation matrix from a Quaternion.|

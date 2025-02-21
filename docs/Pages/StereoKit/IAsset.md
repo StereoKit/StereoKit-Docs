@@ -13,4 +13,4 @@ working with Assets at a high level with the `Assets` class.
 
 |  |  |
 |--|--|
-|string [Id]({{site.url}}/Pages/StereoKit/IAsset/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
+|string [Id]({{site.url}}/Pages/StereoKit/IAsset/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on!|

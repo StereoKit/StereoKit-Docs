@@ -20,195 +20,358 @@ need a little extra.
 
 ## Making a Window
 
-![Simple UI]({{site.url}}/img/screenshots/GuideUserInterface.jpg)
+![Simple UI]({{site.url}}/img/screenshots/Guides/UIWindowSimple.jpg)
 
-Since StereoKit doesn't store state, you'll have to keep track of
-your data yourself! But that's actually a pretty good thing, since
-you'll probably do that one way or another anyhow. Here we've got a
-Pose for the window, off to the left and facing to the right, as well
-as a boolean for a toggle, and a float that we'll use as a slider!
-We'll add this code to our initialization section.
+Lets start with a function that draws a simple, empty window.
 ```csharp
-Pose  windowPose = new Pose(-.2f, 0, -0.6f, Quat.LookDir(0,0,1));
+void SimpleWindow(ref Pose windowPose)
+{
+	UI.WindowBegin("Simple Window", ref windowPose);
 
-bool  showHeader = true;
-float slider     = 0.5f;
-
-Sprite powerSprite = Sprite.FromFile("power.png", SpriteType.Single);
+	UI.WindowEnd();
+}
 ```
-Then we'll move over to the application step where we'll do the
-rest of the UI code!
-
-We'll start with a window titled "Window" that's 20cm wide, and
-auto-resizes on the y-axis. The U class is pretty helpful here,
-as it allows us to reason more visually about the units we're
-using! StereoKit uses meters as its base unit, which look a
-little awkward as raw floats, especially in the millimeter range.
-
-We'll also use a toggle to turn the window's header on and off!
-The value from that toggle is passed in here via the showHeader
-field.
+Looks pretty easy! You can begin a window, and end a window, and all
+the UI elements between those two calls "belong" to that window. But
+first, lets put this in context! StereoKit's UI code must be called
+every frame, so you would need to call `SimpleWindow` in your
+application's `Step` phase.
 
 ```csharp
-UI.WindowBegin("Window", ref windowPose, new Vec2(20, 0) * U.cm, showHeader?UIWin.Normal:UIWin.Body);
+using StereoKit;
+
+SK.Initialize();
+
+Pose simpleWinPose = new (0, 0, -0.5f, Quat.LookDir(-Vec3.Forward));
+
+SK.Run(()=> {
+	SimpleWindow(ref simpleWinPose);
+});
 ```
 
-When you begin a window, all visual elements are now relative to
-that window! UI takes advantage of the Hierarchy class and pushes
-the window's pose onto the Hierarchy stack. Ending the window
-will pop the pose off the hierarchy stack, and return things to
-normal!
+Note here that _you_ own the Window's Pose data, you can change it and
+manage it however you want! StereoKit does take a _reference_ to the
+variable so it can update it based on the user's current interaction
+with the window, but that all happens immediately in the `WindowBegin`
+function call, the reference doesn't persist internally!
 
-Here's that toggle button! You'll also notice our use of 'ref'
-values in a lot of the UI code. UI functions typically follow the
-pattern of returning true/false to indicate they've been
-interacted with during the frame, so you can nicely wrap them in
-'if' statements to react to change!
+> You might also have wondered about the Pose we used here! When the
+> app starts up, the user will generally be at the "identity pose",
+> that is to say, at XYZ 0,0,0 facing forward 0,0,-1. For the window
+> pose to be nice to a starting user, we put it half a meter forward,
+> and have the window face backward towards the user's starting point.
 
-Then with the 'ref' parameter, we let you pass in the current
-state of the UI element. The UI element will update that value
-for you based on user interaction, but you can also change it
-yourself whenever you want to!
+## Making a Button
+
+![Button UI]({{site.url}}/img/screenshots/Guides/UIWindowButton.jpg)
+
+The simplest UI element, the button, illustrates nicely how "events"
+occur in an immediate mode GUI system. Instead of some form of callback
+or event, the `Button` function merely returns true on the first moment
+it is pressed! You can safely put your function in an `if` statement,
+and react to the interaction inline! Or pass execution along to a
+callback, you do you.
+```csharp
+void ButtonWindow(ref Pose windowPose)
+{
+	UI.WindowBegin("Button Window", ref windowPose);
+
+	if (UI.Button("Quit"))
+		SK.Quit();
+
+	UI.WindowEnd();
+}
+```
+Adding an image to a button is pretty easy too, `UI.ButtonImg` takes a
+sprite and an optional layout to make your buttons a little snazzier!
+Here we're using one of StereoKit's built-in default sprites, but you
+can swap that out with a Sprite you've loaded from file too!
+
+![Button Image UI]({{site.url}}/img/screenshots/Guides/UIWindowButtonImg.jpg)
 
 ```csharp
-UI.Toggle("Show Header", ref showHeader);
-```
+void ButtonImgWindow(ref Pose windowPose, ref int counter)
+{
+	UI.WindowBegin("Button Image Window", ref windowPose);
 
-Here's an example slider! We start off with a label element, and
-tell the UI to keep the next item on the same line. The slider
-clamps to the range [0,1], and will step at intervals of 0.2. If
-you want it to slide continuously, you can just set the `step`
-value to 0!
+	UI.Label($"Count {counter}");
+	if (UI.ButtonImg("Increment Counter", Sprite.ArrowUp))
+		counter++;
+
+	UI.WindowEnd();
+}
+```
+## Making a Toggle
+
+Just to drive home the idea of how immediate mode state management
+works, lets take a look at the `Toggle` element!
+
+![Toggle UI]({{site.url}}/img/screenshots/Guides/UIWindowToggle.jpg)
 
 ```csharp
-UI.Label("Slide");
-UI.SameLine();
-UI.HSlider("slider", ref slider, 0, 1, 0.2f, 72 * U.mm);
+bool header = false;
+void ToggleWindow(ref Pose windowPose)
+{
+	UI.WindowBegin("Toggle Window",
+	               ref windowPose,
+	               header ? UIWin.Normal : UIWin.Body);
+
+	UI.Toggle("Show Header", ref header);
+
+	UI.WindowEnd();
+}
 ```
+> `header` is used as a class global variable to illustrate the
+> _complete_ life of the variable. It could just as easily be a `ref`
+> parameter like the `Pose`.
 
-Here's how you use a simple button! Just check it with an 'if'.
-Any UI method will return true on the frame when their value or
-state has changed.
+As you might expect, `UI.Toggle` is a UI element that will toggle a
+boolean value whenever it's pressed! Like the `UI.Button`, `UI.Toggle`
+also has a return value, in this case it returns true _anytime_ the
+boolean value changes from interaction. Sometimes quite useful, but in
+this case we don't actually need an event to react to, we just use the
+same boolean variable every frame when defining the window!
 
-```csharp
-if (UI.ButtonImg("Exit", powerSprite))
-	SK.Quit();
-```
-
-And for every begin, there must also be an end! StereoKit will
-log errors when this occurs, so keep your eyes peeled for that!
-
-```csharp
-UI.WindowEnd();
-```
+Though perhaps a subtle detail, this is one of the superpowers of an
+immediate mode mentality. Recalculating the enum value every frame
+allows us to avoid caching some separate `UIWin` variable in addition
+to our `header` boolean. Our own `header` variable becomes a singular
+source of truth that can be durable to mutation at any point in time.
+Multiple sources of truth and cached values can often lead to
+desynchronization bugs.
 
 ## Custom Windows
 
-![Simple UI]({{site.url}}/img/screenshots/GuideUserInterfaceCustom.jpg)
+StereoKit also supports the idea of objects as interfaces! Instead of
+putting UI elements onto windows, we can create 3D models and apply UI
+elements to their surface! StereoKit uses 'handles' to accomplish this,
+a grabbable area that behaves much like a window, but with a few more
+options for customizing layout and size.
 
-Mixed Reality also provides us with the opportunity to turn
-objects into interfaces! Instead of using the old 'window'
-paradigm, we can create 3D models and apply UI elements to their
-surface! StereoKit uses 'handles' to accomplish this, a grabbable
-area that behaves much like a window, but with a few more options
-for customizing layout and size.
-
-We'll load up a clipboard, so we can attach an interface to that!
+![Custom Windows]({{site.url}}/img/screenshots/Guides/UIWindowCustom.jpg)
 
 ```csharp
-Model clipboard = Model.FromFile("Clipboard.glb");
+Model  clipboard  = Model .FromFile("Clipboard.glb");
+Sprite logoSprite = Sprite.FromFile("StereoKitWide.png");
+void CustomWindow(ref Pose windowPose, ref float slider)
+{
+	UI.HandleBegin("Clip", ref windowPose, clipboard.Bounds);
+	// Handle also does not specify the valid layout area for the UI,
+	// so we do this explicitly here. In this case, I know in advace
+	// that the clipboard GLTF file has a usable surface that's about
+	// 26x30cm.
+	UI.LayoutArea(V.XY0(.13f, .15f), new Vec2(.26f, .3f));
+
+	// Since the Handle does not draw anything, we must draw our own
+	// visual! We can draw this at Identity because HandleBegin
+	// pushes its pose onto the transform hierarchy. This is _not_ a
+	// UI element, it's just a regular Model asset and does not use
+	// any of the UI's layout tools.
+	clipboard.Draw(Matrix.Identity);
+
+	UI.Image(logoSprite, V.XY(.22f, 0));
+
+	UI.HSeparator();
+
+	UI.Label("Slider");
+	UI.SameLine();
+	UI.HSlider("slideId", ref slider, 0, 1);
+
+	UI.HandleEnd();
+}
 ```
 
-And, similar to the window previously, here's how you would turn
-it into a grabbable interface! This behaves the same, except
-we're defining where the grabbable region is specifically, and
-then drawing our own model instead of a plain bar. You'll also
-notice we're drawing using an identity matrix. This takes
-advantage of how HandleBegin pushes the handle's pose onto the
-Hierarchy transform stack!
+As you can see, it looks basically like a Window with the Begin/End
+pattern, but with the extra `LayoutArea` and custom visual. You can
+find another more complex example of using GLTFs for UI with a radio
+model [over in the demos](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Demos/DemoNodes.cs).
+
+There's also a few new UI elements here! A `UI.Image` to decorate the
+interface a bit, a `UI.HSeparator` to visually separate or group
+elements, a `UI.Label` to put a small bit of text on the UI (see
+UI.Text for longer pieces of text!), `UI.SameLine` to manipulate the
+layout and put the next UI element on the same 'line', and then
+`UI.HSlider`, a nice tool for changing `float` values.
+
+You can check out the [Tearsheet Demo](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Demos/DemoUITearsheet.cs)
+to see the vast majority of UI elements in use, or check the [UI class docs]({{site.url}}/Pages/StereoKit/UI.html)
+for a complete list of UI related elements.
+
+## UI Layout
+
+So far, our UI layout has been pretty simplistic! Each UI element has
+for the most part determined its own size, and then advanced to the
+next layout line for the next element. All StereoKit UI functions have
+a number of variants to them, typically one that auto-layouts as much
+as possible, one that accepts an explicit size, and one that completely
+bypasses StereoKit's layout system. The ones that bypass SK's layout
+system are named differently, `UI.ButtonAt`, `UI.HSliderAt`, etc.,
+rather than just being overloads.
+
+> `UI.___At` functions are useful when designing custom elements,
+> element groups, or your own layout system, but are not often used at
+> top level.
+
+![Explicitly sized element window]({{site.url}}/img/screenshots/Guides/UIWindowExplicitSize.jpg)
+
+Here's how explicitly sized UI elements work.
 
 ```csharp
-UI.HandleBegin("Clip", ref clipboardPose, clipboard.Bounds);
-clipboard.Draw(Matrix.Identity);
+void ExplicitSizeWindow(ref Pose  windowPose,
+                        ref float slider1,
+                        ref float slider2)
+{
+	UI.WindowBegin("Explicit Size Window",
+	               ref windowPose,
+	               new Vec2(.2f, 0));
+
+	// Explicit sizes on labels can be really useful for forcing the
+	// text into visual columns, rather than ragged edges of auto
+	// sized text.
+	UI.Label("Red", new Vec2(.06f, 0));
+	UI.SameLine();
+	UI.HSlider("slideId1", ref slider1, 0, 1);
+
+	UI.Label("Blue", new Vec2(.06f, 0));
+	UI.SameLine();
+	UI.HSlider("slideId2", ref slider2, 0, 1);
+
+	UI.WindowEnd();
+}
 ```
 
-Once we've done that, we also need to define the layout area of
-the model, where UI elements will go. This is different for each
-model, so you'll need to plan this around the size of your
-object!
+> When a size of 0 is provided for either axis, StereoKit will
+> auto-size that dimension. For a Window, it will grow in that
+> direction. For UI elements, they will generally take all remaining
+> space for the X axis, and use UI.LineHeight for the vertical axis.
+
+You can also add extra space between elements, or reserve empty chunks
+of layout space. Reserving space is a common trick for when you need to
+draw something custom on the UI, but it can also be empty!
+
+![Spacing UI elements window]({{site.url}}/img/screenshots/Guides/UIWindowSpace.jpg)
 
 ```csharp
-UI.LayoutArea(new Vec3(13, 15, 0) * U.cm, new Vec2(26, 30) * U.cm);
-```
+void SpaceWindow(ref Pose windowPose)
+{
+	UI.WindowBegin("Spaced Window", ref windowPose);
 
-Then after that? We can just add UI elements like normal!
+	// Add horizontal space in front of the label equal to the height
+	// of one standard UI line.
+	UI.HSpace(UI.LineHeight);
+	UI.Label("Hello!");
+
+	// Reserve a full UI line, and draw a cube there using non-UI
+	// drawing functions.
+	Bounds layout = UI.LayoutReserve(Vec2.Zero, false, 0.001f);
+	Mesh.Cube.Draw(Material.Default,
+	               Matrix.TS(layout.center, layout.dimensions));
+
+	UI.WindowEnd();
+}
+```
+## Layout Cuts and Hierarchy
+
+StereoKit also has a hierarchical layout area system, so you can always
+push and pop Layout areas onto the Layout stack, and fill them with
+elements. This can be arbitrary rectangles within the current Surface,
+rectangles reserved on the current Layout via `UI.LayoutReserve`, or
+areas "cut" from the current Layout with `UI.LayoutPushCut`.
+
+> See `UI.Push/PopSurface` to create new UI Surfaces with different
+> origins and orientations. `UI.WindowBegin/End` internally calls
+> `UI.Push/PopSurface` with the Window's Pose, but you can do the same
+> at any point as well!
+
+![Layout Cuts]({{site.url}}/img/screenshots/Guides/UIWindowCuts.jpg)
 
 ```csharp
-UI.Image(logoSprite, new Vec2(22,0) * U.cm);
+void LayoutCutsWindow(ref Pose windowPose)
+{
+	UI.WindowBegin("Layout Cuts Window",
+	               ref windowPose,
+	               new Vec2(0.3f, 0));
 
-UI.Toggle("Toggle", ref clipToggle);
-UI.HSlider("Slide", ref clipSlider, 0, 1, 0);
+	UI.LayoutPushCut(UICut.Top, UI.LineHeight);
+	// Center some text in this "Cut". We can do this by filling the
+	// current layout by specifying a size of UI.LayoutRemaining, and
+	// then setting the text to align to the center of its element
+	// region.
+	UI.Text("Lorem Ipsum",
+	        TextAlign.Center,
+	        TextFit  .None,
+	        UI       .LayoutRemaining);
+	UI.LayoutPop();
+
+	UI.LayoutPushCut(UICut.Left, 0.1f);
+	// We can use a non-layout "At" panel element to add a decorative
+	// background to this entire layout area, without affecting the
+	// layout of the elements in it.
+	UI.PanelAt(UI.LayoutAt, UI.LayoutRemaining);
+	// Explicit size these buttons to ensure they all take the same
+	// width, instead of sizing to fit their text.
+	UI.Button("Home",    V.XY(0.1f, 0));
+	UI.Button("About",   V.XY(0.1f, 0));
+	UI.Button("Contact", V.XY(0.1f, 0));
+	UI.LayoutPop();
+
+	// Fill the remaining uncut area with text.
+	UI.Text("Lorem ipsum dolor sit amet, consectetur adipiscing "   +
+	        "elit. Aenean consectetur, sem in feugiat auctor, enim "+
+	        "urna semper justo, ut iaculis odio dui sit amet arcu.");
+
+	UI.WindowEnd();
+}
 ```
-
-And while we're at it, here's a quick example of doing a radio
-button group! Not much 'radio' actually happening, but it's still
-pretty simple. Pair it with an enum, or an integer, and have fun!
-
-```csharp
-if (UI.Radio("Opt1", clipOption == 1)) clipOption = 1;
-UI.SameLine();
-if (UI.Radio("Opt2", clipOption == 2)) clipOption = 2;
-UI.SameLine();
-if (UI.Radio("Opt3", clipOption == 3)) clipOption = 3;
-```
-
-As with windows, Handles need an End call.
-
-```csharp
-UI.HandleEnd();
-```
-
 ## An Important Note About IDs
 
-StereoKit does store a small amount of information about the UI's
-state behind the scenes, like which elements are active and for
-how long. This internal data is attached to the UI elements via
-a combination of their own ids, and the parent Window/Handle's
-id!
+StereoKit does store a small amount of information about the UI's state
+behind the scenes, like which elements are active and for how long.
+This internal data is attached to the UI elements via a combination of
+their own ids, and the parent `Window`/`Handle`'s id!
 
 This means you should be careful to NOT re-use ids within a
-Window/Handle, otherwise you may find ghost interactions with
-elements that share the same ids. If you need to have elements
-with the same id, or if perhaps you don't know in advance that
-all your elements will certainly be unique, UI.PushId and
-UI.PopId can be used to mitigate the issue by using the same
-hierarchy id mixing that the Windows use to prevent collisions
-with the same ids in other Windows/Handles.
+`Window`/`Handle`, otherwise you may find ghost interactions with
+elements that share the same ids. If you need to have elements with the
+ same id, or if perhaps you don't know in advance that all your
+elements will certainly be unique, `UI.PushId` and `UI.PopId` can be
+used to mitigate the issue by using the same hierarchy id mixing that
+the Windows use to prevent collisions with the same ids in other
+`Windows`/`Handles`.
 
-Here's the same set of radio options, but all of them have the
-same name/id!
+![Id Conflict Avoidance]({{site.url}}/img/screenshots/Guides/UIWindowId.jpg)
 
+Here's a set of `Radio` options, but all of them have the same name/id!
+Pushing a unique id onto the id stack prevents the `Radio` ids from
+conflicting!
 ```csharp
-UI.PushId(1);
-if (UI.Radio("Radio", clipOption == 1)) clipOption = 1;
-UI.PopId();
+void IdWindow(ref Pose windowPose, ref int option)
+{
+	UI.WindowBegin("Id Conflict Avoidance", ref windowPose);
 
-UI.SameLine();
-UI.PushId(2);
-if (UI.Radio("Radio", clipOption == 2)) clipOption = 2;
-UI.PopId();
+	UI.PushId(1);
+	if (UI.Radio("Radio", option == 1)) option = 1;
+	UI.PopId();
 
-UI.SameLine();
-UI.PushId(3);
-if (UI.Radio("Radio", clipOption == 3)) clipOption = 3;
-UI.PopId();
+	UI.SameLine();
+	UI.PushId(2);
+	if (UI.Radio("Radio", option == 2)) option = 2;
+	UI.PopId();
+
+	UI.SameLine();
+	UI.PushId(3);
+	if (UI.Radio("Radio", option == 3)) option = 3;
+	UI.PopId();
+
+	UI.WindowEnd();
+}
 ```
 ## What's Next?
 
-And there you go! That's how UI works in StereoKit, pretty
-simple, huh? For further reference, and more UI methods, check
-out the [UI class documentation]({{site.url}}/Pages/Reference/UI.html).
+And there you go! That's how UI works in StereoKit, pretty reasonable,
+huh? For further reference, and more UI methods, checkout the [UI class documentation]({{site.url}}/Pages/Reference/UI.html).
 
 If you'd like to see the complete code for this sample,
-[check it out on Github](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Demos/DemoUI.cs)!
+[check it out on Github](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Guides/GuideUI.cs)!
+
 

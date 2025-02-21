@@ -142,8 +142,15 @@ hierarchical relationships to each other. If you're creating art in
 a 3D modeling tool such as Blender, then this is basically a full
 representation of the scene you've created there.
 
-Since a model already has all its information within it, all you
-need to do is provide it with a location!
+Just put your 3D model in the project's Assets folder, then load it
+like this _once_ during initialization!
+
+```csharp
+Model model = Model.FromFile("DamagedHelmet.gltf");
+```
+
+And since a model already has all its information within it, all
+you need to do is provide it with a location!
 ```csharp
 model.Draw(Matrix.T(10, 10, 0));
 ```
@@ -153,7 +160,7 @@ _StereoKit's main format is the .gltf file._
 So... that was also pretty simple! The only real trick with Models
 is getting one in the first place, but even that's not too hard.
 There's a lot you can do with a Model beyond just drawing it, so
-for more details on that, check out [the Model guide](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Demos/DemoNodes.cs) (coming soon)!
+for more details on that, check out [the 3D Asset guide]({{site.url}}/Guides/Working-with-3D-Assets.html)!
 
 But here's the quick list of where you can get a Model to begin
 with:
@@ -199,6 +206,72 @@ You can create additional font styles and fonts to use with text
 drawing, and there are a number of overloads for [`Text.Add`]({{site.url}}/Pages/Reference/Text/Add.html)
 that allow you to change the layout or constrain to a particular
 area. Check the docs for the method for more information about that!
+
+## Sprites
+
+Drawing an image can be done in a few ways, the simplest being with
+the [`Sprite`]({{site.url}}/Pages/StereoKit/Sprite.html) class!
+Much like a `Model`, you can load a `Sprite` at initialization from
+a file! StereoKit supports most common image formats, and if you're
+looking to eke out some extra performance in your app, KTX2 images
+include some extra features that can reduce load times and GPU
+memory usage.
+
+```csharp
+Sprite sprite = Sprite.FromFile("StereoKitWide.png");
+```
+
+Drawing is then the same as with a `Model`, but with some extra
+options for placement, and automatic handling of the image's aspect
+ratio. Here we're placing the _center_ of the image at (0, 10, 0),
+but we could just as easily place the _top left_ of the image at
+that position instead! The scale here is also equivalent to the
+size of the image's vertical axis, so this `Sprite` will be 0.5
+meters tall.
+```csharp
+sprite.Draw(Matrix.TS(0, 10, 0, 0.5f), TextAlign.Center);
+```
+![Drawing a sprite]({{site.screen_url}}/Drawing_Sprite.jpg)
+
+If you already have a `Tex` with your image loaded, you can pretty
+easily create a `Sprite` from it. One catch is that most of the
+time with `Sprite`s, you _want_ the image to `Clamp` at the edges,
+otherwise you may encounter a bit of bleed when the default `Wrap`
+behavior wraps around the edges.
+
+```csharp
+// Creating a sprite from a Tex
+Tex logo = Tex.FromFile("StereoKitWide.png");
+tex.AddressMode = TexAddress.Clamp;
+
+Sprite sprite = Sprite.FromTex(logo);
+```
+
+If you want to draw your image with a custom `Shader` or `Material`
+options, you'll want to bypass the `Sprite` class and draw the
+`Tex` manually! For this, we'll want to set up our `Material` in a
+way that mimics the `Sprite`'s behavior. Notably, it should support
+transparency, and not cull backfaces to make it visible from
+behind.
+
+```csharp
+// In initialization, create a Material like this:
+
+Tex logo = Tex.FromFile("StereoKitWide.png");
+tex.AddressMode = TexAddress.Clamp;
+
+Material spriteMaterial = Material.Unlit.Copy();
+spriteMaterial.Transparency = Transparency.Blend;
+spriteMaterial.FaceCull     = Cull.None;
+spriteMaterial[MatParamName.DiffuseTex] = logo;
+```
+And then `Draw` it on a `Mesh.Quad`, manually accounting for the
+image's aspect ratio!
+```csharp
+float aspect = logo.Width / (float)logo.Height;
+Vec3  scale  = V.XYZ(aspect,1,1) * 0.5f;
+Mesh.Quad.Draw(spriteMaterial, Matrix.TS(-30, 10, 0, scale));
+```
 
 ## Cool!
 

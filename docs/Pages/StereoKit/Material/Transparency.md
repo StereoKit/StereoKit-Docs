@@ -43,4 +43,19 @@ matAlphaBlend.DepthWrite   = false;
 matAlphaBlend[MatParamName.ColorTint] = new Color(1, 1, 1, 0.75f);
 ```
 ![Alpha blend example]({{site.screen_url}}/MaterialAlphaBlend.jpg)
+### MSAA (Alpha to Coverage)
+Here's an example material with a transparency mode that utilizes
+MSAA samples for blending. Also known as Alpha To Coverage, this
+takes advantage of the fact that MSAA can generate multiple
+fragments per-pixel while utilizing the zbuffer, and then blend
+them together before presenting the image. This means you can dodge
+a couple of z-sorting artifacts, but with a limited/quantized
+number of transparency "values" equivalent to the number of MSAA
+samples.
+```csharp
+matMSAABlend = Material.Default.Copy();
+matMSAABlend.Transparency = Transparency.MSAA;
+matMSAABlend[MatParamName.ColorTint] = new Color(1, 1, 1, 0.75f);
+```
+![MSAA transparency example]({{site.screen_url}}/MaterialMSAABlend.jpg)
 

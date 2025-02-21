@@ -26,7 +26,7 @@ or contents.
 ```csharp
 Log.Info("Iterate nodes:");
 foreach (ModelNode node in model.Nodes)
-	Log.Info("  "+ node.Name);
+	Log.Info($"  {node.Name}");
 ```
 ### Tagged Nodes
 You can search through Visuals and Nodes for nodes with some sort

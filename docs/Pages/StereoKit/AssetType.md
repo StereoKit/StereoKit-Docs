@@ -17,6 +17,7 @@ A flag for what 'type' an Asset may store.
 |Mesh|A Mesh.|
 |Model|A Model.|
 |None|No type, this may come from some kind of invalid Asset id.|
+|RenderList|A RenderList|
 |Shader|A Shader.|
 |Solid|A Solid.|
 |Sound|A Sound.|

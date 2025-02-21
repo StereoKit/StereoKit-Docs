@@ -20,6 +20,19 @@ on each axis (non-uniform).
 
 <div class='signature' markdown='1'>
 ```csharp
+static Matrix S(float x, float y, float z)
+```
+Creates a scaling Matrix, where scale can be different
+on each axis (non-uniform).
+</div>
+
+|  |  |
+|--|--|
+|float x|How much larger or smaller this transform makes             things. 1 is a good default, as 0 will shrink it to nothing!|
+|RETURNS: [Matrix]({{site.url}}/Pages/StereoKit/Matrix.html)|A non-uniform scaling matrix.|
+
+<div class='signature' markdown='1'>
+```csharp
 static Matrix S(float scale)
 ```
 Creates a scaling Matrix, where the scale is the same on

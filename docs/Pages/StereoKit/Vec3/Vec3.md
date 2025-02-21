@@ -22,6 +22,18 @@ right, +y is upwards, and -z is forward.
 
 <div class='signature' markdown='1'>
 ```csharp
+void Vec3(Vector3 v)
+```
+Initialize from a System.Numerics vector, this can also be
+done by an implicit or explicit cast/assignment.
+</div>
+
+|  |  |
+|--|--|
+|Vector3 v|A System.Numerics vector.|
+
+<div class='signature' markdown='1'>
+```csharp
 void Vec3(float xyz)
 ```
 Creates a vector with all values the same! StereoKit uses

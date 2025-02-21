@@ -31,7 +31,7 @@ another, so you can apply different
 |--|--|
 |float [Aspect]({{site.url}}/Pages/StereoKit/Sprite/Aspect.html)|The aspect ratio of the sprite! This is width/height. You may also be interested in the NormalizedDimensions property, which are normalized to the 0-1 range.|
 |int [Height]({{site.url}}/Pages/StereoKit/Sprite/Height.html)|Height of the sprite, in pixels.|
-|string [Id]({{site.url}}/Pages/StereoKit/Sprite/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
+|string [Id]({{site.url}}/Pages/StereoKit/Sprite/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on!|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) [NormalizedDimensions]({{site.url}}/Pages/StereoKit/Sprite/NormalizedDimensions.html)|Width and height of the sprite, normalized so the maximum value is 1.|
 |int [Width]({{site.url}}/Pages/StereoKit/Sprite/Width.html)|Width of the sprite, in pixels.|
 
@@ -39,7 +39,7 @@ another, so you can apply different
 
 |  |  |
 |--|--|
-|[Draw]({{site.url}}/Pages/StereoKit/Sprite/Draw.html)|Draw the sprite on a quad with the provided transform!|
+|[Draw]({{site.url}}/Pages/StereoKit/Sprite/Draw.html)|Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.|
 
 ## Static Fields and Properties
 
@@ -61,6 +61,6 @@ another, so you can apply different
 
 |  |  |
 |--|--|
-|[Find]({{site.url}}/Pages/StereoKit/Sprite/Find.html)|Finds a sprite that matches the given id! Check out the DefaultIds static class for some built-in ids. Sprites will auto-id themselves using this pattern if single sprites: {Tex.Id}/spr, and this pattern if atlased sprites: atlas_spr/{atlas}/{Tex.Id}.|
+|[Find]({{site.url}}/Pages/StereoKit/Sprite/Find.html)|Finds a sprite that matches the given id! Check out the DefaultIds static class for some built-in ids. Sprites will auto-id themselves using this pattern if single sprites: {Tex.Id}/sprite, and this pattern if atlased sprites: {Tex.Id}/sprite/atlas/{atlasId}.|
 |[FromFile]({{site.url}}/Pages/StereoKit/Sprite/FromFile.html)|Create a sprite from an image file! This loads a Texture from file, and then uses that Texture as the source for the Sprite.|
 |[FromTex]({{site.url}}/Pages/StereoKit/Sprite/FromTex.html)|Create a sprite from a Texture object!|

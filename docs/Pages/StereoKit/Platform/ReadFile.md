@@ -31,7 +31,7 @@ Platform.FilePicker.
 
 |  |  |
 |--|--|
-|string filename|Path to the file. Not affected by Assets             folder path.|
+|string filename|Path to the file.|
 |Byte[]& data|A raw byte array representing the contents of             the file. Will be null on failure.|
 |RETURNS: bool|True on success, False on failure.|
 

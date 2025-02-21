@@ -22,6 +22,7 @@ with 2 dimensions to it!
 |float [x]({{site.url}}/Pages/StereoKit/Vec2/x.html)|X component.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [X0Y]({{site.url}}/Pages/StereoKit/Vec2/X0Y.html)|Promotes this Vec2 to a Vec3, using 0 for the Y axis.|
 |[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [XY0]({{site.url}}/Pages/StereoKit/Vec2/XY0.html)|Promotes this Vec2 to a Vec3, using 0 for the Z axis.|
+|[Vec3]({{site.url}}/Pages/StereoKit/Vec3.html) [XY1]({{site.url}}/Pages/StereoKit/Vec2/XY1.html)|Promotes this Vec2 to a Vec3, using 1 for the Z axis.|
 |float [y]({{site.url}}/Pages/StereoKit/Vec2/y.html)|Y component.|
 |[Vec2]({{site.url}}/Pages/StereoKit/Vec2.html) [YX]({{site.url}}/Pages/StereoKit/Vec2/YX.html)|A transpose swizzle property, returns (y,x)|
 

@@ -21,7 +21,7 @@ can be extremely beneficial for performance!
 |[DepthTest]({{site.url}}/Pages/StereoKit/DepthTest.html) [DepthTest]({{site.url}}/Pages/StereoKit/Material/DepthTest.html)|How does this material interact with the ZBuffer? Generally DepthTest.Less would be normal behavior: don't draw objects that are occluded. But this can also be used to achieve some interesting effects, like you could use DepthTest.Greater to draw a glow that indicates an object is behind something.|
 |bool [DepthWrite]({{site.url}}/Pages/StereoKit/Material/DepthWrite.html)|Should this material write to the ZBuffer? For opaque objects, this generally should be true. But transparent objects writing to the ZBuffer can be problematic and cause draw order issues. Note that turning this off can mean that this material won't get properly accounted for when the MR system is performing late stage reprojection.  Not writing to the buffer can also be faster! :)|
 |[Cull]({{site.url}}/Pages/StereoKit/Cull.html) [FaceCull]({{site.url}}/Pages/StereoKit/Material/FaceCull.html)|How should this material cull faces?|
-|string [Id]({{site.url}}/Pages/StereoKit/Material/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on!|
+|string [Id]({{site.url}}/Pages/StereoKit/Material/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on!|
 |int [ParamCount]({{site.url}}/Pages/StereoKit/Material/ParamCount.html)|The number of shader parameters available to this material, includes global shader variables as well as textures.|
 |int [QueueOffset]({{site.url}}/Pages/StereoKit/Material/QueueOffset.html)|This property will force this material to draw earlier or later in the draw queue. Positive values make it draw later, negative makes it earlier. This is really helpful when doing tricks with the depth buffer, or are working with transparent objects. Good offset values should probably be specific, well managed, and small. Think of it as a layer rather than a distance, so probably less than 10, and definitely less than 1000.  This can also be helpful for tweaking performance! If you know an object is always going to be close to the user and likely to obscure lots of objects (like hands), drawing it earlier can mean objects behind it get discarded much faster! Similarly, objects that are far away (skybox!) can be pushed towards the back of the queue, so they're more likely to be discarded early.|
 |[Shader]({{site.url}}/Pages/StereoKit/Shader.html) [Shader]({{site.url}}/Pages/StereoKit/Material/Shader.html)|Gets a link to the Shader that the Material is currently using, or overrides the Shader this material uses.|
@@ -83,8 +83,8 @@ shader parameters really quickly! You can do this with strings
 representing shader parameter names, or use the MatParamName
 enum for compile safety.
 ```csharp
-exampleMaterial[MatParamName.DiffuseTex] = gridTex;
-exampleMaterial[MatParamName.TexScale  ] = 2.0f;
+exampleMaterial[MatParamName.DiffuseTex  ] = gridTex;
+exampleMaterial[MatParamName.TexTransform] = new Vec4(0,0,2,2);
 ```
 
 ### Assigning an array in a Shader

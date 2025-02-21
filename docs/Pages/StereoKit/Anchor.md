@@ -27,7 +27,7 @@ A conceptual guide to Anchors:
 
 |  |  |
 |--|--|
-|string [Id]({{site.url}}/Pages/StereoKit/Anchor/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managine your assets, or finding them later on! This is StereoKit's asset ID, and not the system's unique Name for the anchor.|
+|string [Id]({{site.url}}/Pages/StereoKit/Anchor/Id.html)|Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on! This is StereoKit's asset ID, and not the system's unique Name for the anchor.|
 |string [Name]({{site.url}}/Pages/StereoKit/Anchor/Name.html)|A unique system provided name identifying this anchor. This will be the same across sessions for persistent Anchors.|
 |bool [Persistent]({{site.url}}/Pages/StereoKit/Anchor/Persistent.html)|Will this Anchor persist across multiple app sessions? You can use `TrySetPersistent` to change this value.|
 |[Pose]({{site.url}}/Pages/StereoKit/Pose.html) [Pose]({{site.url}}/Pages/StereoKit/Anchor/Pose.html)|The most recently identified Pose of the Anchor. While an Anchor will generally be in the same position once discovered, it may shift slightly to compensate for drift in the device's 6dof tracking. Anchor Poses when tracked are more accurate than world-space positions.|

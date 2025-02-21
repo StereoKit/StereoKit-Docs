@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Mesh.Find
-description: Finds the Mesh with the matching id, and returns a reference to it. If no Mesh it found, it returns null.
+description: Finds the Mesh with the matching id, and returns a reference to it. If no Mesh is found, it returns null.
 ---
 # [Mesh]({{site.url}}/Pages/StereoKit/Mesh.html).Find
 
@@ -10,7 +10,7 @@ description: Finds the Mesh with the matching id, and returns a reference to it.
 static Mesh Find(string meshId)
 ```
 Finds the Mesh with the matching id, and returns a
-reference to it. If no Mesh it found, it returns null.
+reference to it. If no Mesh is found, it returns null.
 </div>
 
 |  |  |

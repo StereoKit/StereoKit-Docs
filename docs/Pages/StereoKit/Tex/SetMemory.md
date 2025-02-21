@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tex.SetMemory
-description: Loads an image file stored in memory directly into the created texture! Supported formats are. jpg, png, tga, bmp, psd, gif, hdr, pic. This method introduces a blocking boolean parameter, which allows you to specify whether this method blocks until the image fully loads! The default case is to have it as part of the asynchronous asset pipeline, in which the Asset Id will be the same as the filename.
+description: Loads an image file stored in memory directly into the created texture! Supported formats are. jpg, png, tga, bmp, psd, gif, hdr, pic, ktx2. This method introduces a blocking boolean parameter, which allows you to specify whether this method blocks until the image fully loads! The default case is to have it as part of the asynchronous asset pipeline, in which the Asset Id will be the same as the filename.
 ---
 # [Tex]({{site.url}}/Pages/StereoKit/Tex.html).SetMemory
 
@@ -11,7 +11,7 @@ void SetMemory(Byte[]& imageFileData, bool sRGBData, bool blocking, int priority
 ```
 Loads an image file stored in memory directly into
 the created texture! Supported formats are: jpg, png, tga,
-bmp, psd, gif, hdr, pic. This method introduces a blocking
+bmp, psd, gif, hdr, pic, ktx2. This method introduces a blocking
 boolean parameter, which allows you to specify whether this
 method blocks until the image fully loads! The default case
 is to have it as part of the asynchronous asset pipeline, in
