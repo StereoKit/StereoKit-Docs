@@ -48,6 +48,7 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #EEE;
+    line-height: 1.4em;
 
     max-width:950px;
     height:100%;
@@ -96,10 +97,18 @@ video {
 }
 
 blockquote {
-    background: #151515;
+    padding-left: 4em;
+    padding-right: 2em;
     padding-top: 1em;
     padding-bottom: 1em;
-    margin: 0px;
+    margin-left: 2em;
+    max-width: 24em;
+    background-color: #1A1A1A;
+    background-image: url(/img/watermelon.png);
+    background-position: center left;
+    background-repeat: no-repeat;
+    background-size: 4em;
+    background-position-x: 1em;
 }
 
 h1:after
@@ -249,10 +258,13 @@ main img {
 .summary p { margin:0px; padding-left:0em; max-width: 100%;}
 
 .language-plaintext { 
-    background: #151515; 
+    background: #151515;
     color: #EEE; 
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; 
+    font-weight: bold;
     line-height: .9em;
+    padding: .2em .4em .2em .4em;
+    border-radius: .2em;
 
     font-size: 1em;
     -moz-tab-size: 3;

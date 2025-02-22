@@ -1,25 +1,25 @@
 ---
 layout: default
 title: StereoKit
-description: StereoKit is an easy-to-use open source mixed reality library for building HoloLens and VR applications with C# and OpenXR!
+description: StereoKit is an easy-to-use open source XR library for building AR and VR applications with C# and OpenXR!
 ---
 <table style="max-width:34em;">
 <tr><td style="width:25%;">
 <img src="{{site.url}}/img/StereoKitLogoLight.svg" alt="StereoKit Logo" />
-</td><td><p>StereoKit is an easy-to-use open source mixed reality library for building HoloLens and VR applications with C# and OpenXR!</p><p><b><a href="https://marketplace.visualstudio.com/items?itemName=NickKlingensmith.StereoKitTemplates" target="_blank">Install</a></b> - <a href="{{site.url}}/Pages/Guides/Getting-Started.html">Get Started Guide</a> - <a href="https://github.com/StereoKit/StereoKit/" target="_blank">View Source</a></p></td></tr></table>
+</td><td><p>StereoKit is an easy-to-use open source XR library for building AR and VR applications with C# and OpenXR!</p><p><b><a href="https://marketplace.visualstudio.com/items?itemName=NickKlingensmith.StereoKitTemplates" target="_blank">Install</a></b> - <a href="{{site.url}}/Pages/Guides/Getting-Started.html">Get Started Guide</a> - <a href="https://github.com/StereoKit/StereoKit/" target="_blank">View Source</a></p></td></tr></table>
 
 <video autoplay loop muted><source src='{{site.url}}/img/SKHighlightReel.mp4' type='video/mp4'>Your browser doesn't seem to play .mp4s!</video>
 
 ## StereoKit Features:
-- Platforms: HoloLens 2, Oculus Quest, Windows Mixed Reality, Oculus Desktop, SteamVR, Varjo, Monado (Linux), and eventually everywhere OpenXR is!
+- Platforms: HoloLens 2, Oculus Quest, Windows Mixed Reality, Oculus Desktop, SteamVR, Varjo, Monado (Linux), and everywhere OpenXR is!
 - Mixed Reality inputs like hands and eyes are trivial to access
 - Easy and powerful UI and interactions
 - Model formats: .gltf, .glb, .obj, .stl, ASCII .ply
-- Texture formats: .jpg, .png, .tga, .bmp, .psd, .gif, .hdr, .pic, .qoi, cubemaps
+- Texture formats: .jpg, .png, .tga, .bmp, .psd, .gif, .hdr, .pic, .qoi, ktx2, cubemaps
 - Flexible shader/material system with built-in PBR
 - Performance-by-default instanced render pipeline
 - Skeletal/skinned animation
-- Flat screen MR simulator with input emulation for easy development
+- Flat screen XR simulator with input emulation for easy development
 - Builds your application to device in seconds, not minutes
 - Runtime asset loading and cross-platform file picking
 - Physics
@@ -27,7 +27,7 @@ description: StereoKit is an easy-to-use open source mixed reality library for b
 
 ## About
 
-StereoKit prioritizes mixed reality application development above all else! This allows us to focus on features such as a first class mixed reality input system, fast performance by default even on mobile devices, quick iteration time on-device, and a runtime asset pipeline that lets users and developers load real assets from the file-system. All of this and more are packaged in a terse API that's well documented, easy to learn, and easy to write.
+StereoKit prioritizes XR application development above all else! This allows us to focus on features such as a first class XR input system, fast performance by default even on mobile devices, quick iteration time on-device, and a runtime asset pipeline that lets users and developers load real assets from the file-system. All of this and more are packaged in a terse API that's well documented, easy to learn, and easy to write.
 
 StereoKit is ready to use, but still early in its life! Keep track on [Twitter](https://twitter.com/koujaku/) for development news and gifs, or check [this blog](https://playdeck.net/project/stereokit) for more substantial updates! Can't find a feature you need for your project? Request it on [the issues page](https://github.com/StereoKit/StereoKit/issues), and we'll prioritize getting you up and running!
 
@@ -42,12 +42,12 @@ StereoKit focuses on getting you productive with the least amount of code possib
 ```csharp
 using StereoKit;
 
-SK.Initialize(new SKSettings{ appName = "Project" });
+SK.Initialize();
 
-Model helmet = Model.FromFile("Assets/DamagedHelmet.gltf");
+Model helmet = Model.FromFile("DamagedHelmet.gltf");
 
 SK.Run(() => {
-    helmet.Draw(Matrix.TS(Vec3.Zero, 0.1f));
+    helmet.Draw(Matrix.S(0.1f));
 });
 ```
 ![Hello World]({{site.url}}/img/StereoKitMin.gif)
