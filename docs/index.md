@@ -6,15 +6,15 @@ description: StereoKit is an easy-to-use open source XR library for building AR 
 <table style="max-width:34em;">
 <tr><td style="width:25%;">
 <img src="{{site.url}}/img/StereoKitLogoLight.svg" alt="StereoKit Logo" />
-</td><td><p>StereoKit is an easy-to-use open source XR library for building AR and VR applications with C# and OpenXR!</p><p><b><a href="https://marketplace.visualstudio.com/items?itemName=NickKlingensmith.StereoKitTemplates" target="_blank">Install</a></b> - <a href="{{site.url}}/Pages/Guides/Getting-Started.html">Get Started Guide</a> - <a href="https://github.com/StereoKit/StereoKit/" target="_blank">View Source</a></p></td></tr></table>
+</td><td><p>StereoKit is an easy-to-use open source XR library for building AR and VR applications with C# and OpenXR!</p><p><a href="{{site.url}}/Pages/Guides/Getting-Started.html">Get Started Guide</a> - <a href="https://github.com/StereoKit/StereoKit/" target="_blank">View Source</a></p></td></tr></table>
 
 <video autoplay loop muted><source src='{{site.url}}/img/SKHighlightReel.mp4' type='video/mp4'>Your browser doesn't seem to play .mp4s!</video>
 
 ## StereoKit Features:
-- Platforms: HoloLens 2, Oculus Quest, Windows Mixed Reality, Oculus Desktop, SteamVR, Varjo, Monado (Linux), and everywhere OpenXR is!
+- Platforms: Meta Quest, HoloLens 2, Windows Mixed Reality, Oculus Desktop, SteamVR, Varjo, Monado (Linux), and everywhere OpenXR is!
 - Mixed Reality inputs like hands and eyes are trivial to access
 - Easy and powerful UI and interactions
-- Model formats: .gltf, .glb, .obj, .stl, ASCII .ply
+- Model formats: .gltf, .glb, .obj, .stl, .ply
 - Texture formats: .jpg, .png, .tga, .bmp, .psd, .gif, .hdr, .pic, .qoi, ktx2, cubemaps
 - Flexible shader/material system with built-in PBR
 - Performance-by-default instanced render pipeline
