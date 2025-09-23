@@ -14,8 +14,13 @@ winget install Microsoft.DotNet.SDK.9
 # Restart the Terminal to refresh your Path variable
 ```
 
-> On _Linux_, while the .NET version sometimes lags behind, many distros can do something like this:
-> `sudo apt-get install dotnet-sdk-8.0`
+> On _Linux_, many distros [can do something like this](https://learn.microsoft.com/en-us/dotnet/core/install/linux):
+> For Ubuntu:
+> - `sudo apt-get install dotnet-sdk-9.0`
+> - On Ubuntu 24.04 or earlier, you will need to add dotnet/backports first
+> - `sudo add-apt-repository ppa:dotnet/backports`
+> For Debian:
+> - `sudo dnf install dotnet-sdk-9.0`
 
 With the .NET SDK installed, setting up a StereoKit project is quite simple!
 
@@ -49,7 +54,7 @@ workflow works well with VS Code and other editors.
 StereoKit is OpenXR based, so will work in any environment that supports
 OpenXR! On PC, this means you'll want a desktop runtime such as SteamVR,
 Quest + Link, or Monado. If no OpenXR
-runtime is found, StereoKit will provide a [nice Simulator]({{site.url}}Pages/Guides/Using-The-Simulator.html)
+runtime is found, StereoKit will provide a [nice Simulator]({{site.url}}/Pages/Guides/Using-The-Simulator.html)
 that's great for development! Some runtimes also provide a simulator for
 their platform, such as the [Meta XR Simulator](https://developers.meta.com/horizon/documentation/native/xrsim-getting-started),
 so you can test their runtime without a headset.
