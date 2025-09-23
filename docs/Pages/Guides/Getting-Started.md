@@ -22,7 +22,7 @@ sudo apt-get install dotnet-sdk-9.0
 # Debian
 sudo dnf install dotnet-sdk-9.0
 
-# On Ubuntu 24.04 or earlier, you will need to add dotnet/backports first
+# On Ubuntu 24.04 or earlier, you need dotnet/backports
 sudo add-apt-repository ppa:dotnet/backports`
 ```
 
