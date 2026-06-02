@@ -36,6 +36,10 @@ namespace StereoKitDocumenter
 
 			[Option("lenient", Required = false, HelpText = "Downgrade missing-doc errors (undocumented return values/parameters) to warnings instead of failing. Use for preview/develop builds.")]
 			public bool Lenient { get; set; } = false;
+
+			string urlSub = "";
+			[Option("url-sub", Required = false, HelpText = "A site sub-path the generated pages live under (e.g. 'preview'). Rewrites in-page links and screenshot URLs to stay within that sub-path. Empty = site root.")]
+			public string UrlSub { get => urlSub; set => urlSub = value.Trim('/'); }
 		}
 		public static CLIOptions options;
 
@@ -117,7 +121,7 @@ namespace StereoKitDocumenter
 			{
 				Directory.CreateDirectory(Path.GetDirectoryName(items[i].FileName));
 				StreamWriter writer = new StreamWriter(items[i].FileName);
-				writer.Write(items[i].ToString());
+				writer.Write(PathAdjust(items[i].ToString()));
 				writer.Close();
 			}
 
@@ -129,6 +133,19 @@ namespace StereoKitDocumenter
 			}
 
 			DocAI.Write(options.AiOut);
+		}
+
+		// When building under a site sub-path (e.g. "preview"), rewrite the Liquid
+		// links baked into the generated pages so cross-links and screenshots stay
+		// within that sub-path instead of pointing back at the root (stable) site.
+		// A no-op when --url-sub is empty.
+		static string PathAdjust(string content)
+		{
+			if (string.IsNullOrEmpty(options.UrlSub))
+				return content;
+			return content
+				.Replace("{{site.url}}/Pages",   $"{{{{site.url}}}}/{options.UrlSub}/Pages")
+				.Replace("{{site.screen_url}}",  $"{{{{site.url}}}}/{options.UrlSub}/img/screenshots");
 		}
 
 		private static void ScrapeData()

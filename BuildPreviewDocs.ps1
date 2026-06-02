@@ -1,0 +1,36 @@
+# Builds "preview" documentation from StereoKit's develop branch into docs/preview/.
+# This is the same pipeline as BuildDocs.ps1, but it targets the develop branch
+# (which builds as net8.0) and writes into a disjoint docs/preview/ folder so it
+# never clobbers the stable docs built from master.
+
+git clone --depth=1 --branch=develop https://github.com/StereoKit/StereoKit.git repos/StereoKit-develop
+Push-Location $PSScriptRoot/repos/StereoKit-develop
+git fetch
+git pull
+Pop-Location
+
+$SKFolder = "$PSScriptRoot/repos/StereoKit-develop"
+
+# Remove all generated files from the previous builds
+Remove-Item -Path "$PSScriptRoot/docs/preview/Pages/" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$PSScriptRoot/docs/preview/img/screenshots/" -Recurse -Force -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Force -Path "$PSScriptRoot/docs/preview/img/screenshots/" | Out-Null
+
+# Build and run StereoKit tests to generate screenshots and XML documentation
+Push-Location $SKFolder
+cmake --preset Linux_x64_Release
+cmake --build --preset Linux_x64_Release
+Push-Location StereoKit
+dotnet build
+Pop-Location
+Push-Location $SKFolder/Examples/StereoKitTest
+dotnet build -c Release StereoKitTest.csproj
+dotnet run --project StereoKitTest.csproj -c Release -- -test -headless -screenfolder "$PSScriptRoot/docs/preview/img/screenshots/"
+Pop-Location
+Pop-Location
+
+# Run the documenter to assemble the preview site
+Push-Location StereoKitDocumenter
+dotnet build
+dotnet run -- --xml "$SKFolder/bin/net8.0/StereoKit.xml" --library "$SKFolder/bin/net8.0/StereoKit.dll" --samples "$SKFolder/Examples/StereoKitTest/" --out "$PSScriptRoot/docs/preview/Pages/" --ai-out "$PSScriptRoot/docs/preview/" --lenient --url-sub preview
+Pop-Location

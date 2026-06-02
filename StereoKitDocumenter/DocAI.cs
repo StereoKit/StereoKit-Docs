@@ -23,7 +23,8 @@ namespace StereoKitDocumenter
 	//   llms.txt                    - thin discovery pointer (llms.txt convention)
 	static class DocAI
 	{
-		const string Site    = "https://stereokit.net";
+		// Absolute site base, including any --url-sub (e.g. https://stereokit.net/preview).
+		static string Site => "https://stereokit.net" + (string.IsNullOrEmpty(Program.options?.UrlSub) ? "" : "/" + Program.options.UrlSub);
 		const string Summary = "StereoKit is a lightweight, low-dependency C# library for XR apps and games built on OpenXR.";
 
 		const string ApiFile       = "StereoKit-docs-API.md";
