@@ -42,11 +42,13 @@ namespace StereoKitDocumenter
 			Func<DocField,  string> enumToString   = (e) => { return $"|{e.name}|{StringHelper.CleanForTable(e.summary)}|"; };
 			Func<DocMethod, string> methodToString = (m) => { return $"|[{m.ShowName}]({m.UrlName})|{StringHelper.CleanForTable(m.overloads[0].summary)}|"; };
 
-			string classDescription = "";
-			if      (t.IsEnum)      classDescription = "enum";
-			else if (t.IsClass)     classDescription = "class";
-			else if (t.IsValueType) classDescription = "struct";
-			if (t.IsAbstract && t.IsSealed) classDescription = "static " + classDescription;
+			string classDescription;
+			if      (t.IsEnum)                            classDescription = "enum";
+			else if (t.IsInterface)                       classDescription = "interface";
+			else if (typeof(Delegate).IsAssignableFrom(t))classDescription = "delegate";
+			else if (t.IsValueType)                       classDescription = "struct";
+			else if (t.IsAbstract && t.IsSealed)          classDescription = "static class";
+			else                                          classDescription = "class";
 
 			string memberText = methodsInstance.Count == 0 ? 
 				"" : "\n\n## Instance Methods\n\n|  |  |\n|--|--|\n";
