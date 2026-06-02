@@ -57,6 +57,13 @@ if it already meets your needs.
 
 ## Examples
 
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Plane Mesh]({{site.screen_url}}/ProcGeoPlane.jpg)
+```csharp
+meshPlane = Mesh.GeneratePlane(Vec2.One);
+```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -77,12 +84,5 @@ planeMesh.Draw(Default.Material, planeTransform);
 
 planeTransform = Matrix.T(1, -1, 0);
 planeModel.Draw(planeTransform);
-```
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Plane Mesh]({{site.screen_url}}/ProcGeoPlane.jpg)
-```csharp
-meshPlane = Mesh.GeneratePlane(Vec2.One);
 ```
 

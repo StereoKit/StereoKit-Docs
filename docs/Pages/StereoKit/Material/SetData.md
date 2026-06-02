@@ -39,7 +39,7 @@ struct ShaderData
 	[MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
 	public Vec4[] offsets;
 }
-
+	
 Material arrayMaterial = null;
 public void Initialize()
 {

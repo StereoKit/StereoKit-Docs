@@ -26,7 +26,6 @@ procedurally.
 |int [Mips]({{site.url}}/Pages/StereoKit/Tex/Mips.html)|The number of mip-map levels this texture has. This will be 1 if the texture doesn't have mip mapping enabled. This will be a blocking call if AssetState is less than LoadedMeta.|
 |[TexSample]({{site.url}}/Pages/StereoKit/TexSample.html) [SampleMode]({{site.url}}/Pages/StereoKit/Tex/SampleMode.html)|When sampling a texture that's stretched, or shrunk beyond its screen size, how do we handle figuring out which color to grab from the texture? Default is Linear.|
 |int [Width]({{site.url}}/Pages/StereoKit/Tex/Width.html)|The width of the texture, in pixels. This will be a blocking call if AssetState is less than LoadedMeta.|
-|[Tex]({{site.url}}/Pages/StereoKit/Tex.html) [ZBuffer]({{site.url}}/Pages/StereoKit/Tex/ZBuffer.html)|This allows you to attach or retreive a z/depth buffer from a rendertarget texture. This texture _must_ be a rendertarget to set this, and the zbuffer texture _must_ be a depth format (or null). For no-rendertarget textures, this will always be null.|
 
 ## Instance Methods
 
@@ -35,6 +34,7 @@ procedurally.
 |[Tex]({{site.url}}/Pages/StereoKit/Tex/Tex.html)|Sets up an empty texture container! Fill it with data using SetColors next! Creates a default unique asset Id.|
 |[AddZBuffer]({{site.url}}/Pages/StereoKit/Tex/AddZBuffer.html)|Only applicable if this texture is a rendertarget! This creates and attaches a zbuffer surface to the texture for use when rendering to it.|
 |[GetColorData]({{site.url}}/Pages/StereoKit/Tex/GetColorData.html)|Retrieve the color data of the texture from the GPU. This can be a very slow operation, so use it cautiously.|
+|[GetColors]({{site.url}}/Pages/StereoKit/Tex/GetColors.html)|Retrieve the color data of the texture from the GPU. This can be a very slow operation, so use it cautiously. If the color array is the correct size, it will not be re-allocated.|
 |[GetNativeSurface]({{site.url}}/Pages/StereoKit/Tex/GetNativeSurface.html)|This will return the texture's native resource for use with external libraries. For D3D, this will be an ID3D11Texture2D*, and for GL, this will be a uint32_t from a glGenTexture call, coerced into the IntPtr. This call will block execution until the texture is loaded, if it is not already.|
 |[SetColors]({{site.url}}/Pages/StereoKit/Tex/SetColors.html)|Set the texture's pixels using a pointer to a chunk of memory! This is great if you're pulling in some color data from native code, and don't want to pay the cost of trying to marshal that data around.|
 |[SetMemory]({{site.url}}/Pages/StereoKit/Tex/SetMemory.html)|Loads an image file stored in memory directly into the created texture! Supported formats are: jpg, png, tga, bmp, psd, gif, hdr, pic, ktx2. This method introduces a blocking boolean parameter, which allows you to specify whether this method blocks until the image fully loads! The default case is to have it as part of the asynchronous asset pipeline, in which the Asset Id will be the same as the filename.|

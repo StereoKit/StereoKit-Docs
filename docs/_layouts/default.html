@@ -11,13 +11,19 @@
         {% seo %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <script src="{{site.url}}/Pages/data.js"></script>
+        {% if page.url contains '/preview/' %}<meta name="robots" content="noindex">{% endif %}
         <script src="{{site.url}}/src/docs.js"></script>
         <link rel="stylesheet" type="text/css" href="{{site.url}}/src/style.css" />
         <link rel="icon" href="{{site.url}}/img/favicon.png" />
     </head>
 
     <body>
+
+        {% if page.url contains '/preview/' %}
+        <div id="preview-banner" style="background:#b5651d;color:#fff;padding:8px 12px;text-align:center;font-size:0.9em;">
+            ⚠ Preview docs — built from the <a href="https://github.com/StereoKit/StereoKit/tree/develop" style="color:#fff;text-decoration:underline;">develop</a> branch and may be unstable. <a href="{{site.url}}" style="color:#fff;text-decoration:underline;">Go to the stable docs</a>.
+        </div>
+        {% endif %}
 
         <header id="header">
             <a href='{{site.url}}'><img src="{{site.url}}/img/StereoKitWideLight.svg" alt="StereoKit" height="100%"/></a>

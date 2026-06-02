@@ -3,7 +3,7 @@ layout: default
 title: IStepper
 description: This is a lightweight standard interface for fire-and-forget systems that can be attached to StereoKit! This is particularly handy for extensions/plugins that need to run in the background of your application, or even for managing some of your own simpler systems.  ISteppers can be added before or after the call to SK.Initialize, and this does affect when the IStepper.Initialize call will be made! IStepper.Initialize is always called _after_ SK.Initialize. This can be important to note when writing code that uses SK functions that are dependant on initialization, you'll want to avoid putting this code in the constructor, and add them to Initialize instead.  ISteppers also pay attention to threading! Initialize and Step always happen on the main thread, even if the constructor is called on a different one.
 ---
-#  IStepper
+# interface IStepper
 
 This is a lightweight standard interface for fire-and-forget
 systems that can be attached to StereoKit! This is particularly handy

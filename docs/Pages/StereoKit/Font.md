@@ -28,5 +28,4 @@ This asset is used anywhere that text shows up, like in the UI or Text classes!
 |  |  |
 |--|--|
 |[Find]({{site.url}}/Pages/StereoKit/Font/Find.html)|Searches the asset list for a font with the given Id, returning null if none is found.|
-|[FromFamily]({{site.url}}/Pages/StereoKit/Font/FromFamily.html)|Loads font from a specified list of font family names|
 |[FromFile]({{site.url}}/Pages/StereoKit/Font/FromFile.html)|Loads a font and creates a font asset from it.|

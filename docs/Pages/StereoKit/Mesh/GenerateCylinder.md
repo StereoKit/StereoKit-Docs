@@ -32,6 +32,13 @@ is best done during 'initialization' of your app/scene.
 
 ## Examples
 
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Cylinder Mesh]({{site.screen_url}}/ProcGeoCylinder.jpg)
+```csharp
+meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
+```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -54,12 +61,5 @@ cylinderMesh.Draw(Default.Material, cylinderTransform);
 
 cylinderTransform = Matrix.T(1, 1, 0);
 cylinderModel.Draw(cylinderTransform);
-```
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Cylinder Mesh]({{site.screen_url}}/ProcGeoCylinder.jpg)
-```csharp
-meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
 ```
 

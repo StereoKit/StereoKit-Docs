@@ -3,6 +3,6 @@ layout: default
 title: LogCallback
 description: A callback for when log events occur.
 ---
-# class LogCallback
+# delegate LogCallback
 
 A callback for when log events occur.

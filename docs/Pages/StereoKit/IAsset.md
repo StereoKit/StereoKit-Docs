@@ -3,7 +3,7 @@ layout: default
 title: IAsset
 description: All StereoKit assets implement this interface! This is mostly to help group and hold Asset objects, and is particularly useful when working with Assets at a high level with the Assets class.
 ---
-#  IAsset
+# interface IAsset
 
 All StereoKit assets implement this interface! This is mostly
 to help group and hold Asset objects, and is particularly useful when

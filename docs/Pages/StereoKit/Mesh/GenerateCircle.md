@@ -54,6 +54,13 @@ is best done during 'initialization' of your app/scene.
 
 ## Examples
 
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Circle Mesh]({{site.screen_url}}/ProcGeoCircle.jpg)
+```csharp
+meshCircle = Mesh.GenerateCircle(1);
+```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -74,12 +81,5 @@ circleMesh.Draw(Default.Material, circleTransform);
 
 circleTransform = Matrix.T(1, -1.5f, 0);
 circleModel.Draw(circleTransform);
-```
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Circle Mesh]({{site.screen_url}}/ProcGeoCircle.jpg)
-```csharp
-meshCircle = Mesh.GenerateCircle(1);
 ```
 

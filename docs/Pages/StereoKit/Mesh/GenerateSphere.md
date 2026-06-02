@@ -31,6 +31,13 @@ if it already meets your needs.
 
 ## Examples
 
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Sphere Mesh]({{site.screen_url}}/ProcGeoSphere.jpg)
+```csharp
+meshSphere = Mesh.GenerateSphere(1);
+```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -53,12 +60,5 @@ sphereMesh.Draw(Default.Material, sphereTransform);
 
 sphereTransform = Matrix.T(1, .5f, 0);
 sphereModel.Draw(sphereTransform);
-```
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Sphere Mesh]({{site.screen_url}}/ProcGeoSphere.jpg)
-```csharp
-meshSphere = Mesh.GenerateSphere(1);
 ```
 

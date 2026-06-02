@@ -30,6 +30,13 @@ is best done during 'initialization' of your app/scene.
 
 ## Examples
 
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Rounded Cube Mesh]({{site.screen_url}}/ProcGeoRoundedCube.jpg)
+```csharp
+meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
+```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -52,12 +59,5 @@ roundedCubeMesh.Draw(Default.Material, roundedCubeTransform);
 
 roundedCubeTransform = Matrix.T(1, 0, 0);
 roundedCubeModel.Draw(roundedCubeTransform);
-```
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Rounded Cube Mesh]({{site.screen_url}}/ProcGeoRoundedCube.jpg)
-```csharp
-meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
 ```
 

@@ -39,7 +39,7 @@ another, so you can apply different
 
 |  |  |
 |--|--|
-|[Draw]({{site.url}}/Pages/StereoKit/Sprite/Draw.html)|Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.|
+|[Draw]({{site.url}}/Pages/StereoKit/Sprite/Draw.html)|Draw the sprite on a quad with the provided transform!|
 
 ## Static Fields and Properties
 

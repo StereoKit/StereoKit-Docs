@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Vec2.Max
-description: Returns a vector where each elements is the maximum value for each corresponding pair.
+description: Returns a vector where each element is the maximum value for each corresponding pair.
 ---
 # [Vec2]({{site.url}}/Pages/StereoKit/Vec2.html).Max
 
@@ -9,7 +9,7 @@ description: Returns a vector where each elements is the maximum value for each 
 ```csharp
 static Vec2 Max(Vec2 a, Vec2 b)
 ```
-Returns a vector where each elements is the maximum
+Returns a vector where each element is the maximum
 value for each corresponding pair.
 </div>
 

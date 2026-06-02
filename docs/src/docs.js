@@ -3,6 +3,12 @@
 
 var search = "";
 
+// The docs render under both the stable root and the /preview sub-path (develop
+// branch). Derive the base from the current URL so nav links, and the data.js we
+// load, stay within whichever site the visitor is on.
+var SK_SITE = "{{site.url}}";
+var SK_BASE = /^\/preview(\/|$)/.test(window.location.pathname) ? "/preview" : "";
+
 var treeDict = { data:{} };
 treeDict.hasItem = function (name) {
     return treeDict.data[name] > 0;
@@ -96,7 +102,7 @@ function renderFolder(folder, parent, hierarchy) {
 
     // Link to the actual document
     var link = document.createElement("a");
-    link.href      = "{{site.url}}/"+hierarchy+"/"+folder.name.replace(/ /g, '-')+".html";
+    link.href      = SK_SITE+SK_BASE+"/"+hierarchy+"/"+folder.name.replace(/ /g, '-')+".html";
     link.innerText = folder.name;
     folderItem.appendChild(link);
 
@@ -126,11 +132,17 @@ function renderNav() {
 }
 
 window.addEventListener("load", function () {
-    renderNav();
+    // Load the nav tree for whichever site we're on (root or /preview), then build.
+    var dataScript = document.createElement("script");
+    dataScript.src = SK_SITE+SK_BASE+"/Pages/data.js";
+    dataScript.onload = function () {
+        renderNav();
 
-    treeDict.load();
-    
-    var searchBar = document.getElementById("search");
-    searchBar.value = sessionStorage.getItem("search");
-    updateSearch(searchBar.value);
+        treeDict.load();
+
+        var searchBar = document.getElementById("search");
+        searchBar.value = sessionStorage.getItem("search");
+        updateSearch(searchBar.value);
+    };
+    document.head.appendChild(dataScript);
 });

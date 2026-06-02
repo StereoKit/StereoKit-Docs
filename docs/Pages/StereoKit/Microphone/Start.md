@@ -30,53 +30,6 @@ to devices other than the system's default.
 
 ## Examples
 
-### Choosing a microphone device
-While generally you'll prefer to use the default device, it can be
-nice to allow users to pick which mic they're using! This is
-especially important on PC, where users may have complicated or
-interesting setups.
-
-![Microphone device selection window]({{site.screen_url}}/MicrophoneSelector.jpg)
-
-This sample is a very simple window that allows users to start
-recording with a device other than the default. NOTE: this example
-is designed with the assumption that Microphone.Start() has been
-called already.
-```csharp
-Pose     micSelectPose   = new Pose(Demo.contentPose.Translation + V.XYZ(0,-0.12f,0), Demo.contentPose.Rotation);
-string[] micDevices      = null;
-string   micDeviceActive = null;
-void ShowMicDeviceWindow()
-{
-	// Let the user choose a microphone device
-	UI.WindowBegin("Available Microphones:", ref micSelectPose);
-
-	// User may plug or unplug a mic device, so it's nice to be able to
-	// refresh this list.
-	if (UI.Button("Refresh") || micDevices == null)
-		micDevices = Microphone.GetDevices();
-	UI.HSeparator();
-
-	// Display the list of potential microphones. Some systems may only
-	// have the default (null) device available.
-	Vec2 size = V.XY(0.25f, UI.LineHeight);
-	if (UI.Radio("Default", micDeviceActive == null, size))
-	{
-		micDeviceActive = null;
-		Microphone.Start(micDeviceActive);
-	}
-	foreach (string device in micDevices)
-	{
-		if (UI.Radio(device, micDeviceActive == device, size))
-		{
-			micDeviceActive = device;
-			Microphone.Start(micDeviceActive);
-		}
-	}
-
-	UI.WindowEnd();
-}
-```
 ### Recording Audio Snippets
 A common use case for the microphone would be to record a snippet of
 audio! This demo is a window that will read data from the Microphone,
@@ -137,6 +90,53 @@ void RecordAudio()
 		recordedSound.Play(recordingWindow.position);
 	UI.PopEnabled();
 	
+	UI.WindowEnd();
+}
+```
+### Choosing a microphone device
+While generally you'll prefer to use the default device, it can be
+nice to allow users to pick which mic they're using! This is
+especially important on PC, where users may have complicated or
+interesting setups.
+
+![Microphone device selection window]({{site.screen_url}}/MicrophoneSelector.jpg)
+
+This sample is a very simple window that allows users to start
+recording with a device other than the default. NOTE: this example
+is designed with the assumption that Microphone.Start() has been
+called already.
+```csharp
+Pose     micSelectPose   = new Pose(Demo.contentPose.Translation + V.XYZ(0,-0.12f,0), Demo.contentPose.Rotation);
+string[] micDevices      = null;
+string   micDeviceActive = null;
+void ShowMicDeviceWindow()
+{
+	// Let the user choose a microphone device
+	UI.WindowBegin("Available Microphones:", ref micSelectPose);
+
+	// User may plug or unplug a mic device, so it's nice to be able to
+	// refresh this list.
+	if (UI.Button("Refresh") || micDevices == null)
+		micDevices = Microphone.GetDevices();
+	UI.HSeparator();
+
+	// Display the list of potential microphones. Some systems may only
+	// have the default (null) device available.
+	Vec2 size = V.XY(0.25f, UI.LineHeight);
+	if (UI.Radio("Default", micDeviceActive == null, size))
+	{
+		micDeviceActive = null;
+		Microphone.Start(micDeviceActive);
+	}
+	foreach (string device in micDevices)
+	{
+		if (UI.Radio(device, micDeviceActive == device, size))
+		{
+			micDeviceActive = device;
+			Microphone.Start(micDeviceActive);
+		}
+	}
+
 	UI.WindowEnd();
 }
 ```

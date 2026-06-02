@@ -44,7 +44,7 @@ for (int i = 0; i < sprites.Length; i++)
 // :End:
 
 spriteList = sprites;
-
+	}
 
 
 ublic void Step() {

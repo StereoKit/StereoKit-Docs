@@ -56,8 +56,8 @@ with 2 dimensions to it!
 |[Dot]({{site.url}}/Pages/StereoKit/Vec2/Dot.html)|The dot product is an extremely useful operation! One major use is to determine how similar two vectors are. If the vectors are Unit vectors (magnitude/length of 1), then the result will be 1 if the vectors are the same, -1 if they're opposite, and a gradient in-between with 0 being perpendicular. See [Freya Holmer's excellent visualization](https://twitter.com/FreyaHolmer/status/1200807790580768768) of this concept|
 |[FromAngle]({{site.url}}/Pages/StereoKit/Vec2/FromAngle.html)|Creates a vector pointing in the direction of the angle, with a length of 1. Angles are counter-clockwise, and start from (1,0), so an angle of 90 will be (0,1).|
 |[Lerp]({{site.url}}/Pages/StereoKit/Vec2/Lerp.html)|Blends (Linear Interpolation) between two vectors, based on a 'blend' value, where 0 is a, and 1 is b. Doesn't clamp percent for you.|
-|[Max]({{site.url}}/Pages/StereoKit/Vec2/Max.html)|Returns a vector where each elements is the maximum value for each corresponding pair.|
-|[Min]({{site.url}}/Pages/StereoKit/Vec2/Min.html)|Returns a vector where each elements is the minimum value for each corresponding pair.|
+|[Max]({{site.url}}/Pages/StereoKit/Vec2/Max.html)|Returns a vector where each element is the maximum value for each corresponding pair.|
+|[Min]({{site.url}}/Pages/StereoKit/Vec2/Min.html)|Returns a vector where each element is the minimum value for each corresponding pair.|
 
 ## Operators
 

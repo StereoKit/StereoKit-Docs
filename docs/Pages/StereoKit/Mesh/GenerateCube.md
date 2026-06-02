@@ -31,6 +31,13 @@ if it already meets your needs.
 
 ## Examples
 
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Cube Mesh]({{site.screen_url}}/ProcGeoCube.jpg)
+```csharp
+meshCube = Mesh.GenerateCube(Vec3.One);
+```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -52,12 +59,5 @@ cubeMesh.Draw(Default.Material, cubeTransform);
 
 cubeTransform = Matrix.T(1, -.5f, 0);
 cubeModel.Draw(cubeTransform);
-```
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Cube Mesh]({{site.screen_url}}/ProcGeoCube.jpg)
-```csharp
-meshCube = Mesh.GenerateCube(Vec3.One);
 ```
 

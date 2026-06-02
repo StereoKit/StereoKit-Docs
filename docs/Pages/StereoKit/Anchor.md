@@ -37,6 +37,7 @@ A conceptual guide to Anchors:
 
 |  |  |
 |--|--|
+|[TryGetPerceptionAnchor]({{site.url}}/Pages/StereoKit/Anchor/TryGetPerceptionAnchor.html)|Tries to get the underlying perception spatial anchor as a COM pointer. Use this when you need the raw IntPtr for interop or custom marshalling.|
 |[TryGetPerceptionAnchor]({{site.url}}/Pages/StereoKit/Anchor/TryGetPerceptionAnchor.html)|Tries to get the underlying perception spatial anchor for platforms using Microsoft spatial anchors.|
 |[TrySetPersistent]({{site.url}}/Pages/StereoKit/Anchor/TrySetPersistent.html)|This will attempt to make or prevent this Anchor from persisting across app sessions. You may want to check if the system is capable of persisting anchors via Anchors.Capabilities, but it's possible for this to fail on the OpenXR runtime's side as well.|
 

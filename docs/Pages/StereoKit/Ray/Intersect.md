@@ -46,7 +46,7 @@ Checks the intersection of this ray with a bounding box!
 
 <div class='signature' markdown='1'>
 ```csharp
-bool Intersect(Mesh mesh, Ray& modelSpaceAt)
+bool Intersect(Mesh mesh, Ray& modelSpaceAt, Cull cullFaces)
 ```
 Checks the intersection point of this ray and a Mesh
 with collision data stored on the CPU. A mesh without collision
@@ -64,7 +64,7 @@ into model space, see the example in the docs!
 
 <div class='signature' markdown='1'>
 ```csharp
-bool Intersect(Mesh mesh, Cull cullFaces, Ray& modelSpaceAt)
+bool Intersect(Mesh mesh, Ray& modelSpaceAt, UInt32& outStartInds, Cull cullFaces)
 ```
 Checks the intersection point of this ray and a Mesh
 with collision data stored on the CPU. A mesh without collision
@@ -78,27 +78,8 @@ into model space, see the example in the docs!
 |--|--|
 |[Mesh]({{site.url}}/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU.             You can check this with Mesh.KeepData.|
 |Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
-|[Cull]({{site.url}}/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything? A good             default would be Cull.Back.|
-|RETURNS: bool|True if an intersection occurs, false otherwise!|
-
-<div class='signature' markdown='1'>
-```csharp
-bool Intersect(Mesh mesh, Cull cullFaces, Ray& modelSpaceAt, UInt32& outStartInds)
-```
-Checks the intersection point of this ray and a Mesh
-with collision data stored on the CPU. A mesh without collision
-data will always return false. Ray must be in model space,
-intersection point will be in model space too. You can use the
-inverse of the mesh's world transform matrix to bring the ray
-into model space, see the example in the docs!
-</div>
-
-|  |  |
-|--|--|
-|[Mesh]({{site.url}}/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU.             You can check this with Mesh.KeepData.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
-|UInt32& outStartInds|The index of the first index of the             triangle that was hit|
-|[Cull]({{site.url}}/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything? A good             default would be Cull.Back.|
+|UInt32& outStartInds|The index of the first index of the triangle that was hit|
+|[Cull]({{site.url}}/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything?|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -121,7 +102,7 @@ into model space, see the example in the docs!
 
 <div class='signature' markdown='1'>
 ```csharp
-bool Intersect(Model model, Ray& modelSpaceAt)
+bool Intersect(Model model, Ray& modelSpaceAt, Cull cullFaces)
 ```
 Checks the intersection point of this ray and the Solid
 flagged Meshes in the Model's visual nodes. Ray must be in model
@@ -134,24 +115,7 @@ into model space, see the example in the docs!
 |--|--|
 |[Model]({{site.url}}/Pages/StereoKit/Model.html) model|Any Model that may or may not contain Solid             flagged nodes, and Meshes with collision data.|
 |Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
-|RETURNS: bool|True if an intersection occurs, false otherwise!|
-
-<div class='signature' markdown='1'>
-```csharp
-bool Intersect(Model model, Cull cullFaces, Ray& modelSpaceAt)
-```
-Checks the intersection point of this ray and the Solid
-flagged Meshes in the Model's visual nodes. Ray must be in model
-space, intersection point will be in model space too. You can use
-the inverse of the mesh's world transform matrix to bring the ray
-into model space, see the example in the docs!
-</div>
-
-|  |  |
-|--|--|
-|[Model]({{site.url}}/Pages/StereoKit/Model.html) model|Any Model that may or may not contain Solid             flagged nodes, and Meshes with collision data.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
-|[Cull]({{site.url}}/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything? A good             default would be Cull.Back.|
+|[Cull]({{site.url}}/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything?|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 
@@ -190,7 +154,7 @@ public void StepRayMesh()
 
 	// Draw a sphere at the intersection point, if the ray intersects 
 	// with the mesh.
-	if (ray.Intersect(boxMesh, Cull.Back, out Ray at, out uint index))
+	if (ray.Intersect(boxMesh, out Ray at, out uint index))
 	{
 		sphereMesh.Draw(Default.Material, Matrix.TS(transform.Transform(at.position), 0.01f));
 		if (boxMesh.GetTriangle(index, out Vertex a, out Vertex b, out Vertex c))
