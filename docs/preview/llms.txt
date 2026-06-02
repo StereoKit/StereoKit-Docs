@@ -1,0 +1,12 @@
+# StereoKit
+
+> StereoKit is a lightweight, low-dependency C# library for XR apps and games built on OpenXR.
+
+## Docs
+
+- [API reference](https://stereokit.net/preview/StereoKit-docs-API.md): every type, with class-qualified signatures, summaries, and parameters.
+- [Guides & examples](https://stereokit.net/preview/StereoKit-docs-reference.md): conceptual guides and runnable C# samples, one section per API member.
+
+## Optional
+
+- [Website](https://stereokit.net/preview): full human-facing documentation, guides, and screenshots.

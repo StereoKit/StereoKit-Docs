@@ -1,0 +1,14 @@
+---
+layout: default
+title: UIPad.None
+description: No padding, this matches the element's layout bounds exactly!
+---
+# [UIPad]({{site.url}}/preview/Pages/StereoKit/UIPad.html).None
+
+<div class='signature' markdown='1'>
+static [UIPad]({{site.url}}/preview/Pages/StereoKit/UIPad.html) None
+</div>
+
+## Description
+No padding, this matches the element's layout bounds exactly!
+

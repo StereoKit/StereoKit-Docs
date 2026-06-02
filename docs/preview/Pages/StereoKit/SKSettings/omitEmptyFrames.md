@@ -1,0 +1,15 @@
+---
+layout: default
+title: SKSettings.omitEmptyFrames
+description: If StereoKit has nothing to render for this frame, it skips submitting a projection layer to OpenXR entirely.
+---
+# [SKSettings]({{site.url}}/preview/Pages/StereoKit/SKSettings.html).omitEmptyFrames
+
+<div class='signature' markdown='1'>
+bool omitEmptyFrames{ get set }
+</div>
+
+## Description
+If StereoKit has nothing to render for this frame, it
+skips submitting a projection layer to OpenXR entirely.
+
