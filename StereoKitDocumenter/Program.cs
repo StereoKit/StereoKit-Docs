@@ -33,6 +33,9 @@ namespace StereoKitDocumenter
 			string aiOut = "../../../../docs/";
 			[Option('a', "ai-out", Required = false, HelpText = "Site root folder for the AI-friendly StereoKit-docs-*.md files and llms.txt.")]
 			public string AiOut { get => aiOut; set { aiOut = value.Replace('\\','/'); if (!aiOut.EndsWith("/")) aiOut += "/"; } }
+
+			[Option("lenient", Required = false, HelpText = "Downgrade missing-doc errors (undocumented return values/parameters) to warnings instead of failing. Use for preview/develop builds.")]
+			public bool Lenient { get; set; } = false;
 		}
 		public static CLIOptions options;
 

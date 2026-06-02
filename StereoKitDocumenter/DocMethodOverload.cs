@@ -65,14 +65,23 @@ namespace StereoKitDocumenter
 				{
 					ParameterInfo p = param.Find(a => a.Name == parameters[i].name);
 					if (p == null)
-						throw new Exception($"Can't find document parameter {parameters[i].name} in {rootMethod.name}");
+					{
+						if (!Program.options.Lenient)
+							throw new Exception($"Can't find document parameter {parameters[i].name} in {rootMethod.name}");
+						Console.WriteLine($"[warning] Can't find document parameter {parameters[i].name} in {rootMethod.name}");
+						continue;
+					}
 					paramText += $"|{StringHelper.TypeName(p.ParameterType.Name)} {parameters[i].name}|{StringHelper.CleanForTable(parameters[i].summary)}|\n";
 				}
 
 				if (returnType != typeof(void)) {
-					if (string.IsNullOrEmpty( returns ))
-						throw new Exception("Missing doc tag for the return value of " + rootMethod.Name);
-					paramText += $"|RETURNS: {returnName}|{StringHelper.CleanForTable(returns)}|\n";
+					if (string.IsNullOrEmpty( returns )) {
+						if (!Program.options.Lenient)
+							throw new Exception("Missing doc tag for the return value of " + rootMethod.Name);
+						Console.WriteLine($"[warning] Missing doc tag for the return value of {rootMethod.Name}");
+					} else {
+						paramText += $"|RETURNS: {returnName}|{StringHelper.CleanForTable(returns)}|\n";
+					}
 				}
 			}
 
@@ -97,6 +106,7 @@ namespace StereoKitDocumenter
 					bool   nullable  = a.Contains("System.Nullable");
 					bool   action    = a.Contains("System.Action{");
 					bool   array     = a.Contains("[]");
+					int    arrayDepth = 0;
 					bool   generic   = a.Contains("`");
 					if (nullable)
 					{
@@ -110,7 +120,10 @@ namespace StereoKitDocumenter
 					}
 					if (array)
 					{
-						cleanName = cleanName.Substring(0, cleanName.IndexOf("[]"));
+						// Jagged arrays (T[], T[][], ...) carry one "[]" per dimension;
+						// count them and strip them all to get the base type name.
+						arrayDepth = (cleanName.Length - cleanName.Replace("[]", "").Length) / 2;
+						cleanName  = cleanName.Replace("[]", "");
 					}
 
 					int commas = cleanName.Count(c => c == ',');
@@ -130,7 +143,8 @@ namespace StereoKitDocumenter
 					if (t != null && nullable)
 						t = typeof(Nullable<>).MakeGenericType(t);
 					if (t != null && array)
-						t = t.MakeArrayType();
+						for (int d = 0; d < arrayDepth; d++)
+							t = t.MakeArrayType();
 					if (t != null && a.Contains("@"))
 						t = t.MakeByRefType();
 					if (t == null && generic)
@@ -148,9 +162,23 @@ namespace StereoKitDocumenter
 				methodName = methodName.Substring(0, methodName.IndexOf('`'));
 
 			Type       parent = GetParentType(rootMethod);
-			MethodBase result = methodName == "#ctor" ?
-				(MethodBase)parent.GetConstructor(paramTypes) :
-				(MethodBase)parent.GetMethod     (methodName, paramTypes);
+			MethodBase result;
+			if (methodName == "#ctor")
+				result = parent.GetConstructor(paramTypes);
+			else
+			{
+				// GetMethod matches on parameter types only, so conversion operators
+				// that share a parameter type but differ by return type (e.g. multiple
+				// op_Implicit) throw AmbiguousMatchException. Fall back to the first
+				// exact parameter-type match.
+				try { result = parent.GetMethod(methodName, paramTypes); }
+				catch (AmbiguousMatchException)
+				{
+					result = parent.GetMethods().FirstOrDefault(m =>
+						m.Name == methodName &&
+						m.GetParameters().Select(p => p.ParameterType).SequenceEqual(paramTypes));
+				}
+			}
 
 			// If it's generic, but there's no overloads, we can just return
 			// the only method present
