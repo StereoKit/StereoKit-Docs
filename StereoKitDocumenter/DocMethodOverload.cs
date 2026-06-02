@@ -20,6 +20,27 @@ namespace StereoKitDocumenter
 
 		public bool IsStatic => methodInfo.IsStatic;
 
+		// Link-free C# signature, e.g. "static Material Copy(string assetId)".
+		// Shared by ToString() (site pages) and DocAI (AI-friendly docs) so the
+		// two outputs can't drift apart.
+		public string Signature => BuildSignature(rootMethod.ShowName);
+
+		// Class-qualified variant for grep-friendly AI docs, e.g.
+		// "static Material Material.Copy(string assetId)". Constructors stay as
+		// just the class name (e.g. "void Material(Shader shader)").
+		public string QualifiedSignature => BuildSignature(rootMethod.name == "#ctor"
+			? rootMethod.parent.Name
+			: $"{rootMethod.parent.Name}.{rootMethod.ShowName}");
+
+		string BuildSignature(string methodDisplayName)
+		{
+			MethodBase          m          = methodInfo;
+			Type                returnType = m is MethodInfo ? ((MethodInfo)m).ReturnType : typeof(void);
+			List<ParameterInfo> param      = m == null ? new List<ParameterInfo>() : new List<ParameterInfo>(m.GetParameters());
+			string              paramList  = string.Join(", ", param.Select(a => $"{StringHelper.TypeName(a.ParameterType.Name, false)} {a.Name}"));
+			return (m.IsStatic ? "static " : "") + $"{StringHelper.TypeName(returnType.Name, false)} {methodDisplayName}({paramList})";
+		}
+
 		public DocMethodOverload(DocMethod aRootMethod, string aSignature)
 		{
 			rootMethod = aRootMethod;
@@ -31,12 +52,10 @@ namespace StereoKitDocumenter
 		{
 			MethodBase m = methodInfo;
 			Type   returnType = m is MethodInfo ? ((MethodInfo)m).ReturnType : typeof(void);
-			string methodName = rootMethod.ShowName;
 			string returnName = m is MethodInfo ? StringHelper.TypeName(returnType.Name) : "";
 			List<ParameterInfo> param = m == null ? new List<ParameterInfo>() : new List<ParameterInfo>(m.GetParameters());
 
-			string paramList = string.Join(", ", param.Select(a => $"{StringHelper.TypeName(a.ParameterType.Name, false)} {a.Name}"));
-			string signature = (m.IsStatic ? "static " : "") + $"{StringHelper.TypeName(returnType.Name, false)} {methodName}({paramList})";
+			string signature = Signature;
 
 			string paramText = "";
 			if (parameters.Count > 0 || returnType != typeof(void))
@@ -158,6 +177,16 @@ namespace StereoKitDocumenter
 					}
 				}
             }
+
+			// Constructors on a generic type (e.g. ComputeBuffer<T>) have `0[]-style
+			// parameters that collapse to System.Object above, so GetConstructor can't
+			// match them. Mirror the generic-method fallback and infer by param count.
+			if (result == null && methodName == "#ctor" && paramTypes.Contains(typeof(object)))
+			{
+				foreach (ConstructorInfo c in parent.GetConstructors())
+					if (paramTypes.Length == c.GetParameters().Length)
+						result = c;
+			}
 
 			if (result == null)
 				throw new Exception("Can't find info for method " + rootMethod.name);

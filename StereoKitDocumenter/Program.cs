@@ -29,6 +29,10 @@ namespace StereoKitDocumenter
 			
 			[Option('s', "samples", Required = false, HelpText = "A folder that is searched recursively for .cs files with :CodeSample: or :CodeDoc: tags.")]
 			public string SamplesProj { get; set; } = "../../../../repos/StereoKit/Examples/StereoKitTest/";
+
+			string aiOut = "../../../../docs/";
+			[Option('a', "ai-out", Required = false, HelpText = "Site root folder for the AI-friendly StereoKit-docs-*.md files and llms.txt.")]
+			public string AiOut { get => aiOut; set { aiOut = value.Replace('\\','/'); if (!aiOut.EndsWith("/")) aiOut += "/"; } }
 		}
 		public static CLIOptions options;
 
@@ -120,6 +124,8 @@ namespace StereoKitDocumenter
 				writer.Write(WriteIndex());
 				writer.Close();
 			}
+
+			DocAI.Write(options.AiOut);
 		}
 
 		private static void ScrapeData()
