@@ -56,6 +56,13 @@ SK.Run(() => {
 
 Interested in the [source for StereoKit](https://github.com/StereoKit/StereoKit)? It's open and MIT licensed! You don't need to build from source to use it, but if you want to, it's there for you to modify or debug with!
 
+## Documentation for AI agents
+
+StereoKit also publishes condensed, token-efficient docs designed for AI coding agents and `grep` clean markdown!
+
+- [StereoKit-docs-API.md]({{site.url}}/preview/StereoKit-docs-API.md) — the full API reference: every type with class-qualified signatures, summaries, and parameters.
+- [StereoKit-docs-reference.md]({{site.url}}/preview/StereoKit-docs-reference.md) — conceptual guides and runnable C# code examples.
+
 ## Building or Contributing
 
 For those that want to build the test project, or perhaps the whole library from scratch, there's a [guide to building StereoKit's repository](https://github.com/StereoKit/StereoKit/blob/master/BUILDING.md)! For those that wish to contribute features or fixes to StereoKit, awesome! Check out the [contributor's guide](https://github.com/StereoKit/StereoKit/blob/master/CONTRIBUTING.md). In addition, you may want to check with the maintainers on either GitHub Issues or the Discord channel to help make sure contributions meet the project's standards.
