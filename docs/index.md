@@ -56,11 +56,10 @@ Interested in the [source for StereoKit](https://github.com/StereoKit/StereoKit)
 
 ## Documentation for AI agents
 
-StereoKit also publishes condensed, token-efficient docs designed for AI coding agents and `grep` — clean markdown with no site chrome:
+StereoKit also publishes condensed, token-efficient docs designed for AI coding agents and `grep` clean markdown!
 
 - [StereoKit-docs-API.md]({{site.url}}/StereoKit-docs-API.md) — the full API reference: every type with class-qualified signatures, summaries, and parameters.
 - [StereoKit-docs-reference.md]({{site.url}}/StereoKit-docs-reference.md) — conceptual guides and runnable C# code examples.
-- [llms.txt]({{site.url}}/llms.txt) — a discovery pointer for the above, following the [llms.txt](https://llmstxt.org/) convention.
 
 ## Building or Contributing
 
