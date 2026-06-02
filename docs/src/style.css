@@ -2,8 +2,9 @@
 body {
     display: grid;
     grid-template-columns: 250px calc(100% - 250px);
-    grid-template-rows: 100px 3em auto;
-    grid-template-areas: 
+    grid-template-rows: auto 100px 3em auto;
+    grid-template-areas:
+        "banner banner"
         "head   head"
         "search crumbs"
         "nav    main";
@@ -12,8 +13,9 @@ body {
     body {
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 100px 3em auto;
-        grid-template-areas: 
+        grid-template-rows: auto 100px 3em auto;
+        grid-template-areas:
+            "banner"
             "head"
             "crumbs"
             "main"
@@ -38,6 +40,18 @@ main {
 }
 #breadcrumbs a {
     color: #47A4FF;
+}
+#preview-banner {
+    grid-area: banner;
+    background-color: #b5651d;
+    color: #fff;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 0.9em;
+}
+#preview-banner a {
+    color: #fff !important;
+    text-decoration: underline !important;
 }
 
 /* Page styling */

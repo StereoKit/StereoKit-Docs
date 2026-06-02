@@ -131,18 +131,27 @@ function renderNav() {
     nav.appendChild(list);
 }
 
-window.addEventListener("load", function () {
-    // Load the nav tree for whichever site we're on (root or /preview), then build.
-    var dataScript = document.createElement("script");
-    dataScript.src = SK_SITE+SK_BASE+"/Pages/data.js";
-    dataScript.onload = function () {
-        renderNav();
+// Build the nav tree as soon as BOTH the data and the DOM are ready. We kick off
+// the data.js fetch immediately (so it downloads in parallel with the page) and
+// build on DOMContentLoaded rather than window 'load' — the latter also waits for
+// every image/screenshot, which made the nav take a while to appear.
+var skNavData = false, skDomReady = false;
+function skBuildNav() {
+    if (!skNavData || !skDomReady) return;
 
-        treeDict.load();
+    renderNav();
+    treeDict.load();
 
-        var searchBar = document.getElementById("search");
-        searchBar.value = sessionStorage.getItem("search");
-        updateSearch(searchBar.value);
-    };
-    document.head.appendChild(dataScript);
-});
+    var searchBar = document.getElementById("search");
+    searchBar.value = sessionStorage.getItem("search");
+    updateSearch(searchBar.value);
+}
+
+var dataScript = document.createElement("script");
+dataScript.src = SK_SITE+SK_BASE+"/Pages/data.js";
+dataScript.onload = function () { skNavData = true; skBuildNav(); };
+document.head.appendChild(dataScript);
+
+if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", function () { skDomReady = true; skBuildNav(); });
+else { skDomReady = true; skBuildNav(); }
