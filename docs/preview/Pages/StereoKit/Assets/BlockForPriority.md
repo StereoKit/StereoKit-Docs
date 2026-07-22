@@ -17,7 +17,7 @@ priority.
 
 |  |  |
 |--|--|
-|int priority|Block the app until this priority level is             complete.|
+|int priority|Block the app until this priority level is complete.|
 
 
 

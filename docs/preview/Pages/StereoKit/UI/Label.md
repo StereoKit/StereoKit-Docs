@@ -16,12 +16,12 @@ contain newlines!
 
 |  |  |
 |--|--|
-|string text|Label text to display. Can contain newlines!             Doesn't use text as id, so it can be non-unique.|
-|bool usePadding|Should padding be included for             positioning this text? Sometimes you just want un-padded text!|
+|string text|Label text to display. Can contain newlines! Doesn't use text as id, so it can be non-unique.|
+|bool usePadding|Should padding be included for positioning this text? Sometimes you just want un-padded text!|
 
 <div class='signature' markdown='1'>
 ```csharp
-static void Label(string text, Vec2 size, bool usePadding)
+static void Label(string text, Vec2 size, bool usePadding, Align textAlign)
 ```
 Adds some text to the layout, but this overload allows you
 can specify the size that you want it to use. Text uses the UI's
@@ -31,9 +31,10 @@ UI.Push/PopTextStyle. Can contain newlines!
 
 |  |  |
 |--|--|
-|string text|Label text to display. Can contain newlines!             Doesn't use text as id, so it can be non-unique.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
-|bool usePadding|Should padding be included for             positioning this text? Sometimes you just want un-padded text!|
+|string text|Label text to display. Can contain newlines! Doesn't use text as id, so it can be non-unique.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.|
+|bool usePadding|Should padding be included for positioning this text? Sometimes you just want un-padded text!|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
 
 
 

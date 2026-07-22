@@ -16,9 +16,9 @@ and one when it ends.
 
 |  |  |
 |--|--|
-|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) visual|The UI element to apply the sounds to. This             can be a value _past_ UIVisual.Max if you need extra UIVisual slots             for your own custom UI elements.|
-|[Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html) activate|The sound made when the interaction begins.             A null sound will fall back to the default sound.|
-|[Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html) deactivate|The sound made when the interaction ends.             A null sound will fall back to the default sound.|
+|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) visual|The UI element to apply the sounds to. This can be a value _past_ UIVisual.Max if you need extra UIVisual slots for your own custom UI elements.|
+|[Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html) activate|The sound made when the interaction begins. A null sound will fall back to the default sound.|
+|[Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html) deactivate|The sound made when the interaction ends. A null sound will fall back to the default sound.|
 
 
 

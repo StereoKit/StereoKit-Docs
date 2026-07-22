@@ -20,10 +20,10 @@ which the Asset Id will be the same as the filename.
 
 |  |  |
 |--|--|
-|Byte[]& imageFileData|The binary data of an image file,             this is NOT a raw RGB color array!|
-|bool sRGBData|Is this image color data in sRGB format,             or is it normal/metal/rough/data that's not for direct display?             sRGB colors get converted to linear color space on the graphics             card, so getting this right can have a big impact on visuals.|
-|bool blocking|Will this method wait for the image              to load. By default, we try to load it asynchronously.|
-|int priority|The priority sort order for this asset in             the async loading system. Lower values mean loading sooner.|
+|Byte[]& imageFileData|The binary data of an image file, this is NOT a raw RGB color array!|
+|bool sRGBData|Is this image color data in sRGB format, or is it normal/metal/rough/data that's not for direct display? sRGB colors get converted to linear color space on the graphics card, so getting this right can have a big impact on visuals.|
+|bool blocking|Will this method wait for the image to load. By default, we try to load it asynchronously.|
+|int priority|The priority sort order for this asset in the async loading system. Lower values mean loading sooner.|
 
 
 

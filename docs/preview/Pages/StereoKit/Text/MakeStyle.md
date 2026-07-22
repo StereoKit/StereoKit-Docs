@@ -21,8 +21,8 @@ on Default.ShaderFont.
 |  |  |
 |--|--|
 |[Font]({{site.url}}/preview/Pages/StereoKit/Font.html) font|Font asset you want attached to this style.|
-|float layoutHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on CapHeight.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text             style. This will be embedded in the vertex color of the text             mesh.|
+|float layoutHeightMeters|Height of a text glyph in meters. StereoKit currently bases this on CapHeight.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text style. This will be embedded in the vertex color of the text mesh.|
 |RETURNS: [TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html)|A text style id for use with text rendering functions.|
 
 <div class='signature' markdown='1'>
@@ -41,9 +41,9 @@ on the provided Shader.
 |  |  |
 |--|--|
 |[Font]({{site.url}}/preview/Pages/StereoKit/Font.html) font|Font asset you want attached to this style.|
-|float layoutHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on CapHeight.|
-|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) shader|This style will create and use a unique             Material based on the Shader that you provide here.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text             style. This will be embedded in the vertex color of the text             mesh.|
+|float layoutHeightMeters|Height of a text glyph in meters. StereoKit currently bases this on CapHeight.|
+|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) shader|This style will create and use a unique Material based on the Shader that you provide here.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text style. This will be embedded in the vertex color of the text mesh.|
 |RETURNS: [TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html)|A text style id for use with text rendering functions.|
 
 <div class='signature' markdown='1'>
@@ -65,9 +65,9 @@ Shader, or takes neither a Shader nor a Material!
 |  |  |
 |--|--|
 |[Font]({{site.url}}/preview/Pages/StereoKit/Font.html) font|Font asset you want attached to this style.|
-|float layoutHeightMeters|Height of a text glyph in             meters. StereoKit currently bases this on CapHeight.|
-|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|Which material should be used to render             the text with? Note that this does NOT duplicate the material, so             some parameters of this Material instance will get overwritten,              like the texture used for the glyph atlas. You should either use             a new Material, or a Material that was already used with this             same font.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text             style. This will be embedded in the vertex color of the text             mesh.|
+|float layoutHeightMeters|Height of a text glyph in meters. StereoKit currently bases this on CapHeight.|
+|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|Which material should be used to render the text with? Note that this does NOT duplicate the material, so some parameters of this Material instance will get overwritten, like the texture used for the glyph atlas. You should either use a new Material, or a Material that was already used with this same font.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color of the text style. This will be embedded in the vertex color of the text mesh.|
 |RETURNS: [TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html)|A text style id for use with text rendering functions.|
 
 

@@ -18,7 +18,7 @@ overridden until you call Input.HandClearOverride.
 |  |  |
 |--|--|
 |[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|Which hand should be overridden?|
-|HandJoint[]& joints|A 2D array of 25 joints that should be used             as StereoKit's hand information. See `Hand.fingers` for more              information.|
+|HandJoint[]& joints|A 2D array of 25 joints that should be used as StereoKit's hand information. See `Hand.fingers` for more information.|
 
 
 

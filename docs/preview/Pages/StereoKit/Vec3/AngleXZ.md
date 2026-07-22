@@ -16,8 +16,8 @@ specify a constant y value.
 
 |  |  |
 |--|--|
-|float angleDeg|Angle in degrees, starting from (1,0) at             0, and continuing to (0,1) at 90.|
-|float y|A constant value you can assign to the resulting             vector's y component.|
+|float angleDeg|Angle in degrees, starting from (1,0) at 0, and continuing to (0,1) at 90.|
+|float y|A constant value you can assign to the resulting vector's y component.|
 |RETURNS: [Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html)|A Vector pointing at the given angle! If y is zero, this will be a normalized vector (vector with a length of 1).|
 
 

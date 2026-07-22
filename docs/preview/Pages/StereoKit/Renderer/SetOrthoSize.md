@@ -18,7 +18,7 @@ available in 2D window modes.
 
 |  |  |
 |--|--|
-|float viewportHeightMeters|The vertical size of the             projection's viewport, in meters.|
+|float viewportHeightMeters|The vertical size of the projection's viewport, in meters.|
 
 
 

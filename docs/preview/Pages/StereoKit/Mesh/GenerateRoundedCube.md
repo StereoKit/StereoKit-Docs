@@ -19,9 +19,9 @@ is best done during 'initialization' of your app/scene.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) dimensions|How large is this cube on each axis, in             meters?|
-|float edgeRadius|Radius of the corner rounding, in             meters.|
-|int subdivisions|How many subdivisions should be used             for creating the corners?              A larger value results in smoother corners, but can decrease             performance.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) dimensions|How large is this cube on each axis, in meters?|
+|float edgeRadius|Radius of the corner rounding, in meters.|
+|int subdivisions|How many subdivisions should be used for creating the corners? A larger value results in smoother corners, but can decrease performance.|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A cube mesh with rounded corners, pre-sized to the given dimensions.|
 
 
@@ -30,13 +30,6 @@ is best done during 'initialization' of your app/scene.
 
 ## Examples
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Rounded Cube Mesh]({{site.url}}/preview/img/screenshots/ProcGeoRoundedCube.jpg)
-```csharp
-meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
-```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -59,5 +52,12 @@ roundedCubeMesh.Draw(Default.Material, roundedCubeTransform);
 
 roundedCubeTransform = Matrix.T(1, 0, 0);
 roundedCubeModel.Draw(roundedCubeTransform);
+```
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Rounded Cube Mesh]({{site.url}}/preview/img/screenshots/ProcGeoRoundedCube.jpg)
+```csharp
+meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
 ```
 

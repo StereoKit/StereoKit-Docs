@@ -17,7 +17,7 @@ this function to position themselves!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) shift|A positional shift from the default location,             this is useful to account for the height of the window, and center             or offset this pose. A value of [0,-0.1,0] may be a good starting             point.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) shift|A positional shift from the default location, this is useful to account for the height of the window, and center or offset this pose. A value of [0,-0.1,0] may be a good starting point.|
 |RETURNS: [Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html)|A pose between the UI or hand that is currently active, and the user's head. Good for popup windows.|
 
 

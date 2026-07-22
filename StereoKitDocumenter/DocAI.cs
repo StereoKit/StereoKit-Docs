@@ -68,7 +68,7 @@ Source: {Site}  (generated from StereoKit's XML doc comments)
 		static string Resolve(string data)
 		{
 			if (string.IsNullOrEmpty(data)) return data;
-			return data
+			return Program.FixReferenceLinks(data)
 				.Replace("{{site.screen_url}}", $"{Site}/img/screenshots")
 				.Replace("{{site.url}}",        Site);
 		}

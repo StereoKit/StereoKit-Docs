@@ -16,8 +16,8 @@ frame you wish the layer to be included.
 
 |  |  |
 |--|--|
-|T XrCompositionLayerX|A serializable             XrCompositionLayer struct that follows the             XrCompositionLayerBaseHeader data pattern.|
-|int sortOrder|An sort order value for sorting with             other composition layers in the list. The primary projection             layer that StereoKit renders to is at 0, -1 would be before it,             and +1 would be after.|
+|T XrCompositionLayerX|A serializable XrCompositionLayer struct that follows the XrCompositionLayerBaseHeader data pattern.|
+|int sortOrder|An sort order value for sorting with other composition layers in the list. The primary projection layer that StereoKit renders to is at 0, -1 would be before it, and +1 would be after.|
 
 
 

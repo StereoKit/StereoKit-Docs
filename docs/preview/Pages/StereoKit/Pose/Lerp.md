@@ -17,7 +17,7 @@ outside of (0,1) will extrapolate their position.
 |--|--|
 |[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) a|Starting pose, or percent == 0|
 |[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) b|Ending pose, or percent == 1|
-|float percent|A value usually 0->1 that tells the blend             between a and b.|
+|float percent|A value usually 0->1 that tells the blend between a and b.|
 |RETURNS: [Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html)|A new pose, blended between a and b based on percent!|
 
 

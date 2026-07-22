@@ -15,7 +15,8 @@ draws.
 
 |  |  |
 |--|--|
-|All|Clear both color and depth data.|
+|All|Clear both color and depth data. A zero value also means this - it's the default, so zero-initialized settings clear everything.|
 |Color|Clear the rendertarget's color data.|
 |Depth|Clear the rendertarget's depth data, if present.|
-|None|Don't clear anything, leave it as it is.|
+|Keep|Don't clear anything, draw on top of what's already there.|
+|None|Deprecated, use render_clear_keep.|

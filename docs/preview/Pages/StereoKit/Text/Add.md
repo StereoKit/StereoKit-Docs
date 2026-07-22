@@ -16,10 +16,10 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see             Text.MakeStyle or the TextStyle object.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see Text.MakeStyle or the TextStyle object.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
@@ -35,9 +35,9 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
@@ -53,14 +53,14 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see             Text.MakeStyle or the TextStyle object.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see Text.MakeStyle or the TextStyle object.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets             multiplied by this color. This is a linear color value, not a gamma             corrected color value.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets multiplied by this color. This is a linear color value, not a gamma corrected color value.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -73,13 +73,13 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets             multiplied by this color. This is a linear color value, not a gamma             corrected color value.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets multiplied by this color. This is a linear color value, not a gamma corrected color value.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -92,12 +92,12 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the             text should try to fit inside of. This allows for text wrapping or             scaling based on the value provided to the 'fit' parameter.|
-|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of             its size dimensions conflicts with the provided 'size' parameter.|
-|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see             Text.MakeStyle or the TextStyle object.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the text should try to fit inside of. This allows for text wrapping or scaling based on the value provided to the 'fit' parameter.|
+|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of its size dimensions conflicts with the provided 'size' parameter.|
+|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see Text.MakeStyle or the TextStyle object.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
@@ -114,11 +114,11 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the             text should try to fit inside of. This allows for text wrapping or             scaling based on the value provided to the 'fit' parameter.|
-|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of             its size dimensions conflicts with the provided 'size' parameter.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the text should try to fit inside of. This allows for text wrapping or scaling based on the value provided to the 'fit' parameter.|
+|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of its size dimensions conflicts with the provided 'size' parameter.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
@@ -135,15 +135,15 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the             text should try to fit inside of. This allows for text wrapping or             scaling based on the value provided to the 'fit' parameter.|
-|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of             its size dimensions conflicts with the provided 'size' parameter.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the text should try to fit inside of. This allows for text wrapping or scaling based on the value provided to the 'fit' parameter.|
+|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of its size dimensions conflicts with the provided 'size' parameter.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets             multiplied by this color. This is a linear color value, not a gamma             corrected color value.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets multiplied by this color. This is a linear color value, not a gamma corrected color value.|
 |RETURNS: float|Returns the vertical space used by this text.|
 
 <div class='signature' markdown='1'>
@@ -157,16 +157,16 @@ frame you want this text to be visible.
 |  |  |
 |--|--|
 |string text|What text should be drawn?|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the             text mesh! Try Matrix.TRS.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the             text should try to fit inside of. This allows for text wrapping or             scaling based on the value provided to the 'fit' parameter.|
-|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of             its size dimensions conflicts with the provided 'size' parameter.|
-|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see             Text.MakeStyle or the TextStyle object.|
-|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be             positioned relative to the transform?|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the             text's bounding rectangle?|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix representing the transform of the text mesh! Try Matrix.TRS.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|This is the Hierarchy space rectangle that the text should try to fit inside of. This allows for text wrapping or scaling based on the value provided to the 'fit' parameter.|
+|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of its size dimensions conflicts with the provided 'size' parameter.|
+|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|Style information for rendering, see Text.MakeStyle or the TextStyle object.|
+|[Pivot]({{site.url}}/preview/Pages/StereoKit/Pivot.html) position|How should the text's bounding rectangle be positioned relative to the transform?|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) align|How should the text be aligned within the text's bounding rectangle?|
 |float offX|An additional offset on the X axis.|
 |float offY|An additional offset on the Y axis.|
 |float offZ|An additional offset on the Z axis.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets             multiplied by this color. This is a linear color value, not a gamma             corrected color value.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) vertexTintLinear|The vertex color of the text gets multiplied by this color. This is a linear color value, not a gamma corrected color value.|
 |RETURNS: float|Returns the vertical space used by this text.|
 
 

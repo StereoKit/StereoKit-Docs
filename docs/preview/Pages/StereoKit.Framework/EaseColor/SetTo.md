@@ -16,7 +16,7 @@ the provided value.
 
 |  |  |
 |--|--|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) value|The new value that should be assigned right now             without animation.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) value|The new value that should be assigned right now without animation.|
 
 
 

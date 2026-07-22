@@ -16,7 +16,7 @@ use when rendering to it.
 
 |  |  |
 |--|--|
-|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) depthFormat|The format of the depth texture, must             be a depth format type!|
+|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) depthFormat|The format of the depth texture, must be a depth format type!|
 
 
 

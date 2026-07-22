@@ -17,7 +17,7 @@ so be sure to check ExtEnabled to see if it's available to use.
 
 |  |  |
 |--|--|
-|string extensionName|The extension name as listed in the             OpenXR spec. For example: "XR_EXT_hand_tracking".|
+|string extensionName|The extension name as listed in the OpenXR spec. For example: "XR_EXT_hand_tracking".|
 
 
 

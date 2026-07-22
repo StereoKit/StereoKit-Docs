@@ -17,7 +17,7 @@ way. Ex: `Color.Hex(0x0000FFFF)` would be RGBA(0,0,255,255).
 
 |  |  |
 |--|--|
-|uint hexValue|An integer representing RGBA hex values!             Like: `0x0000FFFF`.|
+|uint hexValue|An integer representing RGBA hex values! Like: `0x0000FFFF`.|
 |RETURNS: [Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html)|A 32 bit Color32 value.|
 
 

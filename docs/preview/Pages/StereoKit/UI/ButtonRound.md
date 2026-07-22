@@ -16,9 +16,9 @@ first frame it is pressed!
 
 |  |  |
 |--|--|
-|string id|An id for tracking element state. MUST be unique             within current hierarchy.|
+|string id|An id for tracking element state. MUST be unique within current hierarchy.|
 |[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|An image to display as the face of the button.|
-|float diameter|The diameter of the button's visual. This             defaults to the line height.|
+|float diameter|The diameter of the button's visual. This defaults to the line height.|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 

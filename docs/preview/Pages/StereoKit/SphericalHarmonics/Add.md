@@ -17,7 +17,7 @@ light from a field of points.
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lightDir|Direction to the light source.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) lightColor|Color of the light, in linear color             space.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) lightColor|Color of the light, in linear color space.|
 
 
 

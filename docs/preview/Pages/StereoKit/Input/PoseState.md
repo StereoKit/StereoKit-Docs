@@ -16,7 +16,7 @@ being tracked by the XR system, and at what quality.
 
 |  |  |
 |--|--|
-|[InputPose]({{site.url}}/preview/Pages/StereoKit/InputPose.html) poseType|The type of pose to check tracking state             for.|
+|[InputPose]({{site.url}}/preview/Pages/StereoKit/InputPose.html) poseType|The type of pose to check tracking state for.|
 |RETURNS: [PoseState]({{site.url}}/preview/Pages/StereoKit/PoseState.html)|A PoseState flags value indicating which components are tracked and whether they are inferred or known.|
 
 

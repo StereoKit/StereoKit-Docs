@@ -15,7 +15,7 @@ callback between the appropriate system updates.
 
 |  |  |
 |--|--|
-|Action onStep|A callback where you put your application             code! This gets called between StereoKit systems, after frame             setup, but before render.|
+|Action onStep|A callback where you put your application code! This gets called between StereoKit systems, after frame setup, but before render.|
 |RETURNS: bool|If an exit message is received from the platform, or `SK.Quit()` is called, this function will return false.|
 
 

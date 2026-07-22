@@ -30,7 +30,7 @@ maintainers to understand what is or isn't happening.
 
 All platforms will output the log through the standard debug output window,
 but you can also tap into the debug logs via
-[`Log.Subscribe`]({{site.url}}/Pages/Reference/Log/Subscribe.html). Check
+[`Log.Subscribe`]({{site.url}}/Pages/StereoKit/Log/Subscribe.html). Check
 the docs there for an easy Mixed Reality log window you can add to your
 project.
 

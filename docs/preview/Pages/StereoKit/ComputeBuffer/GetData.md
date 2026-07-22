@@ -31,7 +31,7 @@ Math.Min(data.Length, Count) elements.
 
 |  |  |
 |--|--|
-|T[]& data|A pre-allocated array to fill. If it's             smaller than the buffer, only data.Length elements are             read.|
+|T[]& data|A pre-allocated array to fill. If it's smaller than the buffer, only data.Length elements are read.|
 
 
 

@@ -16,7 +16,7 @@ provided values directly.
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) position|Location of the pose.|
-|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) orientation|Orientation of the pose, stored as a             rotation from Vec3.Forward.|
+|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) orientation|Orientation of the pose, stored as a rotation from Vec3.Forward.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -43,7 +43,7 @@ provided values directly.
 |float x|X location of the pose.|
 |float y|Y location of the pose.|
 |float z|Z location of the pose.|
-|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) orientation|Orientation of the pose, stored as a             rotation from Vec3.Forward.|
+|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) orientation|Orientation of the pose, stored as a rotation from Vec3.Forward.|
 
 <div class='signature' markdown='1'>
 ```csharp

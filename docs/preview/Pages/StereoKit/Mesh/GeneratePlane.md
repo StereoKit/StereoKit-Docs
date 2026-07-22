@@ -22,9 +22,9 @@ if it already meets your needs.
 
 |  |  |
 |--|--|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|How large is this plane on the XZ axis,             in meters?|
-|int subdivisions|Use this to add extra slices of              vertices across the plane. This can be useful for some types of             vertex-based effects!|
-|bool doubleSided|Should both sides of the plane be              rendered?|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|How large is this plane on the XZ axis, in meters?|
+|int subdivisions|Use this to add extra slices of vertices across the plane. This can be useful for some types of vertex-based effects!|
+|bool doubleSided|Should both sides of the plane be rendered?|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A plane mesh, pre-sized to the given dimensions.|
 
 <div class='signature' markdown='1'>
@@ -44,11 +44,11 @@ if it already meets your needs.
 
 |  |  |
 |--|--|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|How large is this plane on the XZ axis,              in meters?|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeNormal|What is the normal of the surface this             plane is generated on?|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeTopDirection|A normal defines the plane, but              this is technically a rectangle on the              plane. So which direction is up? It's important for UVs, but              doesn't need to be exact. This function takes the planeNormal as             law, and uses this vector to find the right and up vectors via             cross-products.|
-|int subdivisions|Use this to add extra slices of              vertices across the plane. This can be useful for some types of             vertex-based effects!|
-|bool doubleSided|Should both sides of the plane be              rendered?|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|How large is this plane on the XZ axis, in meters?|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeNormal|What is the normal of the surface this plane is generated on?|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeTopDirection|A normal defines the plane, but this is technically a rectangle on the plane. So which direction is up? It's important for UVs, but doesn't need to be exact. This function takes the planeNormal as law, and uses this vector to find the right and up vectors via cross-products.|
+|int subdivisions|Use this to add extra slices of vertices across the plane. This can be useful for some types of vertex-based effects!|
+|bool doubleSided|Should both sides of the plane be rendered?|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A plane mesh, pre-sized to the given dimensions.|
 
 
@@ -57,13 +57,6 @@ if it already meets your needs.
 
 ## Examples
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Plane Mesh]({{site.url}}/preview/img/screenshots/ProcGeoPlane.jpg)
-```csharp
-meshPlane = Mesh.GeneratePlane(Vec2.One);
-```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -84,5 +77,12 @@ planeMesh.Draw(Default.Material, planeTransform);
 
 planeTransform = Matrix.T(1, -1, 0);
 planeModel.Draw(planeTransform);
+```
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Plane Mesh]({{site.url}}/preview/img/screenshots/ProcGeoPlane.jpg)
+```csharp
+meshPlane = Mesh.GeneratePlane(Vec2.One);
 ```
 

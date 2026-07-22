@@ -1,12 +1,15 @@
 ---
 layout: default
 title: InteractorActivation
-description: This describes how an interactor activates elements. Does it use the physical position of the interactor, or the activation state?
+description: This describes how an interactor commits an interaction with an element - does it activate from the physical position of the interactor (like a finger poking through a button), or from its activation/button state (like a pinch or a trigger click)? This is independent of InteractorType, which describes the interactor's shape rather than what triggers it.
 ---
 # enum InteractorActivation
 
-This describes how an interactor activates elements. Does it use the physical
-position of the interactor, or the activation state?
+This describes how an interactor commits an interaction with an element - does
+it activate from the physical position of the interactor (like a finger poking
+through a button), or from its activation/button state (like a pinch or a
+trigger click)? This is independent of `InteractorType`, which describes the
+interactor's shape rather than what triggers it.
 
 ## Enum Values
 

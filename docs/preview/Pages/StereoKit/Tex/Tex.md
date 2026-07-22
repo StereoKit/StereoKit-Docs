@@ -15,8 +15,8 @@ using SetColors next! Creates a default unique asset Id.
 
 |  |  |
 |--|--|
-|[TexType]({{site.url}}/preview/Pages/StereoKit/TexType.html) textureType|What type of texture is it? Just a 2D              Image? A Cubemap? Should it have mip-maps?|
-|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) textureFormat|What information is the texture              composed of? 32 bit colors, 64 bit colors, etc.|
+|[TexType]({{site.url}}/preview/Pages/StereoKit/TexType.html) textureType|What type of texture is it? Just a 2D Image? A Cubemap? Should it have mip-maps?|
+|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) textureFormat|What information is the texture composed of? 32 bit colors, 64 bit colors, etc.|
 
 
 

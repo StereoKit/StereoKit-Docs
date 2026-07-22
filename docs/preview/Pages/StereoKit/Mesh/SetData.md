@@ -1,24 +1,17 @@
 ---
 layout: default
 title: Mesh.SetData
-description: Assigns the vertices and indices for this Mesh! This will create a vertex buffer and index buffer object on the graphics card. If you're calling this a second time, the buffers will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!  Remember to set all the relevant values! Your material will often show black if the Normals or Colors are left at their default values.  Calling SetData is slightly more efficient than calling SetVerts and SetInds separately.
+description: Assigns vertices with a custom vertex format along with face indices for this Mesh in a single call! The format is derived from T's [VertComponent] tagged fields, see SetVerts for details.  Calling SetData is slightly more efficient than calling SetVerts and SetInds separately.
 ---
 # [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html).SetData
 
 <div class='signature' markdown='1'>
 ```csharp
-void SetData(Vertex[] vertices, UInt32[] indices, bool calculateBounds)
+void SetData(T[] vertices, UInt32[] indices, bool calculateBounds)
 ```
-Assigns the vertices and indices for this Mesh! This will
-create a vertex buffer and index buffer object on the graphics
-card. If you're calling this a second time, the buffers will be
-marked as dynamic and re-allocated. If you're calling this a third
-time, the buffer will only re-allocate if the buffer is too small,
-otherwise it just copies in the data!
-
-Remember to set all the relevant values! Your material will often
-show black if the Normals or Colors are left at their default
-values.
+Assigns vertices with a custom vertex format along with
+face indices for this Mesh in a single call! The format is derived
+from T's [VertComponent] tagged fields, see SetVerts for details.
 
 Calling SetData is slightly more efficient than calling SetVerts
 and SetInds separately.
@@ -26,25 +19,27 @@ and SetInds separately.
 
 |  |  |
 |--|--|
-|Vertex[] vertices|An array of vertices to add to the mesh.             Remember to set all the relevant values! Your material will often             show black if the Normals or Colors are left at their default             values. Null is okay here, but may require a special shader.|
-|UInt32[] indices|A list of face indices, must be a multiple of             3. Each index represents a vertex from the provided vertex array.|
-|bool calculateBounds|If true, this will also update the             Mesh's bounds based on the vertices provided. Since this does             require iterating through all the verts with some logic, there is             performance cost to doing this. If you're updating a mesh             frequently or need all the performance you can get, setting this to             false is a nice way to gain some speed!|
+|T[] vertices|An array of vertices to add to the mesh.|
+|UInt32[] indices|A list of face indices, must be a multiple of 3. Each index represents a vertex from the provided vertex array.|
+|bool calculateBounds|If true, this will also update the Mesh's bounds based on the vertices provided. This requires the format to contain a float3 position component.|
 
 <div class='signature' markdown='1'>
 ```csharp
-void SetData(Vertex[] vertices, UInt32[] indices, MeshData flags, int priority)
+void SetData(T[] vertices, UInt32[] indices, MeshData flags, int priority)
 ```
-Assigns the vertices and indices for this Mesh with
-control over upload behavior via flags. Upload is synchronous
-by default — pass MeshData.Async for background upload.
+Assigns vertices with a custom vertex format along with
+face indices for this Mesh in a single call, with control over
+upload behavior via flags! Upload is synchronous by default — pass
+MeshData.Async for background upload. The format is derived from
+T's [VertComponent] tagged fields, see SetVerts for details.
 </div>
 
 |  |  |
 |--|--|
-|Vertex[] vertices|An array of vertices to add to the mesh.             Remember to set all the relevant values! Your material will often             show black if the Normals or Colors are left at their default             values. Null is okay here, but may require a special shader.|
-|UInt32[] indices|A list of face indices, must be a multiple of             3. Each index represents a vertex from the provided vertex array.|
-|[MeshData]({{site.url}}/preview/Pages/StereoKit/MeshData.html) flags|Flags controlling upload behavior. See             MeshData for options.|
-|int priority|Loading priority for async upload. Lower             values load sooner.|
+|T[] vertices|An array of vertices to add to the mesh.|
+|UInt32[] indices|A list of face indices, must be a multiple of 3. Each index represents a vertex from the provided vertex array.|
+|[MeshData]({{site.url}}/preview/Pages/StereoKit/MeshData.html) flags|Flags controlling upload behavior. See MeshData for options.|
+|int priority|Loading priority for async upload. Lower values load sooner.|
 
 
 

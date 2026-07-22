@@ -15,9 +15,9 @@ states into a nicely animated focus value.
 
 |  |  |
 |--|--|
-|[IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html) id|The hierarchical id of the UI element we're             checking the focus of, this can be created with `UI.StackHash`.|
+|[IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html) id|The hierarchical id of the UI element we're checking the focus of, this can be created with `UI.StackHash`.|
 |[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) focusState|The current focus state of the UI element.|
-|[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) activationState|The current activation status of the             UI element.|
+|[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) activationState|The current activation status of the UI element.|
 |RETURNS: float|A focus value in the realm of 0-1, where 0 is unfocused, and 1 is active.|
 
 

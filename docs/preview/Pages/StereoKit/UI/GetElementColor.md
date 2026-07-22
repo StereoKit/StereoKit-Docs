@@ -16,8 +16,8 @@ current hierarchy of tinting and enabled states.
 
 |  |  |
 |--|--|
-|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) elementVisual|Get the color from this element type.             This can be a value _past_ UIVisual.Max to use extra UIVisual slots             for your own custom UI elements. If these slots are empty, SK will             fall back to UIVisual.Default.|
-|float focus|The amount of visual focus this element             currently has, where 0 is unfocused, and 1 is active. You can             acquire a good focus value from `UI.GetAnimFocus`|
+|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) elementVisual|Get the color from this element type. This can be a value _past_ UIVisual.Max to use extra UIVisual slots for your own custom UI elements. If these slots are empty, SK will fall back to UIVisual.Default.|
+|float focus|The amount of visual focus this element currently has, where 0 is unfocused, and 1 is active. You can acquire a good focus value from `UI.GetAnimFocus`|
 |RETURNS: [Color]({{site.url}}/preview/Pages/StereoKit/Color.html)|A linear color good for tinting UI meshes.|
 
 

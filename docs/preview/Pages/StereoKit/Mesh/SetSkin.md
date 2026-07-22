@@ -26,9 +26,9 @@ for bone `i` is computed as
 
 |  |  |
 |--|--|
-|UInt16[] boneIds|Per-vertex bone indices, packed 4 per              vertex (so this array has length VertCount * 4). Each index              references a slot in the bone palette and resting transforms.|
-|Vec4[] boneWeights|Per-vertex bone weights, one Vec4              per vertex (length must equal VertCount). The four              components correspond to the four bone ids for that vertex.              Weights should sum to ~1 for a stable result.|
-|Matrix[] boneRestingTransforms|Bind-pose transform for              each bone, expressed in the mesh's model space. StereoKit              inverts these internally to produce the inverse-bind              matrices used by the skinning math.|
+|UInt16[] boneIds|Per-vertex bone indices, packed 4 per vertex (so this array has length VertCount * 4). Each index references a slot in the bone palette and resting transforms.|
+|Vec4[] boneWeights|Per-vertex bone weights, one Vec4 per vertex (length must equal VertCount). The four components correspond to the four bone ids for that vertex. Weights should sum to ~1 for a stable result.|
+|Matrix[] boneRestingTransforms|Bind-pose transform for each bone, expressed in the mesh's model space. StereoKit inverts these internally to produce the inverse-bind matrices used by the skinning math.|
 
 
 

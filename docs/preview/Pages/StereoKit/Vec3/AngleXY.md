@@ -16,8 +16,8 @@ specify a constant z value.
 
 |  |  |
 |--|--|
-|float angleDeg|Angle in degrees, starting from (1,0) at             0, and continuing to (0,1) at 90.|
-|float z|A constant value you can assign to the resulting             vector's z component.|
+|float angleDeg|Angle in degrees, starting from (1,0) at 0, and continuing to (0,1) at 90.|
+|float z|A constant value you can assign to the resulting vector's z component.|
 |RETURNS: [Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html)|A vector pointing at the given angle! If z is zero, this will be a normalized vector (vector with a length of 1).|
 
 

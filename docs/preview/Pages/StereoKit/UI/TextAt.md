@@ -17,11 +17,11 @@ settings, which can be changed with UI.Push/PopTextStyle.
 
 |  |  |
 |--|--|
-|string text|The text you wish to display, there's no             additional parsing done to this text, so put it in as you want to             see it!|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where should the text position itself             within its bounds? Align.TopLeft is how most English text is             aligned.|
-|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of             its size dimensions conflicts with the provided 'size' parameter.             `UI.Text` uses `TextFit.Wrap` by default.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
+|string text|The text you wish to display, there's no additional parsing done to this text, so put it in as you want to see it!|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where should the text position itself within its bounds? Align.TopLeft is how most English text is aligned.|
+|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of its size dimensions conflicts with the provided 'size' parameter. `UI.Text` uses `TextFit.Wrap` by default.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -36,14 +36,14 @@ changed with UI.Push/PopTextStyle.
 
 |  |  |
 |--|--|
-|string text|The text you wish to display, there's no             additional parsing done to this text, so put it in as you want to             see it!|
-|Vec2& scroll|This is the current scroll value of the text,             in meters, _not_ percent.|
-|[UIScroll]({{site.url}}/preview/Pages/StereoKit/UIScroll.html) scrollDirection|What scroll bars are allowed to show             on this text? Vertical, horizontal, both?|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
-|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where should the text position itself             within its bounds? Align.TopLeft is how most English text is             aligned.|
-|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of             its size dimensions conflicts with the provided 'size' parameter.             `UI.Text` uses `TextFit.Wrap` by default, and this scrolling             overload will always add `TextFit.Clip` internally.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
+|string text|The text you wish to display, there's no additional parsing done to this text, so put it in as you want to see it!|
+|Vec2& scroll|This is the current scroll value of the text, in meters, _not_ percent.|
+|[UIScroll]({{site.url}}/preview/Pages/StereoKit/UIScroll.html) scrollDirection|What scroll bars are allowed to show on this text? Vertical, horizontal, both?|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where should the text position itself within its bounds? Align.TopLeft is how most English text is aligned.|
+|[TextFit]({{site.url}}/preview/Pages/StereoKit/TextFit.html) fit|Describe how the text should behave when one of its size dimensions conflicts with the provided 'size' parameter. `UI.Text` uses `TextFit.Wrap` by default, and this scrolling overload will always add `TextFit.Clip` internally.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
 |RETURNS: bool|Returns true if any of the scroll bars have changed this frame.|
 
 

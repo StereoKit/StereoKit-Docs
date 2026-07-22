@@ -1,20 +1,22 @@
 ---
 layout: default
 title: ModelNodeInfoCollection.GetEnumerator
-description: The enumerator for the collection's KeyValuePairs.
+description: The enumerator for the collection's KeyValuePairs. This is a concrete struct enumerator so that foreach over the collection stays allocation-free (aside from the key/value strings themselves).
 ---
 # [ModelNodeInfoCollection]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection.html).GetEnumerator
 
 <div class='signature' markdown='1'>
 ```csharp
-IEnumerator`1 GetEnumerator()
+Enumerator GetEnumerator()
 ```
-The enumerator for the collection's KeyValuePairs.
+The enumerator for the collection's KeyValuePairs. This is a
+concrete struct enumerator so that `foreach` over the collection
+stays allocation-free (aside from the key/value strings themselves).
 </div>
 
 |  |  |
 |--|--|
-|RETURNS: IEnumerator`1|Each consecutive pair in the collection.|
+|RETURNS: Enumerator|Each consecutive pair in the collection.|
 
 
 

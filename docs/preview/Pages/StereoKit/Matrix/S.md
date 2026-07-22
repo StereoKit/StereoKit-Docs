@@ -15,7 +15,7 @@ on each axis (non-uniform).
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|How much larger or smaller this transform             makes things. Vec3.One is a good default, as Vec3.Zero will             shrink it to nothing!|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|How much larger or smaller this transform makes things. Vec3.One is a good default, as Vec3.Zero will shrink it to nothing!|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A non-uniform scaling matrix.|
 
 <div class='signature' markdown='1'>
@@ -28,7 +28,7 @@ on each axis (non-uniform).
 
 |  |  |
 |--|--|
-|float x|How much larger or smaller this transform makes             things. 1 is a good default, as 0 will shrink it to nothing!|
+|float x|How much larger or smaller this transform makes things. 1 is a good default, as 0 will shrink it to nothing!|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A non-uniform scaling matrix.|
 
 <div class='signature' markdown='1'>
@@ -41,7 +41,7 @@ each axis (uniform).
 
 |  |  |
 |--|--|
-|float scale|How much larger or smaller this transform             makes things. 1 is a good default, as 0 will shrink it to nothing!             This will expand to a scale vector of (size, size, size)|
+|float scale|How much larger or smaller this transform makes things. 1 is a good default, as 0 will shrink it to nothing! This will expand to a scale vector of (size, size, size)|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A uniform scaling matrix.|
 
 

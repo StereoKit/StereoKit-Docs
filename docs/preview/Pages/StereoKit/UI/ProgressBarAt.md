@@ -16,9 +16,9 @@ interactive element. Does not include any text or label.
 
 |  |  |
 |--|--|
-|float percent|A value between 0 and 1 indicating progress             from 0% to 100%.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
+|float percent|A value between 0 and 1 indicating progress from 0% to 100%.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
 
 
 

@@ -15,8 +15,8 @@ the rectangle, and its width/height.
 
 |  |  |
 |--|--|
-|float x|The X axis position of the top left corner of the             rectangle.|
-|float y|The Y axis position of the top left corner of the             rectangle.|
+|float x|The X axis position of the top left corner of the rectangle.|
+|float y|The Y axis position of the top left corner of the rectangle.|
 |float width|The width of the rectangle.|
 |float height|The height of the rectangle.|
 

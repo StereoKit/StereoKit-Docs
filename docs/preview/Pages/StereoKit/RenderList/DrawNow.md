@@ -16,13 +16,31 @@ immediately. It does _not_ clear the list.
 |  |  |
 |--|--|
 |[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) toRenderTarget|The rendertarget texture to draw to.|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) camera|A TRS matrix representing the location and             orientation of the camera. This matrix gets inverted later on, so             no need to do it yourself.|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) projection|The projection matrix describes how the             geometry is flattened onto the draw surface. Normally, you'd use             Matrix.Perspective, and occasionally Matrix.Orthographic might be             helpful as well.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) clearColor|If the `clear` parameter is set to clear             the color of `toRenderTarget`, then this is the color it will clear             to. `default` would be a transparent black.|
-|[RenderClear]({{site.url}}/preview/Pages/StereoKit/RenderClear.html) clear|Describes if and how the rendertarget should             be cleared before rendering. Note that clearing the target is             unaffected by the viewport, so this will clean the entire             surface!|
-|[Rect]({{site.url}}/preview/Pages/StereoKit/Rect.html) viewportPct|Allows you to specify a region of the             rendertarget to draw to! This is in normalized coordinates, 0-1.             If the width of this value is zero, then this will render to the             entire texture.|
-|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layerFilter|This is a bit flag that allows you to             change which layers StereoKit renders for this particular render             viewpoint. To change what layers a visual is on, use a Draw             method that includes a RenderLayer as a parameter.|
-|int materialVariant|Specifies which Material variant             should be used for rendering. 0 will be the normal default             material, any others will generally be application-defined by             setting up each Material's Variant with specific shaders. If a             Material has no corresponding variant, it will not be drawn.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) camera|A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) projection|The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) clearColor|If the `clear` parameter is set to clear the color of `toRenderTarget`, then this is the color it will clear to. `default` would be a transparent black.|
+|[RenderClear]({{site.url}}/preview/Pages/StereoKit/RenderClear.html) clear|Describes if and how the rendertarget should be cleared before rendering. Note that clearing the target is unaffected by the viewport, so this will clean the entire surface!|
+|[Rect]({{site.url}}/preview/Pages/StereoKit/Rect.html) viewportPct|Allows you to specify a region of the rendertarget to draw to! This is in normalized coordinates, 0-1. If the width of this value is zero, then this will render to the entire texture.|
+|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layerFilter|This is a bit flag that allows you to change which layers StereoKit renders for this particular render viewpoint. To change what layers a visual is on, use a Draw method that includes a RenderLayer as a parameter.|
+|int materialVariant|Specifies which Material variant should be used for rendering. 0 will be the normal default material, any others will generally be application-defined by setting up each Material's Variant with specific shaders. If a Material has no corresponding variant, it will not be drawn.|
+
+<div class='signature' markdown='1'>
+```csharp
+void DrawNow(Tex toRenderTarget, Matrix camera, Matrix projection, RenderSettings settings)
+```
+This renders the RenderList to the rendertarget texture
+immediately, from the specified viewpoint, using a RenderSettings
+struct for everything else - including tile-friendly post-process
+effects! See Renderer.SetPostProcess for post-process shader
+requirements.
+</div>
+
+|  |  |
+|--|--|
+|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) toRenderTarget|The rendertarget texture to draw to.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) camera|A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) projection|The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.|
+|[RenderSettings]({{site.url}}/preview/Pages/StereoKit/RenderSettings.html) settings|Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -37,14 +55,32 @@ capped at 6.
 
 |  |  |
 |--|--|
-|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) toRenderTarget|An array or cubemap rendertarget             with at least `cameras.Length` layers.|
-|Matrix[]& cameras|View transforms, one per view. Length             must equal `projections.Length` and cannot exceed             Renderer.MaxViews.|
-|Matrix[]& projections|Projection matrices, one per view.             Same length as `cameras`.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) clearColor|If `clear` clears color, this is the             color used. Default is transparent black.|
-|[RenderClear]({{site.url}}/preview/Pages/StereoKit/RenderClear.html) clear|Whether and how to clear the rendertarget             before rendering.|
-|[Rect]({{site.url}}/preview/Pages/StereoKit/Rect.html) viewportPct|Subregion of the rendertarget to draw             to, in normalized coordinates 0-1. Width of zero draws to the             entire target.|
-|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layerFilter|Bit flag controlling which render             layers are drawn this pass.|
-|int materialVariant|Which material variant to use.             0 is the default; non-zero indexes into Material.Variants.|
+|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) toRenderTarget|An array or cubemap rendertarget with at least `cameras.Length` layers.|
+|Matrix[]& cameras|View transforms, one per view. Length must equal `projections.Length` and cannot exceed Renderer.MaxViews.|
+|Matrix[]& projections|Projection matrices, one per view. Same length as `cameras`.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) clearColor|If `clear` clears color, this is the color used. Default is transparent black.|
+|[RenderClear]({{site.url}}/preview/Pages/StereoKit/RenderClear.html) clear|Whether and how to clear the rendertarget before rendering.|
+|[Rect]({{site.url}}/preview/Pages/StereoKit/Rect.html) viewportPct|Subregion of the rendertarget to draw to, in normalized coordinates 0-1. Width of zero draws to the entire target.|
+|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layerFilter|Bit flag controlling which render layers are drawn this pass.|
+|int materialVariant|Which material variant to use. 0 is the default; non-zero indexes into Material.Variants.|
+
+<div class='signature' markdown='1'>
+```csharp
+void DrawNow(Tex toRenderTarget, Matrix[]& cameras, Matrix[]& projections, RenderSettings settings)
+```
+This renders the RenderList to the rendertarget texture
+immediately, from the specified viewpoint, using a RenderSettings
+struct for everything else - including tile-friendly post-process
+effects! See Renderer.SetPostProcess for post-process shader
+requirements.
+</div>
+
+|  |  |
+|--|--|
+|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) toRenderTarget|The rendertarget texture to draw to.|
+|[RenderSettings]({{site.url}}/preview/Pages/StereoKit/RenderSettings.html) settings|Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.|
+|Matrix[]& cameras|View transforms, one per view. Length must equal `projections.Length` and cannot exceed Renderer.MaxViews.|
+|Matrix[]& projections|Projection matrices, one per view. Same length as `cameras`.|
 
 
 

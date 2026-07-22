@@ -17,8 +17,8 @@ the toggle value itself!
 
 |  |  |
 |--|--|
-|string text|Text to display on the Toggle and id for             tracking element state. MUST be unique within current hierarchy.|
-|Boolean& value|The current state of the toggle button! True              means it's toggled on, and false means it's toggled off.|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
 |RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
 
 <div class='signature' markdown='1'>
@@ -33,10 +33,29 @@ the toggle value itself!
 
 |  |  |
 |--|--|
-|string text|Text to display on the Toggle and id for             tracking element state. MUST be unique within current hierarchy.|
-|Boolean& value|The current state of the toggle button! True              means it's toggled on, and false means it's toggled off.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Image to use for the button, this will be used             regardless of the toggle value.|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Image to use for the button, this will be used regardless of the toggle value.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
+
+<div class='signature' markdown='1'>
+```csharp
+static bool Toggle(string text, Boolean& value, Sprite image, Color imageTint, UIBtnLayout imageLayout)
+```
+A toggleable button! A button will expand to fit the
+text provided to it, vertically and horizontally. Text is re-used
+as the id. Will return true any time the toggle value changes, NOT
+the toggle value itself!
+</div>
+
+|  |  |
+|--|--|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Image to use for the button, this will be used regardless of the toggle value.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).|
 |RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
 
 <div class='signature' markdown='1'>
@@ -51,16 +70,16 @@ the toggle value itself!
 
 |  |  |
 |--|--|
-|string text|Text to display on the Toggle and id for             tracking element state. MUST be unique within current hierarchy.|
-|Boolean& value|The current state of the toggle button! True              means it's toggled on, and false means it's toggled off.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOff|Image to use when the toggle value is             false.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOn|Image to use when the toggle value is             true.|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOff|Image to use when the toggle value is false.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOn|Image to use when the toggle value is true.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
 |RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool Toggle(string text, Boolean& value, Sprite image, UIBtnLayout imageLayout, Vec2 size)
+static bool Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, Color imageTint, UIBtnLayout imageLayout)
 ```
 A toggleable button! A button will expand to fit the
 text provided to it, vertically and horizontally. Text is re-used
@@ -70,16 +89,17 @@ the toggle value itself!
 
 |  |  |
 |--|--|
-|string text|Text to display on the Toggle and id for             tracking element state. MUST be unique within current hierarchy.|
-|Boolean& value|The current state of the toggle button! True              means it's toggled on, and false means it's toggled off.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Image to use for the button, this will be used             regardless of the toggle value.|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOff|Image to use when the toggle value is false.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOn|Image to use when the toggle value is true.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).|
 |RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout, Vec2 size)
+static bool Toggle(string text, Boolean& value, Sprite image, UIBtnLayout imageLayout, Vec2 size, Align textAlign)
 ```
 A toggleable button! A button will expand to fit the
 text provided to it, vertically and horizontally. Text is re-used
@@ -89,17 +109,17 @@ the toggle value itself!
 
 |  |  |
 |--|--|
-|string text|Text to display on the Toggle and id for             tracking element state. MUST be unique within current hierarchy.|
-|Boolean& value|The current state of the toggle button! True              means it's toggled on, and false means it's toggled off.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOff|Image to use when the toggle value is             false.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOn|Image to use when the toggle value is             true.|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Image to use for the button, this will be used regardless of the toggle value.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
 |RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool Toggle(string text, Boolean& value, Vec2 size)
+static bool Toggle(string text, Boolean& value, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec2 size, Align textAlign)
 ```
 A toggleable button! A button will expand to fit the
 text provided to it, vertically and horizontally. Text is re-used
@@ -109,9 +129,74 @@ the toggle value itself!
 
 |  |  |
 |--|--|
-|string text|Text to display on the Toggle and id for             tracking element state. MUST be unique within current hierarchy.|
-|Boolean& value|The current state of the toggle button! True              means it's toggled on, and false means it's toggled off.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space. If an axis is left as zero, it will be auto-calculated. For             X this is the remaining width of the current layout, and for Y this             is UI.LineHeight.|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Image to use for the button, this will be used regardless of the toggle value.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).|
+|RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
+
+<div class='signature' markdown='1'>
+```csharp
+static bool Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout, Vec2 size, Align textAlign)
+```
+A toggleable button! A button will expand to fit the
+text provided to it, vertically and horizontally. Text is re-used
+as the id. Will return true any time the toggle value changes, NOT
+the toggle value itself!
+</div>
+
+|  |  |
+|--|--|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOff|Image to use when the toggle value is false.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOn|Image to use when the toggle value is true.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
+|RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
+
+<div class='signature' markdown='1'>
+```csharp
+static bool Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, Color imageTint, UIBtnLayout imageLayout, Vec2 size, Align textAlign)
+```
+A toggleable button! A button will expand to fit the
+text provided to it, vertically and horizontally. Text is re-used
+as the id. Will return true any time the toggle value changes, NOT
+the toggle value itself!
+</div>
+
+|  |  |
+|--|--|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOff|Image to use when the toggle value is false.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) toggleOn|Image to use when the toggle value is true.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).|
+|RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
+
+<div class='signature' markdown='1'>
+```csharp
+static bool Toggle(string text, Boolean& value, Vec2 size, Align textAlign)
+```
+A toggleable button! A button will expand to fit the
+text provided to it, vertically and horizontally. Text is re-used
+as the id. Will return true any time the toggle value changes, NOT
+the toggle value itself!
+</div>
+
+|  |  |
+|--|--|
+|string text|Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.|
+|Boolean& value|The current state of the toggle button! True means it's toggled on, and false means it's toggled off.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
 |RETURNS: bool|Will return true any time the toggle value changes, NOT the toggle value itself!|
 
 

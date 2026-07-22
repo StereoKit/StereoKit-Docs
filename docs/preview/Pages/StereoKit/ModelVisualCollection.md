@@ -17,4 +17,4 @@ An enumerable for Model's visual ModelNodes
 
 |  |  |
 |--|--|
-|[GetEnumerator]({{site.url}}/preview/Pages/StereoKit/ModelVisualCollection/GetEnumerator.html)|Gets an enumerator for the collection.|
+|[GetEnumerator]({{site.url}}/preview/Pages/StereoKit/ModelVisualCollection/GetEnumerator.html)|Gets an enumerator for the collection. This returns a concrete struct enumerator so that `foreach` over the collection stays allocation-free.|

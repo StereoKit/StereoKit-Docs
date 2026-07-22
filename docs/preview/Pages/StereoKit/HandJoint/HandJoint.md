@@ -15,9 +15,9 @@ likely you'd rather fetch one from `Input.Hand().Get()`!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) position|The center of the joint's world space              location.|
-|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) orientation|The joint's world space orientation,             where Forward points to the next joint down the finger, and Up             will point towards the back of the hand. On the left hand, Right             will point towards the thumb, and on the right hand, Right will             point away from the thumb.|
-|float radius|The distance, in meters, to the surface of             the hand from this joint.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) position|The center of the joint's world space location.|
+|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) orientation|The joint's world space orientation, where Forward points to the next joint down the finger, and Up will point towards the back of the hand. On the left hand, Right will point towards the thumb, and on the right hand, Right will point away from the thumb.|
+|float radius|The distance, in meters, to the surface of the hand from this joint.|
 
 
 

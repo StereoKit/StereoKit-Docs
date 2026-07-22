@@ -23,10 +23,10 @@ the app.
 
 |  |  |
 |--|--|
-|[PickerMode]({{site.url}}/preview/Pages/StereoKit/PickerMode.html) mode|Are we trying to Open a file, or Save a file?             This changes the appearance and behavior of the picker to support             the specified action.|
-|Action`1 onSelectFile|This Action will be called with the             proper filename when the picker has successfully completed! On a             cancel or close event, this Action is not called.|
-|Action onCancel|If the user cancels the file picker, or              the picker is closed via FilePickerClose, this Action is called.|
-|String[] filters|A list of file extensions that the picker             should filter for. This is in the format of ".glb" and is case             insensitive.|
+|[PickerMode]({{site.url}}/preview/Pages/StereoKit/PickerMode.html) mode|Are we trying to Open a file, or Save a file? This changes the appearance and behavior of the picker to support the specified action.|
+|Action`1 onSelectFile|This Action will be called with the proper filename when the picker has successfully completed! On a cancel or close event, this Action is not called.|
+|Action onCancel|If the user cancels the file picker, or the picker is closed via FilePickerClose, this Action is called.|
+|String[] filters|A list of file extensions that the picker should filter for. This is in the format of ".glb" and is case insensitive.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -46,9 +46,9 @@ the app.
 
 |  |  |
 |--|--|
-|[PickerMode]({{site.url}}/preview/Pages/StereoKit/PickerMode.html) mode|Are we trying to Open a file, or Save a file?             This changes the appearance and behavior of the picker to support             the specified action.|
-|Action`2 onComplete|This action will be called when the file             picker has finished, either via a cancel event, or from a confirm             event. First parameter is a bool, where true indicates the              presence of a valid filename, and false indicates a failure or              cancel event.|
-|String[] filters|A list of file extensions that the picker             should filter for. This is in the format of ".glb" and is case             insensitive.|
+|[PickerMode]({{site.url}}/preview/Pages/StereoKit/PickerMode.html) mode|Are we trying to Open a file, or Save a file? This changes the appearance and behavior of the picker to support the specified action.|
+|Action`2 onComplete|This action will be called when the file picker has finished, either via a cancel event, or from a confirm event. First parameter is a bool, where true indicates the presence of a valid filename, and false indicates a failure or cancel event.|
+|String[] filters|A list of file extensions that the picker should filter for. This is in the format of ".glb" and is case insensitive.|
 
 
 
@@ -56,25 +56,6 @@ the app.
 
 ## Examples
 
-### Read Custom Files
-```csharp
-Platform.FilePicker(PickerMode.Open, file => {
-	// On some platforms, using StereoKit's Platform.ReadFile
-	// instead of C#'s File IO functions may help bypass permission
-	// issues.
-	if (Platform.ReadFile(file, out string text))
-		Log.Info(text);
-}, null, ".txt");
-```
-### Write Custom Files
-```csharp
-Platform.FilePicker(PickerMode.Save, file => {
-	// On some platforms, using StereoKit's Platform.WriteFile
-	// instead of C#'s File IO functions may help bypass permission
-	// issues.
-	Platform.WriteFile(file, "Text for the file.\n- Thanks!");
-}, null, ".txt");
-```
 ### Opening a Model
 This is a simple button that will open a 3D model selection
 file picker, and make a call to OnLoadModel after a file has
@@ -100,5 +81,24 @@ private void OnLoadModel(string filename)
 			m.PlayAnim(m.Anims[0], AnimMode.Loop);
 	};
 }
+```
+### Read Custom Files
+```csharp
+Platform.FilePicker(PickerMode.Open, file => {
+	// On some platforms, using StereoKit's Platform.ReadFile
+	// instead of C#'s File IO functions may help bypass permission
+	// issues.
+	if (Platform.ReadFile(file, out string text))
+		Log.Info(text);
+}, null, ".txt");
+```
+### Write Custom Files
+```csharp
+Platform.FilePicker(PickerMode.Save, file => {
+	// On some platforms, using StereoKit's Platform.WriteFile
+	// instead of C#'s File IO functions may help bypass permission
+	// issues.
+	Platform.WriteFile(file, "Text for the file.\n- Thanks!");
+}, null, ".txt");
 ```
 

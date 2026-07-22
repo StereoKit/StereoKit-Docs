@@ -15,8 +15,8 @@ This draws the menu item on the radial menu!
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) at|Center of the radial slice|
-|float arcLength|Length of the arc at the midpoint of the             radial slice.|
-|float angle|Angle of the centerpoint of the slice this is             rendered on.|
+|float arcLength|Length of the arc at the midpoint of the radial slice.|
+|float angle|Angle of the centerpoint of the slice this is rendered on.|
 |bool focused|If the current menu slice has focus.|
 
 

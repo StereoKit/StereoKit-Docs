@@ -18,8 +18,8 @@ things like shadowmaps, wind data, etc. Prefer a higher registers
 
 |  |  |
 |--|--|
-|int textureRegister|The texture resource register the             texture will bind to. SK uses register 11 already, so values above             that should be fine.|
-|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) tex|The texture to assign globally. Setting null here             will clear any texture that is currently bound.|
+|int textureRegister|The texture resource register the texture will bind to. SK uses register 11 already, so values above that should be fine.|
+|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) tex|The texture to assign globally. Setting null here will clear any texture that is currently bound.|
 
 
 

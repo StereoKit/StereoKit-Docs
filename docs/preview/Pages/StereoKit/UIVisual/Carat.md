@@ -1,7 +1,7 @@
 ---
 layout: default
 title: UIVisual.Carat
-description: Refers to the text position indicator carat on text input elements.
+description: Deprecated misspelling of ui_vis_caret, kept for backwards compatibility.
 ---
 # [UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html).Carat
 
@@ -10,5 +10,6 @@ static [UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) Carat
 </div>
 
 ## Description
-Refers to the text position indicator carat on text input elements.
+Deprecated misspelling of `ui_vis_caret`, kept for backwards
+compatibility.
 

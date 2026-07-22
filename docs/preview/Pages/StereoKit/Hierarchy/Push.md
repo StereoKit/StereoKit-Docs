@@ -18,8 +18,8 @@ stack! All Push calls must have an accompanying Pop call.
 
 |  |  |
 |--|--|
-|Matrix& parentTransform|The transform Matrix you want to             apply to all following draw calls.|
-|[HierarchyParent]({{site.url}}/preview/Pages/StereoKit/HierarchyParent.html) parentBehavior|This determines how this matrix             combines with the parent matrix below it. Normal behavior is to             "inherit" the parent matrix, but there are cases where you may wish             to entirely ignore the parent transform. For example, if you're in             UI space, and wish to do some world space rendering.|
+|Matrix& parentTransform|The transform Matrix you want to apply to all following draw calls.|
+|[HierarchyParent]({{site.url}}/preview/Pages/StereoKit/HierarchyParent.html) parentBehavior|This determines how this matrix combines with the parent matrix below it. Normal behavior is to "inherit" the parent matrix, but there are cases where you may wish to entirely ignore the parent transform. For example, if you're in UI space, and wish to do some world space rendering.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -35,8 +35,8 @@ Pop call.
 
 |  |  |
 |--|--|
-|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) parentTransform|The transform Pose you want to             apply to all following draw calls.|
-|[HierarchyParent]({{site.url}}/preview/Pages/StereoKit/HierarchyParent.html) parentBehavior|This determines how this Pose's Matrix             combines with the parent matrix below it. Normal behavior is to             "inherit" the parent matrix, but there are cases where you may wish             to entirely ignore the parent transform. For example, if you're in             UI space, and wish to do some world space rendering.|
+|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) parentTransform|The transform Pose you want to apply to all following draw calls.|
+|[HierarchyParent]({{site.url}}/preview/Pages/StereoKit/HierarchyParent.html) parentBehavior|This determines how this Pose's Matrix combines with the parent matrix below it. Normal behavior is to "inherit" the parent matrix, but there are cases where you may wish to entirely ignore the parent transform. For example, if you're in UI space, and wish to do some world space rendering.|
 
 
 

@@ -15,7 +15,7 @@ Some devices may be capable of more than one blend mode.
 
 |  |  |
 |--|--|
-|[DisplayBlend]({{site.url}}/preview/Pages/StereoKit/DisplayBlend.html) blend|The blend mode to check agains! AnyTransparent             will check against additive and blend.|
+|[DisplayBlend]({{site.url}}/preview/Pages/StereoKit/DisplayBlend.html) blend|The blend mode to check agains! AnyTransparent will check against additive and blend.|
 |RETURNS: bool|True if valid, false if not.|
 
 

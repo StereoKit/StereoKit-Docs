@@ -99,22 +99,27 @@ public static void DrawHandMenu(Handed handed)
 	UI.WindowEnd();
 }
 ```
-## Pointers
+## Interactors
 
-And lastly, StereoKit also has a pointer system! This applies to
-more than just hands. Head, mouse, and other devices will also
-create pointers into the scene. You can filter pointers based on
-source family and device capabilities, so this is a great way to
-abstract a few more input sources nicely!
+StereoKit's interactions are driven by Interactors - capsules of
+input that can come from hands, controllers, the mouse, and more!
+You can enumerate every Interactor with `Interactor.All` and filter
+them using `Interactor.Source`, which makes it a great way to find
+input rays like the hand's aim ray here.
 ```csharp
-public static void DrawPointers()
+public static void DrawInteractors()
 {
-	int hands = Input.PointerCount(InputSource.Hand);
-	for (int i = 0; i < hands; i++)
+	foreach (Interactor actor in Interactor.All)
 	{
-		Pointer pointer = Input.Pointer(i, InputSource.Hand);
-		Lines.Add    (pointer.ray, 0.5f, Color.White, Units.mm2m);
-		Lines.AddAxis(pointer.Pose);
+		// We only want the hand aim rays here: Line shaped interactors
+		// that come from a hand source.
+		bool isHand = (actor.Source & (InteractorSource.HandLeft | InteractorSource.HandRight)) != 0;
+		if (!isHand || actor.Type != InteractorType.Line || !actor.Tracked.IsActive())
+			continue;
+
+		Vec3 dir = (actor.End - actor.Start).Normalized;
+		Lines.Add    (actor.Start, actor.Start + dir * 0.5f, Color.White, Units.mm2m);
+		Lines.AddAxis(actor.Motion);
 	}
 }
 ```

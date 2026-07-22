@@ -16,7 +16,7 @@ variables first, then textures.
 
 |  |  |
 |--|--|
-|int index|Index of the shader parameter, bounded by             ParamCount.|
+|int index|Index of the shader parameter, bounded by ParamCount.|
 |RETURNS: [MatParamInfo]({{site.url}}/preview/Pages/StereoKit/MatParamInfo.html)|A structure that contains all the available information about the parameter.|
 
 

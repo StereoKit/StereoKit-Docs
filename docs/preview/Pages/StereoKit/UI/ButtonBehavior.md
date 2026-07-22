@@ -18,16 +18,16 @@ of complex pressing functionality for you!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the             pressable area.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the pressable area.|
 |[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The size of the pressable area.|
-|string id|The id for this pressable element to track its             state with.|
-|Single& fingerOffset|This is the current distance of the             finger, within the pressable volume, from the bottom of the button.|
-|BtnState& buttonState|This is the current frame's "active"             state for the button.|
-|BtnState& focusState|This is the current frame's "focus" state             for the button.|
+|string id|The id for this pressable element to track its state with.|
+|Single& fingerOffset|This is the current distance of the finger, within the pressable volume, from the bottom of the button.|
+|BtnState& buttonState|This is the current frame's "active" state for the button.|
+|BtnState& focusState|This is the current frame's "focus" state for the button.|
 
 <div class='signature' markdown='1'>
 ```csharp
-static void ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Int32& hand)
+static void ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Interactor& interactor)
 ```
 This is the core functionality of StereoKit's buttons,
 without any of the rendering parts! If you're trying to create your
@@ -38,17 +38,17 @@ of complex pressing functionality for you!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the             pressable area.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the pressable area.|
 |[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The size of the pressable area.|
-|string id|The id for this pressable element to track its             state with.|
-|Single& fingerOffset|This is the current distance of the             finger, within the pressable volume, from the bottom of the button.|
-|BtnState& buttonState|This is the current frame's "active"             state for the button.|
-|BtnState& focusState|This is the current frame's "focus" state             for the button.|
-|Int32& hand|Id of the hand that interacted with the button.             This will be -1 if no interaction has occurred.|
+|string id|The id for this pressable element to track its state with.|
+|Single& fingerOffset|This is the current distance of the finger, within the pressable volume, from the bottom of the button.|
+|BtnState& buttonState|This is the current frame's "active" state for the button.|
+|BtnState& focusState|This is the current frame's "focus" state for the button.|
+|Interactor& interactor|The Interactor that interacted with the button. If nothing is interacting, this will be `Interactor.None`.|
 
 <div class='signature' markdown='1'>
 ```csharp
-static void ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, float buttonDepth, float buttonActivationDepth, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Int32& hand)
+static void ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, float buttonDepth, float buttonActivationDepth, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Interactor& interactor)
 ```
 This is the core functionality of StereoKit's buttons,
 without any of the rendering parts! If you're trying to create your
@@ -61,15 +61,41 @@ otherwise would use UISettings.depth for its values.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the             pressable area.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the pressable area.|
 |[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The size of the pressable area.|
-|string id|The id for this pressable element to track its             state with.|
-|float buttonDepth|This is the z axis depth of the pressable             area.|
-|float buttonActivationDepth|This is the depth at which the             button will activate. Normally this is 1/2 of buttonDepth.|
-|Single& fingerOffset|This is the current distance of the             finger, within the pressable volume, from the bottom of the button.|
-|BtnState& buttonState|This is the current frame's "active"             state for the button.|
-|BtnState& focusState|This is the current frame's "focus" state             for the button.|
-|Int32& hand|Id of the hand that interacted with the button.             This will be -1 if no interaction has occurred.|
+|string id|The id for this pressable element to track its state with.|
+|float buttonDepth|This is the z axis depth of the pressable area.|
+|float buttonActivationDepth|This is the depth at which the button will activate. Normally this is 1/2 of buttonDepth.|
+|Single& fingerOffset|This is the current distance of the finger, within the pressable volume, from the bottom of the button.|
+|BtnState& buttonState|This is the current frame's "active" state for the button.|
+|BtnState& focusState|This is the current frame's "focus" state for the button.|
+|Interactor& interactor|The Interactor that interacted with the button. If nothing is interacting, this will be `Interactor.None`.|
+
+<div class='signature' markdown='1'>
+```csharp
+static void ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, float buttonDepth, float buttonActivationDepth, UIBtnFlag flags, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Interactor& interactor)
+```
+This is the core functionality of StereoKit's buttons,
+without any of the rendering parts! If you're trying to create your
+own pressable UI elements, or do more extreme customization of the
+look and feel of UI elements, then this function will provide a lot
+of complex pressing functionality for you!
+This overload allows for customizing the depth of the button, which
+otherwise would use UISettings.depth for its values.
+</div>
+
+|  |  |
+|--|--|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) windowRelativePos|The layout position of the pressable area.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The size of the pressable area.|
+|string id|The id for this pressable element to track its state with.|
+|float buttonDepth|This is the z axis depth of the pressable area.|
+|float buttonActivationDepth|This is the depth at which the button will activate. Normally this is 1/2 of buttonDepth.|
+|Single& fingerOffset|This is the current distance of the finger, within the pressable volume, from the bottom of the button.|
+|BtnState& buttonState|This is the current frame's "active" state for the button.|
+|BtnState& focusState|This is the current frame's "focus" state for the button.|
+|Interactor& interactor|The Interactor that interacted with the button. If nothing is interacting, this will be `Interactor.None`.|
+|[UIBtnFlag]({{site.url}}/preview/Pages/StereoKit/UIBtnFlag.html) flags|Flags for modifying the button's behavior, such as opting out of pull-away cancellation.|
 
 
 

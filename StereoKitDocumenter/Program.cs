@@ -50,6 +50,9 @@ namespace StereoKitDocumenter
 		public static List<IDocItem>  items   = new List<IDocItem>();
 		public static List<DocInheritMethod> inheritMethods = new List<DocInheritMethod>();
 		public static List<DocInheritField>  inheritFields  = new List<DocInheritField >();
+		// Documented non-public types get skipped during scraping, and this
+		// tracks them so their members get skipped too.
+		static HashSet<string> skippedClasses = new HashSet<string>();
 
 		public static DocClass GetClass(string nameSpace, string name) {
 			DocClass result = classes.Find((a) => a.nameSpace == nameSpace && a.name == name);
@@ -141,11 +144,34 @@ namespace StereoKitDocumenter
 		// A no-op when --url-sub is empty.
 		static string PathAdjust(string content)
 		{
+			content = FixReferenceLinks(content);
 			if (string.IsNullOrEmpty(options.UrlSub))
 				return content;
 			return content
 				.Replace("{{site.url}}/Pages",   $"{{{{site.url}}}}/{options.UrlSub}/Pages")
 				.Replace("{{site.screen_url}}",  $"{{{{site.url}}}}/{options.UrlSub}/img/screenshots");
+		}
+
+		// Older doc comments link to pages under Pages/Reference/, but pages
+		// actually live under their namespace folder, Pages/StereoKit/ and
+		// friends. Rewrite those links to the linked type's real namespace so
+		// they don't 404.
+		public static string FixReferenceLinks(string content)
+		{
+			return System.Text.RegularExpressions.Regex.Replace(content,
+				@"\{\{site\.url\}\}/Pages/Reference/([A-Za-z0-9_./]+\.html)",
+				m => {
+					string   path     = m.Groups[1].Value;
+					int      slash    = path.IndexOf('/');
+					string   typeName = slash == -1 ? path.Substring(0, path.Length - ".html".Length) : path.Substring(0, slash);
+					DocClass type     = classes.Find(a => a.Name == typeName || a.name == typeName);
+					if (type == null)
+					{
+						Console.WriteLine($"[warning] Couldn't resolve link /Pages/Reference/{path} to a documented type");
+						return m.Value;
+					}
+					return $"{{{{site.url}}}}/Pages/{type.nameSpace}/{path}";
+				});
 		}
 
 		private static void ScrapeData()
@@ -224,13 +250,23 @@ namespace StereoKitDocumenter
 			result.name      = className;
 			result.nameSpace = nameSpace;
 
+			// Documented internal types show up in the doc XML too, but they
+			// don't belong in the public docs! Remember them so their members
+			// get skipped as well.
+			Type classType = result.ClassType;
+			if (classType != null && !classType.IsPublic && !classType.IsNestedPublic)
+			{
+				Console.WriteLine($"[info] Skipping non-public type {className}");
+				skippedClasses.Add($"{nameSpace}.{className}");
+				return;
+			}
 
 			// Read properties
 			while (reader.Read())
 			{
 				switch (reader.Name.ToLower())
 				{
-					case "summary": result.summary = StringHelper.CleanMultiLine(reader.ReadElementContentAsString().Trim()); break;
+					case "summary": result.summary = StringHelper.XmlReaderToString(reader); break;
 				}
 			}
 
@@ -248,7 +284,27 @@ namespace StereoKitDocumenter
 			// Get names
 			ParseMemberSig(signature, out string nameSpace, out string className, out string memberName);
 
-			DocField result = new DocField(GetClass(nameSpace, className), memberName);
+			if (skippedClasses.Contains($"{nameSpace}.{className}"))
+				return;
+
+			DocClass parentClass = GetClass(nameSpace, className);
+
+			// Documented non-public fields and properties land in the doc XML
+			// too, but they don't belong in the public docs!
+			System.Reflection.TypeInfo typeInfo = parentClass.ClassType?.GetTypeInfo();
+			FieldInfo    fInfo    = typeInfo?.GetDeclaredField   (memberName);
+			PropertyInfo pInfo    = typeInfo?.GetDeclaredProperty(memberName);
+			bool isPublic =
+				fInfo != null ? fInfo.IsPublic :
+				pInfo != null ? (pInfo.GetMethod?.IsPublic ?? false) || (pInfo.SetMethod?.IsPublic ?? false) :
+				true; // Can't resolve it? Keep it, same as the old behavior.
+			if (!isPublic)
+			{
+				Console.WriteLine($"[info] Skipping non-public member {className}.{memberName}");
+				return;
+			}
+
+			DocField result = new DocField(parentClass, memberName);
 
 			// Read properties
 			while (reader.Read())
@@ -283,27 +339,43 @@ namespace StereoKitDocumenter
 			if (methodName == "Finalize") // Skip deconstructors!
 				return;
 
-			DocMethod method = methods.Find(a => a.name == methodName && a.parent.name == className);
-			if (method == null)
-			{
+			if (skippedClasses.Contains($"{namespaceSig}.{className}"))
+				return;
+
+			DocMethod method    = methods.Find(a => a.name == methodName && a.parent.name == className);
+			bool      newMethod = method == null;
+			if (newMethod)
 				method = new DocMethod(GetClass(namespaceSig, className), methodName);
-				methods.Add(method);
-				items.Add(method);
-			}
 
 			DocMethodOverload variant = method.AddOverload(sigParams);
+
+			// Documented non-public methods land in the doc XML too, but they
+			// don't belong in the public docs!
+			if (!variant.IsPublic)
+			{
+				Console.WriteLine($"[info] Skipping non-public member {className}.{methodName}");
+				method.overloads.Remove(variant);
+				if (newMethod)
+					method.parent.methods.Remove(method);
+				return;
+			}
+			if (newMethod)
+			{
+				methods.Add(method);
+				items  .Add(method);
+			}
 
 			// Read properties
 			while (reader.Read())
 			{
 				switch(reader.Name.ToLower())
 				{
-					case "summary": variant.summary = StringHelper.CleanMultiLine(reader.ReadElementContentAsString().Trim()); break;
-					case "returns": variant.returns = StringHelper.CleanMultiLine(reader.ReadElementContentAsString().Trim()); break;
+					case "summary": variant.summary = StringHelper.XmlReaderToString(reader); break;
+					case "returns": variant.returns = StringHelper.XmlReaderToString(reader); break;
 					case "param": {
 						DocParam p = new DocParam();
 						p.name    = reader.GetAttribute("name");
-						p.summary = reader.ReadElementContentAsString().Trim();
+						p.summary = StringHelper.XmlReaderToString(reader);
 						variant.parameters.Add(p);
 					} break;
 					case "inheritdoc": {

@@ -14,7 +14,8 @@ Used with StereoKit's UI to indicate a particular type of UI element visual.
 |Aura|Refers to the grabbable area indicator outside a window.|
 |Button|Refers to UI.Button elements.|
 |ButtonRound|Refers to UI.ButtonRound elements.|
-|Carat|Refers to the text position indicator carat on text input elements.|
+|Carat|Deprecated misspelling of `ui_vis_caret`, kept for backwards compatibility.|
+|Caret|Refers to the text position indicator caret on text input elements.|
 |Default|A default root UI element. Not a particular element, but other elements may refer to this if there is nothing more specific present.|
 |Handle|Refers to UI.Handle/HandleBegin elements.|
 |Input|Refers to UI.Input elements.|

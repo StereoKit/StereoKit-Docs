@@ -17,7 +17,7 @@ data.
 
 |  |  |
 |--|--|
-|[SensorDepthCaps]({{site.url}}/preview/Pages/StereoKit/SensorDepthCaps.html) capabilities|Optional capabilities to configure features like             hand removal or CPU data readback.|
+|[SensorDepthCaps]({{site.url}}/preview/Pages/StereoKit/SensorDepthCaps.html) capabilities|Optional capabilities to configure features like hand removal or CPU data readback.|
 |RETURNS: bool|True on success.|
 
 

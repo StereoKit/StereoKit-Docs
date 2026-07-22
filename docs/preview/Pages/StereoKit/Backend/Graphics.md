@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.Graphics
-description: This describes the graphics API thatStereoKit is using for rendering. StereoKit uses D3D11 for Windows platforms, and a flavor of OpenGL for Linux, Android, and Web.
+description: This describes the graphics API that StereoKit is using for rendering. StereoKit is Vulkan-only, so this will report BackendGraphics.Vulkan on all supported platforms.
 ---
 # [Backend]({{site.url}}/preview/Pages/StereoKit/Backend.html).Graphics
 
@@ -10,7 +10,7 @@ static [BackendGraphics]({{site.url}}/preview/Pages/StereoKit/BackendGraphics.ht
 </div>
 
 ## Description
-This describes the graphics API thatStereoKit is using for
-rendering. StereoKit uses D3D11 for Windows platforms, and a flavor
-of OpenGL for Linux, Android, and Web.
+This describes the graphics API that StereoKit is using for
+rendering. StereoKit is Vulkan-only, so this will report
+[`BackendGraphics.Vulkan`]({{site.url}}/preview/Pages/StereoKit/BackendGraphics/Vulkan.html) on all supported platforms.
 

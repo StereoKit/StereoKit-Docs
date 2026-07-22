@@ -18,7 +18,7 @@ type, and if one is not found, it will attempt to create one.
 
 |  |  |
 |--|--|
-|Type type|Any concrete type that contains an empty             constructor.|
+|Type type|Any concrete type that contains an empty constructor.|
 |RETURNS: Object|The first `IStepper` in the list that is assignable to the provided generic type, or a new object of the given type.|
 
 

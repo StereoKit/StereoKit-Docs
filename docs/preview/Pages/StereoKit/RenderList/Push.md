@@ -18,7 +18,7 @@ UI.
 
 |  |  |
 |--|--|
-|[RenderList]({{site.url}}/preview/Pages/StereoKit/RenderList.html) list|The list that should go on top of the stack as             the active RenderList.|
+|[RenderList]({{site.url}}/preview/Pages/StereoKit/RenderList.html) list|The list that should go on top of the stack as the active RenderList.|
 
 
 

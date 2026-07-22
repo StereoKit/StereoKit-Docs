@@ -42,7 +42,7 @@ for it again and again each time you want to touch something.
 
 |  |  |
 |--|--|
-|int handed|Do you want the left or the right hand? 0 is             left, and 1 is right.|
+|int handed|Do you want the left or the right hand? 0 is left, and 1 is right.|
 |RETURNS: [Hand]({{site.url}}/preview/Pages/StereoKit/Hand.html)|A copy of the entire set of hand data!|
 
 

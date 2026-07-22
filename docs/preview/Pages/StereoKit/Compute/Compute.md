@@ -16,7 +16,7 @@ this will fail.
 
 |  |  |
 |--|--|
-|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) computeShader|A shader containing a compute             stage.|
+|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) computeShader|A shader containing a compute stage.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -28,7 +28,7 @@ file should be a compiled .sks shader with a compute stage.
 
 |  |  |
 |--|--|
-|string shaderFilename|The filename of a compiled             shader asset containing a compute stage.|
+|string shaderFilename|The filename of a compiled shader asset containing a compute stage.|
 
 
 

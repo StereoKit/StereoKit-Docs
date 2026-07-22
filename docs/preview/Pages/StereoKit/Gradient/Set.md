@@ -18,7 +18,7 @@ which could lead to strange behavior.
 |--|--|
 |int index|Index of the color key to change.|
 |[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorLinear|Any linear space color you like!|
-|float position|Typically a value between 0-1! This is the              position of the color along the 'x-axis' of the gradient.|
+|float position|Typically a value between 0-1! This is the position of the color along the 'x-axis' of the gradient.|
 
 
 

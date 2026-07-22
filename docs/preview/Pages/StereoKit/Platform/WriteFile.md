@@ -16,8 +16,8 @@ Platform.FilePicker.
 
 |  |  |
 |--|--|
-|string filename|Path to the new file. Not affected by             Assets folder path.|
-|string data|A string to write to the file. This gets             converted to a UTF-8 encoding.|
+|string filename|Path to the new file. Not affected by Assets folder path.|
+|string data|A string to write to the file. This gets converted to a UTF-8 encoding.|
 |RETURNS: bool|True on success, False on failure.|
 
 <div class='signature' markdown='1'>
@@ -31,7 +31,7 @@ Platform.FilePicker.
 
 |  |  |
 |--|--|
-|string filename|Path to the new file. Not affected by             Assets folder path.|
+|string filename|Path to the new file. Not affected by Assets folder path.|
 |Byte[] data|An array of bytes to write to the file.|
 |RETURNS: bool|True on success, False on failure.|
 

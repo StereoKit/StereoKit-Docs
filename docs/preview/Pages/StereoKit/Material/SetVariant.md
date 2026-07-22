@@ -20,8 +20,8 @@ positional vertex transforms.
 
 |  |  |
 |--|--|
-|int variantIndex|Which variant index should we set? 0 is             reserved for the primary material, and SK has a max of 4 total             variants, including the default.|
-|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) variantMaterial|The Material to use for the variant.             Sub-variants are ignored, and a null variant means nothing will be             drawn when using the variant.|
+|int variantIndex|Which variant index should we set? 0 is reserved for the primary material, and SK has a max of 4 total variants, including the default.|
+|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) variantMaterial|The Material to use for the variant. Sub-variants are ignored, and a null variant means nothing will be drawn when using the variant.|
 
 
 

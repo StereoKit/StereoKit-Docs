@@ -16,8 +16,8 @@ Platform.FilePicker.
 
 |  |  |
 |--|--|
-|string filename|Path to the file. Not affected by Assets             folder path.|
-|String& data|A UTF-8 decoded string representing the             contents of the file. Will be null on failure.|
+|string filename|Path to the file. Not affected by Assets folder path.|
+|String& data|A UTF-8 decoded string representing the contents of the file. Will be null on failure.|
 |RETURNS: bool|True on success, False on failure.|
 
 <div class='signature' markdown='1'>
@@ -32,7 +32,7 @@ Platform.FilePicker.
 |  |  |
 |--|--|
 |string filename|Path to the file.|
-|Byte[]& data|A raw byte array representing the contents of             the file. Will be null on failure.|
+|Byte[]& data|A raw byte array representing the contents of the file. Will be null on failure.|
 |RETURNS: bool|True on success, False on failure.|
 
 

@@ -21,9 +21,9 @@ is best done during 'initialization' of your app/scene.
 
 |  |  |
 |--|--|
-|float diameter|The diameter of the circle in meters, or              2*radius. This is the full length from one side to the other.|
-|int spokes|How many vertices compose the circumference of              the circle? Clamps to a minimum of 3. More is smoother, but less              performant.|
-|bool doubleSided|Should both sides of the circle be              rendered?|
+|float diameter|The diameter of the circle in meters, or 2*radius. This is the full length from one side to the other.|
+|int spokes|How many vertices compose the circumference of the circle? Clamps to a minimum of 3. More is smoother, but less performant.|
+|bool doubleSided|Should both sides of the circle be rendered?|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A circle mesh, pre-sized to the given dimensions.|
 
 <div class='signature' markdown='1'>
@@ -41,11 +41,11 @@ is best done during 'initialization' of your app/scene.
 
 |  |  |
 |--|--|
-|float diameter|The diameter of the circle in meters, or              2*radius. This is the full length from one side to the other.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeNormal|What is the normal of the surface this             circle is generated on?|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeTopDirection|A normal defines the plane, but              this is technically a rectangle on the              plane. So which direction is up? It's important for UVs, but              doesn't need to be exact. This function takes the planeNormal as             law, and uses this vector to find the right and up vectors via             cross-products.|
-|int spokes|How many vertices compose the circumference of              the circle? Clamps to a minimum of 3. More is smoother, but less              performant.|
-|bool doubleSided|Should both sides of the circle be              rendered?|
+|float diameter|The diameter of the circle in meters, or 2*radius. This is the full length from one side to the other.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeNormal|What is the normal of the surface this circle is generated on?|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeTopDirection|A normal defines the plane, but this is technically a rectangle on the plane. So which direction is up? It's important for UVs, but doesn't need to be exact. This function takes the planeNormal as law, and uses this vector to find the right and up vectors via cross-products.|
+|int spokes|How many vertices compose the circumference of the circle? Clamps to a minimum of 3. More is smoother, but less performant.|
+|bool doubleSided|Should both sides of the circle be rendered?|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A circle mesh, pre-sized to the given dimensions.|
 
 
@@ -54,13 +54,6 @@ is best done during 'initialization' of your app/scene.
 
 ## Examples
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Circle Mesh]({{site.url}}/preview/img/screenshots/ProcGeoCircle.jpg)
-```csharp
-meshCircle = Mesh.GenerateCircle(1);
-```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -81,5 +74,12 @@ circleMesh.Draw(Default.Material, circleTransform);
 
 circleTransform = Matrix.T(1, -1.5f, 0);
 circleModel.Draw(circleTransform);
+```
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Circle Mesh]({{site.url}}/preview/img/screenshots/ProcGeoCircle.jpg)
+```csharp
+meshCircle = Mesh.GenerateCircle(1);
 ```
 

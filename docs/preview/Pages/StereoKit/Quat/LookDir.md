@@ -17,7 +17,7 @@ Vec3.Forward in their resting/model space pose.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) direction|Direction the rotation should be looking.             Doesn't need to be normalized.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) direction|Direction the rotation should be looking. Doesn't need to be normalized.|
 |RETURNS: [Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html)|A rotation that describes looking towards a direction.|
 
 <div class='signature' markdown='1'>
@@ -32,9 +32,9 @@ Vec3.Forward in their resting/model space pose.
 
 |  |  |
 |--|--|
-|float x|X component of the direction the rotation should             be looking. Doesn't need to be normalized.|
-|float y|Y component of the direction the rotation should             be looking. Doesn't need to be normalized.|
-|float z|Z component of the direction the rotation should             be looking. Doesn't need to be normalized.|
+|float x|X component of the direction the rotation should be looking. Doesn't need to be normalized.|
+|float y|Y component of the direction the rotation should be looking. Doesn't need to be normalized.|
+|float z|Z component of the direction the rotation should be looking. Doesn't need to be normalized.|
 |RETURNS: [Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html)|A rotation that describes looking towards a direction.|
 
 

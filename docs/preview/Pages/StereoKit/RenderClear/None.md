@@ -1,7 +1,7 @@
 ---
 layout: default
 title: RenderClear.None
-description: Don't clear anything, leave it as it is.
+description: Deprecated, use render_clear_keep.
 ---
 # [RenderClear]({{site.url}}/preview/Pages/StereoKit/RenderClear.html).None
 
@@ -10,5 +10,5 @@ static [RenderClear]({{site.url}}/preview/Pages/StereoKit/RenderClear.html) None
 </div>
 
 ## Description
-Don't clear anything, leave it as it is.
+Deprecated, use render_clear_keep.
 

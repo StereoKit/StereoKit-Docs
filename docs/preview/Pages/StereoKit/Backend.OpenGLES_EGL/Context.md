@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenGLES_EGL.Context
-description: This is the EGLContext StereoKit receives from eglCreateContext.
+description: This is the EGLContext StereoKit receives from eglCreateContext. (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.OpenGLES_EGL]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGLES_EGL.html).Context
 
@@ -11,5 +11,5 @@ static IntPtr Context{ get }
 
 ## Description
 This is the `EGLContext` StereoKit receives from
-`eglCreateContext`.
+`eglCreateContext`. (No longer supported, always returns IntPtr.Zero)
 

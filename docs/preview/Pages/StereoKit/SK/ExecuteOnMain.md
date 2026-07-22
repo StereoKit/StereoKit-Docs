@@ -16,7 +16,7 @@ registered here will execute, and then removed from the list.
 
 |  |  |
 |--|--|
-|Action action|Some code to run! This Action will persist in             a list until after Step, at which point it is removed and dropped.|
+|Action action|Some code to run! This Action will persist in a list until after Step, at which point it is removed and dropped.|
 
 
 

@@ -18,8 +18,8 @@ since polling happens specifically at frame start.
 
 |  |  |
 |--|--|
-|[InputSource]({{site.url}}/preview/Pages/StereoKit/InputSource.html) eventSource|What input sources do we want to listen             for. This is a bit flag.|
-|[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) eventTypes|What events do we want to listen for. This             is a bit flag.|
+|[InputSource]({{site.url}}/preview/Pages/StereoKit/InputSource.html) eventSource|What input sources do we want to listen for. This is a bit flag.|
+|[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) eventTypes|What events do we want to listen for. This is a bit flag.|
 |Action`3 onEvent|The callback to call when the event occurs!|
 
 

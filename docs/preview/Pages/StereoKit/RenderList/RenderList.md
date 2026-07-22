@@ -14,7 +14,7 @@ Creates a new empty RenderList.
 
 |  |  |
 |--|--|
-|[RenderListRefs]({{site.url}}/preview/Pages/StereoKit/RenderListRefs.html) refs|Controls whether the list tracks asset             references for the Meshes and Materials added to it. The default,             `Tracked`, is safe across frames. `None` skips the addref/release             pair on each add and clear, but the caller must ensure the list             is cleared before any referenced asset could be released.|
+|[RenderListRefs]({{site.url}}/preview/Pages/StereoKit/RenderListRefs.html) refs|Controls whether the list tracks asset references for the Meshes and Materials added to it. The default, `Tracked`, is safe across frames. `None` skips the addref/release pair on each add and clear, but the caller must ensure the list is cleared before any referenced asset could be released.|
 
 
 

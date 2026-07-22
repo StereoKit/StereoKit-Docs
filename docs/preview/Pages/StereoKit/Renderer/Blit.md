@@ -16,7 +16,7 @@ over the surface of the texture, and renders the material onto it to the texture
 |  |  |
 |--|--|
 |[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) toRendertarget|A texture that's been set up as a render target!|
-|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|This material is rendered onto the texture! Set it up like you would             if you were applying it to a plane, or quad mesh.|
+|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|This material is rendered onto the texture! Set it up like you would if you were applying it to a plane, or quad mesh.|
 
 
 

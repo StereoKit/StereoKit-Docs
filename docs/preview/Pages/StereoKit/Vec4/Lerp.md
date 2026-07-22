@@ -18,7 +18,7 @@ percent for you.
 |--|--|
 |[Vec4]({{site.url}}/preview/Pages/StereoKit/Vec4.html) a|First item in the blend, or '0.0' blend.|
 |[Vec4]({{site.url}}/preview/Pages/StereoKit/Vec4.html) b|Second item in the blend, or '1.0' blend.|
-|float blend|A blend value between 0 and 1. Can be outside             this range, it'll just interpolate outside of the a, b range.|
+|float blend|A blend value between 0 and 1. Can be outside this range, it'll just interpolate outside of the a, b range.|
 |RETURNS: [Vec4]({{site.url}}/preview/Pages/StereoKit/Vec4.html)|An unclamped blend of a and b.|
 
 

@@ -24,7 +24,7 @@ as provided here.
 
 |  |  |
 |--|--|
-|Int64 [EyesSampleTime]({{site.url}}/preview/Pages/StereoKit/Backend.OpenXR/EyesSampleTime.html)|Type: XrTime. This is the OpenXR time of the eye tracker sample associated with the current value of .|
+|Int64 [EyesSampleTime]({{site.url}}/preview/Pages/StereoKit/Backend.OpenXR/EyesSampleTime.html)|Type: XrTime. This is the OpenXR time of the eye tracker sample associated with the current value of [`Input.Eyes`]({{site.url}}/preview/Pages/StereoKit/Input/Eyes.html).|
 |UInt64 [HeadSpace]({{site.url}}/preview/Pages/StereoKit/Backend.OpenXR/HeadSpace.html)|Type: XrSpace. StereoKit's head/view reference space, valid after SK.Initialize, this is created from `XR_REFERENCE_SPACE_TYPE_VIEW`.|
 |UInt64 [Instance]({{site.url}}/preview/Pages/StereoKit/Backend.OpenXR/Instance.html)|Type: XrInstance. StereoKit's instance handle, valid after SK.Initialize.|
 |UInt64 [Session]({{site.url}}/preview/Pages/StereoKit/Backend.OpenXR/Session.html)|Type: XrSession. StereoKit's current session handle, this will be valid after SK.Initialize, but the session may not be started quite so early.|

@@ -16,7 +16,7 @@ if either hand is visible.
 
 |  |  |
 |--|--|
-|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|The hand to check visibility for, or             Handed.Max to check if either hand is visible.|
+|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|The hand to check visibility for, or Handed.Max to check if either hand is visible.|
 |RETURNS: bool|True if StereoKit renders this hand, false if not.|
 
 

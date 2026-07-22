@@ -20,7 +20,7 @@ input queue, use KeyInjectPress/Release for that.
 
 |  |  |
 |--|--|
-|uint unicodeCharUTF32|An unsigned integer representing a             single UTF32 character.|
+|uint unicodeCharUTF32|An unsigned integer representing a single UTF32 character.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -37,7 +37,7 @@ input queue, use KeyInjectPress/Release for that.
 
 |  |  |
 |--|--|
-|string chars|A collection of characters to submit as text             input.|
+|string chars|A collection of characters to submit as text input.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -54,8 +54,8 @@ input queue, use KeyInjectPress/Release for that.
 
 |  |  |
 |--|--|
-|Byte[] chars|A byte array representing a string in some             encoded format.|
-|Encoding charEncoding|The encoding format of the byte array.             Note that an encoding of UTF32 will skip converting bytes to UTF32.|
+|Byte[] chars|A byte array representing a string in some encoded format.|
+|Encoding charEncoding|The encoding format of the byte array. Note that an encoding of UTF32 will skip converting bytes to UTF32.|
 
 
 

@@ -16,7 +16,7 @@ other elements.
 
 |  |  |
 |--|--|
-|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|If Handed.Max, this will set the value for              both hands.|
+|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|If Handed.Max, this will set the value for both hands.|
 |[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|The new Material!|
 
 

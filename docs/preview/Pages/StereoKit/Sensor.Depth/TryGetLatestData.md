@@ -20,8 +20,8 @@ texture, but can be more under heavy GPU load.
 |  |  |
 |--|--|
 |SensorDepthFrame& info|The per-frame metadata matching this data.|
-|T[]& data|An array that will be filled with the             depth data. If null or the wrong size, it will be             reallocated.|
-|int viewIndex|Which view to read back: -1 for             all views (default), 0 for the first view, 1 for the             second view.|
+|T[]& data|An array that will be filled with the depth data. If null or the wrong size, it will be reallocated.|
+|int viewIndex|Which view to read back: -1 for all views (default), 0 for the first view, 1 for the second view.|
 |RETURNS: bool|True if data was available.|
 
 

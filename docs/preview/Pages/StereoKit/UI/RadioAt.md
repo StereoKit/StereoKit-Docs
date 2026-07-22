@@ -7,7 +7,7 @@ description: A Radio is similar to a button, except you can specify if it looks 
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool RadioAt(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)
+static bool RadioAt(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)
 ```
 A Radio is similar to a button, except you can specify if
 it looks pressed or not regardless of interaction. This can be
@@ -19,13 +19,39 @@ by the Radio.
 
 |  |  |
 |--|--|
-|string text|Text to display on the Radio and id for             tracking element state. MUST be unique within current hierarchy.|
+|string text|Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.|
 |bool active|Does this button look like it's pressed?|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) imageOff|Image to use when the radio value is             false.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) imageOn|Image to use when the radio value is             true.|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the radio. For example,             `UIBtnLayout.Left` will have the image on the left, and text on the             right.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) imageOff|Image to use when the radio value is false.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) imageOn|Image to use when the radio value is true.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
+|RETURNS: bool|Will return true only on the first frame it is pressed!|
+
+<div class='signature' markdown='1'>
+```csharp
+static bool RadioAt(string text, bool active, Sprite imageOff, Sprite imageOn, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)
+```
+A Radio is similar to a button, except you can specify if
+it looks pressed or not regardless of interaction. This can be
+useful for radio-like behavior! Check an enum for a value, and use
+that as the 'active' state, Then switch to that enum value if Radio
+returns true. This version allows you to override the images used
+by the Radio.
+</div>
+
+|  |  |
+|--|--|
+|string text|Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.|
+|bool active|Does this button look like it's pressed?|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) imageOff|Image to use when the radio value is false.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) imageOn|Image to use when the radio value is true.|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 

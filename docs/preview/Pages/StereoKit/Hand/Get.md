@@ -19,8 +19,8 @@ the tip of the thumb!
 
 |  |  |
 |--|--|
-|[FingerId]({{site.url}}/preview/Pages/StereoKit/FingerId.html) finger|Which finger are we getting from here, 0 is             thumb, and pinky is 4!|
-|[JointId]({{site.url}}/preview/Pages/StereoKit/JointId.html) joint|Which joint on the finger are we getting? 0              is the root, which is all the way at the base of the palm, and 4             is the tip, the very end of the finger.|
+|[FingerId]({{site.url}}/preview/Pages/StereoKit/FingerId.html) finger|Which finger are we getting from here, 0 is thumb, and pinky is 4!|
+|[JointId]({{site.url}}/preview/Pages/StereoKit/JointId.html) joint|Which joint on the finger are we getting? 0 is the root, which is all the way at the base of the palm, and 4 is the tip, the very end of the finger.|
 |RETURNS: [HandJoint]({{site.url}}/preview/Pages/StereoKit/HandJoint.html)|Position, orientation, and radius of the finger joint.|
 
 <div class='signature' markdown='1'>
@@ -37,8 +37,8 @@ the tip of the thumb!
 
 |  |  |
 |--|--|
-|int finger|Which finger are we getting from here, 0 is             thumb, and pinky is 4!|
-|int joint|Which joint on the finger are we getting? 0              is the root, which is all the way at the base of the palm, and 4             is the tip, the very end of the finger.|
+|int finger|Which finger are we getting from here, 0 is thumb, and pinky is 4!|
+|int joint|Which joint on the finger are we getting? 0 is the root, which is all the way at the base of the palm, and 4 is the tip, the very end of the finger.|
 |RETURNS: [HandJoint]({{site.url}}/preview/Pages/StereoKit/HandJoint.html)|Position, orientation, and radius of the finger joint.|
 
 

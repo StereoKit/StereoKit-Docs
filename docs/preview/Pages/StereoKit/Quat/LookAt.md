@@ -20,8 +20,8 @@ resting/model space pose.
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lookFromPoint|Position of where the 'object' is.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lookAtPoint|Position of where the 'object' should             be looking towards!|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) upDirection|Look From/At positions describe X and Y             axis rotation well, but leave Z Axis/Roll undefined. Providing an             upDirection vector helps to indicate roll around the From/At             line. A common up direction would be (0,1,0), to prevent roll.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lookAtPoint|Position of where the 'object' should be looking towards!|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) upDirection|Look From/At positions describe X and Y axis rotation well, but leave Z Axis/Roll undefined. Providing an upDirection vector helps to indicate roll around the From/At line. A common up direction would be (0,1,0), to prevent roll.|
 |RETURNS: [Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html)|A rotation that describes looking from a point, towards another point.|
 
 <div class='signature' markdown='1'>
@@ -43,7 +43,7 @@ axis, and is the most common way of using this type of rotation.
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lookFromPoint|Position of where the 'object' is.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lookAtPoint|Position of where the 'object' should             be looking towards!|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lookAtPoint|Position of where the 'object' should be looking towards!|
 |RETURNS: [Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html)|A rotation that describes looking from a point, towards another point.|
 
 

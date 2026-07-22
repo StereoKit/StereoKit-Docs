@@ -15,7 +15,7 @@ point!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) to|The point you have that's not necessarily on the             plane.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) to|The point you have that's not necessarily on the plane.|
 |RETURNS: [Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html)|The point on the plane that's closest to the 'to' parameter.|
 
 

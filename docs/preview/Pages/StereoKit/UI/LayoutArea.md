@@ -15,8 +15,8 @@ is in the current Hierarchy's coordinate space on the X/Y plane.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|The top left of the layout area, relative to             the current Hierarchy in local meters.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|The size of the layout area from the top             left, in local meters.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|The top left of the layout area, relative to the current Hierarchy in local meters.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|The size of the layout area from the top left, in local meters.|
 
 
 

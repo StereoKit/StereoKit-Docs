@@ -15,7 +15,7 @@ Adds an image to the UI!
 |  |  |
 |--|--|
 |[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|A valid sprite.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Size in Hierarchy local meters. If one of the             components is 0, it'll be automatically determined from the other             component and the image's aspect ratio.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Size in Hierarchy local meters. If one of the components is 0, it'll be automatically determined from the other component and the image's aspect ratio.|
 
 
 

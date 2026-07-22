@@ -21,8 +21,8 @@ longer updates with `LayerFilter`.
 
 |  |  |
 |--|--|
-|bool useOverrideFilter|Enables (true) or disables (false)             the overridden filter value provided here.|
-|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) overrideFilter|The filter for capture rendering to             use. This is ignored if useOverrideFilter is false.|
+|bool useOverrideFilter|Enables (true) or disables (false) the overridden filter value provided here.|
+|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) overrideFilter|The filter for capture rendering to use. This is ignored if useOverrideFilter is false.|
 
 
 

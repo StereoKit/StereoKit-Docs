@@ -16,7 +16,7 @@ this instance's `Set`.
 
 |  |  |
 |--|--|
-|int registerSlot|Valid values are 3-16. This is the             register id that this data will be bound to. In HLSL, you'll see             the slot id for '3' indicated like this `: register(b3)`|
+|int registerSlot|Valid values are 3-16. This is the register id that this data will be bound to. In HLSL, you'll see the slot id for '3' indicated like this `: register(b3)`|
 
 <div class='signature' markdown='1'>
 ```csharp

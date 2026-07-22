@@ -24,10 +24,10 @@ for creating a Mesh and calling SetData on it.
 
 |  |  |
 |--|--|
-|Vertex[] vertices|An array of vertices for the mesh.             Null is okay here, but may require a special shader.|
-|UInt32[] indices|A list of face indices, must be a             multiple of 3.|
-|[MeshData]({{site.url}}/preview/Pages/StereoKit/MeshData.html) flags|Flags controlling upload behavior. See             MeshData for options.|
-|int priority|Loading priority for async upload.             Lower values load sooner.|
+|Vertex[] vertices|An array of vertices for the mesh. Null is okay here, but may require a special shader.|
+|UInt32[] indices|A list of face indices, must be a multiple of 3.|
+|[MeshData]({{site.url}}/preview/Pages/StereoKit/MeshData.html) flags|Flags controlling upload behavior. See MeshData for options.|
+|int priority|Loading priority for async upload. Lower values load sooner.|
 
 
 

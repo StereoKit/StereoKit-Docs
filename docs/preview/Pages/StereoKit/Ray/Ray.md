@@ -16,7 +16,7 @@ parameters into the fields.
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) position|The position or origin point of the Ray.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) direction|The direction the ray is facing,              typically does not require being a unit vector, or normalized              direction.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) direction|The direction the ray is facing, typically does not require being a unit vector, or normalized direction.|
 
 
 

@@ -16,7 +16,7 @@ the provided value.
 
 |  |  |
 |--|--|
-|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) value|The new value that should be assigned right now             without animation.|
+|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) value|The new value that should be assigned right now without animation.|
 
 
 

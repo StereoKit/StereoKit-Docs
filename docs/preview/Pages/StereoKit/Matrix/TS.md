@@ -16,7 +16,7 @@ these components!
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) translation|Move an object by this amount.|
-|float scale|How much larger or smaller this transform             makes things. 1 is a good default, as 0 will shrink it to nothing!             This will expand to a scale vector of (size, size, size)|
+|float scale|How much larger or smaller this transform makes things. 1 is a good default, as 0 will shrink it to nothing! This will expand to a scale vector of (size, size, size)|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that combines translation and scale information into a single Matrix!|
 
 <div class='signature' markdown='1'>
@@ -30,7 +30,7 @@ these components!
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) translation|Move an object by this amount.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|How much larger or smaller this transform              makes things. Vec3.One is a good default, as Vec3.Zero will              shrink it to nothing!|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|How much larger or smaller this transform makes things. Vec3.One is a good default, as Vec3.Zero will shrink it to nothing!|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that combines translation and scale information into a single Matrix!|
 
 <div class='signature' markdown='1'>
@@ -46,7 +46,7 @@ these components!
 |float x|Move an object on the x axis by this amount.|
 |float y|Move an object on the y axis by this amount.|
 |float z|Move an object on the z axis by this amount.|
-|float scale|How much larger or smaller this transform              makes things. Vec3.One is a good default, as Vec3.Zero will              shrink it to nothing!|
+|float scale|How much larger or smaller this transform makes things. Vec3.One is a good default, as Vec3.Zero will shrink it to nothing!|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that combines translation and scale information into a single Matrix!|
 
 <div class='signature' markdown='1'>
@@ -62,7 +62,7 @@ these components!
 |float x|Move an object on the x axis by this amount.|
 |float y|Move an object on the y axis by this amount.|
 |float z|Move an object on the z axis by this amount.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|How much larger or smaller this transform              makes things. Vec3.One is a good default, as Vec3.Zero will              shrink it to nothing!|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|How much larger or smaller this transform makes things. Vec3.One is a good default, as Vec3.Zero will shrink it to nothing!|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that combines translation and scale information into a single Matrix!|
 
 

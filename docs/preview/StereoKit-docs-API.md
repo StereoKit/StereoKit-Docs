@@ -16,6 +16,7 @@ A bit-flag enum for describing alignment or positioning. Items can be combined u
 - `Align.Center` — Center on both X and Y axes. This is a combination of XCenter and YCenter.
 - `Align.CenterLeft` — Start on the left of the X axis, center on the Y axis. This is a combination of XLeft and YCenter.
 - `Align.CenterRight` — Start on the right of the X axis, center on the Y axis. This is a combination of XRight and YCenter.
+- `Align.None` — No alignment specified. For elements that have a natural default alignment (such as image buttons), this falls back to that default.
 - `Align.TopCenter` — Center on the X axis, and top on the Y axis. This is a combination of XCenter and YTop.
 - `Align.TopLeft` — Start on the left of the X axis, and top on the Y axis. This is a combination of XLeft and YTop.
 - `Align.TopRight` — Start on the right of the X axis, and top on the Y axis. This is a combination of XRight and YTop.
@@ -167,7 +168,7 @@ A callback for generating audio samples procedurally.
 
 This class exposes some of StereoKit's backend functionality. This allows for tighter integration with certain platforms, but also means your code becomes less portable. Everything in this class should be guarded by availability checks.
 
-- `static BackendGraphics Backend.Graphics` — This describes the graphics API thatStereoKit is using for rendering. StereoKit uses D3D11 for Windows platforms, and a flavor of OpenGL for Linux, Android, and Web.
+- `static BackendGraphics Backend.Graphics` — This describes the graphics API that StereoKit is using for rendering. StereoKit is Vulkan-only, so this will report [`BackendGraphics.Vulkan`]({{site.url}}/Pages/StereoKit/BackendGraphics/Vulkan.html) on all supported platforms.
 - `static BackendPlatform Backend.Platform` — What kind of platform is StereoKit running on? This can be important to tell you what APIs or functionality is available to the app.
 - `static BackendXRType Backend.XRType` — What technology is being used to drive StereoKit's XR functionality? OpenXR is the most likely candidate here, but if you're running the flatscreen Simulator, or running in the web with WebXR, then this will reflect that.
 
@@ -183,36 +184,36 @@ This class contains variables that may be useful for interop with the Android op
 
 When using Direct3D11 for rendering, this contains a number of variables that may be useful for doing advanced rendering tasks. This is the default rendering backend on Windows.
 
-- `static IntPtr Backend.D3D11.D3DContext` — This is the main `ID3D11DeviceContext*` StereoKit uses for rendering.
-- `static IntPtr Backend.D3D11.D3DDevice` — This is the main `ID3D11Device*` StereoKit uses for rendering.
+- `static IntPtr Backend.D3D11.D3DContext` — This is the main `ID3D11DeviceContext*` StereoKit uses for rendering. (No longer supported, always returns IntPtr.Zero)
+- `static IntPtr Backend.D3D11.D3DDevice` — This is the main `ID3D11Device*` StereoKit uses for rendering. (No longer supported, always returns IntPtr.Zero)
 
 ## static class Backend.OpenGL_GLX
 
 When using OpenGL with the GLX loader for rendering, this contains a number of variables that may be useful for doing advanced rendering tasks. This is the default rendering backend for Linux.
 
-- `static IntPtr Backend.OpenGL_GLX.Context` — This is the `GLXContext` that StereoKit uses with `glXMakeCurrent`
-- `static IntPtr Backend.OpenGL_GLX.Display` — This is the `Display*` from X used to create the GLX context.
-- `static IntPtr Backend.OpenGL_GLX.Drawable` — This is the `GLXDrawable` that StereoKit uses with `glXMakeCurrent`.
+- `static IntPtr Backend.OpenGL_GLX.Context` — This is the `GLXContext` that StereoKit uses with `glXMakeCurrent` (No longer supported, always returns IntPtr.Zero)
+- `static IntPtr Backend.OpenGL_GLX.Display` — This is the `Display*` from X used to create the GLX context. (No longer supported, always returns IntPtr.Zero)
+- `static IntPtr Backend.OpenGL_GLX.Drawable` — This is the `GLXDrawable` that StereoKit uses with `glXMakeCurrent`. (No longer supported, always returns IntPtr.Zero)
 
 ## static class Backend.OpenGL_WGL
 
 When using OpenGL with the WGL loader for rendering, this contains a number of variables that may be useful for doing advanced rendering tasks. This is Windows only, and requires gloabally defining SKG_FORCE_OPENGL when building the core StereoKitC library.
 
-- `static IntPtr Backend.OpenGL_WGL.HDC` — This is the Handle to Device Context `HDC` StereoKit uses with `wglMakeCurrent`.
-- `static IntPtr Backend.OpenGL_WGL.HGLRC` — This is the Handle to an OpenGL Rendering Context `HGLRC` StereoKit uses with `wglMakeCurrent`.
+- `static IntPtr Backend.OpenGL_WGL.HDC` — This is the Handle to Device Context `HDC` StereoKit uses with `wglMakeCurrent`. (No longer supported, always returns IntPtr.Zero)
+- `static IntPtr Backend.OpenGL_WGL.HGLRC` — This is the Handle to an OpenGL Rendering Context `HGLRC` StereoKit uses with `wglMakeCurrent`. (No longer supported, always returns IntPtr.Zero)
 
 ## static class Backend.OpenGLES_EGL
 
 When using OpenGL ES with the EGL loader for rendering, this contains a number of variables that may be useful for doing advanced rendering tasks. This is the default rendering backend for Android, and Linux builds can be configured to use this with the SK_LINUX_EGL cmake option when building the core StereoKitC library.
 
-- `static IntPtr Backend.OpenGLES_EGL.Context` — This is the `EGLContext` StereoKit receives from `eglCreateContext`.
-- `static IntPtr Backend.OpenGLES_EGL.Display` — This is the `EGLDisplay` StereoKit receives from `eglGetDisplay`
+- `static IntPtr Backend.OpenGLES_EGL.Context` — This is the `EGLContext` StereoKit receives from `eglCreateContext`. (No longer supported, always returns IntPtr.Zero)
+- `static IntPtr Backend.OpenGLES_EGL.Display` — This is the `EGLDisplay` StereoKit receives from `eglGetDisplay` (No longer supported, always returns IntPtr.Zero)
 
 ## static class Backend.OpenXR
 
 This class is NOT of general interest, unless you are trying to add support for some unusual OpenXR extension! StereoKit should do all the OpenXR work that most people will need. If you find yourself here anyhow for something you feel StereoKit should support already, please add a feature request on GitHub! This class contains handles and methods for working directly with OpenXR. This may allow you to activate or work with OpenXR extensions that StereoKit hasn't implemented or exposed yet. Check that Backend.XRType is OpenXR before using any of this. These properties may best be used with some external OpenXR binding library, but you may get some limited mileage with the API as provided here.
 
-- `static Int64 Backend.OpenXR.EyesSampleTime` — Type: XrTime. This is the OpenXR time of the eye tracker sample associated with the current value of .
+- `static Int64 Backend.OpenXR.EyesSampleTime` — Type: XrTime. This is the OpenXR time of the eye tracker sample associated with the current value of [`Input.Eyes`]({{site.url}}/Pages/StereoKit/Input/Eyes.html).
 - `static UInt64 Backend.OpenXR.HeadSpace` — Type: XrSpace. StereoKit's head/view reference space, valid after SK.Initialize, this is created from `XR_REFERENCE_SPACE_TYPE_VIEW`.
 - `static UInt64 Backend.OpenXR.Instance` — Type: XrInstance. StereoKit's instance handle, valid after SK.Initialize.
 - `static UInt64 Backend.OpenXR.Session` — Type: XrSession. StereoKit's current session handle, this will be valid after SK.Initialize, but the session may not be started quite so early.
@@ -241,6 +242,26 @@ This class is NOT of general interest, unless you are trying to add support for 
 - `static void Backend.OpenXR.SetHandJointScale(float scaleFactor)` — This sets a scaling value for joints provided by the articulated hand extension. Some systems just don't seem to get their joint sizes right!
   - `scaleFactor` — 1 being the default value, 2 being twice as large as normal, and 0.5 being half as big as normal.
 
+## static class Backend.Vulkan
+
+When using Vulkan for rendering, this contains a number of variables that may be useful for doing advanced rendering tasks. Vulkan is StereoKit's only rendering backend, so these are valid on all supported platforms after SK.Initialize.
+
+- `static IntPtr Backend.Vulkan.Device` — The `VkDevice` StereoKit created (or was given, when running under OpenXR) for rendering. Valid after SK.Initialize.
+- `static IntPtr Backend.Vulkan.Instance` — The `VkInstance` StereoKit created (or was given, when running under OpenXR) for rendering. Valid after SK.Initialize.
+- `static IntPtr Backend.Vulkan.PhysicalDevice` — The `VkPhysicalDevice` StereoKit is rendering with. Valid after SK.Initialize.
+- `static int Backend.Vulkan.GetFrameFenceFd()` — Returns a sync file descriptor for the most recently submitted frame's GPU work! Waiting on it (e.g. via EGL_ANDROID_native_fence_sync) guarantees all rendering submitted up to the last frame end has completed. Call from StereoKit's main thread. The caller owns the descriptor and must close it. Only functional on platforms and devices supporting external fence export.
+  - returns — A sync file descriptor, or -1 when unsupported or no frame has been submitted yet.
+- `static IntPtr Backend.Vulkan.Queue(BackendVulkanQueue queue)` — Gets the `VkQueue` StereoKit uses for the given queue family. Currently only [`BackendVulkanQueue.Graphics`]({{site.url}}/Pages/StereoKit/BackendVulkanQueue/Graphics.html) has a handle available; the others return IntPtr.Zero until StereoKit makes real use of them. If you submit work to this queue, you MUST guard it with [`Backend.Vulkan.QueueLock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueLock.html) / [`Backend.Vulkan.QueueUnlock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueUnlock.html), since StereoKit shares it across threads.
+  - `queue` — Which queue family to retrieve the queue for.
+  - returns — A `VkQueue` handle, or IntPtr.Zero if no queue handle is available for that family.
+- `static uint Backend.Vulkan.QueueFamilyIndex(BackendVulkanQueue queue)` — Gets the queue family index StereoKit uses for the given queue family. This is the value you'd use when creating command pools or performing queue family ownership transfers.
+  - `queue` — Which queue family to look up.
+  - returns — The Vulkan queue family index, or uint.MaxValue if that family is not available on this device (for example, video decode).
+- `static void Backend.Vulkan.QueueLock(BackendVulkanQueue queue)` — Locks the mutex StereoKit uses to guard the given queue family, so you can safely submit work to a queue StereoKit also uses. Always pair this with [`Backend.Vulkan.QueueUnlock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueUnlock.html). Note that queue families that resolve to the same index share a single lock, so don't nest locks across two families that may alias.
+  - `queue` — Which queue family's lock to acquire.
+- `static void Backend.Vulkan.QueueUnlock(BackendVulkanQueue queue)` — Releases the queue family lock acquired via [`Backend.Vulkan.QueueLock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueLock.html).
+  - `queue` — Which queue family's lock to release.
+
 ## enum BackendGraphics
 
 This describes the graphics API that StereoKit is using for rendering.
@@ -251,7 +272,7 @@ This describes the graphics API that StereoKit is using for rendering.
 - `BackendGraphics.OpenGL_WGL` — OpenGL is used for rendering, using WGL (Windows Extensions to OpenGL) for loading. Native developers can configure SK to use this on Windows. (No longer supported)
 - `BackendGraphics.OpenGLES_EGL` — OpenGL ES is used for rendering, using EGL (EGL Native Platform Graphics Interface) for loading. This is used by default on Android, and native developers can configure SK to use this on Linux. (No longer supported)
 - `BackendGraphics.Vulkan` — Vulkan is used for rendering, this works basically on every platform, and is the only backend StereoKit currently supports!
-- `BackendGraphics.WebGL` — WebGL is used for rendering. This is used by default on Web.
+- `BackendGraphics.WebGL` — WebGL is used for rendering. This is used by default on Web. (No longer supported)
 
 ## enum BackendPlatform
 
@@ -263,6 +284,14 @@ This describes the platform that StereoKit is running on.
 - `BackendPlatform.Uwp` — This is running as a Windows app using the UWP APIs. (No longer supported)
 - `BackendPlatform.Web` — This is running in a browser.
 - `BackendPlatform.Win32` — This is running as a Windows app using the Win32 APIs.
+
+## enum BackendVulkanQueue
+
+Identifies a Vulkan queue family that StereoKit's Vulkan backend interacts with. Use this with the queue accessors on Backend.Vulkan.
+
+- `BackendVulkanQueue.Graphics` — The primary graphics queue. This is the queue StereoKit submits all of its rendering work to, and the only queue with a handle currently available via backend_vulkan_get_queue.
+- `BackendVulkanQueue.Transfer` — A queue family suitable for transfer operations. StereoKit does not yet use a dedicated transfer queue, so no queue handle is available here yet, but the family index is provided for advanced interop.
+- `BackendVulkanQueue.VideoDecode` — A queue family suitable for Vulkan video decode. Not present on all devices, in which case the family index will be UINT32_MAX.
 
 ## enum BackendXRType
 
@@ -358,9 +387,10 @@ A bit-flag for the current state of a button input.
 
 - `BtnState.Active` — Is the button currently down, pressed?
 - `BtnState.Any` — Matches with all states!
-- `BtnState.Changed` — Has the button just changed state this frame?
+- `BtnState.Changed` — Has the button just changed state this frame? Includes presses, releases, and canceled activations.
 - `BtnState.Inactive` — Is the button currently up, unpressed?
 - `BtnState.JustActive` — Has the button just been pressed? Only true for a single frame.
+- `BtnState.JustCanceled` — Was a button activation just canceled this frame, ending without firing because the interactor moved too far away? Only true for a single frame.
 - `BtnState.JustInactive` — Has the button just been released? Only true for a single frame.
 
 ## static class BtnStateExtensions
@@ -372,6 +402,8 @@ A collection of extension methods for the BtnState enum that makes bit-field che
   - returns — True if the state just changed this frame, false if not.
 - `static bool BtnStateExtensions.IsJustActive(BtnState state)` — Has the button just been pressed this frame?
   - returns — True if pressed, false if not.
+- `static bool BtnStateExtensions.IsJustCanceled(BtnState state)` — Was a button activation just canceled this frame, ending without firing because the interactor moved too far away?
+  - returns — True if just canceled, false if not.
 - `static bool BtnStateExtensions.IsJustInactive(BtnState state)` — Has the button just been released this frame?
   - returns — True if released, false if not.
 - `static BtnState BtnStateExtensions.Make(bool wasActive, bool isActive)` — Creates a Button State using the current and previous frame's state! These two states allow us to add the "JustActive" and "JustInactive" bitflags when changes happen.
@@ -784,7 +816,7 @@ This class represents a text font asset! On the back-end, this asset is composed
   - returns — An existing font asset, or null if none is found.
 - `static Font Font.FromFamily(string fontFamily)` — Loads font from a specified list of font family names
   - `fontFamily` — List of font family names separated by comma(,) similar to a list of names css allows.
-  - returns — A font from the given font family names, Most of the OS provide fallback fonts, hence there will always be a set of fonts.
+  - returns — A font from the given font family names. If none of them match a usable font, this falls back to StereoKit's builtin font, so this will always be a valid asset.
 - `static Font Font.FromFile(String[] fontFiles)` — Loads a font and creates a font asset from it.
   - `fontFiles` — A list of file addresses for the font! For example: 'C:/Windows/Fonts/segoeui.ttf'. If a glyph is not found, StereoKit will look in the next font file in the list.
   - returns — A font from the given files, or null if all of the files failed to load properly! If any of the given files successfully loads, then this font will be a valid asset.
@@ -1221,12 +1253,16 @@ Index values for input poses. These represent tracked spatial poses from the XR 
 - `InputPose.LAim` — The left hand/controller aim pose. This points forward from the hand like a laser pointer, useful for UI interaction at a distance.
 - `InputPose.LDetached` — The left pose of a "detached controller", when the user has both hands and controllers active in the scene.
 - `InputPose.LGrip` — The left hand/controller grip pose, centered in the hand where you'd hold something like a sword hilt or a tool handle.
-- `InputPose.LPalm` — The left hand/controller palm pose, located at the surface of the palm facing outward. This uses the palm pose OpenXR extension when available, and falls back to an approximation when it's not.
+- `InputPose.LPalm` — The left hand/controller palm pose, located at the surface of the palm. Forward points along the fingers and Up toward the thumb, with X+ into the palm on the right hand, and out of the palm on the left. This is the controller's palm orientation, which faces along the fingers rather than out from the palm. Uses the palm pose OpenXR extension when available, and falls back to an approximation when it's not.
+- `InputPose.LPinch` — The left pinch pose, located between the tips of the thumb and index finger. This is provided by hand interaction systems such as the OpenXR hand interaction extension, and may be present even when full articulated hand tracking is not.
+- `InputPose.LPoke` — The left poke pose, located at the tip of the index finger. This is provided by hand interaction systems such as the OpenXR hand interaction extension, and may be present even when full articulated hand tracking is not.
 - `InputPose.Max` — Total number of input pose types.
 - `InputPose.RAim` — The right hand/controller aim pose. This points forward from the hand like a laser pointer, useful for UI interaction at a distance.
 - `InputPose.RDetached` — The right pose of a "detached controller", when the user has both hands and controllers active in the scene.
 - `InputPose.RGrip` — The right hand/controller grip pose, centered in the hand where you'd hold something like a sword hilt or a tool handle.
-- `InputPose.RPalm` — The right hand/controller palm pose, located at the surface of the palm facing outward. This uses the palm pose OpenXR extension when available, and falls back to an approximation when it's not.
+- `InputPose.RPalm` — The right hand/controller palm pose, located at the surface of the palm. Forward points along the fingers and Up toward the thumb, with X+ into the palm on the right hand, and out of the palm on the left. This is the controller's palm orientation, which faces along the fingers rather than out from the palm. Uses the palm pose OpenXR extension when available, and falls back to an approximation when it's not.
+- `InputPose.RPinch` — The right pinch pose, located between the tips of the thumb and index finger. This is provided by hand interaction systems such as the OpenXR hand interaction extension, and may be present even when full articulated hand tracking is not.
+- `InputPose.RPoke` — The right poke pose, located at the tip of the index finger. This is provided by hand interaction systems such as the OpenXR hand interaction extension, and may be present even when full articulated hand tracking is not.
 
 ## enum InputSource
 
@@ -1261,27 +1297,49 @@ Controls for the interaction system, and the interactors that StereoKit provides
 
 Interactors are essentially capsules that allow interaction with StereoKit's interaction primitives used by the UI system. While StereoKit does provide a number of interactors by default, you can replace StereoKit's defaults, add additional interactors, or generally just customize your interactions!
 
+- `InteractorActivation Interactor.Activation` — How does this interactor activate elements? Does it use the physical position of the interactor, or its activation state? This is set at creation time and does not change.
 - `IdHash Interactor.Active` — The id of the interaction element that is currently active, this will be `IdHash.None` if this interactor has nothing active. This will always be the same id as `Focused` when not `None`.
 - `Vec3 Interactor.End` — The world space end of the interactor capsule. Some interactions can be directional, especially for `Line` type interactors, so if you think of the interactor as an "oriented" capsule, this would be the end which the `Start`/origin points towards.
+- `InteractorEvent Interactor.Events` — What type of interaction events does this interactor fire? Interaction elements use this bitflag as a filter to avoid interacting with certain interactors. This is set at creation time and does not change.
 - `IdHash Interactor.Focused` — The id of the interaction element that is currently focused, this will be `IdHash.None` if this interactor has nothing focused.
 - `float Interactor.MinDistance` — The distance at which a ray starts being interactive. For pointing rays, you may not want them to interact right at their start, or you may want the start to move depending on how outstretched the hand is! This allows you to change that start location without affecting the movement caused by the ray, and still capturing occlusion from blocking elements too close to the start. By default, this is a large negative value.
 - `Pose Interactor.Motion` — This pose is the source of translation and rotation motion caused by the interactor. In most cases it will be the same as your Start with the orientation of your interactor, but in some instance may be something else!
 - `float Interactor.Radius` — The world space radius of the interactor capsule, in meters.
+- `int Interactor.SecondaryDims` — How many axes of secondary motion can this interactor provide? Secondary motion is input that comes from somewhere other than the interactor's own movement through space. For example, a mouse's scroll wheel is 1 axis, and a controller's analog thumbstick is 2 axes (X/Y). This should be 0-3.
+- `InteractorSource Interactor.Source` — The physical source this interactor's input comes from, such as a specific hand, controller, or the mouse. Interactors that share a source will deactivate each other when one becomes active, for example the poke, pinch, and aim interactors of a single hand. `InteractorSource.Unique` indicates a source that never groups with other interactors. This is set at creation time and does not change.
 - `Vec3 Interactor.Start` — The world space start of the interactor capsule. Some interactions can be directional, especially for `Line` type interactors, so if you think of the interactor as an "oriented" capsule, this would be the origin which points towards the capsule `End`.
 - `BtnState Interactor.Tracked` — The tracking state of this interactor.
-- `static int Interactor.Count` — The number of interactors currently in the system. Can be used with `Get`.
-- `static Interactor Interactor.Create(InteractorType shapeType, InteractorEvent events, InteractorActivation activationType, int inputSourceId, float capsuleRadius, int secondaryMotionDimensions)` — Create a new custom Interactor.
+- `InteractorType Interactor.Type` — A line, or a point? These interactors behave slightly differently with respect to distance checks and directionality. See `InteractorType` for more details. This is set at creation time and does not change.
+- `static InteractorCollection Interactor.All` — An enumerable collection of all the Interactors currently in the system. Use this to inspect or visualize every Interactor, including any custom ones you've added.
+- `static Interactor Interactor.None` — An empty Interactor that represents "no interactor". UI building blocks like `UI.ButtonBehavior` and `UI.VolumeAt` report this when nothing is interacting with them, so you can test their result against `Interactor.None`.
+- `static Interactor Interactor.Create(InteractorType shapeType, InteractorEvent events, InteractorActivation activationType, InteractorSource source, float capsuleRadius, int secondaryMotionDimensions)` — Create a new custom Interactor.
   - `shapeType` — A line, or a point? These interactors behave slightly differently with respect to distance checks and directionality. See `InteractorType` for mor details.
   - `events` — What type of interaction events should this interactor fire? Interaction elements use this bitflag as a filter to avoid interacting with certain interactors.
   - `activationType` — 
-  - `inputSourceId` — An identifier that uniquely indicates a shared source for inputs. This will deactivate other interactors with a shared source if one is already active. For example, 3 interactors for poke, pinch, and aim on a hand would all come from a single hand, and if one is actively interacting, then the whole hand source is considered busy.
+  - `source` — The physical source this interactor's input comes from. Interactors that share a source will deactivate each other if one is already active. For example, the poke, pinch, and aim interactors of a single hand all share that hand's source, so if one is actively interacting the whole hand is considered busy. Use `InteractorSource.Unique` for a source that never groups with others, or a custom value at or above `InteractorSource.Max` for your own sources.
   - `capsuleRadius` — The radius of the interactor's capsule, in meters.
-  - `secondaryMotionDimensions` — How many axes of secondary motion can this interactor provide? This should be 0-3.
+  - `secondaryMotionDimensions` — How many axes of secondary motion can this interactor provide? Secondary motion is input from a source other than the interactor's own movement, such as a mouse's scroll wheel (1 axis) or a controller's analog thumbstick (2 axes, X/Y). This should be 0-3.
   - returns — The Interactor that was just created.
 - `void Interactor.Destroy()` — Interactors, unlike Assets, don't destroy themselves! You must explicitly Destroy an Interactor if you're finished with it, otherwise it will continue to interact with StereoKit's interactors. This function immediately removes the interactor from the interactor list.
-- `static Interactor Interactor.Get(int index)` — Returns the `Interactor` at the given index. Should be used with `Count`.
-  - `index` — The index.
-  - returns — An Interactor.
+- `bool Interactor.Equals(Object b)` — An equality test. Two Interactors are equal when they refer to the same interactor instance.
+  - `b` — Another Interactor.
+  - returns — True if equal, false otherwise.
+- `bool Interactor.Equals(Interactor b)` — An equality test. Two Interactors are equal when they refer to the same interactor instance.
+  - `b` — Another Interactor.
+  - returns — True if equal, false otherwise.
+- `int Interactor.GetHashCode()` — A hash code based on the interactor's id.
+  - returns — A hash code.
+- `static bool Interactor.IsInteracting(InteractorSource source)` — Is any interactor from the given source currently interacting with an element, that is, actively pressing or focusing it? Sources can be combined as a bit-flag to ask about several at once, e.g. `InteractorSource.HandLeft | InteractorSource.HandRight`.
+  - `source` — The source, or combination of sources, to check.
+  - returns — True if a matching interactor has an active element.
+- `static bool Interactor.op_Equality(Interactor a, Interactor b)` — An equality test.
+  - `a` — An Interactor.
+  - `b` — An Interactor.
+  - returns — True if equal, false otherwise.
+- `static bool Interactor.op_Inequality(Interactor a, Interactor b)` — An inequality test.
+  - `a` — An Interactor.
+  - `b` — An Interactor.
+  - returns — True if unequal, false otherwise.
 - `bool Interactor.TryGetFocusBounds(Pose& poseWorld, Bounds& boundsLocal, Vec3& atLocal)` — If this interactor has an element focused, this will output information about the location of that element, as well as the interactor's intersection point with that element.
   - `poseWorld` — The world space Pose of the element's hierarchy space. This is typically the Pose of the Window/Handle/Surface the element belongs to.
   - `boundsLocal` — The bounds of the UI element relative to the Pose. Note that the `center` should always be accounted for here!
@@ -1298,10 +1356,26 @@ Interactors are essentially capsules that allow interaction with StereoKit's int
 
 ## enum InteractorActivation
 
-This describes how an interactor activates elements. Does it use the physical position of the interactor, or the activation state?
+This describes how an interactor commits an interaction with an element - does it activate from the physical position of the interactor (like a finger poking through a button), or from its activation/button state (like a pinch or a trigger click)? This is independent of `InteractorType`, which describes the interactor's shape rather than what triggers it.
 
 - `InteractorActivation.Position` — This interactor uses its motion position to determine the element activation.
 - `InteractorActivation.State` — This interactor uses its `active` state to determine element activation.
+
+## struct InteractorCollection
+
+An enumerable collection of all the Interactors in the system. Retrieved via `Interactor.All`.
+
+- `int InteractorCollection.Count` — The number of Interactors currently in the system.
+- `Enumerator InteractorCollection.GetEnumerator()` — Gets an enumerator for the collection. This returns a concrete struct enumerator so that `foreach` over the collection stays allocation-free.
+  - returns — An enumerator.
+
+## struct InteractorCollection.Enumerator
+
+An allocation-free struct enumerator for an `InteractorCollection`.
+- `void InteractorCollection.Enumerator.Dispose()` — Nothing to dispose, this is here to satisfy the IEnumerator interface.
+- `bool InteractorCollection.Enumerator.MoveNext()` — Advances to the next Interactor.
+  - returns — False once the end of the collection is reached.
+- `void InteractorCollection.Enumerator.Reset()` — Resets the enumerator to before the first element.
 
 ## enum InteractorEvent
 
@@ -1310,6 +1384,20 @@ A bit-flag mask for interaction event types. This allows or informs what type of
 - `InteractorEvent.Grip` — Grip events represent the gripping gesture of the hand. This can also map to something like the grip button on a controller. This is generally for larger objects where humans have a tendency to make full fisted grasping motions, like with door handles or sword hilts.
 - `InteractorEvent.Pinch` — Pinch events represent the pinching gesture of the hand, where the index finger tip and thumb tip come together. This can also map to something like the trigger button of a controller. This is generally for smaller objects where humans tend to grasp more delicately with just their fingertips, like with a pencil or switches.
 - `InteractorEvent.Poke` — Poke events represent direct physical interaction with elements via a single point. This might be like a fingertip pressing a button, or a pencil tip on a page of a paper.
+
+## enum InteractorSource
+
+A bit-flag describing the physical source an interactor's input comes from, such as a specific hand, controller, or the mouse. Interactors that share a source are mutually exclusive: while one is actively interacting, the others won't begin a new interaction. This is how the poke, pinch, and aim interactors of a single hand avoid fighting over the same element. The bits at and above `InteractorSource.Max` are free for your own custom sources.
+
+- `InteractorSource.Any` — Matches with all sources!
+- `InteractorSource.ControllerLeft` — The left motion controller.
+- `InteractorSource.ControllerRight` — The right motion controller.
+- `InteractorSource.Gaze` — Gaze or eye tracking based input.
+- `InteractorSource.HandLeft` — The left hand.
+- `InteractorSource.HandRight` — The right hand.
+- `InteractorSource.Max` — The first bit available for your own custom interactor sources. Bits at and above this are unused by StereoKit, so you can define your own relative to it, for example `(InteractorSource)((int)InteractorSource.Max << 1)`.
+- `InteractorSource.Mouse` — A mouse pointer.
+- `InteractorSource.Unique` — A unique, independent source. Interactors with this source never group with any other interactor, and are invisible to source queries like `Interactor.IsInteracting`. This is the default 'shares nothing' source.
 
 ## enum InteractorType
 
@@ -1613,6 +1701,7 @@ A Material describes the surface of anything drawn on the graphics card! It is t
 - `void Material.SetBool(string name, bool value)` — Sets a shader parameter with the given name to the provided value. If no parameter is found, nothing happens, and the value is not set!
   - `name` — Name of the shader parameter.
   - `value` — New value for the parameter.
+  - Example: see `Material.SetBool` in StereoKit-docs-reference.md
 - `void Material.SetColor(string name, Color32 colorGamma)` — Sets a shader parameter with the given name to the provided value. If no parameter is found, nothing happens, and the value is not set!
   - `name` — Name of the shader parameter.
   - `colorGamma` — The gamma space color for the shader to use.
@@ -1630,6 +1719,7 @@ A Material describes the surface of anything drawn on the graphics card! It is t
 - `void Material.SetFloat(string name, float value)` — Sets a shader parameter with the given name to the provided value. If no parameter is found, nothing happens, and the value is not set!
   - `name` — Name of the shader parameter.
   - `value` — New value for the parameter.
+  - Example: see `Material.SetFloat` in StereoKit-docs-reference.md
 - `void Material.SetInt(string name, int value)` — Sets a shader parameter with the given name to the provided value. If no parameter is found, nothing happens, and the value is not set!
   - `name` — Name of the shader parameter.
   - `value` — New value for the parameter.
@@ -1648,6 +1738,7 @@ A Material describes the surface of anything drawn on the graphics card! It is t
   - `value2` — New value for the parameter.
   - `value3` — New value for the parameter.
   - `value4` — New value for the parameter.
+  - Example: see `Material.SetInt` in StereoKit-docs-reference.md
 - `void Material.SetMatrix(string name, Matrix value)` — Sets a shader parameter with the given name to the provided value. If no parameter is found, nothing happens, and the value is not set!
   - `name` — Name of the shader parameter.
   - `value` — New value for the parameter.
@@ -1676,6 +1767,7 @@ A Material describes the surface of anything drawn on the graphics card! It is t
   - `value2` — New value for the parameter.
   - `value3` — New value for the parameter.
   - `value4` — New value for the parameter.
+  - Example: see `Material.SetUInt` in StereoKit-docs-reference.md
 - `void Material.SetVariant(int variantIndex, Material variantMaterial)` — Variants are used by special effects when a manual render pass selects a variant to use for the whole pass! Variants default to null, and null variants are not drawn. For example, a shadow map render pass might use variant 1, and sets it to a simplified Material that skips textures and only does positional vertex transforms.
   - `variantIndex` — Which variant index should we set? 0 is reserved for the primary material, and SK has a max of 4 total variants, including the default.
   - `variantMaterial` — The Material to use for the variant. Sub-variants are ignored, and a null variant means nothing will be drawn when using the variant.
@@ -2041,6 +2133,8 @@ A Mesh is a single collection of triangular faces with extra surface information
   - returns — Returns true if triangle index was valid
 - `Vertex[] Mesh.GetVerts()` — This marshalls the Mesh's vertex data into an array. If KeepData is false, then the Mesh is _not_ storing verts on the CPU, and this information will _not_ be available. Due to the way marshalling works, this is _not_ a cheap function!
   - returns — An array of vertices representing the Mesh, or null if KeepData is false.
+- `Vertex[] Mesh.GetVerts()` — This marshalls the vertex data of a custom format Mesh into an array of T. T's [VertComponent] derived format must exactly match the format the Mesh was created with, and KeepData must be true for vertex data to be available. Due to the way marshalling works, this is _not_ a cheap function!
+  - returns — An array of vertices representing the Mesh, or null if KeepData is false.
 - `bool Mesh.Intersect(Ray modelSpaceRay, Ray& modelSpaceAt)` — Checks the intersection point of this ray and a Mesh with collision data stored on the CPU. A mesh without collision data will always return false. Ray must be in model space, intersection point will be in model space too. You can use the inverse of the mesh's world transform matrix to bring the ray into model space, see the example in the docs!
   - `modelSpaceRay` — Ray must be in model space, the intersection point will be in model space too. You can use the inverse of the mesh's world transform matrix to bring the ray into model space, see the example in the docs!
   - `modelSpaceAt` — The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.
@@ -2065,6 +2159,16 @@ A Mesh is a single collection of triangular faces with extra surface information
   - `flags` — Flags controlling upload behavior. See MeshData for options.
   - `priority` — Loading priority for async upload. Lower values load sooner.
   - Example: see `Mesh.SetData` in StereoKit-docs-reference.md
+- `void Mesh.SetData(T[] vertices, UInt32[] indices, bool calculateBounds)` — Assigns vertices with a custom vertex format along with face indices for this Mesh in a single call! The format is derived from T's [VertComponent] tagged fields, see SetVerts for details. Calling SetData is slightly more efficient than calling SetVerts and SetInds separately.
+  - `vertices` — An array of vertices to add to the mesh.
+  - `indices` — A list of face indices, must be a multiple of 3. Each index represents a vertex from the provided vertex array.
+  - `calculateBounds` — If true, this will also update the Mesh's bounds based on the vertices provided. This requires the format to contain a float3 position component.
+- `void Mesh.SetData(T[] vertices, UInt32[] indices, MeshData flags, int priority)` — Assigns vertices with a custom vertex format along with face indices for this Mesh in a single call, with control over upload behavior via flags! Upload is synchronous by default — pass MeshData.Async for background upload. The format is derived from T's [VertComponent] tagged fields, see SetVerts for details.
+  - `vertices` — An array of vertices to add to the mesh.
+  - `indices` — A list of face indices, must be a multiple of 3. Each index represents a vertex from the provided vertex array.
+  - `flags` — Flags controlling upload behavior. See MeshData for options.
+  - `priority` — Loading priority for async upload. Lower values load sooner.
+  - Example: see `Mesh.SetData` in StereoKit-docs-reference.md
 - `void Mesh.SetInds(UInt32[] indices)` — Assigns the face indices for this Mesh! Faces are always triangles, there are only ever three indices per face. This function will create a index buffer object on the graphics card. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!
   - `indices` — A list of face indices, must be a multiple of 3. Each index represents a vertex from the array assigned using SetVerts.
   - Example: see `Mesh.SetInds` in StereoKit-docs-reference.md
@@ -2075,6 +2179,10 @@ A Mesh is a single collection of triangular faces with extra surface information
 - `void Mesh.SetVerts(Vertex[] vertices, bool calculateBounds)` — Assigns the vertices for this Mesh! This will create a vertex buffer object on the graphics card. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data! Remember to set all the relevant values! Your material will often show black if the Normals or Colors are left at their default values.
   - `vertices` — An array of vertices to add to the mesh. Remember to set all the relevant values! Your material will often show black if the Normals or Colors are left at their default values.
   - `calculateBounds` — If true, this will also update the Mesh's bounds based on the vertices provided. Since this does require iterating through all the verts with some logic, there is performance cost to doing this. If you're updating a mesh frequently or need all the performance you can get, setting this to false is a nice way to gain some speed!
+  - Example: see `Mesh.SetVerts` in StereoKit-docs-reference.md
+- `void Mesh.SetVerts(T[] vertices, bool calculateBounds)` — Assigns vertices with a custom vertex format to this Mesh! The format is derived from T's fields, each of which must be tagged with a [VertComponent] attribute describing what it is. The shader this Mesh is drawn with must be one that works with the components this format provides, StereoKit's built-in shaders all expect position, normal, texcoord and color. A T that doesn't exactly describe its own memory layout will throw an ArgumentException here, see [VertComponent] docs for the rules.
+  - `vertices` — An array of vertices to add to the mesh.
+  - `calculateBounds` — If true, this will also update the Mesh's bounds based on the vertices provided. This requires the format to contain a float3 position component.
   - Example: see `Mesh.SetVerts` in StereoKit-docs-reference.md
 - `void Mesh.UpdateSkin(Matrix[] bonePalette)` — Drives the per-frame CPU deformation for a skinned Mesh. SetSkin must have been called first. This walks every vertex, blends the bone transforms by weight, and re-uploads the deformed vertices to the GPU. `bonePalette` holds the current world-space transform for each bone, in the same coordinate system the resting transforms passed to SetSkin were authored in. Its length must match the bone count supplied to SetSkin. Because deformation mutates this Mesh's vertex buffer in place, two entities driven by different bone palettes need their own Mesh instance — use Copy on a shared source mesh to get per-instance deformation.
   - `bonePalette` — World-space transform per bone for this frame. Length must match the bone count supplied to SetSkin.
@@ -2203,8 +2311,16 @@ A Model is a collection of meshes, materials, and transforms that make up a visu
 An enumerable for Model's Anims
 
 - `int ModelAnimCollection.Count` — This is the total number of animations attached to the model. This will block until the Model has fully finished loading.
-- `IEnumerator`1 ModelAnimCollection.GetEnumerator()` — Gets an enumerator for the collection.
+- `Enumerator ModelAnimCollection.GetEnumerator()` — Gets an enumerator for the collection. This returns a concrete struct enumerator so that `foreach` over the collection stays allocation-free (aside from the Anim objects themselves).
   - returns — An enumerator.
+
+## struct ModelAnimCollection.Enumerator
+
+An allocation-free struct enumerator for a `ModelAnimCollection`.
+- `void ModelAnimCollection.Enumerator.Dispose()` — Nothing to dispose, this is here to satisfy the IEnumerator interface.
+- `bool ModelAnimCollection.Enumerator.MoveNext()` — Advances to the next Anim.
+  - returns — False once the end of the collection is reached.
+- `void ModelAnimCollection.Enumerator.Reset()` — Resets the enumerator to before the first element.
 
 ## class ModelNode
 
@@ -2254,8 +2370,16 @@ An enumerable for Model's ModelNodes
   - `material` — The Material to attach to this Node's visual, if this is null, then mesh must also be null.
   - `solid` — A flag that indicates the Mesh for this node will be used in ray intersection tests. This flag is ignored if no Mesh is attached.
   - returns — This returns the newly added ModelNode, or if there's an issue with mesh and material being inconsistently null, then this result will also be null.
-- `IEnumerator`1 ModelNodeCollection.GetEnumerator()` — Gets an enumerator for the collection.
+- `Enumerator ModelNodeCollection.GetEnumerator()` — Gets an enumerator for the collection. This returns a concrete struct enumerator so that `foreach` over the collection stays allocation-free.
   - returns — An enumerator.
+
+## struct ModelNodeCollection.Enumerator
+
+An allocation-free struct enumerator for a `ModelNodeCollection`.
+- `void ModelNodeCollection.Enumerator.Dispose()` — Nothing to dispose, this is here to satisfy the IEnumerator interface.
+- `bool ModelNodeCollection.Enumerator.MoveNext()` — Advances to the next ModelNode.
+  - returns — False once the end of the collection is reached.
+- `void ModelNodeCollection.Enumerator.Reset()` — Resets the enumerator to before the first element.
 
 ## struct ModelNodeInfoCollection
 
@@ -2275,20 +2399,36 @@ A collection of key/value string pairs adding additional information to the Mode
 - `string ModelNodeInfoCollection.Get(string key)` — Finds the value associated with the given key, returns null if the key is not present.
   - `key` — Identifying key.
   - returns — Associated value, or null if not found.
-- `IEnumerator`1 ModelNodeInfoCollection.GetEnumerator()` — The enumerator for the collection's KeyValuePairs.
+- `Enumerator ModelNodeInfoCollection.GetEnumerator()` — The enumerator for the collection's KeyValuePairs. This is a concrete struct enumerator so that `foreach` over the collection stays allocation-free (aside from the key/value strings themselves).
   - returns — Each consecutive pair in the collection.
 - `bool ModelNodeInfoCollection.Remove(string key)` — Removes a specific key/value pair from the collection, if present.
   - `key` — Identifying key.
   - returns — True if found and removed, false if not.
   - Example: see `ModelNodeInfoCollection.Remove` in StereoKit-docs-reference.md
 
+## struct ModelNodeInfoCollection.Enumerator
+
+An allocation-free struct enumerator for a `ModelNodeInfoCollection`.
+- `void ModelNodeInfoCollection.Enumerator.Dispose()` — Nothing to dispose, this is here to satisfy the IEnumerator interface.
+- `bool ModelNodeInfoCollection.Enumerator.MoveNext()` — Advances to the next key/value pair.
+  - returns — False once the end of the collection is reached.
+- `void ModelNodeInfoCollection.Enumerator.Reset()` — Resets the enumerator to before the first element.
+
 ## class ModelVisualCollection
 
 An enumerable for Model's visual ModelNodes
 
 - `int ModelVisualCollection.Count` — This is the total number of nodes with visual data attached to them. This will block until the Model's metadata has finished loading.
-- `IEnumerator`1 ModelVisualCollection.GetEnumerator()` — Gets an enumerator for the collection.
+- `Enumerator ModelVisualCollection.GetEnumerator()` — Gets an enumerator for the collection. This returns a concrete struct enumerator so that `foreach` over the collection stays allocation-free.
   - returns — An enumerator.
+
+## struct ModelVisualCollection.Enumerator
+
+An allocation-free struct enumerator for a `ModelVisualCollection`.
+- `void ModelVisualCollection.Enumerator.Dispose()` — Nothing to dispose, this is here to satisfy the IEnumerator interface.
+- `bool ModelVisualCollection.Enumerator.MoveNext()` — Advances to the next ModelNode.
+  - returns — False once the end of the collection is reached.
+- `void ModelVisualCollection.Enumerator.Reset()` — Resets the enumerator to before the first element.
 
 ## struct Mouse
 
@@ -2324,8 +2464,8 @@ Certain features in XR require explicit permissions from the operating system an
 - `static bool Permission.IsInteractive(PermissionType permission)` — Does this permission need the user to approve it? This typically means a popup window will come up when you Request this permission, and the user has a chance to decline it. If your app is an Android Service, this only reflects the Dangerous status of the permission.
   - `permission` — The permission you're interested in.
   - returns — True if the permission requires user interaction, false otherwise.
-- `static void Permission.Request(PermissionType permission)` — This sends off a request to the OS for a particular permission! If the permission IsInteractive, then this will bring up a popup that the user may need to interact with. Otherwise, this will silently approve the permission. This means that the permission may take an arbitrary amount of time before it's approved, or declined. If your app is an Android Service, this function will do nothing.
-  - `permission` — The permission to request.
+- `static void Permission.Request(PermissionType[] permissions)` — This sends off a request to the OS for one or more permissions! If a permission IsInteractive, then this will bring up a popup that the user may need to interact with. Otherwise, this will silently approve the permission. This means that the permission may take an arbitrary amount of time before it's approved, or declined. Requesting multiple permissions in a single call is preferable to chaining individual requests yourself, since the OS gets to present them together and you avoid the risk of a follow-up request getting dropped while an earlier popup is still up. Any permissions that aren't known on the current platform are skipped with a warning. If your app is an Android Service, this function will do nothing.
+  - `permissions` — The permission(s) to request.
 - `static PermissionState Permission.State(PermissionType permission)` — Retreives the current state of a particular permission. This is a fast check, so it's fine to call frequently.
   - `permission` — The permission you're interested in.
   - returns — Check `PermissionState` for details.
@@ -2766,10 +2906,11 @@ A pretty straightforward 2D rectangle, defined by the top left corner of the rec
 
 When rendering to a rendertarget, this tells if and what of the rendertarget gets cleared before rendering. For example, if you are assembling a sheet of images, you may want to clear everything on the first image draw, but not clear on subsequent draws.
 
-- `RenderClear.All` — Clear both color and depth data.
+- `RenderClear.All` — Clear both color and depth data. A zero value also means this - it's the default, so zero-initialized settings clear everything.
 - `RenderClear.Color` — Clear the rendertarget's color data.
 - `RenderClear.Depth` — Clear the rendertarget's depth data, if present.
-- `RenderClear.None` — Don't clear anything, leave it as it is.
+- `RenderClear.Keep` — Don't clear anything, draw on top of what's already there.
+- `RenderClear.None` — Deprecated, use render_clear_keep.
 
 ## static class Renderer
 
@@ -2782,7 +2923,7 @@ Do you need to draw something? Well, you're probably in the right place! This st
 - `static float Renderer.FOV` — Only works for 2D windowed modes! This updates the camera's projection matrix with a new vertical field of view. This value only affects perspective mode projection, which is the default projection mode.
 - `static bool Renderer.HasCaptureFilter` — This tells if CaptureFilter has been overridden to a specific value via `Renderer.OverrideCaptureFilter`.
 - `static RenderLayer Renderer.LayerFilter` — By default, StereoKit renders all first-person layers. This is a bit flag that allows you to change which layers StereoKit renders for the primary viewpoint. To change what layers a visual is on, use a Draw method that includes a RenderLayer as a parameter.
-- `static int Renderer.Multisample` — Allows you to set the multisample (MSAA) level of the render surface. Valid values are 1, 2, 4, 8, 16, though some OpenXR runtimes may clamp this to lower values. Note that while this can greatly smooth out edges, it also greatly increases RAM usage and fill rate, so use it sparingly. Only works in XR mode. If known in advance, set this via SKSettings in initialization. This is a _very_ costly change to make.
+- `static int Renderer.Multisample` — Allows you to set the multisample (MSAA) level of the render surface. Valid values are 1, 2, 4, and 8, though this is clamped to what the GPU actually supports. Note that while this can greatly smooth out edges, it also increases RAM usage and fill rate. How much it costs depends a lot on the GPU! Tiled renderers, like the mobile chips in most standalone XR headsets, resolve MSAA in tile memory, which makes it nearly free. Desktop GPUs instead pay memory bandwidth for the multisampled surface and for resolving it, so MSAA is far more expensive there, especially at high resolutions. A value of 1 skips the multisampled surface entirely. If known in advance, set this via SKSettings in initialization. This is a _very_ costly change to make. Defaults to 4.
 - `static float Renderer.OrthoSize` — This sets the size of the orthographic projection's viewport. You can use this feature to zoom in and out of the scene. This value only affects orthographic mode projection, which is only available in 2D window modes.
 - `static Projection Renderer.Projection` — For flatscreen applications only! This allows you to change the camera projection between perspective and orthographic projection. This may be of interest for some category of UI work, but is generally a niche piece of functionality. Swapping between perspective and orthographic will also switch the clipping planes and field of view to the values associated with that mode. See `SetClip`/`SetFov` for perspective, and `SetOrthoClip`/`SetOrthoSize` for orthographic.
 - `static float Renderer.Scaling` — OpenXR has a recommended default for the main render surface, this variable allows you to set SK's surface to a multiple of the recommended size. Note that the final resolution may also be clamped or quantized. Only works in XR mode. If known in advance, set this via SKSettings in initialization. This is a _very_ costly change to make. Consider if ViewportScaling will work for you instead, and prefer that.
@@ -2838,6 +2979,17 @@ Do you need to draw something? Well, you're probably in the right place! This st
   - `clear` — Describes if and how the rendertarget should be cleared before rendering. Note that clearing the target is unaffected by the viewport, so this will clean the entire surface!
   - `viewport` — Allows you to specify a region of the rendertarget to draw to! This is in normalized coordinates, 0-1. If the width of this value is zero, then this will render to the entire texture.
   - `toTargetIndex` — Index of the render target's array texture we want to draw to.
+- `static void Renderer.RenderTo(Tex toRendertarget, Matrix camera, Matrix projection, RenderSettings settings)` — This renders the current scene to the indicated rendertarget texture from the specified viewpoint, using a RenderSettings struct for everything else - including tile-friendly post-processing effects! This call enqueues a render that occurs immediately before the screen itself is rendered.
+  - `toRendertarget` — The texture to which the scene will be rendered to. This must be a Rendertarget type texture.
+  - `camera` — A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.
+  - `projection` — The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.
+  - `settings` — Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.
+- `static void Renderer.RenderTo(Tex toRendertarget, int toTargetIndex, Matrix camera, Matrix projection, RenderSettings settings)` — This renders the current scene to the indicated rendertarget texture from the specified viewpoint, using a RenderSettings struct for everything else - including tile-friendly post-processing effects! This call enqueues a render that occurs immediately before the screen itself is rendered.
+  - `toRendertarget` — The texture to which the scene will be rendered to. This must be a Rendertarget type texture.
+  - `camera` — A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.
+  - `projection` — The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.
+  - `settings` — Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.
+  - `toTargetIndex` — Index of the render target's array texture we want to draw to.
 - `static void Renderer.RenderTo(Tex toRendertarget, Matrix[]& cameras, Matrix[]& projections, RenderLayer layerFilter, int materialVariant, RenderClear clear, Rect viewport)` — Multi-view variant of RenderTo. Queues a single render pass that draws the active list into N views at once, with one camera + projection per view, writing into N consecutive layers of an array rendertarget. The number of views is capped by the engine's max-views constant. Like the single-view RenderTo, this is queued for the next pipeline frame.
   - `toRendertarget` — An array or cubemap rendertarget with at least `cameras.Length` layers.
   - `cameras` — View transforms, one per view.
@@ -2846,6 +2998,14 @@ Do you need to draw something? Well, you're probably in the right place! This st
   - `materialVariant` — Which material variant to use.
   - `clear` — Whether and how to clear the rendertarget.
   - `viewport` — Subregion in normalized 0-1 coordinates.
+- `static void Renderer.RenderTo(Tex toRendertarget, Matrix[]& cameras, Matrix[]& projections, RenderSettings settings)` — This renders the current scene to the indicated rendertarget texture from the specified viewpoint, using a RenderSettings struct for everything else - including tile-friendly post-processing effects! This call enqueues a render that occurs immediately before the screen itself is rendered.
+  - `toRendertarget` — The texture to which the scene will be rendered to. This must be a Rendertarget type texture.
+  - `camera` — A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.
+  - `projection` — The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.
+  - `settings` — Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.
+  - `cameras` — View transforms, one per view.
+  - `projections` — Projection matrices, one per view. Length must match `cameras`.
+  - Example: see `Renderer.RenderTo` in StereoKit-docs-reference.md
 - `static void Renderer.Screenshot(string filename, Vec3 from, Vec3 at, int width, int height, float fieldOfViewDegrees)` — Schedules a screenshot for the end of the frame! The view will be rendered from the given position at the given point, with a resolution the same size as the screen's surface. It'll be saved as a JPEG or PNG file depending on the filename extension provided.
   - `filename` — Filename to write the screenshot to! This will be a PNG if the extension ends with (case insensitive) ".png", and will be a 90 quality JPEG if it ends with anything else.
   - `from` — Viewpoint location.
@@ -2867,7 +3027,7 @@ Do you need to draw something? Well, you're probably in the right place! This st
   - `height` — Size of the screenshot vertically, in pixels.
   - `fieldOfViewDegrees` — The angle of the viewport, in degrees.
 - `static void Renderer.Screenshot(ScreenshotCallback onScreenshot, Vec3 from, Vec3 at, int width, int height, float fieldOfViewDegrees, TexFormat texFormat)` — Schedules a screenshot for the end of the frame! The view will be rendered from the given position at the given point, with a resolution the same size as the screen's surface. This overload allows for retrieval of the color data directly from the render thread! You can use the color data directly by saving/processing it inside your callback, or you can keep the data alive for as long as it is referenced.
-  - `onScreenshot` — Outputs a reference to the color data and its length which represent the current scene from a requested viewpoint.
+  - `onScreenshot` — A callback that receives the captured pixel data, its format, and its dimensions for the requested viewpoint.
   - `from` — Viewpoint location.
   - `at` — Direction the viewpoint is looking at.
   - `width` — Size of the screenshot horizontally, in pixels.
@@ -2875,7 +3035,7 @@ Do you need to draw something? Well, you're probably in the right place! This st
   - `fieldOfViewDegrees` — The angle of the viewport, in degrees.
   - `texFormat` — The pixel format of the color data.
 - `static void Renderer.Screenshot(ScreenshotCallback onScreenshot, Matrix camera, Matrix projection, int width, int height, RenderLayer layerFilter, RenderClear clear, Rect viewport, TexFormat texFormat)` — Schedules a screenshot for the end of the frame! The view will be rendered from the given position at the given point, with a resolution the same size as the screen's surface. This overload allows for retrieval of the color data directly from the render thread! You can use the color data directly by saving/processing it inside your callback, or you can keep the data alive for as long as it is referenced.
-  - `onScreenshot` — Outputs a reference to the color data and its length which represent the current scene from a requested viewpoint.
+  - `onScreenshot` — A callback that receives the captured pixel data, its format, and its dimensions for the requested viewpoint.
   - `camera` — A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.
   - `projection` — The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.
   - `layerFilter` — This is a bit flag that allows you to change which layers StereoKit renders for this particular render viewpoint. To change what layers a visual is on, use a Draw method that includes a RenderLayer as a parameter.
@@ -2900,10 +3060,13 @@ Do you need to draw something? Well, you're probably in the right place! This st
   - `farPlane` — At what distance from the camera does the GPU discard pixel? This is not true distance, but rather Z-axis distance from zero in View Space coordinates!
 - `static void Renderer.SetOrthoSize(float viewportHeightMeters)` — This sets the size of the orthographic projection's viewport. You can use this feature to zoom in and out of the scene. This value only affects orthographic mode projection, which is only available in 2D window modes.
   - `viewportHeightMeters` — The vertical size of the projection's viewport, in meters.
+- `static void Renderer.SetPostProcess(Material[] postProcessChain)` — Sets the main display's post-process chain! The Materials apply in array order, at most 2 per pass, and calling this with no arguments clears the chain. Post-processing here is tile-renderer friendly: effects run as subpasses that stay in tile memory on mobile GPUs, and they apply to the main display and to screenshots - what you see is what you shoot. A post-process Material's shader reads the scene through a pixel-local input attachment named 'color' (in HLSL, `[[vk::input_attachment_index(0)]] SubpassInput<float4> color;` read with `color.SubpassLoad()`), draws as a bufferless fullscreen triangle from SV_VertexID, and so cannot have vertex inputs. It may also read depth through an input attachment named 'depth' at index 1. Materials that don't qualify are rejected with an error log. Regular textures and Material parameters work normally, and can be animated per-frame.
+  - `postProcessChain` — Materials whose shaders qualify as post-process effects, applied in order. Empty clears the chain.
+  - Example: see `Renderer.SetPostProcess` in StereoKit-docs-reference.md
 
 ## enum RenderLayer
 
-When rendering content, you can filter what you're rendering by the RenderLayer that they're on. This allows you to draw items that are visible in one render, but not another. For example, you may wish to draw a player's avatar in a 'mirror' rendertarget, but not in the primary display. See `Renderer.LayerFilter` for configuring what the primary display renders. Render layers can also be mixed and matched like bit-flags!
+When rendering content, you can filter what you're rendering by the RenderLayer that they're on. This allows you to draw items that are visible in one render, but not another. For example, you may wish to draw a player's avatar in a 'mirror' rendertarget, but not in the primary display. See `Renderer.LayerFilter` for configuring what the primary display renders. Render layers can also be mixed and matched like bit-flags! Note that while this enum is 32 bits wide, render layers are stored internally in 16 bits when items are queued for drawing. Only the low 16 bits are usable as layers, so any custom flags above bit 15 will be silently truncated.
 
 - `RenderLayer.All` — This is a flag that specifies all possible layers. If you want to render all layers, then this is the layer filter you would use. This is the default for render filtering.
 - `RenderLayer.AllFirstPerson` — All layers except for the third person layer.
@@ -2921,6 +3084,7 @@ When rendering content, you can filter what you're rendering by the RenderLayer 
 - `RenderLayer.Layer8` — Render layer 8.
 - `RenderLayer.Layer9` — Render layer 9.
 - `RenderLayer.ThirdPerson` — For items that should only be drawn from the third person perspective. By default, this is enabled for renders that are from a 3rd person viewpoint.
+- `RenderLayer.UI` — The default layer for StereoKit's UI. Mesh and model content drawn by the UI system uses this layer, see `UI.RenderLayer` to change it.
 - `RenderLayer.Vfx` — The default VFX layer, StereoKit draws some non-standard mesh content using this flag, such as lines.
 
 ## class RenderList
@@ -2961,6 +3125,11 @@ A RenderList is a collection of Draw commands that can be submitted to various s
   - `viewportPct` — Allows you to specify a region of the rendertarget to draw to! This is in normalized coordinates, 0-1. If the width of this value is zero, then this will render to the entire texture.
   - `layerFilter` — This is a bit flag that allows you to change which layers StereoKit renders for this particular render viewpoint. To change what layers a visual is on, use a Draw method that includes a RenderLayer as a parameter.
   - `materialVariant` — Specifies which Material variant should be used for rendering. 0 will be the normal default material, any others will generally be application-defined by setting up each Material's Variant with specific shaders. If a Material has no corresponding variant, it will not be drawn.
+- `void RenderList.DrawNow(Tex toRenderTarget, Matrix camera, Matrix projection, RenderSettings settings)` — This renders the RenderList to the rendertarget texture immediately, from the specified viewpoint, using a RenderSettings struct for everything else - including tile-friendly post-process effects! See Renderer.SetPostProcess for post-process shader requirements.
+  - `toRenderTarget` — The rendertarget texture to draw to.
+  - `camera` — A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.
+  - `projection` — The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.
+  - `settings` — Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.
 - `void RenderList.DrawNow(Tex toRenderTarget, Matrix[]& cameras, Matrix[]& projections, Color clearColor, RenderClear clear, Rect viewportPct, RenderLayer layerFilter, int materialVariant)` — Multi-view variant of DrawNow. Renders the list once across multiple views in a single pass, with one camera + projection per view. Each view writes to its corresponding layer of the (array) render target. The number of views is capped at 6.
   - `toRenderTarget` — An array or cubemap rendertarget with at least `cameras.Length` layers.
   - `cameras` — View transforms, one per view. Length must equal `projections.Length` and cannot exceed Renderer.MaxViews.
@@ -2970,6 +3139,13 @@ A RenderList is a collection of Draw commands that can be submitted to various s
   - `viewportPct` — Subregion of the rendertarget to draw to, in normalized coordinates 0-1. Width of zero draws to the entire target.
   - `layerFilter` — Bit flag controlling which render layers are drawn this pass.
   - `materialVariant` — Which material variant to use. 0 is the default; non-zero indexes into Material.Variants.
+- `void RenderList.DrawNow(Tex toRenderTarget, Matrix[]& cameras, Matrix[]& projections, RenderSettings settings)` — This renders the RenderList to the rendertarget texture immediately, from the specified viewpoint, using a RenderSettings struct for everything else - including tile-friendly post-process effects! See Renderer.SetPostProcess for post-process shader requirements.
+  - `toRenderTarget` — The rendertarget texture to draw to.
+  - `camera` — A TRS matrix representing the location and orientation of the camera. This matrix gets inverted later on, so no need to do it yourself.
+  - `projection` — The projection matrix describes how the geometry is flattened onto the draw surface. Normally, you'd use Matrix.Perspective, and occasionally Matrix.Orthographic might be helpful as well.
+  - `settings` — Settings for this render pass, a `default` here means all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.
+  - `cameras` — View transforms, one per view. Length must equal `projections.Length` and cannot exceed Renderer.MaxViews.
+  - `projections` — Projection matrices, one per view. Same length as `cameras`.
   - Example: see `RenderList.DrawNow` in StereoKit-docs-reference.md
 - `static RenderList RenderList.Find(string listId)` — Finds the RenderList with the matching id, and returns a reference to it. If no RenderList is found, it returns null.
   - `listId` — Id of the RenderList we're looking for.
@@ -2985,9 +3161,20 @@ Controls whether a RenderList holds asset references for the items it contains. 
 - `RenderListRefs.None` — The list does not addref or releaseref its items. The caller is responsible for ensuring referenced assets remain valid until the list is cleared. Useful for per-frame lists that are filled and drained inside a single frame.
 - `RenderListRefs.Tracked` — The list calls addref on each item's mesh/material when added, and releaseref when cleared. This keeps assets alive for as long as the list holds them, and is the safe default.
 
+## struct RenderSettings
+
+Optional settings for rendering a camera viewpoint to a rendertarget, used by Renderer.RenderTo and RenderList.DrawNow. This is a plain struct where zero means 'default' - a `default` or `new` RenderSettings gives you: all layers, the default material variant, clear everything to transparent black, a full-target viewport, and no post-processing.
+
+- `RenderClear RenderSettings.clear` — Describes if and how the rendertarget should be cleared before rendering. A value of 0 (the default) clears everything, use RenderClear.Keep to draw on top of the target's existing content. Note that clearing the target is unaffected by the viewport, so this will clean the entire surface!
+- `Color RenderSettings.clearColor` — If `clear` clears color, this is the color it will clear to, in linear space. Default is a transparent black.
+- `RenderLayer RenderSettings.layerFilter` — This is a bit flag that allows you to change which layers StereoKit renders for this particular pass. To change what layers a visual is on, use a Draw method that includes a RenderLayer as a parameter. A value of 0 (the default) means RenderLayer.All.
+- `int RenderSettings.materialVariant` — Specifies which Material variant should be used for rendering. 0 is the normal default material, any others will generally be application-defined by setting up each Material's Variant with specific shaders. If a Material has no corresponding variant, it will not be drawn.
+- `Material[] RenderSettings.postProcess` — An optional list of post-process Materials for this pass, applied in array order. These are tile-friendly subpass effects, see Renderer.SetPostProcess for the shader requirements. Null is fine here, and means no post-processing.
+- `Rect RenderSettings.viewport` — Allows you to specify a region of the rendertarget to draw to! This is in normalized coordinates, 0-1. If the width of this value is zero (the default), then this will render to the entire texture.
+
 ## delegate ScreenshotCallback
 
-A callback for receiving the color data of a screenshot, instead of saving it directly to a file.
+A callback for receiving the pixel data of a screenshot, instead of saving it directly to a file.
 
 ## static class Sensor
 
@@ -3186,7 +3373,7 @@ StereoKit initialization settings! Setup SK.settings with your data before calli
 - `OriginMode SKSettings.origin` — Set the behavior of StereoKit's initial origin. Default behavior is OriginMode.Local, which is the most universally supported origin mode. Different origin modes have varying levels of support on different XR runtimes, and StereoKit will provide reasonable fallbacks for each. NOTE that when falling back, StereoKit will use a different root origin mode plus an offset. You can check World.OriginMode and World.OriginOffset to inspect what StereoKit actually landed on.
 - `bool SKSettings.overlayApp` — If the runtime supports it, should this application run as an overlay above existing applications? Check SK.System.overlayApp after initialization to see if the runtime could comply with this flag. This will always force StereoKit to work in a blend compositing mode.
 - `uint SKSettings.overlayPriority` — For overlay applications, this is the order in which apps should be composited together. 0 means first, bottom of the stack, and uint.MaxValue is last, on top of the stack.
-- `int SKSettings.renderMultisample` — If you know in advance that you need this feature, this setting allows you to set `Renderer.Multisample` before initialization. This avoids creating and discarding a large and unnecessary swapchain object. Default value is 1.
+- `int SKSettings.renderMultisample` — If you know in advance that you need this feature, this setting allows you to set `Renderer.Multisample` before initialization. This avoids creating and discarding a large and unnecessary swapchain object. Leave this at 0 to use the default, which is 4.
 - `float SKSettings.renderScaling` — If you know in advance that you need this feature, this setting allows you to set `Renderer.Scaling` before initialization. This avoids creating and discarding a large and unnecessary swapchain object. Default value is 1.
 - `StandbyMode SKSettings.standbyMode` — Configures StereoKit's behavior during device standby. By default in v0.4, SK will completely pause the main thread and disable audio. In v0.3, SK will continue to execute at a throttled pace, and audio will remain on.
 
@@ -3327,12 +3514,14 @@ A Sprite is an image that's set up for direct 2D rendering, without using a mesh
 - `static Sprite Sprite.Shift` — This is a 64x64 image of an upward facing rounded arrow. This is a triangular top with a narrow rectangular base, and is used to indicate a 'shift' icon on a keyboard.
 - `static Sprite Sprite.ToggleOff` — This is a 64x64 image of an empty rounded square. This is common iconography for checkboxes which use an empty square to indicate an un-selected checkbox, and a filled square for a selected checkbox. This is used by the UI for toggle buttons!
 - `static Sprite Sprite.ToggleOn` — This is a 64x64 image of a filled rounded square. This is common iconography for checkboxes which use an empty square to indicate an un-selected checkbox, and a filled square for a selected checkbox. This is used by the UI for toggle buttons!
-- `void Sprite.Draw(Matrix& transform, Pivot pivotPosition)` — Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.
+- `void Sprite.Draw(Matrix& transform, Pivot pivotPosition, RenderLayer layer)` — Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.
   - `transform` — A Matrix describing a transform from model space to world space. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately and remember that your anchor position may affect the transform as well.
   - `pivotPosition` — Describes what corner of the sprite you're specifying the transform of. The 'Pivot' point or 'Origin' of the Sprite.
-- `void Sprite.Draw(Matrix& transform, Pivot anchorPosition, Color32 linearColor)` — Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.
+  - `layer` — The RenderLayer this sprite should be drawn on. This defaults to RenderLayer.Layer0.
+- `void Sprite.Draw(Matrix& transform, Pivot anchorPosition, Color32 linearColor, RenderLayer layer)` — Draws the sprite at the location specified by the transform matrix. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately. The 'position' attribute describes what corner of the sprite you're specifying the transform of.
   - `transform` — A Matrix describing a transform from model space to world space. A sprite is always sized in model space as 1 x Aspect meters on the x and y axes respectively, so scale appropriately and remember that your anchor position may affect the transform as well.
   - `pivotPosition` — Describes what corner of the sprite you're specifying the transform of. The 'Pivot' point or 'Origin' of the Sprite.
+  - `layer` — The RenderLayer this sprite should be drawn on. This defaults to RenderLayer.Layer0.
   - `linearColor` — Per-instance color data for this render item. It is unmodified by StereoKit, and is generally interpreted as linear.
 - `static Sprite Sprite.Find(string id)` — Finds a sprite that matches the given id! Check out the DefaultIds static class for some built-in ids. Sprites will auto-id themselves using this pattern if single sprites: {Tex.Id}/sprite, and this pattern if atlased sprites: {Tex.Id}/sprite/atlas/{atlasId}.
   - `id` — Id of the sprite asset.
@@ -3467,6 +3656,10 @@ This is the texture asset class! This encapsulates 2D images, texture arrays, cu
   - `sRGBData` — Is this image color data in sRGB format, or is it normal/metal/rough/data that's not for direct display? sRGB colors get converted to linear color space on the graphics card, so getting this right can have a big impact on visuals.
   - `priority` — The priority sort order for this asset in the async loading system. Lower values mean loading sooner.
   - returns — A Tex asset from the given files, or null if it failed to load.
+- `static Tex Tex.FromHardwareBuffer(IntPtr hardwareBuffer, bool ownsBuffer)` — Imports an Android AHardwareBuffer as an external texture, YCbCr camera or decoder buffers come in via sampler conversion. This allows zero-copy access to hardware decoder or camera output. This is only functional on Android, and requires device support for hardware buffer import.
+  - `hardwareBuffer` — An AHardwareBuffer* coerced into an IntPtr.
+  - `ownsBuffer` — Should ownership of the hardware buffer be passed on to StereoKit? If so, StereoKit will release it when the texture is destroyed.
+  - returns — A Tex asset wrapping the hardware buffer, or null if the buffer is null, the device doesn't support importing hardware buffers, or the import failed.
 - `static Tex Tex.FromMemory(Byte[]& imageFileData, bool sRGBData, int priority)` — Loads an image file stored in memory directly into a texture! Supported formats are: jpg, png, tga, bmp, psd, gif, hdr, pic, ktx2. Asset Id will be the same as the filename.
   - `imageFileData` — The binary data of an image file, this is NOT a raw RGB color array!
   - `sRGBData` — Is this image color data in sRGB format, or is it normal/metal/rough/data that's not for direct display? sRGB colors get converted to linear color space on the graphics card, so getting this right can have a big impact on visuals.
@@ -3512,6 +3705,8 @@ This is the texture asset class! This encapsulates 2D images, texture arrays, cu
   - `mipLevel` — Retrieves the color data for a specific mip-mapping level. This function will log a fail and return a black array if an invalid mip-level is provided.
   - `structPerPixel` — The number of `T` that fit in a single pixel. For example, if your texture format is RGBA128, and your T is float, this value would be 4.
   - Example: see `Tex.GetColorData` in StereoKit-docs-reference.md
+- `IntPtr Tex.GetHardwareBuffer()` — This will return the AHardwareBuffer* backing this texture, if it was created from one. This call will block execution until the texture is loaded, if it is not already.
+  - returns — An AHardwareBuffer* coerced into an IntPtr, or IntPtr.Zero if the texture is not backed by a hardware buffer, or when not on Android.
 - `IntPtr Tex.GetNativeSurface()` — This will return the texture's native resource for use with external libraries. For D3D, this will be an ID3D11Texture2D*, and for GL, this will be a uint32_t from a glGenTexture call, coerced into the IntPtr. This call will block execution until the texture is loaded, if it is not already.
   - returns — For D3D, this will be an ID3D11Texture2D*, and for GL, this will be a uint32_t from a glGenTexture call, coerced into the IntPtr.
 - `static Tex Tex.RenderTarget(int width, int height, int multisample, TexFormat colorFormat, TexFormat depthFormat)` — This will assemble a texture ready for rendering to! It creates a render target texture with no mip maps and a depth buffer attached.
@@ -3919,6 +4114,7 @@ A text style is a font plus size/color/material parameters, and are used to keep
 - `float TextStyle.LayoutHeight` — (meters) Layout height is the height of the font's CapHeight, which is used for calculating the vertical height of the text when doing text layouts. This does _not_ include the height of the descender, nor does it represent the maximum possible height a glyph may extend upwards (use Text.SizeRender).
 - `float TextStyle.LineHeightPct` — This is the space a full line of text takes, from baseline to baseline, as a 0-1 percentage of the font's TotalHeight. This is similar to CSS line-height, a value of 1.0 means this line's descenders will squish up adjacent to the next line's tallest ascenders.
 - `Material TextStyle.Material` — This provides a reference to the Material used by this style, so you can override certain features! Note that if you're creating TextStyles with manually provided Materials, this Material may not be unique to this style.
+- `RenderLayer TextStyle.RenderLayer` — The RenderLayer that text drawn with this style is rendered on. This defaults to RenderLayer.Vfx. Note that text styles are batched per layer, so changing this will re-point the style at a different internal text buffer.
 - `float TextStyle.TotalHeight` — (meters) Height from the layout descender to the layout ascender. This is most equivalent to the 'font-size' in CSS or other text layout tools. Since ascender and descenders can vary a lot, using LayoutHeight in many cases can lead to more consistency in the long run.
 - `static TextStyle TextStyle.Default` — This is the default text style used by StereoKit.
 - `static TextStyle TextStyle.FromFont(Font font, float layoutHeightMeters, Color colorGamma)` — Create a text style for use with other text functions! A text style is a font plus size/color/material parameters, and are used to keep text looking more consistent through the application by encouraging devs to re-use styles throughout the project. This overload will create a unique Material for this style based on Default.ShaderFont.
@@ -4014,6 +4210,7 @@ This class is a collection of user interface and interaction methods! StereoKit 
 - `static Bounds UI.LayoutLast` — These are the layout bounds of the most recently reserved layout space. The Z axis dimensions are always 0. Only UI elements that affect the surface's layout will report their bounds here. You can reserve your own layout space via UI.LayoutReserve, and that call will also report here.
 - `static Vec2 UI.LayoutRemaining` — How much space is available on the current layout! This is based on the current layout position, so X will give you the amount remaining on the current line, and Y will give you distance to the bottom of the layout, including the current line. These values will be 0 if you're using 0 for the layout size on that axis.
 - `static float UI.LineHeight` — This is the height of a single line of text with padding in the UI's layout system!
+- `static RenderLayer UI.RenderLayer` — This is the RenderLayer that the UI system draws on. It applies to the UI's mesh and model geometry, as well as the text and single sprites that StereoKit's UI manages. This is RenderLayer.UI by default.
 - `static UISettings UI.Settings` — UI sizing and layout settings.
 - `static bool UI.ShowVolumes` — Shows or hides the collision volumes of the UI! This is for debug purposes, and can help identify visible and invisible collision issues.
 - `static UIMove UI.SystemMoveType` — This is the UIMove that is provided to UI windows that StereoKit itself manages, such as the fallback filepicker and soft keyboard.
@@ -4021,15 +4218,17 @@ This class is a collection of user interface and interaction methods! StereoKit 
 - `static bool UI.Button(string text)` — A pressable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed!
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.Button(string text, Vec2 size)` — A pressable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed!
+- `static bool UI.Button(string text, Vec2 size, Align textAlign)` — A pressable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed!
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
   - Example: see `UI.Button` in StereoKit-docs-reference.md
-- `static bool UI.ButtonAt(string text, Vec3 topLeftCorner, Vec2 size)` — A variant of UI.Button that doesn't use the layout system, and instead goes exactly where you put it.
+- `static bool UI.ButtonAt(string text, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.Button that doesn't use the layout system, and instead goes exactly where you put it.
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
 - `static void UI.ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, Single& fingerOffset, BtnState& buttonState, BtnState& focusState)` — This is the core functionality of StereoKit's buttons, without any of the rendering parts! If you're trying to create your own pressable UI elements, or do more extreme customization of the look and feel of UI elements, then this function will provide a lot of complex pressing functionality for you!
   - `windowRelativePos` — The layout position of the pressable area.
@@ -4038,15 +4237,15 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `fingerOffset` — This is the current distance of the finger, within the pressable volume, from the bottom of the button.
   - `buttonState` — This is the current frame's "active" state for the button.
   - `focusState` — This is the current frame's "focus" state for the button.
-- `static void UI.ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Int32& hand)` — This is the core functionality of StereoKit's buttons, without any of the rendering parts! If you're trying to create your own pressable UI elements, or do more extreme customization of the look and feel of UI elements, then this function will provide a lot of complex pressing functionality for you!
+- `static void UI.ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Interactor& interactor)` — This is the core functionality of StereoKit's buttons, without any of the rendering parts! If you're trying to create your own pressable UI elements, or do more extreme customization of the look and feel of UI elements, then this function will provide a lot of complex pressing functionality for you!
   - `windowRelativePos` — The layout position of the pressable area.
   - `size` — The size of the pressable area.
   - `id` — The id for this pressable element to track its state with.
   - `fingerOffset` — This is the current distance of the finger, within the pressable volume, from the bottom of the button.
   - `buttonState` — This is the current frame's "active" state for the button.
   - `focusState` — This is the current frame's "focus" state for the button.
-  - `hand` — Id of the hand that interacted with the button. This will be -1 if no interaction has occurred.
-- `static void UI.ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, float buttonDepth, float buttonActivationDepth, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Int32& hand)` — This is the core functionality of StereoKit's buttons, without any of the rendering parts! If you're trying to create your own pressable UI elements, or do more extreme customization of the look and feel of UI elements, then this function will provide a lot of complex pressing functionality for you! This overload allows for customizing the depth of the button, which otherwise would use UISettings.depth for its values.
+  - `interactor` — The Interactor that interacted with the button. If nothing is interacting, this will be `Interactor.None`.
+- `static void UI.ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, float buttonDepth, float buttonActivationDepth, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Interactor& interactor)` — This is the core functionality of StereoKit's buttons, without any of the rendering parts! If you're trying to create your own pressable UI elements, or do more extreme customization of the look and feel of UI elements, then this function will provide a lot of complex pressing functionality for you! This overload allows for customizing the depth of the button, which otherwise would use UISettings.depth for its values.
   - `windowRelativePos` — The layout position of the pressable area.
   - `size` — The size of the pressable area.
   - `id` — The id for this pressable element to track its state with.
@@ -4055,7 +4254,18 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `fingerOffset` — This is the current distance of the finger, within the pressable volume, from the bottom of the button.
   - `buttonState` — This is the current frame's "active" state for the button.
   - `focusState` — This is the current frame's "focus" state for the button.
-  - `hand` — Id of the hand that interacted with the button. This will be -1 if no interaction has occurred.
+  - `interactor` — The Interactor that interacted with the button. If nothing is interacting, this will be `Interactor.None`.
+- `static void UI.ButtonBehavior(Vec3 windowRelativePos, Vec2 size, string id, float buttonDepth, float buttonActivationDepth, UIBtnFlag flags, Single& fingerOffset, BtnState& buttonState, BtnState& focusState, Interactor& interactor)` — This is the core functionality of StereoKit's buttons, without any of the rendering parts! If you're trying to create your own pressable UI elements, or do more extreme customization of the look and feel of UI elements, then this function will provide a lot of complex pressing functionality for you! This overload allows for customizing the depth of the button, which otherwise would use UISettings.depth for its values.
+  - `windowRelativePos` — The layout position of the pressable area.
+  - `size` — The size of the pressable area.
+  - `id` — The id for this pressable element to track its state with.
+  - `buttonDepth` — This is the z axis depth of the pressable area.
+  - `buttonActivationDepth` — This is the depth at which the button will activate. Normally this is 1/2 of buttonDepth.
+  - `fingerOffset` — This is the current distance of the finger, within the pressable volume, from the bottom of the button.
+  - `buttonState` — This is the current frame's "active" state for the button.
+  - `focusState` — This is the current frame's "focus" state for the button.
+  - `interactor` — The Interactor that interacted with the button. If nothing is interacting, this will be `Interactor.None`.
+  - `flags` — Flags for modifying the button's behavior, such as opting out of pull-away cancellation.
 - `static bool UI.ButtonImg(string text, Sprite image, UIBtnLayout imageLayout)` — A pressable button accompanied by an image! The button will expand to fit the text provided to it, horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed!
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `image` — This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!
@@ -4067,33 +4277,38 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.ButtonImg(string text, Sprite image, UIBtnLayout imageLayout, Vec2 size)` — A pressable button accompanied by an image! The button will expand to fit the text provided to it, horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed!
+- `static bool UI.ButtonImg(string text, Sprite image, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A pressable button accompanied by an image! The button will expand to fit the text provided to it, horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed!
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `image` — This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.ButtonImg(string text, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec2 size)` — A pressable button accompanied by an image! The button will expand to fit the text provided to it, horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed! Image can be tinted by passing a custom color
+- `static bool UI.ButtonImg(string text, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A pressable button accompanied by an image! The button will expand to fit the text provided to it, horizontally. Text is re-used as the id. Will return true only on the first frame it is pressed! Image can be tinted by passing a custom color
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `image` — This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!
   - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.ButtonImgAt(string text, Sprite image, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)` — A variant of UI.ButtonImg that doesn't use the layout system, and instead goes exactly where you put it.
+- `static bool UI.ButtonImgAt(string text, Sprite image, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.ButtonImg that doesn't use the layout system, and instead goes exactly where you put it.
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `image` — This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.ButtonImgAt(string text, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)` — A variant of UI.ButtonImg that doesn't use the layout system, and instead goes exactly where you put it.
+- `static bool UI.ButtonImgAt(string text, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.ButtonImg that doesn't use the layout system, and instead goes exactly where you put it.
   - `text` — Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.
   - `image` — This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
 - `static bool UI.ButtonRound(string id, Sprite image, float diameter)` — A pressable round button! This button has a square layout, and only shows an image, no text. Will return true only on the first frame it is pressed!
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
@@ -4158,12 +4373,30 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `moveType` — Describes how the handle will move when dragged around.
   - `allowedGestures` — Which hand gestures are used for interacting with this Handle?
   - returns — Returns true for every frame the user is grabbing the handle.
+- `static bool UI.Handle(string id, Pose& pose, Bounds handle, Single& scale, bool drawHandle, UIMove moveType, UIGesture allowedGestures)` — This begins and ends a handle, like `UI.Handle`, but with support for multi-interactor uniform scaling. With two or more interactors grabbing the handle, their motion is combined into a translation, rotation, and a uniform scale. Interactors may freely join or leave the interaction without the handle jumping. Providing a scale here enables scaling; pass `UIMove.ExactNoscale` as the moveType if you want multi-interactor translate/rotate but no scaling.
+  - `id` — An id for tracking element state. MUST be unique within current hierarchy.
+  - `pose` — The pose state for the handle! The user will be able to grab this handle and move it around. The pose is relative to the current hierarchy stack.
+  - `handle` — Size and location of the handle, relative to the pose. When a `scale` is provided, the handle multiplies these Bounds by it - so pass your unscaled base size, and the grab volume and drawn handle grow and shrink to match your scaled content.
+  - `scale` — A uniform scale multiplier that gets accumulated as the user scales the handle with multiple interactors. Seed this with 1 (or your starting scale). Since the Pose has no scale of its own, apply this value to your content - the `handle` Bounds are scaled by it for you, so the grab volume and drawn handle stay matched.
+  - `drawHandle` — Should this function draw the handle for you, or will you draw that yourself?
+  - `moveType` — Describes how the handle will move when dragged around. Use `UIMove.ExactNoscale` to disable scaling.
+  - `allowedGestures` — Which hand gestures are used for interacting with this Handle?
+  - returns — Returns true for every frame the user is grabbing the handle.
 - `static bool UI.HandleBegin(string id, Pose& pose, Bounds handle, bool drawHandle, UIMove moveType, UIGesture allowedGestures)` — This begins a new UI group with its own layout! Much like a window, except with a more flexible handle, and no header. You can draw the handle, but it will have no text on it. The pose value is always relative to the current hierarchy stack. This call will also push the pose transform onto the hierarchy stack, so any objects drawn up to the corresponding UI.HandleEnd() will get transformed by the handle pose. Returns true for every frame the user is grabbing the handle.
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
   - `pose` — The pose state for the handle! The user will be able to grab this handle and move it around. The pose is relative to the current hierarchy stack.
   - `handle` — Size and location of the handle, relative to the pose.
   - `drawHandle` — Should this function draw the handle visual for you, or will you draw that yourself?
   - `moveType` — Describes how the handle will move when dragged around.
+  - `allowedGestures` — Which hand gestures are used for interacting with this Handle?
+  - returns — Returns true for every frame the user is grabbing the handle.
+- `static bool UI.HandleBegin(string id, Pose& pose, Bounds handle, Single& scale, bool drawHandle, UIMove moveType, UIGesture allowedGestures)` — This is a variant of `UI.HandleBegin` that additionally supports uniform scaling when two or more interactors grab the handle at the same time. With a single interactor the handle behaves exactly like the normal handle. With multiple interactors, their motion is combined into a translation, rotation, and a uniform scale. Interactors may freely join or leave the interaction without the handle jumping. Providing a scale here enables scaling; pass `UIMove.ExactNoscale` as the moveType if you want multi-interactor translate/rotate but no scaling.
+  - `id` — An id for tracking element state. MUST be unique within current hierarchy.
+  - `pose` — The pose state for the handle! The user will be able to grab this handle and move it around. The pose is relative to the current hierarchy stack.
+  - `handle` — Size and location of the handle, relative to the pose. When a `scale` is provided, the handle multiplies these Bounds by it - so pass your unscaled base size, and the grab volume and drawn handle grow and shrink to match your scaled content.
+  - `scale` — A uniform scale multiplier that gets accumulated as the user scales the handle with multiple interactors. Seed this with 1 (or your starting scale). Since the Pose has no scale of its own, apply this value to your content - the `handle` Bounds are scaled by it for you, so the grab volume and drawn handle stay matched.
+  - `drawHandle` — Should this function draw the handle visual for you, or will you draw that yourself?
+  - `moveType` — Describes how the handle will move when dragged around. Use `UIMove.ExactNoscale` to disable scaling.
   - `allowedGestures` — Which hand gestures are used for interacting with this Handle?
   - returns — Returns true for every frame the user is grabbing the handle.
   - Example: see `UI.HandleBegin` in StereoKit-docs-reference.md
@@ -4243,19 +4476,26 @@ This class is a collection of user interface and interaction methods! StereoKit 
 - `static void UI.Label(string text, bool usePadding)` — Adds some text to the layout! Text uses the UI's current font settings, which can be changed with UI.Push/PopTextStyle. Can contain newlines!
   - `text` — Label text to display. Can contain newlines! Doesn't use text as id, so it can be non-unique.
   - `usePadding` — Should padding be included for positioning this text? Sometimes you just want un-padded text!
-- `static void UI.Label(string text, Vec2 size, bool usePadding)` — Adds some text to the layout, but this overload allows you can specify the size that you want it to use. Text uses the UI's current font settings, which can be changed with UI.Push/PopTextStyle. Can contain newlines!
+- `static void UI.Label(string text, Vec2 size, bool usePadding, Align textAlign)` — Adds some text to the layout, but this overload allows you can specify the size that you want it to use. Text uses the UI's current font settings, which can be changed with UI.Push/PopTextStyle. Can contain newlines!
   - `text` — Label text to display. Can contain newlines! Doesn't use text as id, so it can be non-unique.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
   - `usePadding` — Should padding be included for positioning this text? Sometimes you just want un-padded text!
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - Example: see `UI.Label` in StereoKit-docs-reference.md
 - `static BtnState UI.LastElementHandActive(Handed hand)` — Tells if the hand was involved in the active state of the most recently called UI element using an id. Active state is frequently a single frame in the case of Buttons, but could be many in the case of Sliders or Handles.
   - `hand` — Which hand we're checking.
   - returns — A BtnState that indicated the hand was "just active" this frame, is currently "active" or if it "just became inactive" this frame.
-  - Example: see `UI.LastElementHandActive` in StereoKit-docs-reference.md
 - `static BtnState UI.LastElementHandFocused(Handed hand)` — Tells if the hand was involved in the focus state of the most recently called UI element using an id. Focus occurs when the hand is in or near an element, in such a way that indicates the user may be about to interact with it.
   - `hand` — Which hand we're checking.
   - returns — A BtnState that indicated the hand was "just focused" this frame, is currently "focused" or if it "just became focused" this frame.
-  - Example: see `UI.LastElementHandFocused` in StereoKit-docs-reference.md
+- `static BtnState UI.LastElementSourceActive(InteractorSource source)` — Tells if an interactor from the given source was involved in the active state of the most recently called UI element using an id. Active state is frequently a single frame in the case of Buttons, but could be many in the case of Sliders or Handles. Sources can be combined as a bit-flag to ask about several at once.
+  - `source` — The source, or combination of sources, to check.
+  - returns — A BtnState that indicates the source was "just active" this frame, is currently "active", or if it "just became inactive" this frame.
+  - Example: see `UI.LastElementSourceActive` in StereoKit-docs-reference.md
+- `static BtnState UI.LastElementSourceFocused(InteractorSource source)` — Tells if an interactor from the given source was involved in the focus state of the most recently called UI element using an id. Focus occurs when the interactor is in or near an element, in such a way that indicates the user may be about to interact with it. Sources can be combined as a bit-flag to ask about several at once.
+  - `source` — The source, or combination of sources, to check.
+  - returns — A BtnState that indicates the source was "just focused" this frame, is currently "focused", or if it "just became unfocused" this frame.
+  - Example: see `UI.LastElementSourceFocused` in StereoKit-docs-reference.md
 - `static void UI.LayoutArea(Vec3 start, Vec2 dimensions, bool addMargin)` — Manually define what area is used for the UI layout. This is in the current Hierarchy's coordinate space on the X/Y plane.
   - `start` — The top left of the layout area, relative to the current Hierarchy in local meters.
   - `dimensions` — The size of the layout area from the top left, in local meters.
@@ -4354,10 +4594,11 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
   - `active` — Does this button look like it's pressed?
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.Radio(string text, bool active, Vec2 size)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true.
+- `static bool UI.Radio(string text, bool active, Vec2 size, Align textAlign)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true.
   - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
   - `active` — Does this button look like it's pressed?
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true only on the first frame it is pressed!
 - `static bool UI.Radio(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
   - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
@@ -4366,16 +4607,35 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `imageOn` — Image to use when the radio value is true.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - returns — Will return true only on the first frame it is pressed!
-- `static bool UI.Radio(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout, Vec2 size)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
+- `static bool UI.Radio(string text, bool active, Sprite imageOff, Sprite imageOn, Color imageTint, UIBtnLayout imageLayout)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
+  - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
+  - `active` — Does this button look like it's pressed?
+  - `imageOff` — Image to use when the radio value is false.
+  - `imageOn` — Image to use when the radio value is true.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true only on the first frame it is pressed!
+- `static bool UI.Radio(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
   - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
   - `active` — Does this button look like it's pressed?
   - `imageOff` — Image to use when the radio value is false.
   - `imageOn` — Image to use when the radio value is true.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - returns — Will return true only on the first frame it is pressed!
+- `static bool UI.Radio(string text, bool active, Sprite imageOff, Sprite imageOn, Color imageTint, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
+  - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
+  - `active` — Does this button look like it's pressed?
+  - `imageOff` — Image to use when the radio value is false.
+  - `imageOn` — Image to use when the radio value is true.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
   - returns — Will return true only on the first frame it is pressed!
   - Example: see `UI.Radio` in StereoKit-docs-reference.md
-- `static bool UI.RadioAt(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
+- `static bool UI.RadioAt(string text, bool active, Sprite imageOff, Sprite imageOn, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
   - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
   - `active` — Does this button look like it's pressed?
   - `imageOff` — Image to use when the radio value is false.
@@ -4383,6 +4643,18 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `imageLayout` — This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - returns — Will return true only on the first frame it is pressed!
+- `static bool UI.RadioAt(string text, bool active, Sprite imageOff, Sprite imageOn, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A Radio is similar to a button, except you can specify if it looks pressed or not regardless of interaction. This can be useful for radio-like behavior! Check an enum for a value, and use that as the 'active' state, Then switch to that enum value if Radio returns true. This version allows you to override the images used by the Radio.
+  - `text` — Text to display on the Radio and id for tracking element state. MUST be unique within current hierarchy.
+  - `active` — Does this button look like it's pressed?
+  - `imageOff` — Image to use when the radio value is false.
+  - `imageOn` — Image to use when the radio value is true.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the radio. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
+  - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
   - returns — Will return true only on the first frame it is pressed!
 - `static void UI.SameLine()` — Moves the current layout position back to the end of the line that just finished, so it can continue on the same line as the last element!
   - Example: see `UI.SameLine` in StereoKit-docs-reference.md
@@ -4470,6 +4742,13 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `image` — Image to use for the button, this will be used regardless of the toggle value.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Sprite image, Color imageTint, UIBtnLayout imageLayout)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+  - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
+  - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
+  - `image` — Image to use for the button, this will be used regardless of the toggle value.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
 - `static bool UI.Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
@@ -4477,42 +4756,84 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `toggleOn` — Image to use when the toggle value is true.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
-- `static bool UI.Toggle(string text, Boolean& value, Sprite image, UIBtnLayout imageLayout, Vec2 size)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, Color imageTint, UIBtnLayout imageLayout)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+  - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
+  - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
+  - `toggleOff` — Image to use when the toggle value is false.
+  - `toggleOn` — Image to use when the toggle value is true.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Sprite image, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
   - `image` — Image to use for the button, this will be used regardless of the toggle value.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
-- `static bool UI.Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout, Vec2 size)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+  - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
+  - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
+  - `image` — Image to use for the button, this will be used regardless of the toggle value.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
   - `toggleOff` — Image to use when the toggle value is false.
   - `toggleOn` — Image to use when the toggle value is true.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
-- `static bool UI.Toggle(string text, Boolean& value, Vec2 size)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, Color imageTint, UIBtnLayout imageLayout, Vec2 size, Align textAlign)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
+  - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
+  - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
+  - `toggleOff` — Image to use when the toggle value is false.
+  - `toggleOn` — Image to use when the toggle value is true.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.Toggle(string text, Boolean& value, Vec2 size, Align textAlign)` — A toggleable button! A button will expand to fit the text provided to it, vertically and horizontally. Text is re-used as the id. Will return true any time the toggle value changes, NOT the toggle value itself!
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
   - `size` — The layout size for this element in Hierarchy space. If an axis is left as zero, it will be auto-calculated. For X this is the remaining width of the current layout, and for Y this is UI.LineHeight.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
   - Example: see `UI.Toggle` in StereoKit-docs-reference.md
-- `static bool UI.ToggleAt(string text, Boolean& value, Vec3 topLeftCorner, Vec2 size)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
+- `static bool UI.ToggleAt(string text, Boolean& value, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
-- `static bool UI.ToggleAt(string text, Boolean& value, Sprite image, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
+- `static bool UI.ToggleAt(string text, Boolean& value, Sprite image, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
   - `image` — Image to use for the button, this will be used regardless of the toggle value.
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
-- `static bool UI.ToggleAt(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
+- `static bool UI.ToggleAt(string text, Boolean& value, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
+  - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
+  - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
+  - `image` — Image to use for the button, this will be used regardless of the toggle value.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
+  - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static bool UI.ToggleAt(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
   - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
   - `toggleOff` — Image to use when the toggle value is false.
@@ -4520,24 +4841,36 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
   - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
   - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
-- `static BtnState UI.VolumeAt(string id, Bounds bounds, UIConfirm interactType, Handed& hand, BtnState& focusState)` — A volume for helping to build one handed interactions. This checks for the presence of a hand inside the bounds, and if found, return that hand along with activation and focus information defined by the interactType.
+- `static bool UI.ToggleAt(string text, Boolean& value, Sprite toggleOff, Sprite toggleOn, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)` — A variant of UI.Toggle that doesn't use the layout system, and instead goes exactly where you put it.
+  - `text` — Text to display on the Toggle and id for tracking element state. MUST be unique within current hierarchy.
+  - `value` — The current state of the toggle button! True means it's toggled on, and false means it's toggled off.
+  - `toggleOff` — Image to use when the toggle value is false.
+  - `toggleOn` — Image to use when the toggle value is true.
+  - `imageLayout` — This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.
+  - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.
+  - `size` — The layout size for this element in Hierarchy space.
+  - `textAlign` — Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.
+  - `imageTint` — The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).
+  - returns — Will return true any time the toggle value changes, NOT the toggle value itself!
+- `static BtnState UI.VolumeAt(string id, Bounds bounds, UIConfirm interactType, Interactor& interactor, BtnState& focusState)` — A volume for helping to build interactions. This checks for the presence of an interactor inside the bounds, and if found, returns that interactor along with activation and focus information defined by the interactType.
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
   - `bounds` — Size and position of the volume, relative to the current Hierarchy.
-  - `interactType` — UIConfirm.Pinch will activate when the hand performs a 'pinch' gesture. UIConfirm.Push will activate when the hand enters the volume, and behave the same as element's focusState.
-  - `hand` — This will be the last unpreoccupied hand found inside the volume, and is the hand controlling the interaction.
-  - `focusState` — The focus state tells if the element has a hand inside of the volume that qualifies for focus.
+  - `interactType` — UIConfirm.Pinch will activate when the interactor performs a 'pinch' gesture inside the volume. UIConfirm.Push will activate when the interactor enters the volume, and behave the same as the element's focusState.
+  - `interactor` — The `Interactor` that is interacting with the volume. If nothing is interacting, this will be `Interactor.None`.
+  - `focusState` — The focus state tells if the element has an interactor inside of the volume that qualifies for focus.
   - returns — Based on the interactType, this is a BtnState that tells the activation state of the interaction.
-- `static BtnState UI.VolumeAt(string id, Bounds bounds, UIConfirm interactType, Handed& hand)` — A volume for helping to build one handed interactions. This checks for the presence of a hand inside the bounds, and if found, return that hand along with activation and focus information defined by the interactType.
+- `static BtnState UI.VolumeAt(string id, Bounds bounds, UIConfirm interactType, Interactor& interactor)` — A volume for helping to build interactions. This checks for the presence of an interactor inside the bounds, and if found, returns that interactor along with activation and focus information defined by the interactType.
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
   - `bounds` — Size and position of the volume, relative to the current Hierarchy.
-  - `interactType` — UIConfirm.Pinch will activate when the hand performs a 'pinch' gesture. UIConfirm.Push will activate when the hand enters the volume, and behave the same as element's focusState.
-  - `hand` — This will be the last unpreoccupied hand found inside the volume, and is the hand controlling the interaction.
+  - `interactType` — UIConfirm.Pinch will activate when the interactor performs a 'pinch' gesture inside the volume. UIConfirm.Push will activate when the interactor enters the volume, and behave the same as the element's focusState.
+  - `interactor` — The `Interactor` that is interacting with the volume. If nothing is interacting, this will be `Interactor.None`.
   - returns — Based on the interactType, this is a BtnState that tells the activation state of the interaction.
-- `static BtnState UI.VolumeAt(string id, Bounds bounds, UIConfirm interactType)` — A volume for helping to build one handed interactions. This checks for the presence of a hand inside the bounds, and if found, return that hand along with activation and focus information defined by the interactType.
+- `static BtnState UI.VolumeAt(string id, Bounds bounds, UIConfirm interactType)` — A volume for helping to build interactions. This checks for the presence of an interactor inside the bounds, and if found, returns that interactor along with activation and focus information defined by the interactType.
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
   - `bounds` — Size and position of the volume, relative to the current Hierarchy.
-  - `interactType` — UIConfirm.Pinch will activate when the hand performs a 'pinch' gesture. UIConfirm.Push will activate when the hand enters the volume, and behave the same as element's focusState.
+  - `interactType` — UIConfirm.Pinch will activate when the interactor performs a 'pinch' gesture inside the volume. UIConfirm.Push will activate when the interactor enters the volume, and behave the same as the element's focusState.
   - returns — Based on the interactType, this is a BtnState that tells the activation state of the interaction.
   - Example: see `UI.VolumeAt` in StereoKit-docs-reference.md
 - `static void UI.VProgressBar(float percent, float height, bool flipFillDirection)` — This is a simple vertical progress indicator bar. This is used by the VSlider to draw the slider bar beneath the interactive element. Does not include any text or label.
@@ -4611,6 +4944,13 @@ This class is a collection of user interface and interaction methods! StereoKit 
   - Example: see `UI.WindowBegin` in StereoKit-docs-reference.md
 - `static void UI.WindowEnd()` — Finishes a window! Must be called after UI.WindowBegin() and all elements have been drawn.
   - Example: see `UI.WindowEnd` in StereoKit-docs-reference.md
+
+## enum UIBtnFlag
+
+A bit-flag for modifying the behavior of a button, used with the lower-level `UI.ButtonBehavior`.
+
+- `UIBtnFlag.NoCancel` — Prevents the activation from being canceled when the interactor moves too far from the button. Used for elements like sliders that legitimately track an interactor well outside the button's bounds.
+- `UIBtnFlag.None` — Default button behavior.
 
 ## enum UIBtnLayout
 
@@ -4705,6 +5045,7 @@ A point on a lathe for a mesh generation algorithm. This is the 'silhouette' of 
 This describes how a UI element moves when being dragged around by a user!
 
 - `UIMove.Exact` — The element follows the position and orientation of the user's hand exactly.
+- `UIMove.ExactNoscale` — Behaves just like ui_move_exact, but opts out of uniform scaling. Use this when a Handle is provided a scale value, but should only ever be translated and rotated by multiple interactors, never scaled.
 - `UIMove.FaceUser` — The element follows the position of the user's hand, but orients to face the user's head instead of just using the hand's rotation.
 - `UIMove.None` — Do not allow user input to change the element's pose at all! You may also be interested in UI.Push/PopSurface.
 - `UIMove.PosOnly` — This element follows the hand's position only, completely discarding any rotation information.
@@ -4763,7 +5104,8 @@ Used with StereoKit's UI to indicate a particular type of UI element visual.
 - `UIVisual.Aura` — Refers to the grabbable area indicator outside a window.
 - `UIVisual.Button` — Refers to UI.Button elements.
 - `UIVisual.ButtonRound` — Refers to UI.ButtonRound elements.
-- `UIVisual.Carat` — Refers to the text position indicator carat on text input elements.
+- `UIVisual.Carat` — Deprecated misspelling of `ui_vis_caret`, kept for backwards compatibility.
+- `UIVisual.Caret` — Refers to the text position indicator caret on text input elements.
 - `UIVisual.Default` — A default root UI element. Not a particular element, but other elements may refer to this if there is nothing more specific present.
 - `UIVisual.Handle` — Refers to UI.Handle/HandleBegin elements.
 - `UIVisual.Input` — Refers to UI.Input elements.
@@ -5201,6 +5543,34 @@ A vector with 4 components: x, y, z, and w. Can be useful for things like shader
 - `string Vec4.ToString()` — Mostly for debug purposes, this is a decent way to log or inspect the vector in debug mode. Looks like "[x, y, z, w]"
   - returns — A string that looks like "[x, y, z, w]"
 
+## struct VertComponent
+
+A single component of a custom vertex layout, such as a position or a UV coordinate. A vertex format is described by an array of these, in the same order the components appear in the vertex data. Data is always tightly packed, aligned to nothing, so the format fully describes the vertex layout. This maps to a compact 4 byte native representation, the properties here disguise that byte packing.
+
+- `int VertComponent.Count` — How many format elements this component has, 1-4. A float3 position would be 3.
+- `VertFmt VertComponent.Format` — The data format of a single element of this component.
+- `VertSemantic VertComponent.Semantic` — What this component means, this is matched with the shader's vertex input semantics.
+- `int VertComponent.SemanticSlot` — Distinguishes multiple components with the same semantic, like TEXCOORD0 vs TEXCOORD1. Usually 0.
+- `void VertComponent(VertSemantic semantic, VertFmt format, int count, int semanticSlot)` — Describes a single vertex component.
+  - `semantic` — What this component means, this is matched with the shader's vertex input semantics.
+  - `format` — The data format of a single element of this component.
+  - `count` — How many format elements this component has, 1-4. A float3 position would be 3.
+  - `semanticSlot` — Distinguishes multiple components with the same semantic, like TEXCOORD0 vs TEXCOORD1.
+
+## class VertComponentAttribute
+
+Describes how a field of a vertex struct maps to a component of a vertex format! Tag every field of your custom vertex struct with this attribute, and `Mesh.SetVerts<T>` will derive the complete vertex format from the struct via reflection. The field's format is explicit rather than inferred from the field's type, so the field just needs to be the right size for the format. This means packed data like a pair of half floats can live in a plain `uint` field, with bit math or types like `System.Half` used to fill it in. Vertex structs must be tightly packed, with no padding between fields or at the end of the struct. If your field sizes don't naturally align, use `[StructLayout(LayoutKind.Sequential, Pack = 1)]`.
+
+- `int VertComponentAttribute.Count` — How many format elements this component has, 1-4. A Vec3 position would be 3.
+- `VertFmt VertComponentAttribute.Format` — The data format of a single element of this component.
+- `VertSemantic VertComponentAttribute.Semantic` — What this component means, this is matched with the shader's vertex input semantics.
+- `int VertComponentAttribute.SemanticSlot` — Distinguishes multiple components with the same semantic, like TEXCOORD0 vs TEXCOORD1. Usually 0.
+- `void VertComponentAttribute(VertSemantic semantic, VertFmt format, int count, int semanticSlot)` — Describe the vertex component this field contains.
+  - `semantic` — What this component means, this is matched with the shader's vertex input semantics.
+  - `format` — The data format of a single element of this component.
+  - `count` — How many format elements this component has, 1-4. A Vec3 position would be 3.
+  - `semanticSlot` — Distinguishes multiple components with the same semantic, like TEXCOORD0 vs TEXCOORD1.
+
 ## struct Vertex
 
 This represents a single vertex in a Mesh, all StereoKit Meshes currently use this exact layout! It's good to fill out all values of a Vertex explicitly, as default values for the normal (0,0,0) and color (0,0,0,0) will cause your mesh to appear completely black, or even transparent in most shaders!
@@ -5221,6 +5591,39 @@ This represents a single vertex in a Mesh, all StereoKit Meshes currently use th
   - `normal` — The direction the Vertex is facing. Never leave this as zero, or your lighting may turn out black! A good default value if you _don't_ know what to put here is (0,1,0), but a Mesh composed entirely of this value will have flat lighting.
   - `textureCoordinates` — What part of a texture is this Vertex anchored to? (0,0) is top left of the texture, and (1,1) is the bottom right.
   - `color` — The color of the Vertex, StereoKit's default shaders treat this as a multiplicative modifier for the Material's albedo/diffuse color, but different shaders sometimes treat this value differently. A good default here is white, black will cause your model to turn out completely black.
+
+## enum VertFmt
+
+The data format of a single element of a vertex component. Normalized formats map their integer range onto 0-1 (unsigned) or -1-1 (signed) when read by the GPU, other integer formats arrive as integers.
+
+- `VertFmt.F16` — 16 bit half float.
+- `VertFmt.F32` — 32 bit float.
+- `VertFmt.I16` — 16 bit signed integer.
+- `VertFmt.I16Normalized` — 16 bit signed integer, normalized to -1-1 on the GPU.
+- `VertFmt.I32` — 32 bit signed integer.
+- `VertFmt.I8` — 8 bit signed integer.
+- `VertFmt.I8Normalized` — 8 bit signed integer, normalized to -1-1 on the GPU.
+- `VertFmt.None` — Invalid format, this is not a valid value for a component.
+- `VertFmt.U16` — 16 bit unsigned integer.
+- `VertFmt.U16Normalized` — 16 bit unsigned integer, normalized to 0-1 on the GPU.
+- `VertFmt.U32` — 32 bit unsigned integer.
+- `VertFmt.U8` — 8 bit unsigned integer.
+- `VertFmt.U8Normalized` — 8 bit unsigned integer, normalized to 0-1 on the GPU. A color32 is 4 of these.
+
+## enum VertSemantic
+
+What a vertex component means! This is matched against the semantics the shader's vertex inputs declare, so component order in a format doesn't need to match the shader's input order.
+
+- `VertSemantic.Binormal` — Binormal/bitangent direction for normal mapping.
+- `VertSemantic.Blendindices` — Bone indices for skinning.
+- `VertSemantic.Blendweight` — Bone weights for skinning.
+- `VertSemantic.Color` — Vertex color.
+- `VertSemantic.None` — Invalid semantic, this is not a valid value for a component.
+- `VertSemantic.Normal` — Direction the vertex is facing.
+- `VertSemantic.Position` — Vertex position, in model space coordinates.
+- `VertSemantic.Psize` — Point size for point rendering.
+- `VertSemantic.Tangent` — Tangent direction for normal mapping.
+- `VertSemantic.Texcoord` — Texture coordinates.
 
 ## static class World
 
@@ -5484,4 +5887,12 @@ This is a lightweight standard interface for fire-and-forget systems that can be
 - `bool IStepper.Initialize()` — This is called by StereoKit at the start of the next frame, and on the main thread. This happens before StereoKit's main `Step` callback, and always after `SK.Initialize`.
   - returns — If false is returned here, this `IStepper` will be immediately removed from the list of `IStepper`s, and neither `Step` nor `Shutdown` will be called.
 - `void IStepper.Shutdown()` — This is called when the `IStepper` is removed, or the application shuts down. This is always called on the main thread, and happens at the start of the next frame, before the main application's `Step` callback.
-- `void IStepper.Step()` — This Step method will be called every frame of the application, as long as `Enabled` is `true`. This happens immediately before the main application's `Step` callback.
+- `void IStepper.Step()` — This Step method will be called every frame of the application, as long as `Enabled` is `true`. By default this happens immediately before the main application's `Step` callback, but this can be configured by adding a `[StepperPriority]` attribute to the `IStepper` type: a positive priority steps _after_ the app's `Step` callback, and `IStepper`s are sorted in ascending order of priority.
+
+## class StepperPriorityAttribute
+
+An optional `[StepperPriority]` attribute for `IStepper` types that controls when and in what order their `Step` method is called relative to the app's main `Step` callback. The priority value determines both the _phase_ and the _sort order_: `IStepper`s with a negative priority (or the default of 0) are stepped _before_ the app's main `Step` callback, and `IStepper`s with a positive priority are stepped _after_ it. In all cases, `IStepper`s are stepped in ascending order of priority, and ties preserve the order they were added in. If an `IStepper` type does not have this attribute, it behaves as though it has a priority of 0.
+
+- `int StepperPriorityAttribute.Priority` — The priority value for this `IStepper`. Negative or zero values step before the app's main `Step` callback, positive values step after it, and all `IStepper`s are sorted in ascending order by this value.
+- `void StepperPriorityAttribute(int priority)` — Creates a priority attribute for an `IStepper` type.
+  - `priority` — The priority value. Negative or zero values step before the app's main `Step` callback, positive values step after it, and all `IStepper`s are sorted in ascending order by this value.

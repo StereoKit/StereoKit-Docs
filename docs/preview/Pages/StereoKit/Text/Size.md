@@ -17,7 +17,7 @@ indicated style!
 |  |  |
 |--|--|
 |string text|Text you want to find the size of.|
-|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|The visual style of the text, see             Text.MakeStyle or the TextStyle object for more details.|
+|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|The visual style of the text, see Text.MakeStyle or the TextStyle object for more details.|
 |RETURNS: [Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html)|The width and height of the text in meters.|
 
 <div class='signature' markdown='1'>

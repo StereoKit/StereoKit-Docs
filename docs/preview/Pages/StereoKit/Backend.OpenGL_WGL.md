@@ -15,5 +15,5 @@ StereoKitC library.
 
 |  |  |
 |--|--|
-|IntPtr [HDC]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_WGL/HDC.html)|This is the Handle to Device Context `HDC` StereoKit uses with `wglMakeCurrent`.|
-|IntPtr [HGLRC]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_WGL/HGLRC.html)|This is the Handle to an OpenGL Rendering Context `HGLRC` StereoKit uses with `wglMakeCurrent`.|
+|IntPtr [HDC]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_WGL/HDC.html)|This is the Handle to Device Context `HDC` StereoKit uses with `wglMakeCurrent`. (No longer supported, always returns IntPtr.Zero)|
+|IntPtr [HGLRC]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_WGL/HGLRC.html)|This is the Handle to an OpenGL Rendering Context `HGLRC` StereoKit uses with `wglMakeCurrent`. (No longer supported, always returns IntPtr.Zero)|

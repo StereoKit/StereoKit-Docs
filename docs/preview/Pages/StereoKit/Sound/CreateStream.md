@@ -20,7 +20,7 @@ functions.
 
 |  |  |
 |--|--|
-|float streamBufferDuration|How much audio time should             this stream be able to hold without writing back over itself?|
+|float streamBufferDuration|How much audio time should this stream be able to hold without writing back over itself?|
 |RETURNS: [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html)|A stream sound that can be read and written to.|
 
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenGLES_EGL.Display
-description: This is the EGLDisplay StereoKit receives from eglGetDisplay
+description: This is the EGLDisplay StereoKit receives from eglGetDisplay (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.OpenGLES_EGL]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGLES_EGL.html).Display
 
@@ -11,5 +11,5 @@ static IntPtr Display{ get }
 
 ## Description
 This is the `EGLDisplay` StereoKit receives from
-`eglGetDisplay`
+`eglGetDisplay` (No longer supported, always returns IntPtr.Zero)
 

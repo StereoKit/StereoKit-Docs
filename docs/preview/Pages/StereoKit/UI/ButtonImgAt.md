@@ -7,7 +7,7 @@ description: A variant of UI.ButtonImg that doesn't use the layout system, and i
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool ButtonImgAt(string text, Sprite image, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)
+static bool ButtonImgAt(string text, Sprite image, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)
 ```
 A variant of UI.ButtonImg that doesn't use the layout
 system, and instead goes exactly where you put it.
@@ -15,16 +15,17 @@ system, and instead goes exactly where you put it.
 
 |  |  |
 |--|--|
-|string text|Text to display on the button and id for             tracking element state. MUST be unique within current hierarchy.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|This is the image that will be drawn along with             the text. See imageLayout for where the image gets drawn!|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
+|string text|Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool ButtonImgAt(string text, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size)
+static bool ButtonImgAt(string text, Sprite image, Color imageTint, UIBtnLayout imageLayout, Vec3 topLeftCorner, Vec2 size, Align textAlign)
 ```
 A variant of UI.ButtonImg that doesn't use the layout
 system, and instead goes exactly where you put it.
@@ -32,12 +33,14 @@ system, and instead goes exactly where you put it.
 
 |  |  |
 |--|--|
-|string text|Text to display on the button and id for             tracking element state. MUST be unique within current hierarchy.|
-|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|This is the image that will be drawn along with             the text. See imageLayout for where the image gets drawn!|
-|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and             image should be laid out on the button. For example, `UIBtnLayout.Left`             will have the image on the left, and text on the right.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by             this tint. The default is White(1,1,1,1).|
+|string text|Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.|
+|[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|This is the image that will be drawn along with the text. See imageLayout for where the image gets drawn!|
+|[UIBtnLayout]({{site.url}}/preview/Pages/StereoKit/UIBtnLayout.html) imageLayout|This enum specifies how the text and image should be laid out on the button. For example, `UIBtnLayout.Left` will have the image on the left, and text on the right.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) imageTint|The Sprite's color will be multiplied by this tint. The default is White(1,1,1,1).|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 

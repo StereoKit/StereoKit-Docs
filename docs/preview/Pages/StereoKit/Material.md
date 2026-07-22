@@ -82,6 +82,16 @@ can be extremely beneficial for performance!
 
 ## Examples
 
+### Material parameter access
+Material does have an array operator overload for setting
+shader parameters really quickly! You can do this with strings
+representing shader parameter names, or use the MatParamName
+enum for compile safety.
+```csharp
+exampleMaterial[MatParamName.DiffuseTex  ] = gridTex;
+exampleMaterial[MatParamName.TexTransform] = new Vec4(0,0,2,2);
+```
+
 ### Assigning an array in a Shader
 This is a bit of a hack until proper shader support for arrays arrives,
 but with a few C# marshalling tricks, we can assign array without too
@@ -116,15 +126,5 @@ public void Initialize()
 	arrayMaterial[MatParamName.DiffuseTex] = Tex.FromFile("test.png");
 	arrayMaterial.SetData<ShaderData>("offsets", shaderData);
 }
-```
-
-### Material parameter access
-Material does have an array operator overload for setting
-shader parameters really quickly! You can do this with strings
-representing shader parameter names, or use the MatParamName
-enum for compile safety.
-```csharp
-exampleMaterial[MatParamName.DiffuseTex  ] = gridTex;
-exampleMaterial[MatParamName.TexTransform] = new Vec4(0,0,2,2);
 ```
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenGL_GLX.Drawable
-description: This is the GLXDrawable that StereoKit uses with glXMakeCurrent.
+description: This is the GLXDrawable that StereoKit uses with glXMakeCurrent. (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.OpenGL_GLX]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX.html).Drawable
 
@@ -11,5 +11,5 @@ static IntPtr Drawable{ get }
 
 ## Description
 This is the `GLXDrawable` that StereoKit uses with
-`glXMakeCurrent`.
+`glXMakeCurrent`. (No longer supported, always returns IntPtr.Zero)
 

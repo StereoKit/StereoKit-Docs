@@ -16,9 +16,9 @@ duration of time.
 
 |  |  |
 |--|--|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) destination|This is the final state for the value             when the easing animation has finished.|
-|float duration|The duration of the easing animation in             seconds.|
-|[EaseFn]({{site.url}}/preview/Pages/StereoKit.Framework/EaseFn.html) easeFn|An easing function the animation will follow.             A good all-around default would be Ease.SoftOut. A number of easing             functions can be found in the Ease class.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) destination|This is the final state for the value when the easing animation has finished.|
+|float duration|The duration of the easing animation in seconds.|
+|[EaseFn]({{site.url}}/preview/Pages/StereoKit.Framework/EaseFn.html) easeFn|An easing function the animation will follow. A good all-around default would be Ease.SoftOut. A number of easing functions can be found in the Ease class.|
 
 
 

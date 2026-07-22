@@ -8,6 +8,9 @@ namespace StereoKitDocumenter
 	{
 		public static string CleanForDescription(string text)
 		{
+			// Meta descriptions are plain text, so strip markdown links down
+			// to just their display text.
+			text = System.Text.RegularExpressions.Regex.Replace(text, @"\[([^\]]*)\]\([^\)]*\)", "$1");
 			return text.Replace('\n', ' ')
 						.Replace('\r', ' ')
 						.Replace(':', '.')
@@ -20,18 +23,64 @@ namespace StereoKitDocumenter
 			XmlReader r = reader.ReadSubtree();
 			while (r.Read())
 			{
-				if (r.NodeType == XmlNodeType.Element) {
-					// TODO: This doesn't work, but it also doesn't crash
-					if (r.Name == "see" || r.Name == "seealso")
-					{
-						contents += $"`{TypeName(r.GetAttribute("cref"), false)}`";
-					}
-					continue;
+				// Note that this only ever reads r.Value, and never uses the
+				// ReadContent functions! Those advance the reader themselves,
+				// and interact badly with the loop's own Read.
+				switch (r.NodeType)
+				{
+					case XmlNodeType.Element:
+						if (r.Name == "see" || r.Name == "seealso")
+						{
+							string cref     = r.GetAttribute("cref");
+							string langword = r.GetAttribute("langword");
+							if      (cref     != null) contents += CrefLink(cref);
+							else if (langword != null) contents += $"`{langword}`";
+						}
+						break;
+					case XmlNodeType.Text:
+					case XmlNodeType.Whitespace:
+					case XmlNodeType.SignificantWhitespace:
+					case XmlNodeType.CDATA:
+						contents += r.Value;
+						break;
 				}
-				contents += r.ReadContentAsString();
 			}
 			contents = contents.Trim();
 			return CleanMultiLine(contents);
+		}
+
+		// Turns a doc-comment cref like
+		// "M:StereoKit.Backend.Vulkan.QueueLock(StereoKit.BackendVulkanQueue)"
+		// into a linked "[`Backend.Vulkan.QueueLock`]({{site.url}}/Pages/...)".
+		// Doc pages follow a fixed layout, so URLs come straight from the cref:
+		// types are Pages/{namespace}/{Type}.html, and members (including enum
+		// values) are Pages/{namespace}/{Type}/{Member}.html.
+		static string CrefLink(string cref)
+		{
+			char kind = '\0';
+			if (cref.Length > 2 && cref[1] == ':') { kind = cref[0]; cref = cref.Substring(2); }
+			int paren = cref.IndexOf('(');
+			if (paren != -1)
+				cref = cref.Substring(0, paren);
+
+			string nameSpace = Program.GetNamespace(cref);
+			string name      = nameSpace.Length > 0 && cref.Length > nameSpace.Length
+				? cref.Substring(nameSpace.Length + 1)
+				: cref;
+			int generic = name.IndexOf('`');
+			if (generic != -1)
+				name = name.Substring(0, generic);
+
+			// Constructors link to their type's page.
+			if (name.EndsWith(".#ctor")) { name = name.Substring(0, name.Length - ".#ctor".Length); kind = 'T'; }
+
+			int lastDot = name.LastIndexOf('.');
+			if (nameSpace.Length == 0)
+				return $"`{name}`";
+			string url = kind == 'T' || lastDot == -1
+				? $"{{{{site.url}}}}/Pages/{nameSpace}/{name}.html"
+				: $"{{{{site.url}}}}/Pages/{nameSpace}/{name.Substring(0, lastDot)}/{name.Substring(lastDot + 1)}.html";
+			return $"[`{name}`]({url})";
 		}
 
 		public static string CleanForTable(string text)

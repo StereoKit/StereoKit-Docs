@@ -21,9 +21,9 @@ managing a layout of their own on the stack.
 
 |  |  |
 |--|--|
-|[UICut]({{site.url}}/preview/Pages/StereoKit/UICut.html) cutTo|Which side of the current layout should the cut             happen to? Note that Right and Bottom will require explicit sizes             in the parent layout, not auto-sizes.|
+|[UICut]({{site.url}}/preview/Pages/StereoKit/UICut.html) cutTo|Which side of the current layout should the cut happen to? Note that Right and Bottom will require explicit sizes in the parent layout, not auto-sizes.|
 |float sizeMeters|The size of the layout cut, in meters.|
-|bool addMargin|Adds a spacing margin to the interior of             the layout. Most of the time you won't need this, but may be useful             when working without a Window.|
+|bool addMargin|Adds a spacing margin to the interior of the layout. Most of the time you won't need this, but may be useful when working without a Window.|
 
 
 

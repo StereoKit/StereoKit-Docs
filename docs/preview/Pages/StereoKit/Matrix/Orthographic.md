@@ -17,10 +17,10 @@ scenes or content.
 
 |  |  |
 |--|--|
-|float width|The width, in meters, of the area that will              be projected.|
-|float height|The height, in meters, of the area that will             be projected.|
-|float nearClip|Anything closer than this distance (in             meters) will be discarded. Must not be zero, and if you make this             too small, you may experience glitching in your depth buffer.|
-|float farClip|Anything further than this distance (in             meters) will be discarded. For low resolution depth buffers, this             should not be too far away, or you'll see bad z-fighting              artifacts.|
+|float width|The width, in meters, of the area that will be projected.|
+|float height|The height, in meters, of the area that will be projected.|
+|float nearClip|Anything closer than this distance (in meters) will be discarded. Must not be zero, and if you make this too small, you may experience glitching in your depth buffer.|
+|float farClip|Anything further than this distance (in meters) will be discarded. For low resolution depth buffers, this should not be too far away, or you'll see bad z-fighting artifacts.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|The final orthographic matrix.|
 
 

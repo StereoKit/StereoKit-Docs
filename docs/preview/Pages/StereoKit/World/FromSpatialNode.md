@@ -18,9 +18,9 @@ QR code package.
 
 |  |  |
 |--|--|
-|Guid spatialNodeGuid|A Windows Mirage spatial node GUID             acquired from a windows MR API call.|
+|Guid spatialNodeGuid|A Windows Mirage spatial node GUID acquired from a windows MR API call.|
 |[SpatialNodeType]({{site.url}}/preview/Pages/StereoKit/SpatialNodeType.html) spatialNodeType|Type of spatial node to locate.|
-|Int64 qpcTime|A windows performance counter timestamp at             which the node should be located, obtained from another API or             with System.Diagnostics.Stopwatch.GetTimestamp().|
+|Int64 qpcTime|A windows performance counter timestamp at which the node should be located, obtained from another API or with System.Diagnostics.Stopwatch.GetTimestamp().|
 |RETURNS: [Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html)|A Pose representing the current orientation of the spatial node.|
 
 <div class='signature' markdown='1'>
@@ -36,10 +36,10 @@ QR code package.
 
 |  |  |
 |--|--|
-|Guid spatialNodeGuid|A Windows Mirage spatial node GUID             acquired from a windows MR API call.|
-|Pose& pose|A resulting Pose representing the current             orientation of the spatial node.|
+|Guid spatialNodeGuid|A Windows Mirage spatial node GUID acquired from a windows MR API call.|
+|Pose& pose|A resulting Pose representing the current orientation of the spatial node.|
 |[SpatialNodeType]({{site.url}}/preview/Pages/StereoKit/SpatialNodeType.html) spatialNodeType|Type of spatial node to locate.|
-|Int64 qpcTime|A windows performance counter timestamp at             which the node should be located, obtained from another API or             with System.Diagnostics.Stopwatch.GetTimestamp().|
+|Int64 qpcTime|A windows performance counter timestamp at which the node should be located, obtained from another API or with System.Diagnostics.Stopwatch.GetTimestamp().|
 |RETURNS: bool|True if FromSpatialNode succeeded, and false if it failed.|
 
 

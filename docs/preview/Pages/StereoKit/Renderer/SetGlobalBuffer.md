@@ -17,8 +17,8 @@ etc.
 
 |  |  |
 |--|--|
-|int bufferRegister|Valid values are 3-16. This is the              register id that this data will be bound to. In HLSL, you'll see             the slot id for '3' indicated like this `: register(b3)`|
-|Object buffer|The data buffer you would like to bind, or             null to unbind.|
+|int bufferRegister|Valid values are 3-16. This is the register id that this data will be bound to. In HLSL, you'll see the slot id for '3' indicated like this `: register(b3)`|
+|Object buffer|The data buffer you would like to bind, or null to unbind.|
 
 
 

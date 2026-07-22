@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting Started VS Code
-description: The [regular getting started guide]({{site.url}}/preview/Pages/Guides/Getting-Started.html) and the official templates now cater to Visual Studio Code, but if you're interested in setting up a StereoKit ...
+description: The regular getting started guide and the official templates now cater to Visual Studio Code, but if you're interested in setting up a StereoKit ...
 ---
 
 # Getting Started with StereoKit - Visual Studio Code

@@ -20,8 +20,8 @@ all stretched out, and are sometimes referred to as HDRIs.
 |  |  |
 |--|--|
 |string cubemapFile|Filename of the cubemap image.|
-|bool sRGBData|Is this image color data in sRGB format,             or is it normal/metal/rough/data that's not for direct display?             sRGB colors get converted to linear color space on the graphics             card, so getting this right can have a big impact on visuals.|
-|int loadPriority|The priority sort order for this asset             in the async loading system. Lower values mean loading sooner.|
+|bool sRGBData|Is this image color data in sRGB format, or is it normal/metal/rough/data that's not for direct display? sRGB colors get converted to linear color space on the graphics card, so getting this right can have a big impact on visuals.|
+|int loadPriority|The priority sort order for this asset in the async loading system. Lower values mean loading sooner.|
 |RETURNS: [Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html)|A Cubemap texture asset!|
 
 

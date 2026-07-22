@@ -17,4 +17,4 @@ This describes the graphics API that StereoKit is using for rendering.
 |OpenGL_WGL|OpenGL is used for rendering, using WGL (Windows Extensions to OpenGL) for loading. Native developers can configure SK to use this on Windows. (No longer supported)|
 |OpenGLES_EGL|OpenGL ES is used for rendering, using EGL (EGL Native Platform Graphics Interface) for loading. This is used by default on Android, and native developers can configure SK to use this on Linux. (No longer supported)|
 |Vulkan|Vulkan is used for rendering, this works basically on every platform, and is the only backend StereoKit currently supports!|
-|WebGL|WebGL is used for rendering. This is used by default on Web.|
+|WebGL|WebGL is used for rendering. This is used by default on Web. (No longer supported)|

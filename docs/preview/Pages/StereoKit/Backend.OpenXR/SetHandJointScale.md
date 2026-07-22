@@ -16,7 +16,7 @@ their joint sizes right!
 
 |  |  |
 |--|--|
-|float scaleFactor|1 being the default value, 2 being             twice as large as normal, and 0.5 being half as big as normal.|
+|float scaleFactor|1 being the default value, 2 being twice as large as normal, and 0.5 being half as big as normal.|
 
 
 

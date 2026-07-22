@@ -45,7 +45,7 @@ why!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lab|For convenience, XYZ is LAB.             Lightness of the color! Range is 0-1.             'a' is from red to green. Range is 0-1.             'b' is from blue to yellow. Range is 0-1.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) lab|For convenience, XYZ is LAB. Lightness of the color! Range is 0-1. 'a' is from red to green. Range is 0-1. 'b' is from blue to yellow. Range is 0-1.|
 |float opacity|The opacity copied into the final color!|
 |RETURNS: [Color]({{site.url}}/preview/Pages/StereoKit/Color.html)|A gamma space RGBA color constructed from the LAB values.|
 

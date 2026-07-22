@@ -17,8 +17,8 @@ generate colors for different UI element states.
 
 |  |  |
 |--|--|
-|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that will             be affected by this theme color. This can be a value _past_             UIColor.Max if you need extra UIColor slots for your own custom UI             elements.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma corrected color that should be             applied to this theme color category in its normal resting state.             Active and disabled colors will be generated based on this color.|
+|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that will be affected by this theme color. This can be a value _past_ UIColor.Max if you need extra UIColor slots for your own custom UI elements.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma corrected color that should be applied to this theme color category in its normal resting state. Active and disabled colors will be generated based on this color.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -32,9 +32,9 @@ one state of this color category, and does not modify the others.
 
 |  |  |
 |--|--|
-|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that will             be affected by this theme color. This can be a value _past_             UIColor.Max if you need extra UIColor slots for your own custom UI             elements.|
-|[UIColorState]({{site.url}}/preview/Pages/StereoKit/UIColorState.html) colorState|The state of the UI element this color             should apply to.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma corrected color that should be             applied to this theme color category in the indicated state.|
+|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that will be affected by this theme color. This can be a value _past_ UIColor.Max if you need extra UIColor slots for your own custom UI elements.|
+|[UIColorState]({{site.url}}/preview/Pages/StereoKit/UIColorState.html) colorState|The state of the UI element this color should apply to.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma corrected color that should be applied to this theme color category in the indicated state.|
 
 
 

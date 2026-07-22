@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenGL_WGL.HDC
-description: This is the Handle to Device Context HDC StereoKit uses with wglMakeCurrent.
+description: This is the Handle to Device Context HDC StereoKit uses with wglMakeCurrent. (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.OpenGL_WGL]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_WGL.html).HDC
 
@@ -11,5 +11,6 @@ static IntPtr HDC{ get }
 
 ## Description
 This is the Handle to Device Context `HDC` StereoKit
-uses with `wglMakeCurrent`.
+uses with `wglMakeCurrent`. (No longer supported, always returns
+IntPtr.Zero)
 

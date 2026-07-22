@@ -17,7 +17,7 @@ Uses an auto-generated id.
 
 |  |  |
 |--|--|
-|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) shader|Any valid shader, null is okay, but will log a             warning and default to Unlit.|
+|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) shader|Any valid shader, null is okay, but will log a warning and default to Unlit.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -31,7 +31,7 @@ auto-generated id.
 
 |  |  |
 |--|--|
-|string shaderFilename|The filename of a Shader asset. If the             file is not present, the Shader will default to Unlit.|
+|string shaderFilename|The filename of a Shader asset. If the file is not present, the Shader will default to Unlit.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -46,7 +46,7 @@ auto-generated id.
 |  |  |
 |--|--|
 |string id|Set the material's id to this.|
-|string shaderFilename|The filename of a Shader asset. If the             file is not present, the Shader will default to Unlit.|
+|string shaderFilename|The filename of a Shader asset. If the file is not present, the Shader will default to Unlit.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -60,7 +60,7 @@ the log, and this Material will default to using an Unlit shader.
 |  |  |
 |--|--|
 |string id|Set the material's id to this.|
-|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) shader|Any valid shader, null is okay, but will log a             warning and default to Unlit.|
+|[Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html) shader|Any valid shader, null is okay, but will log a warning and default to Unlit.|
 
 
 

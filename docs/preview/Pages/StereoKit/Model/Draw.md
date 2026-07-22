@@ -16,9 +16,9 @@ with the Matrix provided here.
 
 |  |  |
 |--|--|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix that will transform the Model             from Model Space into the current Hierarchy Space.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorLinear|A per-instance linear space color value             to pass into the shader! Normally this gets used like a material             tint. If you're  adventurous and don't need per-instance colors,             this is a great spot to pack in extra per-instance data for the             shader!|
-|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layer|All visuals are rendered using a layer              bit-flag. By default, all layers are rendered, but this can be              useful for filtering out objects for different rendering              purposes! For example: rendering a mesh over the user's head from             a 3rd person perspective, but filtering it out from the 1st             person perspective.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix that will transform the Model from Model Space into the current Hierarchy Space.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorLinear|A per-instance linear space color value to pass into the shader! Normally this gets used like a material tint. If you're  adventurous and don't need per-instance colors, this is a great spot to pack in extra per-instance data for the shader!|
+|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layer|All visuals are rendered using a layer bit-flag. By default, all layers are rendered, but this can be useful for filtering out objects for different rendering purposes! For example: rendering a mesh over the user's head from a 3rd person perspective, but filtering it out from the 1st person perspective.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -31,10 +31,10 @@ with the Matrix provided here.
 
 |  |  |
 |--|--|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix that will transform the Model             from Model Space into the current Hierarchy Space.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorLinear|A per-instance linear space color value             to pass into the shader! Normally this gets used like a material             tint. If you're  adventurous and don't need per-instance colors,             this is a great spot to pack in extra per-instance data for the             shader!|
-|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layer|All visuals are rendered using a layer              bit-flag. By default, all layers are rendered, but this can be              useful for filtering out objects for different rendering              purposes! For example: rendering a mesh over the user's head from             a 3rd person perspective, but filtering it out from the 1st             person perspective.|
-|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) materialOverride|Allows you to override the Material             of all nodes on this Model with your own Material.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix that will transform the Model from Model Space into the current Hierarchy Space.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorLinear|A per-instance linear space color value to pass into the shader! Normally this gets used like a material tint. If you're  adventurous and don't need per-instance colors, this is a great spot to pack in extra per-instance data for the shader!|
+|[RenderLayer]({{site.url}}/preview/Pages/StereoKit/RenderLayer.html) layer|All visuals are rendered using a layer bit-flag. By default, all layers are rendered, but this can be useful for filtering out objects for different rendering purposes! For example: rendering a mesh over the user's head from a 3rd person perspective, but filtering it out from the 1st person perspective.|
+|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) materialOverride|Allows you to override the Material of all nodes on this Model with your own Material.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -47,7 +47,7 @@ with the Matrix provided here.
 
 |  |  |
 |--|--|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix that will transform the Model             from Model Space into the current Hierarchy Space.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A Matrix that will transform the Model from Model Space into the current Hierarchy Space.|
 
 
 

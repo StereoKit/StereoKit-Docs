@@ -21,8 +21,8 @@ if it already meets your needs.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) dimensions|How large is this cube on each axis, in              meters?|
-|int subdivisions|Use this to add extra slices of             vertices across the cube's              faces. This can be useful for some types of vertex-based effects             !|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) dimensions|How large is this cube on each axis, in meters?|
+|int subdivisions|Use this to add extra slices of vertices across the cube's faces. This can be useful for some types of vertex-based effects !|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A flat-shaded cube mesh, pre-sized to the given dimensions.|
 
 
@@ -31,13 +31,6 @@ if it already meets your needs.
 
 ## Examples
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Cube Mesh]({{site.url}}/preview/img/screenshots/ProcGeoCube.jpg)
-```csharp
-meshCube = Mesh.GenerateCube(Vec3.One);
-```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -59,5 +52,12 @@ cubeMesh.Draw(Default.Material, cubeTransform);
 
 cubeTransform = Matrix.T(1, -.5f, 0);
 cubeModel.Draw(cubeTransform);
+```
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Cube Mesh]({{site.url}}/preview/img/screenshots/ProcGeoCube.jpg)
+```csharp
+meshCube = Mesh.GenerateCube(Vec3.One);
 ```
 

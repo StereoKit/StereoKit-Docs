@@ -16,8 +16,8 @@ timescale.
 
 |  |  |
 |--|--|
-|double totalSeconds|What time should it now be? The app will             progress from this point in time.|
-|double frameElapsedSeconds|How long was the previous frame?             This is a number often used in motion calculations. If left to             zero, it'll use the previous frame's time, and if the previous             frame's time was also zero, it'll use 1/90.|
+|double totalSeconds|What time should it now be? The app will progress from this point in time.|
+|double frameElapsedSeconds|How long was the previous frame? This is a number often used in motion calculations. If left to zero, it'll use the previous frame's time, and if the previous frame's time was also zero, it'll use 1/90.|
 
 
 

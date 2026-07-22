@@ -15,8 +15,8 @@ UIVisual at the world position.
 
 |  |  |
 |--|--|
-|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) elementVisual|The UIVisual to pull sound information             from.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) atLocal|The hierarchy local location where the sound             will play.|
+|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) elementVisual|The UIVisual to pull sound information from.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) atLocal|The hierarchy local location where the sound will play.|
 
 
 

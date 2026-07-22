@@ -16,7 +16,7 @@ origin.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) to|Any point in the same coordinate space as the             Ray.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) to|Any point in the same coordinate space as the Ray.|
 |RETURNS: [Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html)|The point on the ray that's closest to the given point.|
 
 

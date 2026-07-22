@@ -7,7 +7,7 @@ description: A variant of UI.Button that doesn't use the layout system, and inst
 
 <div class='signature' markdown='1'>
 ```csharp
-static bool ButtonAt(string text, Vec3 topLeftCorner, Vec2 size)
+static bool ButtonAt(string text, Vec3 topLeftCorner, Vec2 size, Align textAlign)
 ```
 A variant of UI.Button that doesn't use the layout system,
 and instead goes exactly where you put it.
@@ -15,9 +15,10 @@ and instead goes exactly where you put it.
 
 |  |  |
 |--|--|
-|string text|Text to display on the button and id for             tracking element state. MUST be unique within current hierarchy.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
+|string text|Text to display on the button and id for tracking element state. MUST be unique within current hierarchy.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[Align]({{site.url}}/preview/Pages/StereoKit/Align.html) textAlign|Where the text aligns within its allotted box. `Align.None` falls back to the element's natural alignment, which is generally what you want.|
 |RETURNS: bool|Will return true only on the first frame it is pressed!|
 
 

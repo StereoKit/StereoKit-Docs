@@ -16,9 +16,9 @@ interactive element. Does not include any text or label.
 
 |  |  |
 |--|--|
-|float percent|A value between 0 and 1 indicating progress             from 0% to 100%.|
-|float height|Physical height of the slider on the window. 0             will fill the remaining amount of window space.|
-|bool flipFillDirection|By default, this fills from top to             bottom. This allows you to flip the fill direction to bottom to              top.|
+|float percent|A value between 0 and 1 indicating progress from 0% to 100%.|
+|float height|Physical height of the slider on the window. 0 will fill the remaining amount of window space.|
+|bool flipFillDirection|By default, this fills from top to bottom. This allows you to flip the fill direction to bottom to top.|
 
 
 

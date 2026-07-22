@@ -21,8 +21,8 @@ if it already meets your needs.
 
 |  |  |
 |--|--|
-|float diameter|The diameter of the sphere in meters, or              2*radius. This is the full length from one side to the other.|
-|int subdivisions|How many times should the initial cube             be subdivided?|
+|float diameter|The diameter of the sphere in meters, or 2*radius. This is the full length from one side to the other.|
+|int subdivisions|How many times should the initial cube be subdivided?|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|A sphere mesh, pre-sized to the given diameter, created by sphereifying a subdivided cube! UV coordinates are taken from the initial unspherified cube.|
 
 
@@ -31,13 +31,6 @@ if it already meets your needs.
 
 ## Examples
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Sphere Mesh]({{site.url}}/preview/img/screenshots/ProcGeoSphere.jpg)
-```csharp
-meshSphere = Mesh.GenerateSphere(1);
-```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -60,5 +53,12 @@ sphereMesh.Draw(Default.Material, sphereTransform);
 
 sphereTransform = Matrix.T(1, .5f, 0);
 sphereModel.Draw(sphereTransform);
+```
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Sphere Mesh]({{site.url}}/preview/img/screenshots/ProcGeoSphere.jpg)
+```csharp
+meshSphere = Mesh.GenerateSphere(1);
 ```
 

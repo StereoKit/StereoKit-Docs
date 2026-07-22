@@ -18,7 +18,7 @@ afterwards. This MUST be called before SK.Initialize.
 
 |  |  |
 |--|--|
-|string extensionName|The extension name as listed in the             OpenXR spec. For example: "XR_EXT_hand_tracking".|
+|string extensionName|The extension name as listed in the OpenXR spec. For example: "XR_EXT_hand_tracking".|
 
 
 

@@ -27,7 +27,7 @@ to get per-instance deformation.
 
 |  |  |
 |--|--|
-|Matrix[] bonePalette|World-space transform per bone for              this frame. Length must match the bone count supplied to              SetSkin.|
+|Matrix[] bonePalette|World-space transform per bone for this frame. Length must match the bone count supplied to SetSkin.|
 
 
 

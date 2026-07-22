@@ -19,7 +19,7 @@ Setting this to null will restore SK's default.
 |  |  |
 |--|--|
 |[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) handed|The hand to assign the Model to.|
-|[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|The Model to use to represent the controller.             Null is valid, and will restore SK's default model.|
+|[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|The Model to use to represent the controller. Null is valid, and will restore SK's default model.|
 
 
 

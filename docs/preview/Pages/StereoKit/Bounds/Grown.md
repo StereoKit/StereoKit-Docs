@@ -15,7 +15,7 @@ the result, and does NOT modify the current bounds.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pt|The point to encapsulate! This should be in the             same space as the bounds.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pt|The point to encapsulate! This should be in the same space as the bounds.|
 |RETURNS: [Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html)|The bounds that also encapsulate the provided point.|
 
 <div class='signature' markdown='1'>
@@ -30,8 +30,8 @@ encapsulate each point!
 
 |  |  |
 |--|--|
-|[Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html) box|The box to encapsulate! The corners of this box             are transformed, and then used to grow the Bounds.|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) boxTransform|The Matrix transform for the box. If             this is just an Identity matrix, you can skip providing a Matrix.|
+|[Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html) box|The box to encapsulate! The corners of this box are transformed, and then used to grow the Bounds.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) boxTransform|The Matrix transform for the box. If this is just an Identity matrix, you can skip providing a Matrix.|
 |RETURNS: [Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html)|The bounds that also encapsulate the provided transformed box.|
 
 <div class='signature' markdown='1'>

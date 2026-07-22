@@ -15,7 +15,7 @@ plane!
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pointOnPlane|Any point directly on the surface of              the plane.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pointOnPlane|Any point directly on the surface of the plane.|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) planeNormal|Direction the plane is facing.|
 |RETURNS: [Plane]({{site.url}}/preview/Pages/StereoKit/Plane.html)|A plane that contains pointOnPlane, and faces planeNormal.|
 

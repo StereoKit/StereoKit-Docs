@@ -15,7 +15,7 @@ supports .wav and .mp3 files. Audio is converted to mono.
 
 |  |  |
 |--|--|
-|string filename|Name of the audio file! Supports .wav and             .mp3 files.|
+|string filename|Name of the audio file! Supports .wav and .mp3 files.|
 |RETURNS: [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html)|A sound object, or null if something went wrong.|
 
 

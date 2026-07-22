@@ -19,6 +19,7 @@ namespace StereoKitDocumenter
 		MethodBase methodInfo;
 
 		public bool IsStatic => methodInfo.IsStatic;
+		public bool IsPublic => methodInfo.IsPublic;
 
 		// Link-free C# signature, e.g. "static Material Copy(string assetId)".
 		// Shared by ToString() (site pages) and DocAI (AI-friendly docs) so the
@@ -205,6 +206,17 @@ namespace StereoKitDocumenter
 					}
 				}
             }
+
+			// Documented internal/private members land in the doc XML too, but
+			// the public-only lookups above can't see them. Find them here so
+			// ReadMethod can identify them via IsPublic and skip them.
+			if (result == null)
+			{
+				const BindingFlags nonPublic = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+				result = methodName == "#ctor"
+					? parent.GetConstructor(nonPublic, null, paramTypes, null)
+					: parent.GetMethod    (methodName, nonPublic, null, paramTypes, null);
+			}
 
 			// Constructors on a generic type (e.g. ComputeBuffer<T>) have `0[]-style
 			// parameters that collapse to System.Object above, so GetConstructor can't

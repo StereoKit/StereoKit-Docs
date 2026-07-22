@@ -15,7 +15,7 @@ into a hash value that StereoKit can use.
 
 |  |  |
 |--|--|
-|string str|A C# string that will be converted to UTF8, and             then hashed.|
+|string str|A C# string that will be converted to UTF8, and then hashed.|
 |RETURNS: [IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html)|A StereoKit hash representing the provided string.|
 
 <div class='signature' markdown='1'>
@@ -29,7 +29,7 @@ to combine your hash with an existing hash.
 
 |  |  |
 |--|--|
-|string str|A C# string that will be converted to UTF8, and             then hashed.|
+|string str|A C# string that will be converted to UTF8, and then hashed.|
 |[IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html) root|The hash value this new hash will start from.|
 |RETURNS: [IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html)|A StereoKit hash representing a combination of the provided string and the root hash.|
 

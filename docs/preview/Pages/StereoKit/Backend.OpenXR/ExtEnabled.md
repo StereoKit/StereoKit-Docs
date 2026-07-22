@@ -16,7 +16,7 @@ called after SK.Initialize.
 
 |  |  |
 |--|--|
-|string extensionName|The extension name as listed in the             OpenXR spec. For example: "XR_EXT_hand_tracking".|
+|string extensionName|The extension name as listed in the OpenXR spec. For example: "XR_EXT_hand_tracking".|
 |RETURNS: bool|If the extension is available to use.|
 
 

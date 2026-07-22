@@ -17,7 +17,7 @@ intersection point to the origin of the ray.
 |  |  |
 |--|--|
 |[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|A ray to intersect with.|
-|Vec3& at|An out parameter that will hold the closest intersection              point to the ray's origin. If there's not intersection, this will be (0,0,0).|
+|Vec3& at|An out parameter that will hold the closest intersection point to the ray's origin. If there's not intersection, this will be (0,0,0).|
 |RETURNS: bool|True if intersection occurs, false if it doesn't. Refer to the 'at' parameter for intersection information!|
 
 

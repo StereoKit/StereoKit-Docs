@@ -23,6 +23,7 @@ etc.
 |Center|Center on both X and Y axes. This is a combination of XCenter and YCenter.|
 |CenterLeft|Start on the left of the X axis, center on the Y axis. This is a combination of XLeft and YCenter.|
 |CenterRight|Start on the right of the X axis, center on the Y axis. This is a combination of XRight and YCenter.|
+|None|No alignment specified. For elements that have a natural default alignment (such as image buttons), this falls back to that default.|
 |TopCenter|Center on the X axis, and top on the Y axis. This is a combination of XCenter and YTop.|
 |TopLeft|Start on the left of the X axis, and top on the Y axis. This is a combination of XLeft and YTop.|
 |TopRight|Start on the right of the X axis, and top on the Y axis. This is a combination of XRight and YTop.|

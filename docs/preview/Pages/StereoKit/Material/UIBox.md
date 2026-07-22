@@ -31,6 +31,19 @@ border_affect_radius - meters
 
 ## Examples
 
+The UI Box material has 3 parameters to control how the box wires
+are rendered. The initial size in meters is 'border_size', and
+can grow by 'border_size_grow' meters based on distance to the
+user's hand. That distance can be configured via the
+'border_affect_radius' property of the shader, which is also in
+meters.
+```csharp
+matUIBox = Material.UIBox.Copy();
+matUIBox["border_size"]          = 0.005f;
+matUIBox["border_size_grow"]     = 0.01f;
+matUIBox["border_affect_radius"] = 0.2f;
+```
+![UI box material example]({{site.url}}/preview/img/screenshots/MaterialUIBox.jpg)
 ### An Interactive Model
 
 ![A grabbable GLTF Model using UI.Handle]({{site.url}}/preview/img/screenshots/HandleBox.jpg)
@@ -54,17 +67,4 @@ public void StepHandle() {
 	UI.HandleEnd();
 }
 ```
-The UI Box material has 3 parameters to control how the box wires
-are rendered. The initial size in meters is 'border_size', and
-can grow by 'border_size_grow' meters based on distance to the
-user's hand. That distance can be configured via the
-'border_affect_radius' property of the shader, which is also in
-meters.
-```csharp
-matUIBox = Material.UIBox.Copy();
-matUIBox["border_size"]          = 0.005f;
-matUIBox["border_size_grow"]     = 0.01f;
-matUIBox["border_affect_radius"] = 0.2f;
-```
-![UI box material example]({{site.url}}/preview/img/screenshots/MaterialUIBox.jpg)
 

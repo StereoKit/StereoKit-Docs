@@ -20,7 +20,7 @@ StereoKit uses 48,000 samples per second of audio.
 
 |  |  |
 |--|--|
-|Single[]& samples|An array of audio samples, where each             sample is between -1 and +1.|
+|Single[]& samples|An array of audio samples, where each sample is between -1 and +1.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -37,8 +37,8 @@ StereoKit uses 48,000 samples per second of audio.
 
 |  |  |
 |--|--|
-|Single[]& samples|An array of audio samples, where each             sample is between -1 and +1.|
-|int sampleCount|You can use this to write only a subset             of the samples in the array, rather than the entire array!|
+|Single[]& samples|An array of audio samples, where each sample is between -1 and +1.|
+|int sampleCount|You can use this to write only a subset of the samples in the array, rather than the entire array!|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -59,8 +59,8 @@ already in native memory!
 
 |  |  |
 |--|--|
-|IntPtr samples|A pointer to a native array of `float` audio             samples, where each sample is between -1 and +1.|
-|int sampleCount|You can use this to write only a subset             of the samples in the array, rather than the entire array!|
+|IntPtr samples|A pointer to a native array of `float` audio samples, where each sample is between -1 and +1.|
+|int sampleCount|You can use this to write only a subset of the samples in the array, rather than the entire array!|
 
 
 

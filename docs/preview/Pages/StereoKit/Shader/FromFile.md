@@ -20,7 +20,7 @@ you're compiling/distributing a shader some other way!
 
 |  |  |
 |--|--|
-|string file|Path to a precompiled StereoKit Shader file!             If no .sks extension is part of this path, StereoKit will              automatically add it and check that first.|
+|string file|Path to a precompiled StereoKit Shader file! If no .sks extension is part of this path, StereoKit will automatically add it and check that first.|
 |RETURNS: [Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html)|A shader from the given file, or null if it failed to load/compile.|
 
 

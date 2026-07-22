@@ -18,7 +18,7 @@ to Pop when you're finished!
 
 |  |  |
 |--|--|
-|bool preserveKeyboard|If true, interacting with elements             will NOT hide the keyboard. If false, interaction will hide the             keyboard.|
+|bool preserveKeyboard|If true, interacting with elements will NOT hide the keyboard. If false, interaction will hide the keyboard.|
 
 
 

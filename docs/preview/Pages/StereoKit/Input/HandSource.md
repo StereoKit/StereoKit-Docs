@@ -18,7 +18,7 @@ their controllers, automatically switching to hands, or visa versa.
 
 |  |  |
 |--|--|
-|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|Do  you want the left or right hand? 0 is left,             and 1 is right.|
+|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|Do  you want the left or right hand? 0 is left, and 1 is right.|
 |RETURNS: [HandSource]({{site.url}}/preview/Pages/StereoKit/HandSource.html)|Returns information about hand tracking data source.|
 
 

@@ -26,8 +26,8 @@ call HapticStop / HapticPulse.
 |--|--|
 |[InputHaptic]({{site.url}}/preview/Pages/StereoKit/InputHaptic.html) output|Which haptic output to vibrate.|
 |Single[] samples|Signed [-1, 1] PCM samples.|
-|float sampleRateHz|The sample rate the buffer was authored              at. See HapticPreferredRate for the device's native rate. If this              differs from the in-flight stream's rate, append behavior degrades              to a restart.|
-|bool append|When true, queues these samples after any              playback already in flight on this output. When false (default),              cancels any current playback and starts the new buffer              immediately.|
+|float sampleRateHz|The sample rate the buffer was authored at. See HapticPreferredRate for the device's native rate. If this differs from the in-flight stream's rate, append behavior degrades to a restart.|
+|bool append|When true, queues these samples after any playback already in flight on this output. When false (default), cancels any current playback and starts the new buffer immediately.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -44,9 +44,9 @@ latency.
 |--|--|
 |[InputHaptic]({{site.url}}/preview/Pages/StereoKit/InputHaptic.html) output|Which haptic output to vibrate.|
 |Single[] samples|Signed [-1, 1] PCM samples.|
-|float sampleRateHz|The sample rate the buffer was authored             at.|
-|bool append|When true, queues after any in-flight playback;             when false, replaces it.|
-|Int32& prevSamplesConsumed|Receives the runtime's             samplesConsumed count for the most recent chunk StereoKit submitted             to the device, or 0 if no chunk was in flight. This is reported at             chunk granularity, not at the granularity of HapticWaveform calls —             a single HapticWaveform call may span multiple internal chunks.|
+|float sampleRateHz|The sample rate the buffer was authored at.|
+|bool append|When true, queues after any in-flight playback; when false, replaces it.|
+|Int32& prevSamplesConsumed|Receives the runtime's samplesConsumed count for the most recent chunk StereoKit submitted to the device, or 0 if no chunk was in flight. This is reported at chunk granularity, not at the granularity of HapticWaveform calls — a single HapticWaveform call may span multiple internal chunks.|
 
 
 

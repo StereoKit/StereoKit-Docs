@@ -127,8 +127,21 @@ var documents =
 			{name:'SetHandJointScale'},
 		]
 		},
+		{name:'Backend.Vulkan',
+		 pages:[
+			{name:'Device'},
+			{name:'Instance'},
+			{name:'PhysicalDevice'},
+			{name:'GetFrameFenceFd'},
+			{name:'Queue'},
+			{name:'QueueFamilyIndex'},
+			{name:'QueueLock'},
+			{name:'QueueUnlock'},
+		]
+		},
 		{name:'BackendGraphics'},
 		{name:'BackendPlatform'},
+		{name:'BackendVulkanQueue'},
 		{name:'BackendXRType'},
 		{name:'Bounds',
 		 pages:[
@@ -155,6 +168,7 @@ var documents =
 			{name:'IsActive'},
 			{name:'IsChanged'},
 			{name:'IsJustActive'},
+			{name:'IsJustCanceled'},
 			{name:'IsJustInactive'},
 			{name:'Make'},
 		]
@@ -526,24 +540,49 @@ var documents =
 		},
 		{name:'Interactor',
 		 pages:[
+			{name:'Activation'},
 			{name:'Active'},
-			{name:'Count'},
+			{name:'All'},
 			{name:'End'},
+			{name:'Events'},
 			{name:'Focused'},
 			{name:'MinDistance'},
 			{name:'Motion'},
+			{name:'None'},
 			{name:'Radius'},
+			{name:'SecondaryDims'},
+			{name:'Source'},
 			{name:'Start'},
 			{name:'Tracked'},
+			{name:'Type'},
 			{name:'Create'},
 			{name:'Destroy'},
-			{name:'Get'},
+			{name:'Equals'},
+			{name:'GetHashCode'},
+			{name:'IsInteracting'},
+			{name:'op_Equality'},
+			{name:'op_Inequality'},
 			{name:'TryGetFocusBounds'},
 			{name:'Update'},
 		]
 		},
 		{name:'InteractorActivation'},
+		{name:'InteractorCollection',
+		 pages:[
+			{name:'Count'},
+			{name:'GetEnumerator'},
+		]
+		},
+		{name:'InteractorCollection.Enumerator',
+		 pages:[
+			{name:'Current'},
+			{name:'Dispose'},
+			{name:'MoveNext'},
+			{name:'Reset'},
+		]
+		},
 		{name:'InteractorEvent'},
+		{name:'InteractorSource'},
 		{name:'InteractorType'},
 		{name:'JointId'},
 		{name:'Key'},
@@ -697,10 +736,13 @@ var documents =
 			{name:'GetInds'},
 			{name:'GetTriangle'},
 			{name:'GetVerts'},
+			{name:'GetVerts'},
 			{name:'Intersect'},
+			{name:'SetData'},
 			{name:'SetData'},
 			{name:'SetInds'},
 			{name:'SetSkin'},
+			{name:'SetVerts'},
 			{name:'SetVerts'},
 			{name:'UpdateSkin'},
 		]
@@ -751,6 +793,14 @@ var documents =
 			{name:'GetEnumerator'},
 		]
 		},
+		{name:'ModelAnimCollection.Enumerator',
+		 pages:[
+			{name:'Current'},
+			{name:'Dispose'},
+			{name:'MoveNext'},
+			{name:'Reset'},
+		]
+		},
 		{name:'ModelNode',
 		 pages:[
 			{name:'Child'},
@@ -779,6 +829,14 @@ var documents =
 			{name:'GetEnumerator'},
 		]
 		},
+		{name:'ModelNodeCollection.Enumerator',
+		 pages:[
+			{name:'Current'},
+			{name:'Dispose'},
+			{name:'MoveNext'},
+			{name:'Reset'},
+		]
+		},
 		{name:'ModelNodeInfoCollection',
 		 pages:[
 			{name:'Count'},
@@ -792,10 +850,26 @@ var documents =
 			{name:'Remove'},
 		]
 		},
+		{name:'ModelNodeInfoCollection.Enumerator',
+		 pages:[
+			{name:'Current'},
+			{name:'Dispose'},
+			{name:'MoveNext'},
+			{name:'Reset'},
+		]
+		},
 		{name:'ModelVisualCollection',
 		 pages:[
 			{name:'Count'},
 			{name:'GetEnumerator'},
+		]
+		},
+		{name:'ModelVisualCollection.Enumerator',
+		 pages:[
+			{name:'Current'},
+			{name:'Dispose'},
+			{name:'MoveNext'},
+			{name:'Reset'},
 		]
 		},
 		{name:'Mouse',
@@ -940,7 +1014,6 @@ var documents =
 		{name:'RenderClear'},
 		{name:'Renderer',
 		 pages:[
-			{name:'_renderCaptureCallbacks'},
 			{name:'CameraRoot'},
 			{name:'CaptureFilter'},
 			{name:'ClearColor'},
@@ -971,6 +1044,7 @@ var documents =
 			{name:'SetGlobalTexture'},
 			{name:'SetOrthoClip'},
 			{name:'SetOrthoSize'},
+			{name:'SetPostProcess'},
 		]
 		},
 		{name:'RenderLayer'},
@@ -990,6 +1064,16 @@ var documents =
 		]
 		},
 		{name:'RenderListRefs'},
+		{name:'RenderSettings',
+		 pages:[
+			{name:'clear'},
+			{name:'clearColor'},
+			{name:'layerFilter'},
+			{name:'materialVariant'},
+			{name:'postProcess'},
+			{name:'viewport'},
+		]
+		},
 		{name:'ScreenshotCallback'},
 		{name:'Sensor'},
 		{name:'Sensor.Depth',
@@ -1248,11 +1332,13 @@ var documents =
 			{name:'FromCubemapFile'},
 			{name:'FromFile'},
 			{name:'FromFiles'},
+			{name:'FromHardwareBuffer'},
 			{name:'FromMemory'},
 			{name:'GenColor'},
 			{name:'GenCubemap'},
 			{name:'GenParticle'},
 			{name:'GetColorData'},
+			{name:'GetHardwareBuffer'},
 			{name:'GetNativeSurface'},
 			{name:'RenderTarget'},
 			{name:'SetColors'},
@@ -1312,6 +1398,7 @@ var documents =
 			{name:'LayoutHeight'},
 			{name:'LineHeightPct'},
 			{name:'Material'},
+			{name:'RenderLayer'},
 			{name:'TotalHeight'},
 			{name:'FromFont'},
 		]
@@ -1355,6 +1442,7 @@ var documents =
 			{name:'LayoutLast'},
 			{name:'LayoutRemaining'},
 			{name:'LineHeight'},
+			{name:'RenderLayer'},
 			{name:'Settings'},
 			{name:'ShowVolumes'},
 			{name:'SystemMoveType'},
@@ -1387,6 +1475,8 @@ var documents =
 			{name:'Label'},
 			{name:'LastElementHandActive'},
 			{name:'LastElementHandFocused'},
+			{name:'LastElementSourceActive'},
+			{name:'LastElementSourceFocused'},
 			{name:'LayoutArea'},
 			{name:'LayoutPop'},
 			{name:'LayoutPush'},
@@ -1441,6 +1531,7 @@ var documents =
 			{name:'WindowEnd'},
 		]
 		},
+		{name:'UIBtnFlag'},
 		{name:'UIBtnLayout'},
 		{name:'UIColor'},
 		{name:'UIColorState'},
@@ -1628,6 +1719,24 @@ var documents =
 			{name:'ToString'},
 		]
 		},
+		{name:'VertComponent',
+		 pages:[
+			{name:'Count'},
+			{name:'Format'},
+			{name:'Semantic'},
+			{name:'SemanticSlot'},
+			{name:'VertComponent'},
+		]
+		},
+		{name:'VertComponentAttribute',
+		 pages:[
+			{name:'Count'},
+			{name:'Format'},
+			{name:'Semantic'},
+			{name:'SemanticSlot'},
+			{name:'VertComponentAttribute'},
+		]
+		},
 		{name:'Vertex',
 		 pages:[
 			{name:'col'},
@@ -1637,6 +1746,8 @@ var documents =
 			{name:'Vertex'},
 		]
 		},
+		{name:'VertFmt'},
+		{name:'VertSemantic'},
 		{name:'World',
 		 pages:[
 			{name:'BoundsPose'},
@@ -1755,6 +1866,12 @@ var documents =
 			{name:'Initialize'},
 			{name:'Shutdown'},
 			{name:'Step'},
+		]
+		},
+		{name:'StepperPriorityAttribute',
+		 pages:[
+			{name:'Priority'},
+			{name:'StepperPriorityAttribute'},
 		]
 		},
 	]

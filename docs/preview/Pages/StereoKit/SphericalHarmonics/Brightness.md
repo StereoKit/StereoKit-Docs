@@ -16,7 +16,7 @@ this object represents.
 
 |  |  |
 |--|--|
-|float scale|A multiplier for the coefficients! A value of             1 will leave everything the same, 0.5 will cut the brightness in             half, and a 2 will double the brightness.|
+|float scale|A multiplier for the coefficients! A value of 1 will leave everything the same, 0.5 will cut the brightness in half, and a 2 will double the brightness.|
 
 
 

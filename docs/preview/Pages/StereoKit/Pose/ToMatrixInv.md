@@ -16,7 +16,7 @@ space represented by the Pose into world space.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|A scale vector! Vec3.One would be an identity             scale.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|A scale vector! Vec3.One would be an identity scale.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that transforms from the given pose.|
 
 <div class='signature' markdown='1'>
@@ -30,7 +30,7 @@ space represented by the Pose into world space.
 
 |  |  |
 |--|--|
-|float scale|A scale vector! Vec3.One would be an identity             scale.|
+|float scale|A scale vector! Vec3.One would be an identity scale.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that transforms from the given pose.|
 
 <div class='signature' markdown='1'>

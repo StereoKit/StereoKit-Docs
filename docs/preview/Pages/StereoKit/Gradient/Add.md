@@ -16,7 +16,7 @@ to the right slot based on its position.
 |  |  |
 |--|--|
 |[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorLinear|Any linear space color you like!|
-|float position|Typically a value between 0-1! This is the              position of the color along the 'x-axis' of the gradient.|
+|float position|Typically a value between 0-1! This is the position of the color along the 'x-axis' of the gradient.|
 
 
 

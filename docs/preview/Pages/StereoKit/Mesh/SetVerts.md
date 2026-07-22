@@ -1,30 +1,29 @@
 ---
 layout: default
 title: Mesh.SetVerts
-description: Assigns the vertices for this Mesh! This will create a vertex buffer object on the graphics card. If you're calling this a second time, the buffer will be marked as dynamic and re-allocated. If you're calling this a third time, the buffer will only re-allocate if the buffer is too small, otherwise it just copies in the data!  Remember to set all the relevant values! Your material will often show black if the Normals or Colors are left at their default values.
+description: Assigns vertices with a custom vertex format to this Mesh! The format is derived from T's fields, each of which must be tagged with a [VertComponent] attribute describing what it is. The shader this Mesh is drawn with must be one that works with the components this format provides, StereoKit's built-in shaders all expect position, normal, texcoord and color.  A T that doesn't exactly describe its own memory layout will throw an ArgumentException here, see [VertComponent] docs for the rules.
 ---
 # [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html).SetVerts
 
 <div class='signature' markdown='1'>
 ```csharp
-void SetVerts(Vertex[] vertices, bool calculateBounds)
+void SetVerts(T[] vertices, bool calculateBounds)
 ```
-Assigns the vertices for this Mesh! This will create a
-vertex buffer object on the graphics card. If you're
-calling this a second time, the buffer will be marked as dynamic
-and re-allocated. If you're calling this a third time, the buffer
-will only re-allocate if the buffer is too small, otherwise it
-just copies in the data!
+Assigns vertices with a custom vertex format to this Mesh!
+The format is derived from T's fields, each of which must be tagged
+with a [VertComponent] attribute describing what it is. The shader
+this Mesh is drawn with must be one that works with the components
+this format provides, StereoKit's built-in shaders all expect
+position, normal, texcoord and color.
 
-Remember to set all the relevant values! Your material will often
-show black if the Normals or Colors are left at their default
-values.
+A T that doesn't exactly describe its own memory layout will throw
+an ArgumentException here, see [VertComponent] docs for the rules.
 </div>
 
 |  |  |
 |--|--|
-|Vertex[] vertices|An array of vertices to add to the mesh.             Remember to set all the relevant values! Your material will often             show black if the Normals or Colors are left at their default             values.|
-|bool calculateBounds|If true, this will also update the             Mesh's bounds based on the vertices provided. Since this does             require iterating through all the verts with some logic, there is             performance cost to doing this. If you're updating a mesh             frequently or need all the performance you can get, setting this to             false is a nice way to gain some speed!|
+|T[] vertices|An array of vertices to add to the mesh.|
+|bool calculateBounds|If true, this will also update the Mesh's bounds based on the vertices provided. This requires the format to contain a float3 position component.|
 
 
 
@@ -87,5 +86,43 @@ for (int x = 0; x < gridSize; x++) {
 	}
 } }
 demoProcMesh = new Mesh(verts, inds);
+```
+### Custom vertex formats
+Meshes can use custom vertex layouts! Define a struct that provides
+what your shader's vertex stage needs, and tag each field with a
+VertComponent attribute saying what it is. StereoKit derives the
+vertex format from the struct automatically. Since vertex data is
+matched to shader inputs by semantic, fields don't need to be in the
+same order as the shader declares them!
+```csharp
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+struct VertPosColor
+{
+	[VertComponent(VertSemantic.Color,    VertFmt.U8Normalized, 4)]
+	public Color32 color;
+	[VertComponent(VertSemantic.Position, VertFmt.F32,          3)]
+	public Vec3    pos;
+
+	public VertPosColor(Vec3 position, Color32 c) { pos = position; color = c; }
+}
+
+Mesh     _mesh;
+Material _material;
+
+Mesh BuildOctahedron(float s)
+{
+	Mesh mesh = new Mesh();
+	mesh.SetVerts(new VertPosColor[] {
+		new VertPosColor(V.XYZ( s, 0, 0), new Color32(255,  0,  0,255)),
+		new VertPosColor(V.XYZ(-s, 0, 0), new Color32(  0,255,  0,255)),
+		new VertPosColor(V.XYZ( 0, s, 0), new Color32(  0,  0,255,255)),
+		new VertPosColor(V.XYZ( 0,-s, 0), new Color32(255,255,  0,255)),
+		new VertPosColor(V.XYZ( 0, 0, s), new Color32(  0,255,255,255)),
+		new VertPosColor(V.XYZ( 0, 0,-s), new Color32(255,  0,255,255)) });
+	mesh.SetInds(new uint[] {
+		2,4,0,  2,0,5,  2,5,1,  2,1,4,
+		3,0,4,  3,5,0,  3,1,5,  3,4,1 });
+	return mesh;
+}
 ```
 

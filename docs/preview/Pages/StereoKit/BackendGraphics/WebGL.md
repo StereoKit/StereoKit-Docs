@@ -1,7 +1,7 @@
 ---
 layout: default
 title: BackendGraphics.WebGL
-description: WebGL is used for rendering. This is used by default on Web.
+description: WebGL is used for rendering. This is used by default on Web. (No longer supported)
 ---
 # [BackendGraphics]({{site.url}}/preview/Pages/StereoKit/BackendGraphics.html).WebGL
 
@@ -11,4 +11,5 @@ static [BackendGraphics]({{site.url}}/preview/Pages/StereoKit/BackendGraphics.ht
 
 ## Description
 WebGL is used for rendering. This is used by default on Web.
+(No longer supported)
 

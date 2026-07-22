@@ -16,8 +16,8 @@ don't need the hand itself to be visible.
 
 |  |  |
 |--|--|
-|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|If Handed.Max, this will set the value for              both hands.|
-|bool visible|True, StereoKit renders this. False, it             doesn't.|
+|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) hand|If Handed.Max, this will set the value for both hands.|
+|bool visible|True, StereoKit renders this. False, it doesn't.|
 
 
 

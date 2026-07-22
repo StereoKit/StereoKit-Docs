@@ -15,7 +15,7 @@ points that are on the surface of the Bounds.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pt|A point in the same coordinate space as the             Bounds.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pt|A point in the same coordinate space as the Bounds.|
 |RETURNS: bool|True if the point is on, or in the Bounds.|
 
 <div class='signature' markdown='1'>

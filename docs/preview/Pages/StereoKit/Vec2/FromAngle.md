@@ -16,7 +16,7 @@ with a length of 1. Angles are counter-clockwise, and start from
 
 |  |  |
 |--|--|
-|float degrees|Counter-clockwise angle from (1,0), in             degrees.|
+|float degrees|Counter-clockwise angle from (1,0), in degrees.|
 |RETURNS: [Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html)|A unit vector (length of 1), pointing towards degrees.|
 
 

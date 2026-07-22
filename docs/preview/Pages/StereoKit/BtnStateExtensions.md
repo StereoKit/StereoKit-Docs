@@ -15,6 +15,7 @@ bit-field checks a little easier.
 |[IsActive]({{site.url}}/preview/Pages/StereoKit/BtnStateExtensions/IsActive.html)|Is the button pressed?|
 |[IsChanged]({{site.url}}/preview/Pages/StereoKit/BtnStateExtensions/IsChanged.html)|Was the button either presses or released this frame?|
 |[IsJustActive]({{site.url}}/preview/Pages/StereoKit/BtnStateExtensions/IsJustActive.html)|Has the button just been pressed this frame?|
+|[IsJustCanceled]({{site.url}}/preview/Pages/StereoKit/BtnStateExtensions/IsJustCanceled.html)|Was a button activation just canceled this frame, ending without firing because the interactor moved too far away?|
 |[IsJustInactive]({{site.url}}/preview/Pages/StereoKit/BtnStateExtensions/IsJustInactive.html)|Has the button just been released this frame?|
 |[Make]({{site.url}}/preview/Pages/StereoKit/BtnStateExtensions/Make.html)|Creates a Button State using the current and previous frame's state! These two states allow us to add the "JustActive" and "JustInactive" bitflags when changes happen.|
 

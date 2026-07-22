@@ -17,7 +17,7 @@ color that was provided there.
 
 |  |  |
 |--|--|
-|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that are             affected by this theme color. This can be a value _past_             UIColor.Max if you need extra UIColor slots for your own custom UI             elements. If the theme slot is empty, the color will be pulled from             UIColor.None.|
+|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that are affected by this theme color. This can be a value _past_ UIColor.Max if you need extra UIColor slots for your own custom UI elements. If the theme slot is empty, the color will be pulled from UIColor.None.|
 |RETURNS: [Color]({{site.url}}/preview/Pages/StereoKit/Color.html)|The gamma space color for the theme color category in its normal state.|
 
 <div class='signature' markdown='1'>
@@ -33,8 +33,8 @@ there.
 
 |  |  |
 |--|--|
-|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that are             affected by this theme color. This can be a value _past_             UIColor.Max if you need extra UIColor slots for your own custom UI             elements. If the theme slot is empty, the color will be pulled from             UIColor.None.|
-|[UIColorState]({{site.url}}/preview/Pages/StereoKit/UIColorState.html) colorState|The state of the UI element this color             applies to.|
+|[UIColor]({{site.url}}/preview/Pages/StereoKit/UIColor.html) colorCategory|The category of UI elements that are affected by this theme color. This can be a value _past_ UIColor.Max if you need extra UIColor slots for your own custom UI elements. If the theme slot is empty, the color will be pulled from UIColor.None.|
+|[UIColorState]({{site.url}}/preview/Pages/StereoKit/UIColorState.html) colorState|The state of the UI element this color applies to.|
 |RETURNS: [Color]({{site.url}}/preview/Pages/StereoKit/Color.html)|The gamma space color for the theme color category in the indicated state.|
 
 

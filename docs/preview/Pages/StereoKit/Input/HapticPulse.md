@@ -18,9 +18,9 @@ on this output before playing.
 |  |  |
 |--|--|
 |[InputHaptic]({{site.url}}/preview/Pages/StereoKit/InputHaptic.html) output|Which haptic output to vibrate.|
-|float frequency|Carrier frequency in Hz. Pass 0 or negative             to let the runtime pick a sensible default for the device.|
-|float amplitude|Vibration intensity, 0 (off) to 1 (full).             Values outside this range are clamped.|
-|float durationSec|How long to vibrate, in seconds. Pass 0             or negative for the shortest pulse the device supports.|
+|float frequency|Carrier frequency in Hz. Pass 0 or negative to let the runtime pick a sensible default for the device.|
+|float amplitude|Vibration intensity, 0 (off) to 1 (full). Values outside this range are clamped.|
+|float durationSec|How long to vibrate, in seconds. Pass 0 or negative for the shortest pulse the device supports.|
 
 
 

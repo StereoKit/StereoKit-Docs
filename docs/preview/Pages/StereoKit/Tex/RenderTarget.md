@@ -18,9 +18,9 @@ attached.
 |--|--|
 |int width|Width in pixels.|
 |int height|Height in pixels|
-|int multisample|Multisample level, or MSAA. This should             be 1, 2, 4, 8, or 16. The results will have moother edges with             higher values, but will cost more RAM and time to render. Note that             GL platforms cannot trivially draw a multisample > 1 texture in a             shader.|
+|int multisample|Multisample level, or MSAA. This should be 1, 2, 4, 8, or 16. The results will have moother edges with higher values, but will cost more RAM and time to render. Note that GL platforms cannot trivially draw a multisample > 1 texture in a shader.|
 |[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) colorFormat|The format of the color surface.|
-|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) depthFormat|The format of the depth buffer. If this             is None, no depth buffer will be attached to this rendertarget.|
+|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) depthFormat|The format of the depth buffer. If this is None, no depth buffer will be attached to this rendertarget.|
 |RETURNS: [Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html)|Returns a texture set up as a rendertarget.|
 
 

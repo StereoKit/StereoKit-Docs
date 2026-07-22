@@ -20,8 +20,8 @@ runtime.
 
 |  |  |
 |--|--|
-|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|A world space ray that you'd like to try             intersecting with the world mesh.|
-|Ray& intersection|The location of the intersection, and             direction of the world's surface at that point. This is only             valid if the method returns true.|
+|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|A world space ray that you'd like to try intersecting with the world mesh.|
+|Ray& intersection|The location of the intersection, and direction of the world's surface at that point. This is only valid if the method returns true.|
 |RETURNS: bool|True if an intersection is detected, false if raycasting is disabled, or there was no intersection.|
 
 

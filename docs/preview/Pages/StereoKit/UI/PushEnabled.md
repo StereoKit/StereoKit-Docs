@@ -17,8 +17,8 @@ true.
 
 |  |  |
 |--|--|
-|bool enabled|Should the following elements be enabled and             interactable?|
-|bool ignoreParent|Do we want to ignore or inherit the             state of the current stack?|
+|bool enabled|Should the following elements be enabled and interactable?|
+|bool ignoreParent|Do we want to ignore or inherit the state of the current stack?|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -32,8 +32,8 @@ true.
 
 |  |  |
 |--|--|
-|bool enabled|Should the following elements be enabled and             interactable?|
-|[HierarchyParent]({{site.url}}/preview/Pages/StereoKit/HierarchyParent.html) parentBehavior|Do we want to ignore or inherit the             state of the current stack?|
+|bool enabled|Should the following elements be enabled and interactable?|
+|[HierarchyParent]({{site.url}}/preview/Pages/StereoKit/HierarchyParent.html) parentBehavior|Do we want to ignore or inherit the state of the current stack?|
 
 
 

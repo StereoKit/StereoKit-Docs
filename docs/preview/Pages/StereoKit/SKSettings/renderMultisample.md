@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SKSettings.renderMultisample
-description: If you know in advance that you need this feature, this setting allows you to set Renderer.Multisample before initialization. This avoids creating and discarding a large and unnecessary swapchain object. Default value is 1.
+description: If you know in advance that you need this feature, this setting allows you to set Renderer.Multisample before initialization. This avoids creating and discarding a large and unnecessary swapchain object. Leave this at 0 to use the default, which is 4.
 ---
 # [SKSettings]({{site.url}}/preview/Pages/StereoKit/SKSettings.html).renderMultisample
 
@@ -13,5 +13,6 @@ int renderMultisample
 If you know in advance that you need this feature, this
 setting allows you to set `Renderer.Multisample` before
 initialization. This avoids creating and discarding a large and
-unnecessary swapchain object. Default value is 1.
+unnecessary swapchain object. Leave this at 0 to use the default,
+which is 4.
 

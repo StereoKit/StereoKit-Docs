@@ -16,8 +16,8 @@ positive.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) a|The first, initial vector, A. Does not need to be             normalized.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) b|The second vector, B, that we're finding the             angle to. Does not need to be normalized.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) a|The first, initial vector, A. Does not need to be normalized.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) b|The second vector, B, that we're finding the angle to. Does not need to be normalized.|
 |RETURNS: float|A positive angle between two vectors in degrees!|
 
 

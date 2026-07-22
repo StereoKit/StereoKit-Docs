@@ -50,30 +50,6 @@ from different types of data!
 
 ## Examples
 
-### An Interactive Model
-
-![A grabbable GLTF Model using UI.Handle]({{site.url}}/preview/img/screenshots/HandleBox.jpg)
-
-If you want to grab a Model and move it around, then you can use a
-`UI.Handle` to do it! Here's an example of loading a GLTF from file,
-and using its information to create a Handle and a UI 'cage' box that
-indicates an interactive element.
-
-```csharp
-Model model      = Model.FromFile("DamagedHelmet.gltf");
-Pose  handlePose = new Pose(0,0,0, Quat.Identity);
-float scale      = .15f;
-
-public void StepHandle() {
-	UI.HandleBegin("Model Handle", ref handlePose, model.Bounds*scale);
-
-	model.Draw(Matrix.S(scale));
-	Mesh.Cube.Draw(Material.UIBox, Matrix.TS(model.Bounds.center*scale, model.Bounds.dimensions*scale));
-
-	UI.HandleEnd();
-}
-```
-
 ### General Usage
 
 ```csharp
@@ -106,5 +82,29 @@ bounds.Scale(0.5f);
 
 // Scale the bounds by a Vec3
 bounds = bounds * new Vec3(1, 10, 0.5f);
+```
+
+### An Interactive Model
+
+![A grabbable GLTF Model using UI.Handle]({{site.url}}/preview/img/screenshots/HandleBox.jpg)
+
+If you want to grab a Model and move it around, then you can use a
+`UI.Handle` to do it! Here's an example of loading a GLTF from file,
+and using its information to create a Handle and a UI 'cage' box that
+indicates an interactive element.
+
+```csharp
+Model model      = Model.FromFile("DamagedHelmet.gltf");
+Pose  handlePose = new Pose(0,0,0, Quat.Identity);
+float scale      = .15f;
+
+public void StepHandle() {
+	UI.HandleBegin("Model Handle", ref handlePose, model.Bounds*scale);
+
+	model.Draw(Matrix.S(scale));
+	Mesh.Cube.Draw(Material.UIBox, Matrix.TS(model.Bounds.center*scale, model.Bounds.dimensions*scale));
+
+	UI.HandleEnd();
+}
 ```
 

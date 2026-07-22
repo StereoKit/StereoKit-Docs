@@ -15,7 +15,7 @@ triangle on the Mesh.
 
 |  |  |
 |--|--|
-|uint triangleIndex|Starting index of the triangle, should             be a multiple of 3.|
+|uint triangleIndex|Starting index of the triangle, should be a multiple of 3.|
 |Vertex& a|The first vertex of the found triangle|
 |Vertex& b|The second vertex of the found triangle|
 |Vertex& c|The third vertex of the found triangle|

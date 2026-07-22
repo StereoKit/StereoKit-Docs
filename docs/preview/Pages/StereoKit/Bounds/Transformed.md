@@ -17,7 +17,7 @@ is still always axis aligned.
 
 |  |  |
 |--|--|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A transform Matrix for the current Bounds's             corners.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) transform|A transform Matrix for the current Bounds's corners.|
 |RETURNS: [Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html)|A Bounds that encapsulates the transformed points of the current Bounds's corners|
 
 

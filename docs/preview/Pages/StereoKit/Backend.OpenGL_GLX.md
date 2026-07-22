@@ -14,6 +14,6 @@ Linux.
 
 |  |  |
 |--|--|
-|IntPtr [Context]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX/Context.html)|This is the `GLXContext` that StereoKit uses with `glXMakeCurrent`|
-|IntPtr [Display]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX/Display.html)|This is the `Display*` from X used to create the GLX context.|
-|IntPtr [Drawable]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX/Drawable.html)|This is the `GLXDrawable` that StereoKit uses with `glXMakeCurrent`.|
+|IntPtr [Context]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX/Context.html)|This is the `GLXContext` that StereoKit uses with `glXMakeCurrent` (No longer supported, always returns IntPtr.Zero)|
+|IntPtr [Display]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX/Display.html)|This is the `Display*` from X used to create the GLX context. (No longer supported, always returns IntPtr.Zero)|
+|IntPtr [Drawable]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX/Drawable.html)|This is the `GLXDrawable` that StereoKit uses with `glXMakeCurrent`. (No longer supported, always returns IntPtr.Zero)|

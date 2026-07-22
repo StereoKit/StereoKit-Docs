@@ -18,7 +18,7 @@ be automatically added.
 
 |  |  |
 |--|--|
-|HandRadialLayer[] menuLayers|Starting layer is always the first one             in the list! Layer names in the menu items refer to layer names             in this list.|
+|HandRadialLayer[] menuLayers|Starting layer is always the first one in the list! Layer names in the menu items refer to layer names in this list.|
 
 
 

@@ -17,9 +17,9 @@ the initial local position!
 
 |  |  |
 |--|--|
-|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) elementVisual|The UIVisual to pull sound information             from.|
-|[IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html) elementId|The id of the element that will be tracked             for playing the 'off' sound.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) atLocal|The hierarchy local location where the sound             will play.|
+|[UIVisual]({{site.url}}/preview/Pages/StereoKit/UIVisual.html) elementVisual|The UIVisual to pull sound information from.|
+|[IdHash]({{site.url}}/preview/Pages/StereoKit/IdHash.html) elementId|The id of the element that will be tracked for playing the 'off' sound.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) atLocal|The hierarchy local location where the sound will play.|
 
 
 

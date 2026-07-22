@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenXR.EyesSampleTime
-description: Type. XrTime. This is the OpenXR time of the eye tracker sample associated with the current value of .
+description: Type. XrTime. This is the OpenXR time of the eye tracker sample associated with the current value of Input.Eyes.
 ---
 # [Backend.OpenXR]({{site.url}}/preview/Pages/StereoKit/Backend.OpenXR.html).EyesSampleTime
 
@@ -12,5 +12,5 @@ static Int64 EyesSampleTime{ get }
 ## Description
 Type: XrTime. This is the OpenXR time of the eye
 tracker sample associated with the current value of
-.
+[`Input.Eyes`]({{site.url}}/preview/Pages/StereoKit/Input/Eyes.html).
 

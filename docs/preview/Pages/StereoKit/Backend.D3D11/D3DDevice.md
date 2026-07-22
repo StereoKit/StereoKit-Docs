@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.D3D11.D3DDevice
-description: This is the main ID3D11Device* StereoKit uses for rendering.
+description: This is the main ID3D11Device* StereoKit uses for rendering. (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.D3D11]({{site.url}}/preview/Pages/StereoKit/Backend.D3D11.html).D3DDevice
 
@@ -11,5 +11,5 @@ static IntPtr D3DDevice{ get }
 
 ## Description
 This is the main `ID3D11Device*` StereoKit uses for
-rendering.
+rendering. (No longer supported, always returns IntPtr.Zero)
 

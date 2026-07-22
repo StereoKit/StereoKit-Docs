@@ -16,8 +16,8 @@ A menu item that'll load another layer when selected.
 |--|--|
 |string name|Display name of the item.|
 |[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Display image of the item, null is fine!|
-|Action callback|The callback that should be performed when this menu             item is selected.|
-|string layerName|This is the layer name used to find the next layer              for the menu! Get the spelling right, try using const strings!|
+|Action callback|The callback that should be performed when this menu item is selected.|
+|string layerName|This is the layer name used to find the next layer for the menu! Get the spelling right, try using const strings!|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -30,8 +30,8 @@ Makes a menu item!
 |--|--|
 |string name|Display name of the item.|
 |[Sprite]({{site.url}}/preview/Pages/StereoKit/Sprite.html) image|Display image of the item, null is fine!|
-|Action callback|The callback that should be performed when this menu             item is selected.|
-|[HandMenuAction]({{site.url}}/preview/Pages/StereoKit.Framework/HandMenuAction.html) action|Describes the menu related behavior of this menu item,             should it close the menu? Open another layer? Go back to the             previous menu?|
+|Action callback|The callback that should be performed when this menu item is selected.|
+|[HandMenuAction]({{site.url}}/preview/Pages/StereoKit.Framework/HandMenuAction.html) action|Describes the menu related behavior of this menu item, should it close the menu? Open another layer? Go back to the previous menu?|
 
 
 

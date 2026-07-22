@@ -17,9 +17,9 @@ range.
 
 |  |  |
 |--|--|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) a|The first color, this will be the result if `t` is             0.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) b|The second color, this will be the result if `t` is             1.|
-|float t|A percentage representing the blend between `a` and             `b`. This is _not_ clamped to the 0-1 range, and will result in             extrapolation outside this range.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) a|The first color, this will be the result if `t` is 0.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) b|The second color, this will be the result if `t` is 1.|
+|float t|A percentage representing the blend between `a` and `b`. This is _not_ clamped to the 0-1 range, and will result in extrapolation outside this range.|
 |RETURNS: [Color]({{site.url}}/preview/Pages/StereoKit/Color.html)|A blended color.|
 
 

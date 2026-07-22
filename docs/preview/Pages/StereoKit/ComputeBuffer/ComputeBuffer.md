@@ -17,8 +17,8 @@ write before you read.
 
 |  |  |
 |--|--|
-|[ComputeBufferType]({{site.url}}/preview/Pages/StereoKit/ComputeBufferType.html) type|Read or ReadWrite access from compute             shaders.|
-|int elementCount|Number of T elements to             allocate.|
+|[ComputeBufferType]({{site.url}}/preview/Pages/StereoKit/ComputeBufferType.html) type|Read or ReadWrite access from compute shaders.|
+|int elementCount|Number of T elements to allocate.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -31,8 +31,8 @@ length.
 
 |  |  |
 |--|--|
-|[ComputeBufferType]({{site.url}}/preview/Pages/StereoKit/ComputeBufferType.html) type|Read or ReadWrite access from compute             shaders.|
-|T[] initialData|Array of data to upload to the             GPU.|
+|[ComputeBufferType]({{site.url}}/preview/Pages/StereoKit/ComputeBufferType.html) type|Read or ReadWrite access from compute shaders.|
+|T[] initialData|Array of data to upload to the GPU.|
 
 
 

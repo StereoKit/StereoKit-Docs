@@ -17,4 +17,4 @@ An enumerable for Model's Anims
 
 |  |  |
 |--|--|
-|[GetEnumerator]({{site.url}}/preview/Pages/StereoKit/ModelAnimCollection/GetEnumerator.html)|Gets an enumerator for the collection.|
+|[GetEnumerator]({{site.url}}/preview/Pages/StereoKit/ModelAnimCollection/GetEnumerator.html)|Gets an enumerator for the collection. This returns a concrete struct enumerator so that `foreach` over the collection stays allocation-free (aside from the Anim objects themselves).|

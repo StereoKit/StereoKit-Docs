@@ -20,10 +20,10 @@ is best done during 'initialization' of your app/scene.
 
 |  |  |
 |--|--|
-|float diameter|Diameter of the circular part of the             cylinder in meters. Diameter is 2*radius.|
+|float diameter|Diameter of the circular part of the cylinder in meters. Diameter is 2*radius.|
 |float depth|How tall is this cylinder, in meters?|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) direction|What direction do the circular surfaces              face? This is the surface normal for the top, it does not need to             be normalized.|
-|int subdivisions|How many vertices compose the edges of             the cylinder? More is smoother, but less performant.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) direction|What direction do the circular surfaces face? This is the surface normal for the top, it does not need to be normalized.|
+|int subdivisions|How many vertices compose the edges of the cylinder? More is smoother, but less performant.|
 |RETURNS: [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html)|Returns a cylinder mesh, pre-sized to the given diameter and depth, UV coordinates are from a flattened top view right now.|
 
 
@@ -32,13 +32,6 @@ is best done during 'initialization' of your app/scene.
 
 ## Examples
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Cylinder Mesh]({{site.url}}/preview/img/screenshots/ProcGeoCylinder.jpg)
-```csharp
-meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
-```
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo]({{site.url}}/img/screenshots/ProceduralGeometry.jpg)
@@ -61,5 +54,12 @@ cylinderMesh.Draw(Default.Material, cylinderTransform);
 
 cylinderTransform = Matrix.T(1, 1, 0);
 cylinderModel.Draw(cylinderTransform);
+```
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Cylinder Mesh]({{site.url}}/preview/img/screenshots/ProcGeoCylinder.jpg)
+```csharp
+meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
 ```
 

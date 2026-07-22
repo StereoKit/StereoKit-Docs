@@ -17,8 +17,8 @@ an intersection is found!
 
 |  |  |
 |--|--|
-|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|Any Ray in the same coordinate space as the             Bounds.|
-|Vec3& at|If the return is true, this point will be the             closest intersection point to the origin of the Ray.|
+|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|Any Ray in the same coordinate space as the Bounds.|
+|Vec3& at|If the return is true, this point will be the closest intersection point to the origin of the Ray.|
 |RETURNS: bool|True if an intersection occurred, false if not.|
 
 

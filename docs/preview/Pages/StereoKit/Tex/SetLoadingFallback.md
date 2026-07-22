@@ -16,7 +16,7 @@ isn't fully loaded will cause the app to block until it is loaded.
 
 |  |  |
 |--|--|
-|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) loadingTexture|Any _valid_ texture here is fine.             Preferably loaded already, but doesn't have to be.|
+|[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) loadingTexture|Any _valid_ texture here is fine. Preferably loaded already, but doesn't have to be.|
 
 
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenGL_GLX.Display
-description: This is the Display* from X used to create the GLX context.
+description: This is the Display* from X used to create the GLX context. (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.OpenGL_GLX]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_GLX.html).Display
 
@@ -11,5 +11,5 @@ static IntPtr Display{ get }
 
 ## Description
 This is the `Display*` from X used to create the GLX
-context.
+context. (No longer supported, always returns IntPtr.Zero)
 

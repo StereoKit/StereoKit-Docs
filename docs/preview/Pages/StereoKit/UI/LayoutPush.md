@@ -17,9 +17,9 @@ managing a layout of their own on the stack.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|The top left position of the layout. Note that             Windows have their origin at the top center, the left side of a             window is X+, and content advances to the X- direction.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|The total size of the layout area. A value             of zero means the layout will expand in that axis, but may prevent             certain types of layout "Cuts".|
-|bool addMargin|Adds a spacing margin to the interior of             the layout. Most of the time you won't need this, but may be useful             when working without a Window.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|The top left position of the layout. Note that Windows have their origin at the top center, the left side of a window is X+, and content advances to the X- direction.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) dimensions|The total size of the layout area. A value of zero means the layout will expand in that axis, but may prevent certain types of layout "Cuts".|
+|bool addMargin|Adds a spacing margin to the interior of the layout. Most of the time you won't need this, but may be useful when working without a Window.|
 
 
 

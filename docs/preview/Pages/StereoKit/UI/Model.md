@@ -27,8 +27,8 @@ and allows you to specify its size.
 |  |  |
 |--|--|
 |[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|The Model to use.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) uiSize|The size this element should take from the             layout.|
-|float modelScale|0 will auto-scale the model to fit the             layout space, but you can specify a different scale in case you'd             like a different size.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) uiSize|The size this element should take from the layout.|
+|float modelScale|0 will auto-scale the model to fit the layout space, but you can specify a different scale in case you'd like a different size.|
 
 
 

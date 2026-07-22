@@ -15,11 +15,11 @@ chain!
 
 |  |  |
 |--|--|
-|string name|A text name to identify the node. If null is             provided, it will be auto named to "node"+index.|
-|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) localTransform|A Matrix describing this node's             transform in local space relative to the currently selected node.|
-|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|The Mesh to attach to this Node's visual, if             this is null, then material must also be null.|
-|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|The Material to attach to this Node's             visual, if this is null, then mesh must also be null.|
-|bool solid|A flag that indicates the Mesh for this node             will be used in ray intersection tests. This flag is ignored if no             Mesh is attached.|
+|string name|A text name to identify the node. If null is provided, it will be auto named to "node"+index.|
+|[Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html) localTransform|A Matrix describing this node's transform in local space relative to the currently selected node.|
+|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|The Mesh to attach to this Node's visual, if this is null, then material must also be null.|
+|[Material]({{site.url}}/preview/Pages/StereoKit/Material.html) material|The Material to attach to this Node's visual, if this is null, then mesh must also be null.|
+|bool solid|A flag that indicates the Mesh for this node will be used in ray intersection tests. This flag is ignored if no Mesh is attached.|
 |RETURNS: [ModelNode]({{site.url}}/preview/Pages/StereoKit/ModelNode.html)|This returns the newly added ModelNode, or if there's an issue with mesh and material being inconsistently null, then this result will also be null.|
 
 

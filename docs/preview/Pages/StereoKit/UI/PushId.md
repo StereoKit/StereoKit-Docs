@@ -16,7 +16,7 @@ prevent id collisions in separate groups.
 
 |  |  |
 |--|--|
-|string rootId|The root id to use until the following PopId              call. MUST be unique within current hierarchy.|
+|string rootId|The root id to use until the following PopId call. MUST be unique within current hierarchy.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -29,7 +29,7 @@ prevent id collisions in separate groups.
 
 |  |  |
 |--|--|
-|int rootId|The root id to use until the following PopId              call. MUST be unique within current hierarchy.|
+|int rootId|The root id to use until the following PopId call. MUST be unique within current hierarchy.|
 
 
 

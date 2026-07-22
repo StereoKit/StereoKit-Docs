@@ -15,8 +15,8 @@ can be a very slow operation, so use it cautiously.
 
 |  |  |
 |--|--|
-|int mipLevel|Retrieves the color data for a specific             mip-mapping level. This function will log a fail and return a black             array if an invalid mip-level is provided.|
-|int structPerPixel|The number of `T` that fit in a single             pixel. For example, if your texture format is RGBA128, and your T             is float, this value would be 4.|
+|int mipLevel|Retrieves the color data for a specific mip-mapping level. This function will log a fail and return a black array if an invalid mip-level is provided.|
+|int structPerPixel|The number of `T` that fit in a single pixel. For example, if your texture format is RGBA128, and your T is float, this value would be 4.|
 |RETURNS: T[]|The texture's color values in an array sized Width*Height*structPerPixel.|
 
 <div class='signature' markdown='1'>
@@ -29,9 +29,9 @@ can be a very slow operation, so use it cautiously.
 
 |  |  |
 |--|--|
-|T[]& colorData|An array of colors that will be filled out             with the texture's data. It can be null, or an incorrect size. If             so, it will be reallocated to the correct size.|
-|int mipLevel|Retrieves the color data for a specific             mip-mapping level. This function will log a fail and return a black             array if an invalid mip-level is provided.|
-|int structPerPixel|The number of `T` that fit in a single             pixel. For example, if your texture format is RGBA128, and your T             is float, this value would be 4.|
+|T[]& colorData|An array of colors that will be filled out with the texture's data. It can be null, or an incorrect size. If so, it will be reallocated to the correct size.|
+|int mipLevel|Retrieves the color data for a specific mip-mapping level. This function will log a fail and return a black array if an invalid mip-level is provided.|
+|int structPerPixel|The number of `T` that fit in a single pixel. For example, if your texture format is RGBA128, and your T is float, this value would be 4.|
 
 
 

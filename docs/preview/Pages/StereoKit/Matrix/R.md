@@ -14,7 +14,7 @@ Create a rotation matrix from a Quaternion.
 
 |  |  |
 |--|--|
-|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) rotation|A Quaternion describing the rotation for              this transform.|
+|[Quat]({{site.url}}/preview/Pages/StereoKit/Quat.html) rotation|A Quaternion describing the rotation for this transform.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that will rotate by the provided Quaternion orientation.|
 
 <div class='signature' markdown='1'>
@@ -27,9 +27,9 @@ information. Units are in degrees.
 
 |  |  |
 |--|--|
-|float pitchXDeg|Pitch, or rotation around the X axis, in             degrees.|
-|float yawYDeg|Yaw, or rotation around the Y axis, in              degrees.|
-|float rollZDeg|Roll, or rotation around the Z axis, in             degrees.|
+|float pitchXDeg|Pitch, or rotation around the X axis, in degrees.|
+|float yawYDeg|Yaw, or rotation around the Y axis, in degrees.|
+|float rollZDeg|Roll, or rotation around the Z axis, in degrees.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that will rotate by the provided pitch, yaw and roll.|
 
 <div class='signature' markdown='1'>
@@ -42,7 +42,7 @@ information. Units are in degrees.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pitchYawRollDeg|Pitch (x-axis), yaw (y-axis), and              roll (z-axis) stored as x, y and z respectively in this Vec3.             Units are in degrees.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) pitchYawRollDeg|Pitch (x-axis), yaw (y-axis), and roll (z-axis) stored as x, y and z respectively in this Vec3. Units are in degrees.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that will rotate by the provided pitch, yaw and roll.|
 
 

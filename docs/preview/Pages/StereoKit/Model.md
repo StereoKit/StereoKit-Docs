@@ -109,24 +109,6 @@ Text.Add($"{model.AnimTime:F1}s",                       Matrix.TS(-progress, 2*U
 Hierarchy.Pop();
 ```
 
-### Counting the Vertices and Triangles in a Model
-
-Model.Visuals are always guaranteed to have a Mesh, so no need to
-null check there, and VertCount and IndCount are available even if
-Mesh.KeepData is false!
-```csharp
-int vertCount = 0;
-int triCount  = 0;
-
-foreach (ModelNode node in model.Visuals)
-{
-	Mesh mesh = node.Mesh;
-	vertCount += mesh.VertCount;
-	triCount  += mesh.IndCount / 3;
-}
-Log.Info($"Model stats: {vertCount} vertices, {triCount} triangles");
-```
-
 ### An Interactive Model
 
 ![A grabbable GLTF Model using UI.Handle]({{site.url}}/preview/img/screenshots/HandleBox.jpg)
@@ -149,6 +131,24 @@ public void StepHandle() {
 
 	UI.HandleEnd();
 }
+```
+
+### Counting the Vertices and Triangles in a Model
+
+Model.Visuals are always guaranteed to have a Mesh, so no need to
+null check there, and VertCount and IndCount are available even if
+Mesh.KeepData is false!
+```csharp
+int vertCount = 0;
+int triCount  = 0;
+
+foreach (ModelNode node in model.Visuals)
+{
+	Mesh mesh = node.Mesh;
+	vertCount += mesh.VertCount;
+	triCount  += mesh.IndCount / 3;
+}
+Log.Info($"Model stats: {vertCount} vertices, {triCount} triangles");
 ```
 
 ### Assembling a Model

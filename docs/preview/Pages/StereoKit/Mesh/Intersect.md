@@ -19,8 +19,8 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the             intersection point will be in model space too. You can use the             inverse of the mesh's world transform matrix to bring the ray             into model space, see the example in the docs!|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,             especially if your own model->world transform contains scale/skew             in it.|
+|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the intersection point will be in model space too. You can use the inverse of the mesh's world transform matrix to bring the ray into model space, see the example in the docs!|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -37,8 +37,8 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the             intersection point will be in model space too. You can use the             inverse of the mesh's world transform matrix to bring the ray             into model space, see the example in the docs!|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,             especially if your own model->world transform contains scale/skew             in it.|
+|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the intersection point will be in model space too. You can use the inverse of the mesh's world transform matrix to bring the ray into model space, see the example in the docs!|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
 |UInt32& outStartInds|The index of the first index of the triangle that was hit|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
@@ -56,8 +56,8 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the             intersection point will be in model space too. You can use the             inverse of the mesh's world transform matrix to bring the ray             into model space, see the example in the docs!|
-|Vec3& modelSpaceAt|The intersection point of the ray and             the mesh, if an intersection occurs. This is in model space, and             must be transformed back into world space later.|
+|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) modelSpaceRay|Ray must be in model space, the intersection point will be in model space too. You can use the inverse of the mesh's world transform matrix to bring the ray into model space, see the example in the docs!|
+|Vec3& modelSpaceAt|The intersection point of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 
@@ -74,22 +74,23 @@ and displaying it back in world space.
 ![Ray Mesh Intersection]({{site.url}}/img/screenshots/RayMeshIntersect.jpg)
 
 ```csharp
-Mesh sphereMesh = Default.MeshSphere;
-Mesh boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
-Pose boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
-Pose castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
+Mesh  sphereMesh = Default.MeshSphere;
+Mesh  boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
+Pose  boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
+float boxScale   = 1;
+Pose  castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
 
 public void StepRayMesh()
 {
 	// Draw our setup, and make the visuals grab/moveable!
-	UI.Handle("Box",  ref boxPose,  boxMesh.Bounds);
+	UI.Handle("Box",  ref boxPose, boxMesh.Bounds, ref boxScale);
 	UI.Handle("Cast", ref castPose, sphereMesh.Bounds*0.03f);
-	boxMesh   .Draw(Default.MaterialUI, boxPose .ToMatrix());
+	boxMesh   .Draw(Default.MaterialUI, boxPose .ToMatrix(boxScale));
 	sphereMesh.Draw(Default.MaterialUI, castPose.ToMatrix(0.03f));
 	Lines.Add(castPose.position, boxPose.position, Color.White, 0.005f);
 
 	// Create a ray that's in the Mesh's model space
-	Matrix transform = boxPose.ToMatrix();
+	Matrix transform = boxPose.ToMatrix(boxScale);
 	Ray    ray       = transform
 		.Inverse
 		.Transform(Ray.FromTo(castPose.position, boxPose.position));

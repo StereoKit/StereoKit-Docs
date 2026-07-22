@@ -17,7 +17,7 @@ the point a certain distance out along the ray.
 
 |  |  |
 |--|--|
-|float percent|How far along the ray should we get the              point at? This is in multiples of Ray.direction's magnitude. If             Ray.direction is normalized, this is functionally the distance.|
+|float percent|How far along the ray should we get the point at? This is in multiples of Ray.direction's magnitude. If Ray.direction is normalized, this is functionally the distance.|
 |RETURNS: [Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html)|The point at position + direction*percent.|
 
 

@@ -15,7 +15,7 @@ StereoKit's xrEndFrame call!
 
 |  |  |
 |--|--|
-|T XrBaseHeader|An OpenXR object that will be             chained into the xrEndFrame call.|
+|T XrBaseHeader|An OpenXR object that will be chained into the xrEndFrame call.|
 
 
 

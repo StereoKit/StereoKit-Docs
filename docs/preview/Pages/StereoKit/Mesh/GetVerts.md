@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Mesh.GetVerts
-description: This marshalls the Mesh's vertex data into an array. If KeepData is false, then the Mesh is _not_ storing verts on the CPU, and this information will _not_ be available.  Due to the way marshalling works, this is _not_ a cheap function!
+description: This marshalls the vertex data of a custom format Mesh into an array of T. T's [VertComponent] derived format must exactly match the format the Mesh was created with, and KeepData must be true for vertex data to be available.  Due to the way marshalling works, this is _not_ a cheap function!
 ---
 # [Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html).GetVerts
 
@@ -9,9 +9,10 @@ description: This marshalls the Mesh's vertex data into an array. If KeepData is
 ```csharp
 Vertex[] GetVerts()
 ```
-This marshalls the Mesh's vertex data into an array. If
-KeepData is false, then the Mesh is _not_ storing verts on the CPU,
-and this information will _not_ be available.
+This marshalls the vertex data of a custom format Mesh
+into an array of T. T's [VertComponent] derived format must exactly
+match the format the Mesh was created with, and KeepData must be
+true for vertex data to be available.
 
 Due to the way marshalling works, this is _not_ a cheap function!
 </div>

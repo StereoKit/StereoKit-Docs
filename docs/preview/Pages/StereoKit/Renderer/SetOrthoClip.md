@@ -22,8 +22,8 @@ only available in 2D window modes.
 
 |  |  |
 |--|--|
-|float nearPlane|The GPU discards pixels that are too             close to the camera, this is that distance!|
-|float farPlane|At what distance from the camera does the             GPU discard pixel? This is not true distance, but rather Z-axis             distance from zero in View Space coordinates!|
+|float nearPlane|The GPU discards pixels that are too close to the camera, this is that distance!|
+|float farPlane|At what distance from the camera does the GPU discard pixel? This is not true distance, but rather Z-axis distance from zero in View Space coordinates!|
 
 
 

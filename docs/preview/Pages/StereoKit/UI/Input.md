@@ -17,10 +17,10 @@ element will remove focus from this Input.
 
 |  |  |
 |--|--|
-|string id|An id for tracking element state. MUST be unique             within current hierarchy.|
-|String& value|The string that will store the Input's              content in.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Size of the Input in Hierarchy local meters.             Zero axes will auto-size.|
-|[TextContext]({{site.url}}/preview/Pages/StereoKit/TextContext.html) type|What category of text this Input represents.             This may affect what kind of soft keyboard will be displayed, if             one is shown to the user.|
+|string id|An id for tracking element state. MUST be unique within current hierarchy.|
+|String& value|The string that will store the Input's content in.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Size of the Input in Hierarchy local meters. Zero axes will auto-size.|
+|[TextContext]({{site.url}}/preview/Pages/StereoKit/TextContext.html) type|What category of text this Input represents. This may affect what kind of soft keyboard will be displayed, if one is shown to the user.|
 |RETURNS: bool|Returns true every time the contents of 'value' change.|
 
 

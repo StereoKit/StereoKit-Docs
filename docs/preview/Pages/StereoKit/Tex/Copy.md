@@ -18,8 +18,8 @@ destination type does, they'll be generated for you!
 
 |  |  |
 |--|--|
-|[TexType]({{site.url}}/preview/Pages/StereoKit/TexType.html) textureType|What type of texture should the new             texture be? Image types with mip-maps will have mips generated for             them if the source doesn't have them.|
-|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) textureFormat|What format should the new texture             be in? If None is specified, the new texture will use the same             format as the source.|
+|[TexType]({{site.url}}/preview/Pages/StereoKit/TexType.html) textureType|What type of texture should the new texture be? Image types with mip-maps will have mips generated for them if the source doesn't have them.|
+|[TexFormat]({{site.url}}/preview/Pages/StereoKit/TexFormat.html) textureFormat|What format should the new texture be in? If None is specified, the new texture will use the same format as the source.|
 |RETURNS: [Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html)|A new texture copied from this one, or null if the copy failed.|
 
 

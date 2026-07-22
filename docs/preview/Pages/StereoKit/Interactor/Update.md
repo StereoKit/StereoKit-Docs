@@ -16,11 +16,11 @@ before any UI is done, otherwise the UI will not properly react.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) capsuleStart|World space location of the collision             capsule's start. For Line interactors, this should be the 'origin'             of the capsule's orientation.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) capsuleEnd|World space location of the collision             capsule's end. For Line interactors, this should be in the             direction the Start/origin is facing.|
-|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) motion|This pose is the source of translation and             rotation motion caused by the interactor. In most cases it will be             the same as your capsuleStart with the orientation of your             interactor, but in some instance may be something else!|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) motionAnchor|Some motion, like that of amplified             motion, needs some anchor point with which to determine the             amplification from. This might be a shoulder, or a head, or some             other point that the interactor will push from / pull towards.|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) secondaryMotion|This is motion that comes from             somewhere other than the interactor itself! This can be something             like an analog stick on a controller, or the scroll wheel of a             mouse.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) capsuleStart|World space location of the collision capsule's start. For Line interactors, this should be the 'origin' of the capsule's orientation.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) capsuleEnd|World space location of the collision capsule's end. For Line interactors, this should be in the direction the Start/origin is facing.|
+|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) motion|This pose is the source of translation and rotation motion caused by the interactor. In most cases it will be the same as your capsuleStart with the orientation of your interactor, but in some instance may be something else!|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) motionAnchor|Some motion, like that of amplified motion, needs some anchor point with which to determine the amplification from. This might be a shoulder, or a head, or some other point that the interactor will push from / pull towards.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) secondaryMotion|This is motion that comes from somewhere other than the interactor itself! This can be something like an analog stick on a controller, or the scroll wheel of a mouse.|
 |[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) active|The activation state of the Interactor.|
 |[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) tracked|The tracking state of the Interactor.|
 

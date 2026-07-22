@@ -21,7 +21,7 @@ canceled, and moved to this location.
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) at|World space location for the audio to play at.|
-|float volume|Volume modifier for the effect! 1 means full             volume, and 0 means completely silent.|
+|float volume|Volume modifier for the effect! 1 means full volume, and 0 means completely silent.|
 |RETURNS: [SoundInst]({{site.url}}/preview/Pages/StereoKit/SoundInst.html)|Returns a link to the Sound's play instance, which you can use to track and modify how the sound plays after the initial conditions are set.|
 
 

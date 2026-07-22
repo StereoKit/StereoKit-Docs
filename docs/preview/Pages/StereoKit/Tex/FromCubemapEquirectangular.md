@@ -18,9 +18,9 @@ image.
 
 |  |  |
 |--|--|
-|string equirectangularCubemap|Filename of the             equirectangular image.|
-|bool sRGBData|Is this image color data in sRGB format,             or is it normal/metal/rough/data that's not for direct display?             sRGB colors get converted to linear color space on the graphics             card, so getting this right can have a big impact on visuals.|
-|int loadPriority|The priority sort order for this asset             in the async loading system. Lower values mean loading sooner.|
+|string equirectangularCubemap|Filename of the equirectangular image.|
+|bool sRGBData|Is this image color data in sRGB format, or is it normal/metal/rough/data that's not for direct display? sRGB colors get converted to linear color space on the graphics card, so getting this right can have a big impact on visuals.|
+|int loadPriority|The priority sort order for this asset in the async loading system. Lower values mean loading sooner.|
 |RETURNS: [Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html)|A Cubemap texture asset!|
 
 <div class='signature' markdown='1'>
@@ -35,10 +35,10 @@ texture blitting to create 6 faces from the equirectangular image.
 
 |  |  |
 |--|--|
-|string equirectangularCubemap|Filename of the             equirectangular image.|
-|SphericalHarmonics& lightingInfo|An out value that represents the             lighting information scraped from the cubemap! This can then be             passed to `Renderer.SkyLight`.|
-|bool sRGBData|Is this image color data in sRGB format,             or is it normal/metal/rough/data that's not for direct display?             sRGB colors get converted to linear color space on the graphics             card, so getting this right can have a big impact on visuals.|
-|int loadPriority|The priority sort order for this asset             in the async loading system. Lower values mean loading sooner.|
+|string equirectangularCubemap|Filename of the equirectangular image.|
+|SphericalHarmonics& lightingInfo|An out value that represents the lighting information scraped from the cubemap! This can then be passed to `Renderer.SkyLight`.|
+|bool sRGBData|Is this image color data in sRGB format, or is it normal/metal/rough/data that's not for direct display? sRGB colors get converted to linear color space on the graphics card, so getting this right can have a big impact on visuals.|
+|int loadPriority|The priority sort order for this asset in the async loading system. Lower values mean loading sooner.|
 |RETURNS: [Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html)|A Cubemap texture asset!|
 
 

@@ -24,5 +24,5 @@ information to the ModelNode.
 |[Clear]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection/Clear.html)|Clears all key/value pairs from the collection.|
 |[Contains]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection/Contains.html)|Finds if the key is present in the collection with a non-null value.|
 |[Get]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection/Get.html)|Finds the value associated with the given key, returns null if the key is not present.|
-|[GetEnumerator]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection/GetEnumerator.html)|The enumerator for the collection's KeyValuePairs.|
+|[GetEnumerator]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection/GetEnumerator.html)|The enumerator for the collection's KeyValuePairs. This is a concrete struct enumerator so that `foreach` over the collection stays allocation-free (aside from the key/value strings themselves).|
 |[Remove]({{site.url}}/preview/Pages/StereoKit/ModelNodeInfoCollection/Remove.html)|Removes a specific key/value pair from the collection, if present.|

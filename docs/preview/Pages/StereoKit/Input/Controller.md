@@ -17,7 +17,7 @@ be available on the system, and are never simulated.
 
 |  |  |
 |--|--|
-|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) handed|The handedness of the controller to get the             state of.|
+|[Handed]({{site.url}}/preview/Pages/StereoKit/Handed.html) handed|The handedness of the controller to get the state of.|
 |RETURNS: [Controller]({{site.url}}/preview/Pages/StereoKit/Controller.html)|A reference to a class that contains state information about the indicated controller.|
 
 

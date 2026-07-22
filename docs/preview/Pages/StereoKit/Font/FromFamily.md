@@ -14,8 +14,8 @@ Loads font from a specified list of font family names
 
 |  |  |
 |--|--|
-|string fontFamily|List of font family names separated by comma(,)             similar to a list of names css allows.|
-|RETURNS: [Font]({{site.url}}/preview/Pages/StereoKit/Font.html)|A font from the given font family names, Most of the OS provide fallback fonts, hence there will always be a set of fonts.|
+|string fontFamily|List of font family names separated by comma(,) similar to a list of names css allows.|
+|RETURNS: [Font]({{site.url}}/preview/Pages/StereoKit/Font.html)|A font from the given font family names. If none of them match a usable font, this falls back to StereoKit's builtin font, so this will always be a valid asset.|
 
 
 

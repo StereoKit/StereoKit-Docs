@@ -20,8 +20,8 @@ but this can be configured by providing a Gradient of your own.
 |--|--|
 |int width|Width of the desired texture, in pixels.|
 |int height|Width of the desired texture, in pixels.|
-|float roundness0to1|Where 0 is a cross, or star-like shape,             and 1 is a circle. This is clamped to a minimum of 0.00001, but             values above 1 are still valid, and will just make the shape a             square near infinity.|
-|[Gradient]({{site.url}}/preview/Pages/StereoKit/Gradient.html) gradientLinear|A color gradient that starts with the             background/outside at 0, and progresses to the center at 1.|
+|float roundness0to1|Where 0 is a cross, or star-like shape, and 1 is a circle. This is clamped to a minimum of 0.00001, but values above 1 are still valid, and will just make the shape a square near infinity.|
+|[Gradient]({{site.url}}/preview/Pages/StereoKit/Gradient.html) gradientLinear|A color gradient that starts with the background/outside at 0, and progresses to the center at 1.|
 |RETURNS: [Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html)|A texture object containing an RGBA linear texture.|
 
 

@@ -20,7 +20,7 @@ it just copies in the data!
 
 |  |  |
 |--|--|
-|UInt32[] indices|A list of face indices, must be a multiple of             3. Each index represents a vertex from the array assigned using             SetVerts.|
+|UInt32[] indices|A list of face indices, must be a multiple of 3. Each index represents a vertex from the array assigned using SetVerts.|
 
 
 

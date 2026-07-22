@@ -17,7 +17,7 @@ White (1,1,1,1) identity tint.
 
 |  |  |
 |--|--|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|A normal (gamma corrected) color value.             This is internally converted to linear, so tint multiplication             happens on linear color values.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|A normal (gamma corrected) color value. This is internally converted to linear, so tint multiplication happens on linear color values.|
 
 
 

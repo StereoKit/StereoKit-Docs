@@ -19,7 +19,7 @@ SK.System.perceptionBridgePresent to see if this is available.
 
 |  |  |
 |--|--|
-|Object perceptionSpatialAnchor|A valid             Windows.Perception.Spatial.SpatialAnchor.|
+|Object perceptionSpatialAnchor|A valid Windows.Perception.Spatial.SpatialAnchor.|
 |RETURNS: [Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html)|A Pose representing the current orientation of the SpatialAnchor.|
 
 <div class='signature' markdown='1'>
@@ -36,8 +36,8 @@ SK.System.perceptionBridgePresent to see if this is available.
 
 |  |  |
 |--|--|
-|Object perceptionSpatialAnchor|A valid             Windows.Perception.Spatial.SpatialAnchor.|
-|Pose& pose|A resulting Pose representing the current             orientation of the spatial node.|
+|Object perceptionSpatialAnchor|A valid Windows.Perception.Spatial.SpatialAnchor.|
+|Pose& pose|A resulting Pose representing the current orientation of the spatial node.|
 |RETURNS: bool|A Pose representing the current orientation of the SpatialAnchor.|
 
 

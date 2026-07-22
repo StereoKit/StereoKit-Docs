@@ -17,10 +17,10 @@ way, such as when blitting or rendering to it.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|int arrayCount|How many surfaces are in this texture? A             normal texture only has 1, but it can be useful to have multiple             for certain rendering techniques or effects.|
-|int msaa|Multisample anti-aliasing, this is only             important for render target type textures! This is the number of             fragments that are drawn for each pixel to reduce sparkling /             aliasing artifacts.|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|int arrayCount|How many surfaces are in this texture? A normal texture only has 1, but it can be useful to have multiple for certain rendering techniques or effects.|
+|int msaa|Multisample anti-aliasing, this is only important for render target type textures! This is the number of fragments that are drawn for each pixel to reduce sparkling / aliasing artifacts.|
 
 
 

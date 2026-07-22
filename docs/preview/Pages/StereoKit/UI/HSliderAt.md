@@ -15,15 +15,15 @@ system, and instead goes exactly where you put it.
 
 |  |  |
 |--|--|
-|string id|An id for tracking element state. MUST be unique             within current hierarchy.|
-|Single& value|The value that the slider will store slider              state in.|
-|float min|The minimum value the slider can set, left side              of the slider.|
-|float max|The maximum value the slider can set, right              side of the slider.|
-|float step|Locks the value to increments of step. Starts             at min, and increments by step. 0 is valid, and means "don't lock             to increments".|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
-|[UIConfirm]({{site.url}}/preview/Pages/StereoKit/UIConfirm.html) confirmMethod|How should the slider be activated?             Push will be a push-button the user must press first, and pinch             will be a tab that the user must pinch and drag around.|
-|[UINotify]({{site.url}}/preview/Pages/StereoKit/UINotify.html) notifyOn|Allows you to modify the behavior of the             return value.|
+|string id|An id for tracking element state. MUST be unique within current hierarchy.|
+|Single& value|The value that the slider will store slider state in.|
+|float min|The minimum value the slider can set, left side of the slider.|
+|float max|The maximum value the slider can set, right side of the slider.|
+|float step|Locks the value to increments of step. Starts at min, and increments by step. 0 is valid, and means "don't lock to increments".|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[UIConfirm]({{site.url}}/preview/Pages/StereoKit/UIConfirm.html) confirmMethod|How should the slider be activated? Push will be a push-button the user must press first, and pinch will be a tab that the user must pinch and drag around.|
+|[UINotify]({{site.url}}/preview/Pages/StereoKit/UINotify.html) notifyOn|Allows you to modify the behavior of the return value.|
 |RETURNS: bool|Returns true any time the value changes.|
 
 <div class='signature' markdown='1'>
@@ -36,15 +36,15 @@ system, and instead goes exactly where you put it.
 
 |  |  |
 |--|--|
-|string id|An id for tracking element state. MUST be unique             within current hierarchy.|
-|Double& value|The value that the slider will store slider             state in.|
-|double min|The minimum value the slider can set, left side             of the slider.|
-|double max|The maximum value the slider can set, right             side of the slider.|
-|double step|Locks the value to increments of step. Starts             at min, and increments by step. 0 is valid, and means "don't lock             to increments".|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI             element relative to the current Hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy             space.|
-|[UIConfirm]({{site.url}}/preview/Pages/StereoKit/UIConfirm.html) confirmMethod|How should the slider be activated?             Push will be a push-button the user must press first, and pinch             will be a tab that the user must pinch and drag around.|
-|[UINotify]({{site.url}}/preview/Pages/StereoKit/UINotify.html) notifyOn|Allows you to modify the behavior of the             return value.|
+|string id|An id for tracking element state. MUST be unique within current hierarchy.|
+|Double& value|The value that the slider will store slider state in.|
+|double min|The minimum value the slider can set, left side of the slider.|
+|double max|The maximum value the slider can set, right side of the slider.|
+|double step|Locks the value to increments of step. Starts at min, and increments by step. 0 is valid, and means "don't lock to increments".|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) topLeftCorner|This is the top left corner of the UI element relative to the current Hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The layout size for this element in Hierarchy space.|
+|[UIConfirm]({{site.url}}/preview/Pages/StereoKit/UIConfirm.html) confirmMethod|How should the slider be activated? Push will be a push-button the user must press first, and pinch will be a tab that the user must pinch and drag around.|
+|[UINotify]({{site.url}}/preview/Pages/StereoKit/UINotify.html) notifyOn|Allows you to modify the behavior of the return value.|
 |RETURNS: bool|Returns true any time the value changes.|
 
 

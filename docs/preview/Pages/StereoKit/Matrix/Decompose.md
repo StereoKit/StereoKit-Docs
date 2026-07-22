@@ -18,7 +18,7 @@ this call will fail, and return false.
 |  |  |
 |--|--|
 |Vec3& translation|XYZ translation of the matrix.|
-|Quat& rotation|The rotation quaternion, some lossiness             may be encountered when composing/decomposing.|
+|Quat& rotation|The rotation quaternion, some lossiness may be encountered when composing/decomposing.|
 |Vec3& scale|XYZ scale components.|
 |RETURNS: bool|If this is not a transform matrix, there's a chance this call will fail, and return false.|
 

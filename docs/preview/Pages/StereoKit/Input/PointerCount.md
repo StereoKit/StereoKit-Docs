@@ -15,7 +15,7 @@ that match the given filter.
 
 |  |  |
 |--|--|
-|[InputSource]({{site.url}}/preview/Pages/StereoKit/InputSource.html) filter|You can filter input sources using this bit             flag.|
+|[InputSource]({{site.url}}/preview/Pages/StereoKit/InputSource.html) filter|You can filter input sources using this bit flag.|
 |RETURNS: int|The number of Pointers StereoKit knows about that matches the given filter.|
 
 

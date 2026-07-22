@@ -21,7 +21,7 @@ initialized.
 
 |  |  |
 |--|--|
-|Type type|Any object that implements IStepper, and has a             constructor with zero parameters.|
+|Type type|Any object that implements IStepper, and has a constructor with zero parameters.|
 |RETURNS: Object|Just for convenience, this returns the instance that was just added.|
 
 

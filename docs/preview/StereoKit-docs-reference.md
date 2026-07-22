@@ -664,7 +664,7 @@ void IdWindow(ref Pose windowPose, ref int option)
 ## What's Next?
 
 And there you go! That's how UI works in StereoKit, pretty reasonable,
-huh? For further reference, and more UI methods, checkout the [UI class documentation](https://stereokit.net/preview/Pages/Reference/UI.html).
+huh? For further reference, and more UI methods, checkout the [UI class documentation](https://stereokit.net/preview/Pages/StereoKit/UI.html).
 
 If you'd like to see the complete code for this sample,
 [check it out on Github](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Guides/GuideUI.cs)!
@@ -766,22 +766,27 @@ public static void DrawHandMenu(Handed handed)
 	UI.WindowEnd();
 }
 ```
-## Pointers
+## Interactors
 
-And lastly, StereoKit also has a pointer system! This applies to
-more than just hands. Head, mouse, and other devices will also
-create pointers into the scene. You can filter pointers based on
-source family and device capabilities, so this is a great way to
-abstract a few more input sources nicely!
+StereoKit's interactions are driven by Interactors - capsules of
+input that can come from hands, controllers, the mouse, and more!
+You can enumerate every Interactor with `Interactor.All` and filter
+them using `Interactor.Source`, which makes it a great way to find
+input rays like the hand's aim ray here.
 ```csharp
-public static void DrawPointers()
+public static void DrawInteractors()
 {
-	int hands = Input.PointerCount(InputSource.Hand);
-	for (int i = 0; i < hands; i++)
+	foreach (Interactor actor in Interactor.All)
 	{
-		Pointer pointer = Input.Pointer(i, InputSource.Hand);
-		Lines.Add    (pointer.ray, 0.5f, Color.White, Units.mm2m);
-		Lines.AddAxis(pointer.Pose);
+		// We only want the hand aim rays here: Line shaped interactors
+		// that come from a hand source.
+		bool isHand = (actor.Source & (InteractorSource.HandLeft | InteractorSource.HandRight)) != 0;
+		if (!isHand || actor.Type != InteractorType.Line || !actor.Tracked.IsActive())
+			continue;
+
+		Vec3 dir = (actor.End - actor.Start).Normalized;
+		Lines.Add    (actor.Start, actor.Start + dir * 0.5f, Color.White, Units.mm2m);
+		Lines.AddAxis(actor.Motion);
 	}
 }
 ```
@@ -812,7 +817,7 @@ normally a shoulder->hand ray, will be along the mouse ray instead.
 - Left + Right - Hand animates to a closed fist.
 - Scroll Wheel - Moves the hand toward or away from the user.
 - Shift + Right - Mouse-look / rotate the head.
-- Left Alt - [Eye tracking](https://stereokit.net/preview/Pages/Reference/Input/Eyes.html) will point along the ray indicated by the mouse.
+- Left Alt - [Eye tracking](https://stereokit.net/preview/Pages/StereoKit/Input/Eyes.html) will point along the ray indicated by the mouse.
 - Ctrl + Shift - Switch between controlling left hand, right hand, or no hand.
 
 To move around in space, you'll find controls that should be familiar to
@@ -861,10 +866,10 @@ in the Test project has a number of sample utilities for
 recording and playing back input.
 
 Overriding the hands is one important element that you may want
-to do! [`Input.HandOverride`](https://stereokit.net/preview/Pages/Reference/Input/HandOverride.html)
+to do! [`Input.HandOverride`](https://stereokit.net/preview/Pages/StereoKit/Input/HandOverride.html)
 will set the hand input to a very specific pose, and hold that
 pose until you call `Input.HandOverride` again with a new pose,
-or call [`Input.HandClearOverride`](https://stereokit.net/preview/Pages/Reference/Input/HandClearOverride.html)
+or call [`Input.HandClearOverride`](https://stereokit.net/preview/Pages/StereoKit/Input/HandClearOverride.html)
 to restore control back to the user.
 
 ![An overridden hand](https://stereokit.net/preview/img/screenshots/HandOverride.jpg)
@@ -886,11 +891,11 @@ in-visor? However it's said, in this guide we're going to explore the
 various ways to display some holograms!
 
 At its core, drawing things in 3D is done through a combination of
-[`Mesh`](https://stereokit.net/preview/Pages/Reference/Mesh.html)es and
-[`Material`](https://stereokit.net/preview/Pages/Reference/Material.html)s. A Mesh
+[`Mesh`](https://stereokit.net/preview/Pages/StereoKit/Mesh.html)es and
+[`Material`](https://stereokit.net/preview/Pages/StereoKit/Material.html)s. A Mesh
 is a collection of triangles in 3D space that describe where the
 surface of that 3D object is. And a Material is then a collection
-of parameters, [`Tex`](https://stereokit.net/preview/Pages/Reference/Tex.html)tures
+of parameters, [`Tex`](https://stereokit.net/preview/Pages/StereoKit/Tex.html)tures
 (2d images), and Shader code that are combined to describe the
 visual properties of the Mesh's surface!
 
@@ -899,17 +904,17 @@ _Meshes are made from triangles!_
 
 And in addition to that, you'll need to know a little bit about
 matrices, which are a math construct used to describe the location,
-orientation and scale of geometry within the 3D space! A [`Matrix`](https://stereokit.net/preview/Pages/Reference/Matrix.html)
+orientation and scale of geometry within the 3D space! A [`Matrix`](https://stereokit.net/preview/Pages/StereoKit/Matrix.html)
 isn't difficult the way we're using it, so don't worry if math
 isn't your thing.
 
-And then StereoKit also has a [`Model`](https://stereokit.net/preview/Pages/Reference/Model.html),
+And then StereoKit also has a [`Model`](https://stereokit.net/preview/Pages/StereoKit/Model.html),
 which is a high level combination of Meshes, Material, Matrices,
 and a few more things! Most of the time, you'll probably be drawing
 Models loaded from file, but it's important to have options.
 
-Then lastly, StereoKit has easy systems for drawing [`Line`](https://stereokit.net/preview/Pages/Reference/Lines.html)s,
-[`Text`](https://stereokit.net/preview/Pages/Reference/Text.html), [`Sprite`](https://stereokit.net/preview/Pages/Reference/Sprite.html)s
+Then lastly, StereoKit has easy systems for drawing [`Line`](https://stereokit.net/preview/Pages/StereoKit/Lines.html)s,
+[`Text`](https://stereokit.net/preview/Pages/StereoKit/Text.html), [`Sprite`](https://stereokit.net/preview/Pages/StereoKit/Sprite.html)s
 and various other things! These are still based on Meshes and
 Materials under the hood, but have some complex features that can
 make them difficult to build from scratch.
@@ -917,12 +922,12 @@ make them difficult to build from scratch.
 ## Meshes and Materials
 
 To simplify things here, we're going to use the built-in assets,
-[`Mesh.Sphere`](https://stereokit.net/preview/Pages/Reference/Mesh/Sphere.html)
-and [`Material.Default`](https://stereokit.net/preview/Pages/Reference/Material/Default.html).
+[`Mesh.Sphere`](https://stereokit.net/preview/Pages/StereoKit/Mesh/Sphere.html)
+and [`Material.Default`](https://stereokit.net/preview/Pages/StereoKit/Material/Default.html).
 Mesh.Sphere is a built-in mesh generated using math when StereoKit
 starts up, and Material.Default is a high performance simple
 Material that serves as StereoKit's default Material. (For more
-built-in assets, see the [`Default`](https://stereokit.net/preview/Pages/Reference/Default.html)s)
+built-in assets, see the [`Default`](https://stereokit.net/preview/Pages/StereoKit/Default.html)s)
 
 ```csharp
 Mesh.Sphere.Draw(Material.Default, Matrix.Identity);
@@ -931,7 +936,7 @@ Mesh.Sphere.Draw(Material.Default, Matrix.Identity);
 ![Default sphere and material](https://stereokit.net/preview/img/screenshots/Drawing_Defaults.jpg)
 _Drawing the default sphere Mesh with the default Material._
 
-[`Matrix.Identity`](https://stereokit.net/preview/Pages/Reference/Matrix/Identity.html)
+[`Matrix.Identity`](https://stereokit.net/preview/Pages/StereoKit/Matrix/Identity.html)
 can be though of as a 'No transform' Matrix, so this is drawing the
 sphere at the origin of the 3D space.
 
@@ -944,21 +949,21 @@ have to call Draw every frame!
 So how do you get a Mesh to begin with? In most cases you'll just
 be working with Models, but you can get a Mesh directly from a few
 places:
- - [`Mesh.Sphere`](https://stereokit.net/preview/Pages/Reference/Mesh/Sphere.html), [`Mesh.Cube`](https://stereokit.net/preview/Pages/Reference/Mesh/Cube.html), and [`Mesh.Quad`](https://stereokit.net/preview/Pages/Reference/Mesh/Quad.html) are built-in mesh assets that are handy to have around.
- - [`Mesh`](https://stereokit.net/preview/Pages/Reference/Mesh.html) has a number of static methods for generating procedural shapes, such as [`Mesh.GenerateRoundedCube`](https://stereokit.net/preview/Pages/Reference/Mesh/GenerateRoundedCube.html) or [`Mesh.GeneratePlane`](https://stereokit.net/preview/Pages/Reference/Mesh/GeneratePlane.html).
- - A Mesh can be extracted from one of a [Model's nodes](https://stereokit.net/preview/Pages/Reference/ModelNode/Mesh.html).
- - You can create a Mesh from a list of vertices and indices. This is more advanced, but [check the sample here](https://stereokit.net/preview/Pages/Reference/Mesh/SetVerts.html).
+ - [`Mesh.Sphere`](https://stereokit.net/preview/Pages/StereoKit/Mesh/Sphere.html), [`Mesh.Cube`](https://stereokit.net/preview/Pages/StereoKit/Mesh/Cube.html), and [`Mesh.Quad`](https://stereokit.net/preview/Pages/StereoKit/Mesh/Quad.html) are built-in mesh assets that are handy to have around.
+ - [`Mesh`](https://stereokit.net/preview/Pages/StereoKit/Mesh.html) has a number of static methods for generating procedural shapes, such as [`Mesh.GenerateRoundedCube`](https://stereokit.net/preview/Pages/StereoKit/Mesh/GenerateRoundedCube.html) or [`Mesh.GeneratePlane`](https://stereokit.net/preview/Pages/StereoKit/Mesh/GeneratePlane.html).
+ - A Mesh can be extracted from one of a [Model's nodes](https://stereokit.net/preview/Pages/StereoKit/ModelNode/Mesh.html).
+ - You can create a Mesh from a list of vertices and indices. This is more advanced, but [check the sample here](https://stereokit.net/preview/Pages/StereoKit/Mesh/SetVerts.html).
 
 And where do you get a Material? Well,
- - See built-in Materials like [`Material.PBR`](https://stereokit.net/preview/Pages/Reference/Default/MaterialPBR.html) for high-quality surface or [`Material.Unlit`](https://stereokit.net/preview/Pages/Reference/Default/MaterialUnlit.html) for fast/stylistic surfaces.
- - A Material [constructor](https://stereokit.net/preview/Pages/Reference/Material/Material.html) can be called with a Shader. Check out [the Material guide](https://stereokit.net/preview/Pages/Guides/Working-with-Materials.html) for in-depth usage (Materials and Shaders are a lot of fun!).
- - You can call [`Material.Copy`](https://stereokit.net/preview/Pages/Reference/Material/Copy.html) to create a duplicate of an existing Material.
+ - See built-in Materials like [`Material.PBR`](https://stereokit.net/preview/Pages/StereoKit/Default/MaterialPBR.html) for high-quality surface or [`Material.Unlit`](https://stereokit.net/preview/Pages/StereoKit/Default/MaterialUnlit.html) for fast/stylistic surfaces.
+ - A Material [constructor](https://stereokit.net/preview/Pages/StereoKit/Material/Material.html) can be called with a Shader. Check out [the Material guide](https://stereokit.net/preview/Pages/Guides/Working-with-Materials.html) for in-depth usage (Materials and Shaders are a lot of fun!).
+ - You can call [`Material.Copy`](https://stereokit.net/preview/Pages/StereoKit/Material/Copy.html) to create a duplicate of an existing Material.
 
 ## Matrix basics
 
 If you like math, this explanation is not really for you! But if
 you like results, this will get you going where you need to go. The
-important thing to know about a [`Matrix`](https://stereokit.net/preview/Pages/Reference/Matrix.html),
+important thing to know about a [`Matrix`](https://stereokit.net/preview/Pages/StereoKit/Matrix.html),
 is that it's a good way to represent an object's transform (Translation,
 Rotation, and Scale).
 
@@ -1039,16 +1044,16 @@ for more details on that, check out [the 3D Asset guide](https://stereokit.net/p
 
 But here's the quick list of where you can get a Model to begin
 with:
- - [`Model.FromFile`](https://stereokit.net/preview/Pages/Reference/Model/FromFile.html) is the easiest, most common way to get a Model!
- - [`Model.FromMesh`](https://stereokit.net/preview/Pages/Reference/Model/FromMesh.html) will let you create a very simple Model with a single function call.
- - The [Model constructor](https://stereokit.net/preview/Pages/Reference/Model/Model.html) lets you create an empty Model, which you can then fill with ModelNodes via [`Model.AddNode`](https://stereokit.net/preview/Pages/Reference/Model/AddNode.html)
- - You can call [`Model.Copy`](https://stereokit.net/preview/Pages/Reference/Model/Copy.html) to create a duplicate of an existing Model.
+ - [`Model.FromFile`](https://stereokit.net/preview/Pages/StereoKit/Model/FromFile.html) is the easiest, most common way to get a Model!
+ - [`Model.FromMesh`](https://stereokit.net/preview/Pages/StereoKit/Model/FromMesh.html) will let you create a very simple Model with a single function call.
+ - The [Model constructor](https://stereokit.net/preview/Pages/StereoKit/Model/Model.html) lets you create an empty Model, which you can then fill with ModelNodes via [`Model.AddNode`](https://stereokit.net/preview/Pages/StereoKit/Model/AddNode.html)
+ - You can call [`Model.Copy`](https://stereokit.net/preview/Pages/StereoKit/Model/Copy.html) to create a duplicate of an existing Model.
 
 ## Lines
 
 Being able to easily draw a line is incredibly useful for
 debugging, and generally quite practical for many other purposes as
-well! StereoKit has the [`Lines`](https://stereokit.net/preview/Pages/Reference/Lines.html)
+well! StereoKit has the [`Lines`](https://stereokit.net/preview/Pages/StereoKit/Lines.html)
 class to assist with this, and is pretty straightforward to use.
 There's a few variations, but at it's simplest, it's a few points,
 a color, and a thickness.
@@ -1078,7 +1083,7 @@ Text.Add("こんにちは", Matrix.T(-10, 10,0));
 _'Hello' in Japanese, I'm pretty sure._
 
 You can create additional font styles and fonts to use with text
-drawing, and there are a number of overloads for [`Text.Add`](https://stereokit.net/preview/Pages/Reference/Text/Add.html)
+drawing, and there are a number of overloads for [`Text.Add`](https://stereokit.net/preview/Pages/StereoKit/Text/Add.html)
 that allow you to change the layout or constrain to a particular
 area. Check the docs for the method for more information about that!
 
@@ -1367,7 +1372,7 @@ Shader runs on the GPU, describes how each vertex is projected onto the
 screen, and calculates the color of every pixel. Since each shader
 program is different, each one has different parameters it works with!
 
-While [`MatParamName`](https://stereokit.net/preview/Pages/Reference/MatParamName.html)
+While [`MatParamName`](https://stereokit.net/preview/Pages/StereoKit/MatParamName.html)
 helps to codify and standardize common parameter names, it's always
 best to be somewhat familiar with the Shader that the Material is
 using.
@@ -1386,20 +1391,20 @@ Texture2D diffuse : register(t0);
 Shaders use data embedded in comments to assign default values to
 material properties, the `//--` indicates this. So in this case,
 `color` is a float4 (Vec4 or Color in C#), with a default value of
-`1,1,1,1`, white. This maps to [`MatParamName.ColorTint`](https://stereokit.net/preview/Pages/Reference/MatParamName.html),
+`1,1,1,1`, white. This maps to [`MatParamName.ColorTint`](https://stereokit.net/preview/Pages/StereoKit/MatParamName.html),
 but you could also use the name directly:
 `newMaterial["color"] = Color.HSV(0.3f, 0.2f, 1.0f);`.
 
 Materials also have a few properties that aren't part of the Shader,
-things like [depth testing](https://stereokit.net/preview/Pages/Reference/Material/DepthTest.html)/[writing](https://stereokit.net/preview/Pages/Reference/Material/DepthWrite.html),
-[transparency](https://stereokit.net/preview/Pages/Reference/Material/Transparency.html),
-[face culling](https://stereokit.net/preview/Pages/Reference/Material/FaceCull.html),
-or [wireframe](https://stereokit.net/preview/Pages/Reference/Material/Wireframe.html).
+things like [depth testing](https://stereokit.net/preview/Pages/StereoKit/Material/DepthTest.html)/[writing](https://stereokit.net/preview/Pages/StereoKit/Material/DepthWrite.html),
+[transparency](https://stereokit.net/preview/Pages/StereoKit/Material/Transparency.html),
+[face culling](https://stereokit.net/preview/Pages/StereoKit/Material/FaceCull.html),
+or [wireframe](https://stereokit.net/preview/Pages/StereoKit/Material/Wireframe.html).
 
 ### Material from Shader
 
 You can also create a completely new Material directly from a Shader!
-StereoKit does keep the default Shaders around in the [`Shader`](https://stereokit.net/preview/Pages/Reference/Shader.html)
+StereoKit does keep the default Shaders around in the [`Shader`](https://stereokit.net/preview/Pages/StereoKit/Shader.html)
 class for this purpose, but you can also use Shader.FromFile to load a
 pre-compiled shader file, and use that instead. More on that in the
 [Shader guide (coming soon)]().
@@ -1434,7 +1439,7 @@ default white room.
 ![Interesting lighting](https://stereokit.net/preview/img/screenshots/MaterialDefault.jpg)
 
 You can change the environment lighting with a nice cubemap, check out the
-[`Renderer.SkyLight`](https://stereokit.net/preview/Pages/Reference/Renderer/SkyLight.html)
+[`Renderer.SkyLight`](https://stereokit.net/preview/Pages/StereoKit/Renderer/SkyLight.html)
 property for a nice example of how to do this!
 
 ## Materials and Performance
@@ -1474,19 +1479,19 @@ designed to be performant and good looking on mobile XR headsets, and
 should cover the majority of use-cases. Here's a sampling, and check
 the docs for each one to see what properties they support!
 
-### [`Material.Default`](https://stereokit.net/preview/Pages/Reference/Default/Material.html)
+### [`Material.Default`](https://stereokit.net/preview/Pages/StereoKit/Default/Material.html)
 ![Material.Default preview](https://stereokit.net/preview/img/screenshots/MaterialDefault.jpg)
 
-### [`Material.Unlit`](https://stereokit.net/preview/Pages/Reference/Default/MaterialUnlit.html)
+### [`Material.Unlit`](https://stereokit.net/preview/Pages/StereoKit/Default/MaterialUnlit.html)
 ![Material.Unlit preview](https://stereokit.net/preview/img/screenshots/MaterialUnlit.jpg)
 
-### [`Material.PBR`](https://stereokit.net/preview/Pages/Reference/Default/MaterialPBR.html)
+### [`Material.PBR`](https://stereokit.net/preview/Pages/StereoKit/Default/MaterialPBR.html)
 ![Material.PBR preview](https://stereokit.net/preview/img/screenshots/MaterialPBR.jpg)
 
-### [`Material.UI`](https://stereokit.net/preview/Pages/Reference/Default/MaterialUI.html)
+### [`Material.UI`](https://stereokit.net/preview/Pages/StereoKit/Default/MaterialUI.html)
 ![Material.UI preview](https://stereokit.net/preview/img/screenshots/MaterialUI.jpg)
 
-### [`Material.UIBox`](https://stereokit.net/preview/Pages/Reference/Default/MaterialUIBox.html)
+### [`Material.UIBox`](https://stereokit.net/preview/Pages/StereoKit/Default/MaterialUIBox.html)
 ![Material.UIBox preview](https://stereokit.net/preview/img/screenshots/MaterialUIBox.jpg)
 
 ## Debugging your App
@@ -1517,7 +1522,7 @@ maintainers to understand what is or isn't happening.
 
 All platforms will output the log through the standard debug output window,
 but you can also tap into the debug logs via
-[`Log.Subscribe`](https://stereokit.net/preview/Pages/Reference/Log/Subscribe.html). Check
+[`Log.Subscribe`](https://stereokit.net/preview/Pages/StereoKit/Log/Subscribe.html). Check
 the docs there for an easy Mixed Reality log window you can add to your
 project.
 
@@ -2252,6 +2257,10 @@ See `Bounds.FromCorner`
 
 ## Bounds
 
+See `Bounds.FromCorner`
+
+## Bounds
+
 ### An Interactive Model
 
 ![A grabbable GLTF Model using UI.Handle](https://stereokit.net/preview/img/screenshots/HandleBox.jpg)
@@ -2275,10 +2284,6 @@ public void StepHandle() {
 	UI.HandleEnd();
 }
 ```
-
-## Bounds
-
-See `Bounds.FromCorner`
 
 ## BtnState
 
@@ -2899,6 +2904,10 @@ Lines.Add(new LinePoint[]{
 
 ## Lines.AddAxis
 
+See `Bounds.Contains`
+
+## Lines.AddAxis
+
 ### Identity Pose
 
 The identity pose is a `Pose` at (0,0,0) facing Forward, which in
@@ -2923,10 +2932,6 @@ Lines.Add(V.XYZ(-1,0,0), V.XYZ(1,0,0), new Color32(100,0,0,100), 0.0005f);
 Lines.Add(V.XYZ(0,-1,0), V.XYZ(0,1,0), new Color32(0,100,0,100), 0.0005f);
 Lines.Add(V.XYZ(0,0,-1), V.XYZ(0,0,1), new Color32(0,0,100,100), 0.0005f);
 ```
-
-## Lines.AddAxis
-
-See `Bounds.Contains`
 
 ## Lines
 
@@ -3170,11 +3175,11 @@ See `Default.MaterialUI`
 
 ## Material.UIBox
 
-See `Bounds`
+See `Default.MaterialUIBox`
 
 ## Material.UIBox
 
-See `Default.MaterialUIBox`
+See `Bounds`
 
 ## Material.Unlit
 
@@ -3216,6 +3221,44 @@ See `Material.ParamCount`
 
 See `Material.ParamCount`
 
+## Material.SetBool
+
+### Specialization constants
+If a shader declares specialization constants with HLSL's
+`[[vk::constant_id(N)]]`, StereoKit exposes them through the ordinary
+scalar setters. The name you pass must match the HLSL variable name.
+
+```hlsl
+[[vk::constant_id(0)]] const int   COLOR_STEPS = 2;
+[[vk::constant_id(1)]] const float BRIGHTNESS  = 0.25;
+[[vk::constant_id(2)]] const bool  USE_TINT    = true;
+[[vk::constant_id(3)]] const uint  BLUE_SCALE  = 4;
+```
+
+Unlike a normal material parameter, a spec constant is baked into the
+shader pipeline. Setting one to a new value rebuilds that pipeline (a
+heavier operation than a uniform write), so prefer setting them at
+load time rather than every frame. Re-setting the same value is free.
+Two materials sharing one shader with different spec-constant values are
+distinct pipeline variants — handy for feature toggles or loop/array
+sizes the driver can then fold at compile time.
+```csharp
+Material variantA;
+Material variantB;
+public void Initialize()
+{
+	Shader shader = Shader.FromFile("spec_constant_test.hlsl");
+
+	variantA = new Material(shader); // uses the HLSL defaults
+
+	variantB = new Material(shader);
+	variantB.SetInt  ("COLOR_STEPS", 4);
+	variantB.SetFloat("BRIGHTNESS",  0.6f);
+	variantB.SetBool ("USE_TINT",    false);
+	variantB.SetUInt ("BLUE_SCALE",  12);
+}
+```
+
 ## Material.SetData
 
 ### Assigning an array in a Shader
@@ -3254,9 +3297,17 @@ public void Initialize()
 }
 ```
 
-## Material
+## Material.SetFloat
 
-See `Material.SetData`
+See `Material.SetBool`
+
+## Material.SetInt
+
+See `Material.SetBool`
+
+## Material.SetUInt
+
+See `Material.SetBool`
 
 ## Material
 
@@ -3269,6 +3320,10 @@ enum for compile safety.
 exampleMaterial[MatParamName.DiffuseTex  ] = gridTex;
 exampleMaterial[MatParamName.TexTransform] = new Vec4(0,0,2,2);
 ```
+
+## Material
+
+See `Material.SetData`
 
 ## MatParamInfo.name
 
@@ -3345,16 +3400,6 @@ roundedCubeModel.Draw(roundedCubeTransform);
 
 ## Mesh.GenerateCircle
 
-### UV and Face layout
-Here's a test image that illustrates how this mesh's geometry is
-laid out.
-![Procedural Circle Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoCircle.jpg)
-```csharp
-meshCircle = Mesh.GenerateCircle(1);
-```
-
-## Mesh.GenerateCircle
-
 ### Generating a Mesh and Model
 
 ![Procedural Geometry Demo](https://stereokit.net/preview/img/screenshots/ProceduralGeometry.jpg)
@@ -3380,14 +3425,14 @@ circleTransform = Matrix.T(1, -1.5f, 0);
 circleModel.Draw(circleTransform);
 ```
 
-## Mesh.GenerateCube
+## Mesh.GenerateCircle
 
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Cube Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoCube.jpg)
+![Procedural Circle Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoCircle.jpg)
 ```csharp
-meshCube = Mesh.GenerateCube(Vec3.One);
+meshCircle = Mesh.GenerateCircle(1);
 ```
 
 ## Mesh.GenerateCube
@@ -3418,14 +3463,14 @@ cubeTransform = Matrix.T(1, -.5f, 0);
 cubeModel.Draw(cubeTransform);
 ```
 
-## Mesh.GenerateCylinder
+## Mesh.GenerateCube
 
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Cylinder Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoCylinder.jpg)
+![Procedural Cube Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoCube.jpg)
 ```csharp
-meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
+meshCube = Mesh.GenerateCube(Vec3.One);
 ```
 
 ## Mesh.GenerateCylinder
@@ -3457,14 +3502,14 @@ cylinderTransform = Matrix.T(1, 1, 0);
 cylinderModel.Draw(cylinderTransform);
 ```
 
-## Mesh.GeneratePlane
+## Mesh.GenerateCylinder
 
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Plane Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoPlane.jpg)
+![Procedural Cylinder Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoCylinder.jpg)
 ```csharp
-meshPlane = Mesh.GeneratePlane(Vec2.One);
+meshCylinder = Mesh.GenerateCylinder(1, 1, Vec3.Up);
 ```
 
 ## Mesh.GeneratePlane
@@ -3494,14 +3539,14 @@ planeTransform = Matrix.T(1, -1, 0);
 planeModel.Draw(planeTransform);
 ```
 
-## Mesh.GenerateRoundedCube
+## Mesh.GeneratePlane
 
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Rounded Cube Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoRoundedCube.jpg)
+![Procedural Plane Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoPlane.jpg)
 ```csharp
-meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
+meshPlane = Mesh.GeneratePlane(Vec2.One);
 ```
 
 ## Mesh.GenerateRoundedCube
@@ -3512,14 +3557,14 @@ See `Mesh.Draw`
 
 See `Mesh.Draw`
 
-## Mesh.GenerateSphere
+## Mesh.GenerateRoundedCube
 
 ### UV and Face layout
 Here's a test image that illustrates how this mesh's geometry is
 laid out.
-![Procedural Sphere Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoSphere.jpg)
+![Procedural Rounded Cube Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoRoundedCube.jpg)
 ```csharp
-meshSphere = Mesh.GenerateSphere(1);
+meshRoundedCube = Mesh.GenerateRoundedCube(Vec3.One, 0.05f);
 ```
 
 ## Mesh.GenerateSphere
@@ -3551,6 +3596,16 @@ sphereTransform = Matrix.T(1, .5f, 0);
 sphereModel.Draw(sphereTransform);
 ```
 
+## Mesh.GenerateSphere
+
+### UV and Face layout
+Here's a test image that illustrates how this mesh's geometry is
+laid out.
+![Procedural Sphere Mesh](https://stereokit.net/preview/img/screenshots/ProcGeoSphere.jpg)
+```csharp
+meshSphere = Mesh.GenerateSphere(1);
+```
+
 ## Mesh.Intersect
 
 ### Ray Mesh Intersection
@@ -3561,22 +3616,23 @@ and displaying it back in world space.
 ![Ray Mesh Intersection](https://stereokit.net/preview/img/screenshots/RayMeshIntersect.jpg)
 
 ```csharp
-Mesh sphereMesh = Default.MeshSphere;
-Mesh boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
-Pose boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
-Pose castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
+Mesh  sphereMesh = Default.MeshSphere;
+Mesh  boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
+Pose  boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
+float boxScale   = 1;
+Pose  castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
 
 public void StepRayMesh()
 {
 	// Draw our setup, and make the visuals grab/moveable!
-	UI.Handle("Box",  ref boxPose,  boxMesh.Bounds);
+	UI.Handle("Box",  ref boxPose, boxMesh.Bounds, ref boxScale);
 	UI.Handle("Cast", ref castPose, sphereMesh.Bounds*0.03f);
-	boxMesh   .Draw(Default.MaterialUI, boxPose .ToMatrix());
+	boxMesh   .Draw(Default.MaterialUI, boxPose .ToMatrix(boxScale));
 	sphereMesh.Draw(Default.MaterialUI, castPose.ToMatrix(0.03f));
 	Lines.Add(castPose.position, boxPose.position, Color.White, 0.005f);
 
 	// Create a ray that's in the Mesh's model space
-	Matrix transform = boxPose.ToMatrix();
+	Matrix transform = boxPose.ToMatrix(boxScale);
 	Ray    ray       = transform
 		.Inverse
 		.Transform(Ray.FromTo(castPose.position, boxPose.position));
@@ -3659,6 +3715,10 @@ for (int x = 0; x < gridSize; x++) {
 demoProcMesh = new Mesh(verts, inds);
 ```
 
+## Mesh.SetData
+
+See `Mesh.SetData`
+
 ## Mesh.SetInds
 
 See `Mesh.SetData`
@@ -3666,6 +3726,55 @@ See `Mesh.SetData`
 ## Mesh.SetVerts
 
 See `Mesh.SetData`
+
+## Mesh.SetVerts
+
+### Custom vertex formats
+Meshes can use custom vertex layouts! Define a struct that provides
+what your shader's vertex stage needs, and tag each field with a
+VertComponent attribute saying what it is. StereoKit derives the
+vertex format from the struct automatically. Since vertex data is
+matched to shader inputs by semantic, fields don't need to be in the
+same order as the shader declares them!
+```csharp
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+struct VertPosColor
+{
+	[VertComponent(VertSemantic.Color,    VertFmt.U8Normalized, 4)]
+	public Color32 color;
+	[VertComponent(VertSemantic.Position, VertFmt.F32,          3)]
+	public Vec3    pos;
+
+	public VertPosColor(Vec3 position, Color32 c) { pos = position; color = c; }
+}
+
+Mesh     _mesh;
+Material _material;
+
+Mesh BuildOctahedron(float s)
+{
+	Mesh mesh = new Mesh();
+	mesh.SetVerts(new VertPosColor[] {
+		new VertPosColor(V.XYZ( s, 0, 0), new Color32(255,  0,  0,255)),
+		new VertPosColor(V.XYZ(-s, 0, 0), new Color32(  0,255,  0,255)),
+		new VertPosColor(V.XYZ( 0, s, 0), new Color32(  0,  0,255,255)),
+		new VertPosColor(V.XYZ( 0,-s, 0), new Color32(255,255,  0,255)),
+		new VertPosColor(V.XYZ( 0, 0, s), new Color32(  0,255,255,255)),
+		new VertPosColor(V.XYZ( 0, 0,-s), new Color32(255,  0,255,255)) });
+	mesh.SetInds(new uint[] {
+		2,4,0,  2,0,5,  2,5,1,  2,1,4,
+		3,0,4,  3,5,0,  3,1,5,  3,4,1 });
+	return mesh;
+}
+```
+
+## Mesh.SetVerts
+
+See `Mesh.SetData`
+
+## Mesh.SetVerts
+
+See `Mesh.SetVerts`
 
 ## Mesh
 
@@ -3765,6 +3874,10 @@ void ShowMicDeviceWindow()
 
 ## Microphone.Start
 
+See `Microphone.GetDevices`
+
+## Microphone.Start
+
 ### Recording Audio Snippets
 A common use case for the microphone would be to record a snippet of
 audio! This demo is a window that will read data from the Microphone,
@@ -3829,14 +3942,6 @@ void RecordAudio()
 }
 ```
 
-## Microphone.Start
-
-See `Microphone.GetDevices`
-
-## Microphone
-
-See `Microphone.Start`
-
 ## Microphone
 
 See `Microphone.IsRecording`
@@ -3844,6 +3949,10 @@ See `Microphone.IsRecording`
 ## Microphone
 
 See `Microphone.GetDevices`
+
+## Microphone
+
+See `Microphone.Start`
 
 ## Model.ActiveAnim
 
@@ -4029,11 +4138,11 @@ See `Anim.Name`
 
 ## Model
 
-See `Mesh.IndCount`
+See `Bounds`
 
 ## Model
 
-See `Bounds`
+See `Mesh.IndCount`
 
 ## Model
 
@@ -4217,6 +4326,14 @@ private void OnLoadModel(string filename)
 
 ## Platform.FilePicker
 
+See `Platform.FilePickerVisible`
+
+## Platform.FilePicker
+
+See `Platform.FilePickerVisible`
+
+## Platform.FilePicker
+
 ### Read Custom Files
 ```csharp
 Platform.FilePicker(PickerMode.Open, file => {
@@ -4239,14 +4356,6 @@ Platform.FilePicker(PickerMode.Save, file => {
 	Platform.WriteFile(file, "Text for the file.\n- Thanks!");
 }, null, ".txt");
 ```
-
-## Platform.FilePicker
-
-See `Platform.FilePickerVisible`
-
-## Platform.FilePicker
-
-See `Platform.FilePickerVisible`
 
 ## Platform.ReadFile
 
@@ -4444,6 +4553,36 @@ And here's what it looks like applied to the default Material!
 
 See `Renderer.SkyLight`
 
+## Renderer.RenderTo
+
+### Rendering a viewpoint with post-processing
+RenderSettings works with Renderer.RenderTo and RenderList.DrawNow,
+and can carry a post-process chain that applies to just that pass!
+```csharp
+Tex target = Tex.RenderTarget(512, 512);
+Renderer.RenderTo(target, Matrix.T(0, 0, 1), Matrix.Perspective(90, 1, 0.1f, 50),
+	new RenderSettings { clearColor  = Color.Black,
+	                     postProcess = new Material[] { vignette } });
+```
+
+## Renderer.SetPostProcess
+
+### Setting a post-process chain
+A post-process effect is just a Material! Its shader reads the
+scene through an input attachment named 'color', and its
+parameters can be changed live, like any other Material. The
+chain renders in argument order.
+```csharp
+Material vignette = new Material("postfx_vignette.hlsl");
+vignette["strength"] = 0.4f;
+Renderer.SetPostProcess(vignette);
+```
+
+And when you're done with it:
+```csharp
+Renderer.SetPostProcess();
+```
+
 ## RenderList.Add
 
 ### Render Icon From a Model
@@ -4508,6 +4647,10 @@ See `RenderList.Add`
 
 See `RenderList.Add`
 
+## RenderSettings
+
+See `Renderer.RenderTo`
+
 ## SK.AppFocus
 
 See `AppFocus`
@@ -4523,6 +4666,10 @@ See `Microphone.IsRecording`
 Sound sound = Sound.FromFile("BlipNoise.wav");
 sound.Play(Vec3.Zero);
 ```
+
+## Sound.FromSamples
+
+See `Microphone.Start`
 
 ## Sound.FromSamples
 
@@ -4543,10 +4690,6 @@ for (int i = 0; i < samples.Length; i++)
 Sound sampleSound = Sound.FromSamples(samples);
 sampleSound.Play(Vec3.Zero);
 ```
-
-## Sound.FromSamples
-
-See `Microphone.Start`
 
 ## Sound.Generate
 
@@ -4571,9 +4714,13 @@ See `Sound.FromFile`
 
 ## Sound.ReadSamples
 
-See `Microphone.Start`
+See `Microphone.IsRecording`
 
 ## Sound.ReadSamples
+
+See `Microphone.Start`
+
+## Sound
 
 See `Microphone.IsRecording`
 
@@ -4588,10 +4735,6 @@ See `Sound.Generate`
 ## Sound
 
 See `Sound.FromSamples`
-
-## Sound
-
-See `Microphone.IsRecording`
 
 ## Sprite.FromTex
 
@@ -4976,12 +5119,12 @@ UI.WindowBegin("Last Element API", ref windowPose);
 
 UI.HSlider("Slider", ref sliderVal, 0, 1, 0.1f, 0, UIConfirm.Pinch);
 UI.Text("Element Info:", Align.TopCenter);
-if (UI.LastElementHandActive (Handed.Left ).IsActive()) UI.Label("Left Active");
-if (UI.LastElementHandActive (Handed.Right).IsActive()) UI.Label("Right Active");
-if (UI.LastElementHandFocused(Handed.Left ).IsActive()) UI.Label("Left Focused");
-if (UI.LastElementHandFocused(Handed.Right).IsActive()) UI.Label("Right Focused");
-if (UI.LastElementFocused                  .IsActive()) UI.Label("Focused");
-if (UI.LastElementActive                   .IsActive()) UI.Label("Active");
+if (UI.LastElementSourceActive (InteractorSource.HandLeft  | InteractorSource.ControllerLeft ).IsActive()) UI.Label("Left Active");
+if (UI.LastElementSourceActive (InteractorSource.HandRight | InteractorSource.ControllerRight).IsActive()) UI.Label("Right Active");
+if (UI.LastElementSourceFocused(InteractorSource.HandLeft  | InteractorSource.ControllerLeft ).IsActive()) UI.Label("Left Focused");
+if (UI.LastElementSourceFocused(InteractorSource.HandRight | InteractorSource.ControllerRight).IsActive()) UI.Label("Right Focused");
+if (UI.LastElementFocused.IsActive()) UI.Label("Focused");
+if (UI.LastElementActive .IsActive()) UI.Label("Active");
 
 UI.WindowEnd();
 ```
@@ -5113,11 +5256,11 @@ void ShowWindowInput()
 
 See `UI.HSeparator`
 
-## UI.LastElementHandActive
+## UI.LastElementSourceActive
 
 See `UI.LastElementActive`
 
-## UI.LastElementHandFocused
+## UI.LastElementSourceFocused
 
 See `UI.LastElementActive`
 
@@ -5217,8 +5360,10 @@ void ShowWindowToggle()
 
 ## UI.VolumeAt
 
-This code will draw an axis at the index finger's location when
-the user pinches while inside a VolumeAt.
+A volume is a 3D space that can be interacted with by any
+interactor, such as a hand, controller, or mouse pointer. This code
+draws an axis at the interactor's location when it pinches while
+inside the VolumeAt.
 
 ![UI.InteractVolume](https://stereokit.net/preview/img/screenshots/InteractVolume.jpg)
 
@@ -5228,14 +5373,14 @@ Vec3  volumeAt   = new Vec3(0, 0.2f, -0.4f);
 float volumeSize = 0.2f;
 Default.MeshCube.Draw(Default.MaterialUIBox, Matrix.TS(volumeAt, volumeSize));
 
-BtnState volumeState = UI.VolumeAt("Volume", new Bounds(volumeAt, Vec3.One * volumeSize), UIConfirm.Pinch, out Handed hand);
+BtnState volumeState = UI.VolumeAt("Volume", new Bounds(volumeAt, Vec3.One * volumeSize), UIConfirm.Pinch, out Interactor interactor);
 if (volumeState != BtnState.Inactive)
 {
 	// If it just changed interaction state, make it jump in size
 	float scale = volumeState.IsChanged()
 		? 0.1f
 		: 0.05f;
-	Lines.AddAxis(Input.Hand(hand)[FingerId.Index, JointId.Tip].Pose, scale);
+	Lines.AddAxis(interactor.Motion, scale);
 }
 ```
 
@@ -5307,6 +5452,18 @@ if (distanceSquared < 4*4) {
 }
 ```
 
+## VertComponentAttribute
+
+See `Mesh.SetVerts`
+
+## VertFmt
+
+See `Mesh.SetVerts`
+
+## VertSemantic
+
+See `Mesh.SetVerts`
+
 ## World.BoundsPose
 
 ```csharp
@@ -5337,6 +5494,10 @@ See `World.BoundsPose`
 
 ## World.Occlusion
 
+See `OcclusionCaps`
+
+## World.Occlusion
+
 ### Configuring Quality Occlusion
 
 If you expect the user's environment to change a lot, or you
@@ -5360,17 +5521,13 @@ World.RefreshInterval = 0; // Refresh every 0 seconds
 World.RefreshRadius   = 6; // Get everything in a 6m radius
 ```
 
-## World.Occlusion
+## World.OcclusionCapabilities
 
 See `OcclusionCaps`
 
 ## World.OcclusionCapabilities
 
 See `World.Occlusion`
-
-## World.OcclusionCapabilities
-
-See `OcclusionCaps`
 
 ## World.RaycastEnabled
 

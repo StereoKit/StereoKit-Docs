@@ -31,7 +31,7 @@ limit. For longer or streamed effects, use HapticWaveform.
 |--|--|
 |[InputHaptic]({{site.url}}/preview/Pages/StereoKit/InputHaptic.html) output|Which haptic output to vibrate.|
 |Single[] amplitudes|Unsigned [0, 1] intensity samples.|
-|float sampleRateHz|The sample rate the envelope was              authored at.|
+|float sampleRateHz|The sample rate the envelope was authored at.|
 
 
 

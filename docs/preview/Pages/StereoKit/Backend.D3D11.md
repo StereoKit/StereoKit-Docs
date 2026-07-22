@@ -13,5 +13,5 @@ tasks. This is the default rendering backend on Windows.
 
 |  |  |
 |--|--|
-|IntPtr [D3DContext]({{site.url}}/preview/Pages/StereoKit/Backend.D3D11/D3DContext.html)|This is the main `ID3D11DeviceContext*` StereoKit uses for rendering.|
-|IntPtr [D3DDevice]({{site.url}}/preview/Pages/StereoKit/Backend.D3D11/D3DDevice.html)|This is the main `ID3D11Device*` StereoKit uses for rendering.|
+|IntPtr [D3DContext]({{site.url}}/preview/Pages/StereoKit/Backend.D3D11/D3DContext.html)|This is the main `ID3D11DeviceContext*` StereoKit uses for rendering. (No longer supported, always returns IntPtr.Zero)|
+|IntPtr [D3DDevice]({{site.url}}/preview/Pages/StereoKit/Backend.D3D11/D3DDevice.html)|This is the main `ID3D11Device*` StereoKit uses for rendering. (No longer supported, always returns IntPtr.Zero)|

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Backend.OpenGL_WGL.HGLRC
-description: This is the Handle to an OpenGL Rendering Context HGLRC StereoKit uses with wglMakeCurrent.
+description: This is the Handle to an OpenGL Rendering Context HGLRC StereoKit uses with wglMakeCurrent. (No longer supported, always returns IntPtr.Zero)
 ---
 # [Backend.OpenGL_WGL]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGL_WGL.html).HGLRC
 
@@ -11,5 +11,6 @@ static IntPtr HGLRC{ get }
 
 ## Description
 This is the Handle to an OpenGL Rendering Context
-`HGLRC` StereoKit uses with `wglMakeCurrent`.
+`HGLRC` StereoKit uses with `wglMakeCurrent`. (No longer
+supported, always returns IntPtr.Zero)
 

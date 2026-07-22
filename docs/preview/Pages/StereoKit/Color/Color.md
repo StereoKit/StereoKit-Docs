@@ -19,7 +19,7 @@ the range of 0-1.
 |float red|Red component, 0-1.|
 |float green|Green component, 0-1.|
 |float blue|Blue component, 0-1.|
-|float opacity|Opacity, or the alpha component, 0-1 where 0 is completely              transparent, and 1 is completely opaque.|
+|float opacity|Opacity, or the alpha component, 0-1 where 0 is completely transparent, and 1 is completely opaque.|
 
 
 

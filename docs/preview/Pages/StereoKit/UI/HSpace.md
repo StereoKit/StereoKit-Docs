@@ -14,7 +14,7 @@ Adds some horizontal space to the current line!
 
 |  |  |
 |--|--|
-|float horizontalSpace|Space in meters to shift the layout             by.|
+|float horizontalSpace|Space in meters to shift the layout by.|
 
 
 

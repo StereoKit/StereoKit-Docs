@@ -22,8 +22,8 @@ the preferred method of controlling the main loop, over
 
 |  |  |
 |--|--|
-|Action onStep|A callback where you put your application             code! This gets called between StereoKit systems, after frame             setup, but before render.|
-|Action onShutdown|A callback that gives you the             opportunity to shut things down while StereoKit is still active.             This is called after the last Step completes, and before             StereoKit shuts down.|
+|Action onStep|A callback where you put your application code! This gets called between StereoKit systems, after frame setup, but before render.|
+|Action onShutdown|A callback that gives you the opportunity to shut things down while StereoKit is still active. This is called after the last Step completes, and before StereoKit shuts down.|
 
 
 

@@ -17,7 +17,7 @@ possible for this to fail on the OpenXR runtime's side as well.
 
 |  |  |
 |--|--|
-|bool persistent|Whether this should or shouldn't persist             across sessions.|
+|bool persistent|Whether this should or shouldn't persist across sessions.|
 |RETURNS: bool|Success or failure of setting persistence.|
 
 

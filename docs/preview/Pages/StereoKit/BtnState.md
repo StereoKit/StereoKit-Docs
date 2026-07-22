@@ -13,9 +13,10 @@ A bit-flag for the current state of a button input.
 |--|--|
 |Active|Is the button currently down, pressed?|
 |Any|Matches with all states!|
-|Changed|Has the button just changed state this frame?|
+|Changed|Has the button just changed state this frame? Includes presses, releases, and canceled activations.|
 |Inactive|Is the button currently up, unpressed?|
 |JustActive|Has the button just been pressed? Only true for a single frame.|
+|JustCanceled|Was a button activation just canceled this frame, ending without firing because the interactor moved too far away? Only true for a single frame.|
 |JustInactive|Has the button just been released? Only true for a single frame.|
 
 ## Examples

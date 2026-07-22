@@ -18,7 +18,7 @@ an error state, this also returns immediately.
 |  |  |
 |--|--|
 |[IAsset]({{site.url}}/preview/Pages/StereoKit/IAsset.html) asset|The asset to wait on.|
-|[AssetState]({{site.url}}/preview/Pages/StereoKit/AssetState.html) state|The state to wait for, such as             AssetState.Loaded or AssetState.LoadedMeta.|
+|[AssetState]({{site.url}}/preview/Pages/StereoKit/AssetState.html) state|The state to wait for, such as AssetState.Loaded or AssetState.LoadedMeta.|
 
 
 

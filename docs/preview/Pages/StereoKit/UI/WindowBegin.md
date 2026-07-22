@@ -17,9 +17,9 @@ of the window. Must be finished with a call to UI.WindowEnd().
 
 |  |  |
 |--|--|
-|string text|Text to display on the window title and id for             tracking element state. MUST be unique within current hierarchy.|
-|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn,             use a header, a body, neither, or both?|
-|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when              dragged around.|
+|string text|Text to display on the window title and id for tracking element state. MUST be unique within current hierarchy.|
+|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn, use a header, a body, neither, or both?|
+|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when dragged around.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -33,10 +33,10 @@ of the window. Must be finished with a call to UI.WindowEnd().
 
 |  |  |
 |--|--|
-|string text|Text to display on the window title and id for             tracking element state. MUST be unique within current hierarchy.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Physical size of the window! If either              dimension is 0, then the size on that axis will be auto-             calculated based on the content provided during the previous              frame.|
-|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn,             use a header, a body, neither, or both?|
-|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when              dragged around.|
+|string text|Text to display on the window title and id for tracking element state. MUST be unique within current hierarchy.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Physical size of the window! If either dimension is 0, then the size on that axis will be auto- calculated based on the content provided during the previous frame.|
+|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn, use a header, a body, neither, or both?|
+|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when dragged around.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -50,11 +50,11 @@ finished with a call to UI.WindowEnd().
 
 |  |  |
 |--|--|
-|string text|Text to display on the window title and id for             tracking element state. MUST be unique within current hierarchy.|
-|Pose& pose|The pose state for the window! If showHeader              is true, the user will be able to grab this header and move it              around.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Physical size of the window! If either              dimension is 0, then the size on that axis will be auto-             calculated based on the content provided during the previous              frame.|
-|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn,             use a header, a body, neither, or both?|
-|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when              dragged around.|
+|string text|Text to display on the window title and id for tracking element state. MUST be unique within current hierarchy.|
+|Pose& pose|The pose state for the window! If showHeader is true, the user will be able to grab this header and move it around.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Physical size of the window! If either dimension is 0, then the size on that axis will be auto- calculated based on the content provided during the previous frame.|
+|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn, use a header, a body, neither, or both?|
+|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when dragged around.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -70,10 +70,10 @@ content provided during the previous frame.
 
 |  |  |
 |--|--|
-|string text|Text to display on the window title and id for             tracking element state. MUST be unique within current hierarchy.|
-|Pose& pose|The pose state for the window! If showHeader              is true, the user will be able to grab this header and move it              around.|
-|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn,             use a header, a body, neither, or both?|
-|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when              dragged around.|
+|string text|Text to display on the window title and id for tracking element state. MUST be unique within current hierarchy.|
+|Pose& pose|The pose state for the window! If showHeader is true, the user will be able to grab this header and move it around.|
+|[UIWin]({{site.url}}/preview/Pages/StereoKit/UIWin.html) windowType|Describes how the window should be drawn, use a header, a body, neither, or both?|
+|[UIMove]({{site.url}}/preview/Pages/StereoKit/UIMove.html) moveType|Describes how the window will move when dragged around.|
 
 
 

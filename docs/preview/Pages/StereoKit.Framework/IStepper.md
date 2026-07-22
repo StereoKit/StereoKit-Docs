@@ -33,7 +33,7 @@ a different one.
 |--|--|
 |[Initialize]({{site.url}}/preview/Pages/StereoKit.Framework/IStepper/Initialize.html)|This is called by StereoKit at the start of the next frame, and on the main thread. This happens before StereoKit's main `Step` callback, and always after `SK.Initialize`.|
 |[Shutdown]({{site.url}}/preview/Pages/StereoKit.Framework/IStepper/Shutdown.html)|This is called when the `IStepper` is removed, or the application shuts down. This is always called on the main thread, and happens at the start of the next frame, before the main application's `Step` callback.|
-|[Step]({{site.url}}/preview/Pages/StereoKit.Framework/IStepper/Step.html)|This Step method will be called every frame of the application, as long as `Enabled` is `true`. This happens immediately before the main application's `Step` callback.|
+|[Step]({{site.url}}/preview/Pages/StereoKit.Framework/IStepper/Step.html)|This Step method will be called every frame of the application, as long as `Enabled` is `true`. By default this happens immediately before the main application's `Step` callback, but this can be configured by adding a `[StepperPriority]` attribute to the `IStepper` type: a positive priority steps _after_ the app's `Step` callback, and `IStepper`s are sorted in ascending order of priority.|
 
 ## Examples
 

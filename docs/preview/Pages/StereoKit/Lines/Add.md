@@ -16,7 +16,7 @@ Adds a line to the environment for the current frame.
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|Starting point of the line.|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) end|End point of the line.|
-|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) color|Color for the line, this is embedded in the             vertex color of the line.|
+|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) color|Color for the line, this is embedded in the vertex color of the line.|
 |float thickness|Thickness of the line in meters.|
 
 <div class='signature' markdown='1'>
@@ -30,8 +30,8 @@ Adds a line to the environment for the current frame.
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|Starting point of the line.|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) end|End point of the line.|
-|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) colorStart|Color for the start of the line, this is             embedded in the vertex color of the line.|
-|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) colorEnd|Color for the end of the line, this is             embedded in the vertex color of the line.|
+|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) colorStart|Color for the start of the line, this is embedded in the vertex color of the line.|
+|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) colorEnd|Color for the end of the line, this is embedded in the vertex color of the line.|
 |float thickness|Thickness of the line in meters.|
 
 <div class='signature' markdown='1'>
@@ -45,8 +45,8 @@ current frame.
 |  |  |
 |--|--|
 |[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|The ray we want to visualize!|
-|float length|How long should the ray be? Actual length             will be ray.direction.Magnitude * length.|
-|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) color|Color for the line, this is embedded in the             vertex color of the line.|
+|float length|How long should the ray be? Actual length will be ray.direction.Magnitude * length.|
+|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) color|Color for the line, this is embedded in the vertex color of the line.|
 |float thickness|Thickness of the line in meters.|
 
 <div class='signature' markdown='1'>

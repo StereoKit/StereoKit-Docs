@@ -18,8 +18,8 @@ has interacted with their physical keyboard recently.
 
 |  |  |
 |--|--|
-|bool show|Tells whether or not to open or close the soft             keyboard.|
-|[TextContext]({{site.url}}/preview/Pages/StereoKit/TextContext.html) inputType|Soft keyboards can change layout to             optimize for the type of text that's required. StereoKit will             request the soft keyboard layout that most closely represents the             TextContext provided.|
+|bool show|Tells whether or not to open or close the soft keyboard.|
+|[TextContext]({{site.url}}/preview/Pages/StereoKit/TextContext.html) inputType|Soft keyboards can change layout to optimize for the type of text that's required. StereoKit will request the soft keyboard layout that most closely represents the TextContext provided.|
 
 
 

@@ -660,7 +660,7 @@ void IdWindow(ref Pose windowPose, ref int option)
 ## What's Next?
 
 And there you go! That's how UI works in StereoKit, pretty reasonable,
-huh? For further reference, and more UI methods, checkout the [UI class documentation](https://stereokit.net/Pages/Reference/UI.html).
+huh? For further reference, and more UI methods, checkout the [UI class documentation](https://stereokit.net/Pages/StereoKit/UI.html).
 
 If you'd like to see the complete code for this sample,
 [check it out on Github](https://github.com/StereoKit/StereoKit/blob/master/Examples/StereoKitTest/Guides/GuideUI.cs)!
@@ -946,7 +946,7 @@ normally a shoulder->hand ray, will be along the mouse ray instead.
 - Left + Right - Hand animates to a closed fist.
 - Scroll Wheel - Moves the hand toward or away from the user.
 - Shift + Right - Mouse-look / rotate the head.
-- Left Alt - [Eye tracking](https://stereokit.net/Pages/Reference/Input/Eyes.html) will point along the ray indicated by the mouse.
+- Left Alt - [Eye tracking](https://stereokit.net/Pages/StereoKit/Input/Eyes.html) will point along the ray indicated by the mouse.
 - Ctrl + Shift - Switch between controlling left hand, right hand, or no hand.
 
 To move around in space, you'll find controls that should be familiar to
@@ -995,10 +995,10 @@ in the Test project has a number of sample utilities for
 recording and playing back input.
 
 Overriding the hands is one important element that you may want
-to do! [`Input.HandOverride`](https://stereokit.net/Pages/Reference/Input/HandOverride.html)
+to do! [`Input.HandOverride`](https://stereokit.net/Pages/StereoKit/Input/HandOverride.html)
 will set the hand input to a very specific pose, and hold that
 pose until you call `Input.HandOverride` again with a new pose,
-or call [`Input.HandClearOverride`](https://stereokit.net/Pages/Reference/Input/HandClearOverride.html)
+or call [`Input.HandClearOverride`](https://stereokit.net/Pages/StereoKit/Input/HandClearOverride.html)
 to restore control back to the user.
 
 ![An overridden hand](https://stereokit.net/img/screenshots/HandOverride.jpg)
@@ -1020,11 +1020,11 @@ in-visor? However it's said, in this guide we're going to explore the
 various ways to display some holograms!
 
 At its core, drawing things in 3D is done through a combination of
-[`Mesh`](https://stereokit.net/Pages/Reference/Mesh.html)es and
-[`Material`](https://stereokit.net/Pages/Reference/Material.html)s. A Mesh
+[`Mesh`](https://stereokit.net/Pages/StereoKit/Mesh.html)es and
+[`Material`](https://stereokit.net/Pages/StereoKit/Material.html)s. A Mesh
 is a collection of triangles in 3D space that describe where the
 surface of that 3D object is. And a Material is then a collection
-of parameters, [`Tex`](https://stereokit.net/Pages/Reference/Tex.html)tures
+of parameters, [`Tex`](https://stereokit.net/Pages/StereoKit/Tex.html)tures
 (2d images), and Shader code that are combined to describe the
 visual properties of the Mesh's surface!
 
@@ -1033,17 +1033,17 @@ _Meshes are made from triangles!_
 
 And in addition to that, you'll need to know a little bit about
 matrices, which are a math construct used to describe the location,
-orientation and scale of geometry within the 3D space! A [`Matrix`](https://stereokit.net/Pages/Reference/Matrix.html)
+orientation and scale of geometry within the 3D space! A [`Matrix`](https://stereokit.net/Pages/StereoKit/Matrix.html)
 isn't difficult the way we're using it, so don't worry if math
 isn't your thing.
 
-And then StereoKit also has a [`Model`](https://stereokit.net/Pages/Reference/Model.html),
+And then StereoKit also has a [`Model`](https://stereokit.net/Pages/StereoKit/Model.html),
 which is a high level combination of Meshes, Material, Matrices,
 and a few more things! Most of the time, you'll probably be drawing
 Models loaded from file, but it's important to have options.
 
-Then lastly, StereoKit has easy systems for drawing [`Line`](https://stereokit.net/Pages/Reference/Lines.html)s,
-[`Text`](https://stereokit.net/Pages/Reference/Text.html), [`Sprite`](https://stereokit.net/Pages/Reference/Sprite.html)s
+Then lastly, StereoKit has easy systems for drawing [`Line`](https://stereokit.net/Pages/StereoKit/Lines.html)s,
+[`Text`](https://stereokit.net/Pages/StereoKit/Text.html), [`Sprite`](https://stereokit.net/Pages/StereoKit/Sprite.html)s
 and various other things! These are still based on Meshes and
 Materials under the hood, but have some complex features that can
 make them difficult to build from scratch.
@@ -1051,12 +1051,12 @@ make them difficult to build from scratch.
 ## Meshes and Materials
 
 To simplify things here, we're going to use the built-in assets,
-[`Mesh.Sphere`](https://stereokit.net/Pages/Reference/Mesh/Sphere.html)
-and [`Material.Default`](https://stereokit.net/Pages/Reference/Material/Default.html).
+[`Mesh.Sphere`](https://stereokit.net/Pages/StereoKit/Mesh/Sphere.html)
+and [`Material.Default`](https://stereokit.net/Pages/StereoKit/Material/Default.html).
 Mesh.Sphere is a built-in mesh generated using math when StereoKit
 starts up, and Material.Default is a high performance simple
 Material that serves as StereoKit's default Material. (For more
-built-in assets, see the [`Default`](https://stereokit.net/Pages/Reference/Default.html)s)
+built-in assets, see the [`Default`](https://stereokit.net/Pages/StereoKit/Default.html)s)
 
 ```csharp
 Mesh.Sphere.Draw(Material.Default, Matrix.Identity);
@@ -1065,7 +1065,7 @@ Mesh.Sphere.Draw(Material.Default, Matrix.Identity);
 ![Default sphere and material](https://stereokit.net/img/screenshots/Drawing_Defaults.jpg)
 _Drawing the default sphere Mesh with the default Material._
 
-[`Matrix.Identity`](https://stereokit.net/Pages/Reference/Matrix/Identity.html)
+[`Matrix.Identity`](https://stereokit.net/Pages/StereoKit/Matrix/Identity.html)
 can be though of as a 'No transform' Matrix, so this is drawing the
 sphere at the origin of the 3D space.
 
@@ -1078,21 +1078,21 @@ have to call Draw every frame!
 So how do you get a Mesh to begin with? In most cases you'll just
 be working with Models, but you can get a Mesh directly from a few
 places:
- - [`Mesh.Sphere`](https://stereokit.net/Pages/Reference/Mesh/Sphere.html), [`Mesh.Cube`](https://stereokit.net/Pages/Reference/Mesh/Cube.html), and [`Mesh.Quad`](https://stereokit.net/Pages/Reference/Mesh/Quad.html) are built-in mesh assets that are handy to have around.
- - [`Mesh`](https://stereokit.net/Pages/Reference/Mesh.html) has a number of static methods for generating procedural shapes, such as [`Mesh.GenerateRoundedCube`](https://stereokit.net/Pages/Reference/Mesh/GenerateRoundedCube.html) or [`Mesh.GeneratePlane`](https://stereokit.net/Pages/Reference/Mesh/GeneratePlane.html).
- - A Mesh can be extracted from one of a [Model's nodes](https://stereokit.net/Pages/Reference/ModelNode/Mesh.html).
- - You can create a Mesh from a list of vertices and indices. This is more advanced, but [check the sample here](https://stereokit.net/Pages/Reference/Mesh/SetVerts.html).
+ - [`Mesh.Sphere`](https://stereokit.net/Pages/StereoKit/Mesh/Sphere.html), [`Mesh.Cube`](https://stereokit.net/Pages/StereoKit/Mesh/Cube.html), and [`Mesh.Quad`](https://stereokit.net/Pages/StereoKit/Mesh/Quad.html) are built-in mesh assets that are handy to have around.
+ - [`Mesh`](https://stereokit.net/Pages/StereoKit/Mesh.html) has a number of static methods for generating procedural shapes, such as [`Mesh.GenerateRoundedCube`](https://stereokit.net/Pages/StereoKit/Mesh/GenerateRoundedCube.html) or [`Mesh.GeneratePlane`](https://stereokit.net/Pages/StereoKit/Mesh/GeneratePlane.html).
+ - A Mesh can be extracted from one of a [Model's nodes](https://stereokit.net/Pages/StereoKit/ModelNode/Mesh.html).
+ - You can create a Mesh from a list of vertices and indices. This is more advanced, but [check the sample here](https://stereokit.net/Pages/StereoKit/Mesh/SetVerts.html).
 
 And where do you get a Material? Well,
- - See built-in Materials like [`Material.PBR`](https://stereokit.net/Pages/Reference/Default/MaterialPBR.html) for high-quality surface or [`Material.Unlit`](https://stereokit.net/Pages/Reference/Default/MaterialUnlit.html) for fast/stylistic surfaces.
- - A Material [constructor](https://stereokit.net/Pages/Reference/Material/Material.html) can be called with a Shader. Check out [the Material guide](https://stereokit.net/Pages/Guides/Working-with-Materials.html) for in-depth usage (Materials and Shaders are a lot of fun!).
- - You can call [`Material.Copy`](https://stereokit.net/Pages/Reference/Material/Copy.html) to create a duplicate of an existing Material.
+ - See built-in Materials like [`Material.PBR`](https://stereokit.net/Pages/StereoKit/Default/MaterialPBR.html) for high-quality surface or [`Material.Unlit`](https://stereokit.net/Pages/StereoKit/Default/MaterialUnlit.html) for fast/stylistic surfaces.
+ - A Material [constructor](https://stereokit.net/Pages/StereoKit/Material/Material.html) can be called with a Shader. Check out [the Material guide](https://stereokit.net/Pages/Guides/Working-with-Materials.html) for in-depth usage (Materials and Shaders are a lot of fun!).
+ - You can call [`Material.Copy`](https://stereokit.net/Pages/StereoKit/Material/Copy.html) to create a duplicate of an existing Material.
 
 ## Matrix basics
 
 If you like math, this explanation is not really for you! But if
 you like results, this will get you going where you need to go. The
-important thing to know about a [`Matrix`](https://stereokit.net/Pages/Reference/Matrix.html),
+important thing to know about a [`Matrix`](https://stereokit.net/Pages/StereoKit/Matrix.html),
 is that it's a good way to represent an object's transform (Translation,
 Rotation, and Scale).
 
@@ -1173,16 +1173,16 @@ for more details on that, check out [the 3D Asset guide](https://stereokit.net/G
 
 But here's the quick list of where you can get a Model to begin
 with:
- - [`Model.FromFile`](https://stereokit.net/Pages/Reference/Model/FromFile.html) is the easiest, most common way to get a Model!
- - [`Model.FromMesh`](https://stereokit.net/Pages/Reference/Model/FromMesh.html) will let you create a very simple Model with a single function call.
- - The [Model constructor](https://stereokit.net/Pages/Reference/Model/Model.html) lets you create an empty Model, which you can then fill with ModelNodes via [`Model.AddNode`](https://stereokit.net/Pages/Reference/Model/AddNode.html)
- - You can call [`Model.Copy`](https://stereokit.net/Pages/Reference/Model/Copy.html) to create a duplicate of an existing Model.
+ - [`Model.FromFile`](https://stereokit.net/Pages/StereoKit/Model/FromFile.html) is the easiest, most common way to get a Model!
+ - [`Model.FromMesh`](https://stereokit.net/Pages/StereoKit/Model/FromMesh.html) will let you create a very simple Model with a single function call.
+ - The [Model constructor](https://stereokit.net/Pages/StereoKit/Model/Model.html) lets you create an empty Model, which you can then fill with ModelNodes via [`Model.AddNode`](https://stereokit.net/Pages/StereoKit/Model/AddNode.html)
+ - You can call [`Model.Copy`](https://stereokit.net/Pages/StereoKit/Model/Copy.html) to create a duplicate of an existing Model.
 
 ## Lines
 
 Being able to easily draw a line is incredibly useful for
 debugging, and generally quite practical for many other purposes as
-well! StereoKit has the [`Lines`](https://stereokit.net/Pages/Reference/Lines.html)
+well! StereoKit has the [`Lines`](https://stereokit.net/Pages/StereoKit/Lines.html)
 class to assist with this, and is pretty straightforward to use.
 There's a few variations, but at it's simplest, it's a few points,
 a color, and a thickness.
@@ -1212,7 +1212,7 @@ Text.Add("こんにちは", Matrix.T(-10, 10,0));
 _'Hello' in Japanese, I'm pretty sure._
 
 You can create additional font styles and fonts to use with text
-drawing, and there are a number of overloads for [`Text.Add`](https://stereokit.net/Pages/Reference/Text/Add.html)
+drawing, and there are a number of overloads for [`Text.Add`](https://stereokit.net/Pages/StereoKit/Text/Add.html)
 that allow you to change the layout or constrain to a particular
 area. Check the docs for the method for more information about that!
 
@@ -1501,7 +1501,7 @@ Shader runs on the GPU, describes how each vertex is projected onto the
 screen, and calculates the color of every pixel. Since each shader
 program is different, each one has different parameters it works with!
 
-While [`MatParamName`](https://stereokit.net/Pages/Reference/MatParamName.html)
+While [`MatParamName`](https://stereokit.net/Pages/StereoKit/MatParamName.html)
 helps to codify and standardize common parameter names, it's always
 best to be somewhat familiar with the Shader that the Material is
 using.
@@ -1520,20 +1520,20 @@ Texture2D diffuse : register(t0);
 Shaders use data embedded in comments to assign default values to
 material properties, the `//--` indicates this. So in this case,
 `color` is a float4 (Vec4 or Color in C#), with a default value of
-`1,1,1,1`, white. This maps to [`MatParamName.ColorTint`](https://stereokit.net/Pages/Reference/MatParamName.html),
+`1,1,1,1`, white. This maps to [`MatParamName.ColorTint`](https://stereokit.net/Pages/StereoKit/MatParamName.html),
 but you could also use the name directly:
 `newMaterial["color"] = Color.HSV(0.3f, 0.2f, 1.0f);`.
 
 Materials also have a few properties that aren't part of the Shader,
-things like [depth testing](https://stereokit.net/Pages/Reference/Material/DepthTest.html)/[writing](https://stereokit.net/Pages/Reference/Material/DepthWrite.html),
-[transparency](https://stereokit.net/Pages/Reference/Material/Transparency.html),
-[face culling](https://stereokit.net/Pages/Reference/Material/FaceCull.html),
-or [wireframe](https://stereokit.net/Pages/Reference/Material/Wireframe.html).
+things like [depth testing](https://stereokit.net/Pages/StereoKit/Material/DepthTest.html)/[writing](https://stereokit.net/Pages/StereoKit/Material/DepthWrite.html),
+[transparency](https://stereokit.net/Pages/StereoKit/Material/Transparency.html),
+[face culling](https://stereokit.net/Pages/StereoKit/Material/FaceCull.html),
+or [wireframe](https://stereokit.net/Pages/StereoKit/Material/Wireframe.html).
 
 ### Material from Shader
 
 You can also create a completely new Material directly from a Shader!
-StereoKit does keep the default Shaders around in the [`Shader`](https://stereokit.net/Pages/Reference/Shader.html)
+StereoKit does keep the default Shaders around in the [`Shader`](https://stereokit.net/Pages/StereoKit/Shader.html)
 class for this purpose, but you can also use Shader.FromFile to load a
 pre-compiled shader file, and use that instead. More on that in the
 [Shader guide (coming soon)]().
@@ -1568,7 +1568,7 @@ default white room.
 ![Interesting lighting](https://stereokit.net/img/screenshots/MaterialDefault.jpg)
 
 You can change the environment lighting with a nice cubemap, check out the
-[`Renderer.SkyLight`](https://stereokit.net/Pages/Reference/Renderer/SkyLight.html)
+[`Renderer.SkyLight`](https://stereokit.net/Pages/StereoKit/Renderer/SkyLight.html)
 property for a nice example of how to do this!
 
 ## Materials and Performance
@@ -1608,19 +1608,19 @@ designed to be performant and good looking on mobile XR headsets, and
 should cover the majority of use-cases. Here's a sampling, and check
 the docs for each one to see what properties they support!
 
-### [`Material.Default`](https://stereokit.net/Pages/Reference/Default/Material.html)
+### [`Material.Default`](https://stereokit.net/Pages/StereoKit/Default/Material.html)
 ![Material.Default preview](https://stereokit.net/img/screenshots/MaterialDefault.jpg)
 
-### [`Material.Unlit`](https://stereokit.net/Pages/Reference/Default/MaterialUnlit.html)
+### [`Material.Unlit`](https://stereokit.net/Pages/StereoKit/Default/MaterialUnlit.html)
 ![Material.Unlit preview](https://stereokit.net/img/screenshots/MaterialUnlit.jpg)
 
-### [`Material.PBR`](https://stereokit.net/Pages/Reference/Default/MaterialPBR.html)
+### [`Material.PBR`](https://stereokit.net/Pages/StereoKit/Default/MaterialPBR.html)
 ![Material.PBR preview](https://stereokit.net/img/screenshots/MaterialPBR.jpg)
 
-### [`Material.UI`](https://stereokit.net/Pages/Reference/Default/MaterialUI.html)
+### [`Material.UI`](https://stereokit.net/Pages/StereoKit/Default/MaterialUI.html)
 ![Material.UI preview](https://stereokit.net/img/screenshots/MaterialUI.jpg)
 
-### [`Material.UIBox`](https://stereokit.net/Pages/Reference/Default/MaterialUIBox.html)
+### [`Material.UIBox`](https://stereokit.net/Pages/StereoKit/Default/MaterialUIBox.html)
 ![Material.UIBox preview](https://stereokit.net/img/screenshots/MaterialUIBox.jpg)
 
 ## Debugging your App
@@ -1651,7 +1651,7 @@ maintainers to understand what is or isn't happening.
 
 All platforms will output the log through the standard debug output window,
 but you can also tap into the debug logs via
-[`Log.Subscribe`](https://stereokit.net/Pages/Reference/Log/Subscribe.html). Check
+[`Log.Subscribe`](https://stereokit.net/Pages/StereoKit/Log/Subscribe.html). Check
 the docs there for an easy Mixed Reality log window you can add to your
 project.
 

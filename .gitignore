@@ -30,6 +30,9 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+# The docs' Log class folder is real content, not build logs! Don't let the
+# build-artifact patterns above eat generated doc pages.
+!docs/**/[Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

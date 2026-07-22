@@ -18,8 +18,8 @@ forward in StereoKit).
 
 |  |  |
 |--|--|
-|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) atPose|What position and orientation do we want             this axis widget at?|
-|float size|How long should the widget lines be, in             meters?|
+|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) atPose|What position and orientation do we want this axis widget at?|
+|float size|How long should the widget lines be, in meters?|
 |float thickness|How thick should the lines be, in meters?|
 
 <div class='signature' markdown='1'>
@@ -35,8 +35,8 @@ forward in StereoKit).
 
 |  |  |
 |--|--|
-|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) atPose|What position and orientation do we want             this axis widget at?|
-|float size|How long should the widget lines be, in             meters?|
+|[Pose]({{site.url}}/preview/Pages/StereoKit/Pose.html) atPose|What position and orientation do we want this axis widget at?|
+|float size|How long should the widget lines be, in meters?|
 
 
 
@@ -44,6 +44,27 @@ forward in StereoKit).
 
 ## Examples
 
+Here's a small example of checking to see if a finger joint is inside
+a box, and drawing an axis gizmo when it is!
+```csharp
+// A volume for checking inside of! 10cm on each side, at the origin
+Bounds testArea = new Bounds(Vec3.One * 0.1f);
+
+// This is a decent way to show we're working with both hands
+for (int h = 0; h < (int)Handed.Max; h++)
+{
+	// Get the pose for the index fingertip
+	Hand hand      = Input.Hand((Handed)h);
+	Pose fingertip = hand[FingerId.Index, JointId.Tip].Pose;
+
+	// Skip this hand if it's not tracked
+	if (!hand.IsTracked) continue;
+
+	// Draw the fingertip pose axis if it's inside the volume
+	if (testArea.Contains(fingertip.position))
+		Lines.AddAxis(fingertip);
+}
+```
 ### Identity Pose
 
 The identity pose is a `Pose` at (0,0,0) facing Forward, which in
@@ -67,26 +88,5 @@ Lines.AddAxis(pose);
 Lines.Add(V.XYZ(-1,0,0), V.XYZ(1,0,0), new Color32(100,0,0,100), 0.0005f);
 Lines.Add(V.XYZ(0,-1,0), V.XYZ(0,1,0), new Color32(0,100,0,100), 0.0005f);
 Lines.Add(V.XYZ(0,0,-1), V.XYZ(0,0,1), new Color32(0,0,100,100), 0.0005f);
-```
-Here's a small example of checking to see if a finger joint is inside
-a box, and drawing an axis gizmo when it is!
-```csharp
-// A volume for checking inside of! 10cm on each side, at the origin
-Bounds testArea = new Bounds(Vec3.One * 0.1f);
-
-// This is a decent way to show we're working with both hands
-for (int h = 0; h < (int)Handed.Max; h++)
-{
-	// Get the pose for the index fingertip
-	Hand hand      = Input.Hand((Handed)h);
-	Pose fingertip = hand[FingerId.Index, JointId.Tip].Pose;
-
-	// Skip this hand if it's not tracked
-	if (!hand.IsTracked) continue;
-
-	// Draw the fingertip pose axis if it's inside the volume
-	if (testArea.Contains(fingertip.position))
-		Lines.AddAxis(fingertip);
-}
 ```
 

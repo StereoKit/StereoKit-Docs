@@ -31,7 +31,7 @@ Matrix contains scale data.
 
 |  |  |
 |--|--|
-|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|A ray you wish to transform from one space to             another.|
+|[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) ray|A ray you wish to transform from one space to another.|
 |RETURNS: [Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html)|The transformed ray!|
 
 <div class='signature' markdown='1'>

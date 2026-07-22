@@ -21,7 +21,7 @@ Creates a new gradient from the list of color keys!
 
 |  |  |
 |--|--|
-|GradientKey[] keys|These can be in any order that you like, they'll             be sorted by their GradientKey.position value regardless!|
+|GradientKey[] keys|These can be in any order that you like, they'll be sorted by their GradientKey.position value regardless!|
 
 
 

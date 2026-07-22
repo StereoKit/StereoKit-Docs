@@ -14,8 +14,8 @@ Unsubscribes a listener from input events.
 
 |  |  |
 |--|--|
-|[InputSource]({{site.url}}/preview/Pages/StereoKit/InputSource.html) eventSource|The source this listener was originally             registered for.|
-|[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) eventTypes|The events this listener was originally             registered for.|
+|[InputSource]({{site.url}}/preview/Pages/StereoKit/InputSource.html) eventSource|The source this listener was originally registered for.|
+|[BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) eventTypes|The events this listener was originally registered for.|
 |Action`3 onEvent|The callback this listener originally used.|
 
 

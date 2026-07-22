@@ -1,7 +1,7 @@
 ---
 layout: default
 title: BtnState.Changed
-description: Has the button just changed state this frame?
+description: Has the button just changed state this frame? Includes presses, releases, and canceled activations.
 ---
 # [BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html).Changed
 
@@ -10,5 +10,5 @@ static [BtnState]({{site.url}}/preview/Pages/StereoKit/BtnState.html) Changed
 </div>
 
 ## Description
-Has the button just changed state this frame?
+Has the button just changed state this frame? Includes presses, releases, and canceled activations.
 

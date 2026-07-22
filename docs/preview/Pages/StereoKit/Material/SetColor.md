@@ -17,7 +17,7 @@ the value is not set!
 |  |  |
 |--|--|
 |string name|Name of the shader parameter.|
-|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) colorGamma|The gamma space color for the shader             to use.|
+|[Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html) colorGamma|The gamma space color for the shader to use.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -31,7 +31,7 @@ the value is not set!
 |  |  |
 |--|--|
 |string name|Name of the shader parameter.|
-|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color for the shader             to use.|
+|[Color]({{site.url}}/preview/Pages/StereoKit/Color.html) colorGamma|The gamma space color for the shader to use.|
 
 
 

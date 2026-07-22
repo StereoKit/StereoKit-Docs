@@ -16,7 +16,7 @@ the same as the shader's name provided in the metadata.
 
 |  |  |
 |--|--|
-|string shaderId|For shaders loaded from file, this'll be              the shader's metadata name!|
+|string shaderId|For shaders loaded from file, this'll be the shader's metadata name!|
 |RETURNS: [Shader]({{site.url}}/preview/Pages/StereoKit/Shader.html)|Link to a shader asset!|
 
 

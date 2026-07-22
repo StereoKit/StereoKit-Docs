@@ -16,5 +16,5 @@ library.
 
 |  |  |
 |--|--|
-|IntPtr [Context]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGLES_EGL/Context.html)|This is the `EGLContext` StereoKit receives from `eglCreateContext`.|
-|IntPtr [Display]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGLES_EGL/Display.html)|This is the `EGLDisplay` StereoKit receives from `eglGetDisplay`|
+|IntPtr [Context]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGLES_EGL/Context.html)|This is the `EGLContext` StereoKit receives from `eglCreateContext`. (No longer supported, always returns IntPtr.Zero)|
+|IntPtr [Display]({{site.url}}/preview/Pages/StereoKit/Backend.OpenGLES_EGL/Display.html)|This is the `EGLDisplay` StereoKit receives from `eglGetDisplay` (No longer supported, always returns IntPtr.Zero)|

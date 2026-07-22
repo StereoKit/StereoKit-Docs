@@ -17,7 +17,7 @@ together. Every Begin must have a matching End.
 
 |  |  |
 |--|--|
-|[UIPad]({{site.url}}/preview/Pages/StereoKit/UIPad.html) padding|Describes how padding is applied to the             visual element of the Panel.|
+|[UIPad]({{site.url}}/preview/Pages/StereoKit/UIPad.html) padding|Describes how padding is applied to the visual element of the Panel.|
 
 
 

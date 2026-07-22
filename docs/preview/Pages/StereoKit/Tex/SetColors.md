@@ -17,9 +17,9 @@ that data around.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|IntPtr data|A pointer to a chunk of memory containing color             data! Should be  width*height*size_of_texture_format bytes large.             Color data should definitely match the format provided when              constructing the texture!|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|IntPtr data|A pointer to a chunk of memory containing color data! Should be  width*height*size_of_texture_format bytes large. Color data should definitely match the format provided when constructing the texture!|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -38,7 +38,7 @@ pixels of the texture's format.
 |int width|Width in pixels.|
 |int height|Height in pixels.|
 |int depth|Depth in pixels (number of slices).|
-|IntPtr data|A pointer to width*height*depth pixels of             the texture's format, or IntPtr.Zero to allocate an empty             volume.|
+|IntPtr data|A pointer to width*height*depth pixels of the texture's format, or IntPtr.Zero to allocate an empty volume.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -74,9 +74,9 @@ Tex to avoid this.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|Color32[]& data|An array of 32 bit colors, should be a length             of `width*height`.|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|Color32[]& data|An array of 32 bit colors, should be a length of `width*height`.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -93,9 +93,9 @@ TexType.ImageNomips when creating the Tex to avoid this.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|Color[]& data|An array of 128 bit colors, should be a length             of `width*height`.|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|Color[]& data|An array of 128 bit colors, should be a length of `width*height`.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -112,9 +112,9 @@ TexType.ImageNomips when creating the Tex to avoid this.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|Byte[]& data|An array of 8 bit values, should be a length             of `width*height`.|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|Byte[]& data|An array of 8 bit values, should be a length of `width*height`.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -131,9 +131,9 @@ TexType.ImageNomips when creating the Tex to avoid this.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|UInt16[]& data|An array of 16 bit values, should be a length             of `width*height`.|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|UInt16[]& data|An array of 16 bit values, should be a length of `width*height`.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -150,9 +150,9 @@ TexType.ImageNomips when creating the Tex to avoid this.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of the texture. Powers of two             are generally best!|
-|int height|Height in pixels of the texture. Powers of             two are generally best!|
-|Single[]& data|An array of 32 bit values, should be a length             of `width*height`.|
+|int width|Width in pixels of the texture. Powers of two are generally best!|
+|int height|Height in pixels of the texture. Powers of two are generally best!|
+|Single[]& data|An array of 32 bit values, should be a length of `width*height`.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -170,11 +170,11 @@ pre-decoded image data from native code.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of mip 0. Powers of two are             generally best!|
-|int height|Height in pixels of mip 0. Powers of two are             generally best!|
-|IntPtr[] arrayData|An array of `arrayCount` pointers, one per             layer. Each layer points to packed mip data             `[mip0][mip1][mip2]...`.|
-|int mipCount|The number of mip levels packed into each             layer's data. Use 1 if no mip data is provided beyond the base.|
-|int multisample|Multisample count, only relevant for             rendertarget textures.|
+|int width|Width in pixels of mip 0. Powers of two are generally best!|
+|int height|Height in pixels of mip 0. Powers of two are generally best!|
+|IntPtr[] arrayData|An array of `arrayCount` pointers, one per layer. Each layer points to packed mip data `[mip0][mip1][mip2]...`.|
+|int mipCount|The number of mip levels packed into each layer's data. Use 1 if no mip data is provided beyond the base.|
+|int multisample|Multisample count, only relevant for rendertarget textures.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -189,11 +189,11 @@ only be called on textures with a format of Rgba32 or Rgba32Linear.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of mip 0. Powers of two are             generally best!|
-|int height|Height in pixels of mip 0. Powers of two are             generally best!|
-|Color32[][]& arrayData|A jagged array where each `arrayData[layer]`             contains all mip levels for that layer, packed as             `[mip0][mip1][mip2]...` with mip 0 sized `width*height`, mip 1             sized `(width/2)*(height/2)`, and so on.|
-|int mipCount|The number of mip levels packed into each             layer's data. Use 1 if no mip data is provided beyond the base.|
-|int multisample|Multisample count, only relevant for             rendertarget textures.|
+|int width|Width in pixels of mip 0. Powers of two are generally best!|
+|int height|Height in pixels of mip 0. Powers of two are generally best!|
+|Color32[][]& arrayData|A jagged array where each `arrayData[layer]` contains all mip levels for that layer, packed as `[mip0][mip1][mip2]...` with mip 0 sized `width*height`, mip 1 sized `(width/2)*(height/2)`, and so on.|
+|int mipCount|The number of mip levels packed into each layer's data. Use 1 if no mip data is provided beyond the base.|
+|int multisample|Multisample count, only relevant for rendertarget textures.|
 
 <div class='signature' markdown='1'>
 ```csharp
@@ -208,11 +208,11 @@ mip should match the texture's format.
 
 |  |  |
 |--|--|
-|int width|Width in pixels of mip 0. Powers of two are             generally best!|
-|int height|Height in pixels of mip 0. Powers of two are             generally best!|
-|Byte[][]& arrayData|A jagged array where each `arrayData[layer]`             contains all mip levels for that layer as bytes, packed as             `[mip0][mip1][mip2]...`.|
-|int mipCount|The number of mip levels packed into each             layer's data. Use 1 if no mip data is provided beyond the base.|
-|int multisample|Multisample count, only relevant for             rendertarget textures.|
+|int width|Width in pixels of mip 0. Powers of two are generally best!|
+|int height|Height in pixels of mip 0. Powers of two are generally best!|
+|Byte[][]& arrayData|A jagged array where each `arrayData[layer]` contains all mip levels for that layer as bytes, packed as `[mip0][mip1][mip2]...`.|
+|int mipCount|The number of mip levels packed into each layer's data. Use 1 if no mip data is provided beyond the base.|
+|int multisample|Multisample count, only relevant for rendertarget textures.|
 
 
 

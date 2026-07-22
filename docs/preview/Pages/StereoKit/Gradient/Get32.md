@@ -17,7 +17,7 @@ converted to 0-255 range bytes!
 
 |  |  |
 |--|--|
-|float at|Typically a value between 0-1, but if you used             larger or smaller values for your color key's positions, it'll be             in that range!|
+|float at|Typically a value between 0-1, but if you used larger or smaller values for your color key's positions, it'll be in that range!|
 |RETURNS: [Color32]({{site.url}}/preview/Pages/StereoKit/Color32.html)|The interpolated 32 bit color at the given position. If 'at' is smaller or larger than the gradient's position range, then the color will be clamped to the color at the beginning or end of the gradient!|
 
 

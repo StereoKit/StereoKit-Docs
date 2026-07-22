@@ -17,10 +17,10 @@ This is great for normal looking content.
 
 |  |  |
 |--|--|
-|float fovDegrees|This is the vertical field of view of             the perspective matrix, units are in degrees.|
+|float fovDegrees|This is the vertical field of view of the perspective matrix, units are in degrees.|
 |float aspectRatio|The projection surface's width/height.|
-|float nearClip|Anything closer than this distance (in             meters) will be discarded. Must not be zero, and if you make this             too small, you may experience glitching in your depth buffer.|
-|float farClip|Anything further than this distance (in             meters) will be discarded. For low resolution depth buffers, this             should not be too far away, or you'll see bad z-fighting              artifacts.|
+|float nearClip|Anything closer than this distance (in meters) will be discarded. Must not be zero, and if you make this too small, you may experience glitching in your depth buffer.|
+|float farClip|Anything further than this distance (in meters) will be discarded. For low resolution depth buffers, this should not be too far away, or you'll see bad z-fighting artifacts.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|The final perspective matrix.|
 
 <div class='signature' markdown='1'>
@@ -34,10 +34,10 @@ intrinsics, you can replicate its perspective!
 
 |  |  |
 |--|--|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) imageResolution|The resolution of the image. This             should be the image's width and height in pixels.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) focalLengthPx|The focal length of camera in pixels,             with image coordinates +X (pointing right) and +Y (pointing up).|
-|float nearClip|Anything closer than this distance (in             meters) will be discarded. Must not be zero, and if you make this             too small, you may experience glitching in your depth buffer.|
-|float farClip|Anything further than this distance (in             meters) will be discarded. For low resolution depth buffers, this             should not be too far away, or you'll see bad z-fighting              artifacts.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) imageResolution|The resolution of the image. This should be the image's width and height in pixels.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) focalLengthPx|The focal length of camera in pixels, with image coordinates +X (pointing right) and +Y (pointing up).|
+|float nearClip|Anything closer than this distance (in meters) will be discarded. Must not be zero, and if you make this too small, you may experience glitching in your depth buffer.|
+|float farClip|Anything further than this distance (in meters) will be discarded. For low resolution depth buffers, this should not be too far away, or you'll see bad z-fighting artifacts.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|The final perspective matrix.|
 
 <div class='signature' markdown='1'>
@@ -51,11 +51,11 @@ intrinsics, you can replicate its perspective!
 
 |  |  |
 |--|--|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) imageResolution|The resolution of the image. This             should be the image's width and height in pixels.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) focalLengthPx|The focal length of the camera in pixels,             with image coordinates +X (pointing right) and +Y (pointing up).|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) principalPointPx|The principal point of the camera in pixels,             with image coordinates +X (pointing right) and +Y (pointing up).|
-|float nearClip|Anything closer than this distance (in             meters) will be discarded. Must not be zero, and if you make this             too small, you may experience glitching in your depth buffer.|
-|float farClip|Anything further than this distance (in             meters) will be discarded. For low resolution depth buffers, this             should not be too far away, or you'll see bad z-fighting              artifacts.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) imageResolution|The resolution of the image. This should be the image's width and height in pixels.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) focalLengthPx|The focal length of the camera in pixels, with image coordinates +X (pointing right) and +Y (pointing up).|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) principalPointPx|The principal point of the camera in pixels, with image coordinates +X (pointing right) and +Y (pointing up).|
+|float nearClip|Anything closer than this distance (in meters) will be discarded. Must not be zero, and if you make this too small, you may experience glitching in your depth buffer.|
+|float farClip|Anything further than this distance (in meters) will be discarded. For low resolution depth buffers, this should not be too far away, or you'll see bad z-fighting artifacts.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|The final perspective matrix.|
 
 

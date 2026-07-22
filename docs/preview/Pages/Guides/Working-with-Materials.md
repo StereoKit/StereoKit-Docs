@@ -68,7 +68,7 @@ Shader runs on the GPU, describes how each vertex is projected onto the
 screen, and calculates the color of every pixel. Since each shader
 program is different, each one has different parameters it works with!
 
-While [`MatParamName`]({{site.url}}/preview/Pages/Reference/MatParamName.html)
+While [`MatParamName`]({{site.url}}/preview/Pages/StereoKit/MatParamName.html)
 helps to codify and standardize common parameter names, it's always
 best to be somewhat familiar with the Shader that the Material is
 using.
@@ -87,20 +87,20 @@ Texture2D diffuse : register(t0);
 Shaders use data embedded in comments to assign default values to
 material properties, the `//--` indicates this. So in this case,
 `color` is a float4 (Vec4 or Color in C#), with a default value of
-`1,1,1,1`, white. This maps to [`MatParamName.ColorTint`]({{site.url}}/preview/Pages/Reference/MatParamName.html),
+`1,1,1,1`, white. This maps to [`MatParamName.ColorTint`]({{site.url}}/preview/Pages/StereoKit/MatParamName.html),
 but you could also use the name directly:
 `newMaterial["color"] = Color.HSV(0.3f, 0.2f, 1.0f);`.
 
 Materials also have a few properties that aren't part of the Shader,
-things like [depth testing]({{site.url}}/preview/Pages/Reference/Material/DepthTest.html)/[writing]({{site.url}}/preview/Pages/Reference/Material/DepthWrite.html),
-[transparency]({{site.url}}/preview/Pages/Reference/Material/Transparency.html),
-[face culling]({{site.url}}/preview/Pages/Reference/Material/FaceCull.html),
-or [wireframe]({{site.url}}/preview/Pages/Reference/Material/Wireframe.html).
+things like [depth testing]({{site.url}}/preview/Pages/StereoKit/Material/DepthTest.html)/[writing]({{site.url}}/preview/Pages/StereoKit/Material/DepthWrite.html),
+[transparency]({{site.url}}/preview/Pages/StereoKit/Material/Transparency.html),
+[face culling]({{site.url}}/preview/Pages/StereoKit/Material/FaceCull.html),
+or [wireframe]({{site.url}}/preview/Pages/StereoKit/Material/Wireframe.html).
 
 ### Material from Shader
 
 You can also create a completely new Material directly from a Shader!
-StereoKit does keep the default Shaders around in the [`Shader`]({{site.url}}/preview/Pages/Reference/Shader.html)
+StereoKit does keep the default Shaders around in the [`Shader`]({{site.url}}/preview/Pages/StereoKit/Shader.html)
 class for this purpose, but you can also use Shader.FromFile to load a
 pre-compiled shader file, and use that instead. More on that in the
 [Shader guide (coming soon)]().
@@ -135,7 +135,7 @@ default white room.
 ![Interesting lighting]({{site.url}}/preview/img/screenshots/MaterialDefault.jpg)
 
 You can change the environment lighting with a nice cubemap, check out the
-[`Renderer.SkyLight`]({{site.url}}/preview/Pages/Reference/Renderer/SkyLight.html)
+[`Renderer.SkyLight`]({{site.url}}/preview/Pages/StereoKit/Renderer/SkyLight.html)
 property for a nice example of how to do this!
 
 ## Materials and Performance
@@ -175,18 +175,18 @@ designed to be performant and good looking on mobile XR headsets, and
 should cover the majority of use-cases. Here's a sampling, and check
 the docs for each one to see what properties they support!
 
-### [`Material.Default`]({{site.url}}/preview/Pages/Reference/Default/Material.html)
+### [`Material.Default`]({{site.url}}/preview/Pages/StereoKit/Default/Material.html)
 ![Material.Default preview]({{site.url}}/preview/img/screenshots/MaterialDefault.jpg)
 
-### [`Material.Unlit`]({{site.url}}/preview/Pages/Reference/Default/MaterialUnlit.html)
+### [`Material.Unlit`]({{site.url}}/preview/Pages/StereoKit/Default/MaterialUnlit.html)
 ![Material.Unlit preview]({{site.url}}/preview/img/screenshots/MaterialUnlit.jpg)
 
-### [`Material.PBR`]({{site.url}}/preview/Pages/Reference/Default/MaterialPBR.html)
+### [`Material.PBR`]({{site.url}}/preview/Pages/StereoKit/Default/MaterialPBR.html)
 ![Material.PBR preview]({{site.url}}/preview/img/screenshots/MaterialPBR.jpg)
 
-### [`Material.UI`]({{site.url}}/preview/Pages/Reference/Default/MaterialUI.html)
+### [`Material.UI`]({{site.url}}/preview/Pages/StereoKit/Default/MaterialUI.html)
 ![Material.UI preview]({{site.url}}/preview/img/screenshots/MaterialUI.jpg)
 
-### [`Material.UIBox`]({{site.url}}/preview/Pages/Reference/Default/MaterialUIBox.html)
+### [`Material.UIBox`]({{site.url}}/preview/Pages/StereoKit/Default/MaterialUIBox.html)
 ![Material.UIBox preview]({{site.url}}/preview/img/screenshots/MaterialUIBox.jpg)
 

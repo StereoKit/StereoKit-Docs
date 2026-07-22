@@ -16,7 +16,7 @@ valid to ask for variant 0 (already the current Material).
 
 |  |  |
 |--|--|
-|int variantIndex|The variant to retreive. 0 is already             the current material, and an invalid index here. SK has a max of 4             total variants, including the default.|
+|int variantIndex|The variant to retreive. 0 is already the current material, and an invalid index here. SK has a max of 4 total variants, including the default.|
 |RETURNS: [Material]({{site.url}}/preview/Pages/StereoKit/Material.html)|The Material variant, or null.|
 
 

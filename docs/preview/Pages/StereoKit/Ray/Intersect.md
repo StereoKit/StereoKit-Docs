@@ -15,7 +15,7 @@ Checks the intersection of this ray with a plane!
 |  |  |
 |--|--|
 |[Plane]({{site.url}}/preview/Pages/StereoKit/Plane.html) plane|Any plane you want to intersect with.|
-|Vec3& at|An out parameter that will hold the intersection              point. If there's no intersection, this will be (0,0,0).|
+|Vec3& at|An out parameter that will hold the intersection point. If there's no intersection, this will be (0,0,0).|
 |RETURNS: bool|True if there's an intersection, false if not. Refer to the 'at' parameter for intersection information!|
 
 <div class='signature' markdown='1'>
@@ -28,7 +28,7 @@ Checks the intersection of this ray with a sphere!
 |  |  |
 |--|--|
 |[Sphere]({{site.url}}/preview/Pages/StereoKit/Sphere.html) sphere|Any Sphere you want to intersect with.|
-|Vec3& at|An out parameter that will hold the closest              intersection point to the ray's origin. If there's no              intersection, this will be (0,0,0).|
+|Vec3& at|An out parameter that will hold the closest intersection point to the ray's origin. If there's no intersection, this will be (0,0,0).|
 |RETURNS: bool|True if intersection occurs, false if it doesn't. Refer to the 'at' parameter for intersection information!|
 
 <div class='signature' markdown='1'>
@@ -41,7 +41,7 @@ Checks the intersection of this ray with a bounding box!
 |  |  |
 |--|--|
 |[Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html) bounds|Any Bounds you want to intersect with.|
-|Vec3& at|If the return is true, this point will be the              closest intersection point to the origin of the Ray. If there's              no intersection, this will be (0,0,0).|
+|Vec3& at|If the return is true, this point will be the closest intersection point to the origin of the Ray. If there's no intersection, this will be (0,0,0).|
 |RETURNS: bool|True if intersection occurs, false if it doesn't. Refer to the 'at' parameter for intersection information!|
 
 <div class='signature' markdown='1'>
@@ -58,8 +58,8 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU.             You can check this with Mesh.KeepData.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
+|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU. You can check this with Mesh.KeepData.|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -76,9 +76,9 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU.             You can check this with Mesh.KeepData.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
-|[Cull]({{site.url}}/preview/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything? A good             default would be Cull.Back.|
+|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU. You can check this with Mesh.KeepData.|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
+|[Cull]({{site.url}}/preview/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect to the direction the triangles are facing? Should we skip triangles that are facing away from the ray, or don't skip anything? A good default would be Cull.Back.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -95,10 +95,10 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU.             You can check this with Mesh.KeepData.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,             especially if your own model->world transform contains scale/skew             in it.|
-|UInt32& outStartInds|The index of the first index of the             triangle that was hit|
-|[Cull]({{site.url}}/preview/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything? A good             default would be Cull.Back.|
+|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU. You can check this with Mesh.KeepData.|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
+|UInt32& outStartInds|The index of the first index of the triangle that was hit|
+|[Cull]({{site.url}}/preview/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect to the direction the triangles are facing? Should we skip triangles that are facing away from the ray, or don't skip anything? A good default would be Cull.Back.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -115,8 +115,8 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU.             You can check this with Mesh.KeepData.|
-|Vec3& modelSpaceAt|The intersection point of the ray and             the mesh, if an intersection occurs. This is in model space, and             must be transformed back into world space later.|
+|[Mesh]({{site.url}}/preview/Pages/StereoKit/Mesh.html) mesh|A mesh containing collision data on the CPU. You can check this with Mesh.KeepData.|
+|Vec3& modelSpaceAt|The intersection point of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -132,8 +132,8 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|Any Model that may or may not contain Solid             flagged nodes, and Meshes with collision data.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
+|[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|Any Model that may or may not contain Solid flagged nodes, and Meshes with collision data.|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 <div class='signature' markdown='1'>
@@ -149,9 +149,9 @@ into model space, see the example in the docs!
 
 |  |  |
 |--|--|
-|[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|Any Model that may or may not contain Solid             flagged nodes, and Meshes with collision data.|
-|Ray& modelSpaceAt|The intersection point and surface             direction of the ray and the mesh, if an intersection occurs.             This is in model space, and must be transformed back into world             space later. Direction is not guaranteed to be normalized,              especially if your own model->world transform contains scale/skew             in it.|
-|[Cull]({{site.url}}/preview/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect             to the direction the triangles are facing? Should we skip triangles             that are facing away from the ray, or don't skip anything? A good             default would be Cull.Back.|
+|[Model]({{site.url}}/preview/Pages/StereoKit/Model.html) model|Any Model that may or may not contain Solid flagged nodes, and Meshes with collision data.|
+|Ray& modelSpaceAt|The intersection point and surface direction of the ray and the mesh, if an intersection occurs. This is in model space, and must be transformed back into world space later. Direction is not guaranteed to be normalized, especially if your own model->world transform contains scale/skew in it.|
+|[Cull]({{site.url}}/preview/Pages/StereoKit/Cull.html) cullFaces|How should intersection work with respect to the direction the triangles are facing? Should we skip triangles that are facing away from the ray, or don't skip anything? A good default would be Cull.Back.|
 |RETURNS: bool|True if an intersection occurs, false otherwise!|
 
 
@@ -168,22 +168,23 @@ and displaying it back in world space.
 ![Ray Mesh Intersection]({{site.url}}/img/screenshots/RayMeshIntersect.jpg)
 
 ```csharp
-Mesh sphereMesh = Default.MeshSphere;
-Mesh boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
-Pose boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
-Pose castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
+Mesh  sphereMesh = Default.MeshSphere;
+Mesh  boxMesh    = Mesh.GenerateRoundedCube(Vec3.One*0.2f, 0.05f);
+Pose  boxPose    = (Demo.contentPose * Matrix.T(0, -0.1f, 0)).Pose;
+float boxScale   = 1;
+Pose  castPose   = (Demo.contentPose * Matrix.T(0.25f, 0.11f, 0.2f)).Pose;
 
 public void StepRayMesh()
 {
 	// Draw our setup, and make the visuals grab/moveable!
-	UI.Handle("Box",  ref boxPose,  boxMesh.Bounds);
+	UI.Handle("Box",  ref boxPose, boxMesh.Bounds, ref boxScale);
 	UI.Handle("Cast", ref castPose, sphereMesh.Bounds*0.03f);
-	boxMesh   .Draw(Default.MaterialUI, boxPose .ToMatrix());
+	boxMesh   .Draw(Default.MaterialUI, boxPose .ToMatrix(boxScale));
 	sphereMesh.Draw(Default.MaterialUI, castPose.ToMatrix(0.03f));
 	Lines.Add(castPose.position, boxPose.position, Color.White, 0.005f);
 
 	// Create a ray that's in the Mesh's model space
-	Matrix transform = boxPose.ToMatrix();
+	Matrix transform = boxPose.ToMatrix(boxScale);
 	Ray    ray       = transform
 		.Inverse
 		.Transform(Ray.FromTo(castPose.position, boxPose.position));

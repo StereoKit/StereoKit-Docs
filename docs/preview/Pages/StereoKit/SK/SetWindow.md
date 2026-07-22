@@ -17,7 +17,7 @@ events, and these events should feed into this function.
 
 |  |  |
 |--|--|
-|IntPtr window|This is an ISurfaceHolder.Surface.Handle or             equivalent pointer.|
+|IntPtr window|This is an ISurfaceHolder.Surface.Handle or equivalent pointer.|
 
 
 

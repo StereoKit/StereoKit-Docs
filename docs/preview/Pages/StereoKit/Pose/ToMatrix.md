@@ -15,7 +15,7 @@ a provided scale value.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|A scale vector! Vec3.One would be an identity             scale.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) scale|A scale vector! Vec3.One would be an identity scale.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that transforms to the given pose.|
 
 <div class='signature' markdown='1'>
@@ -28,7 +28,7 @@ a provided scale value.
 
 |  |  |
 |--|--|
-|float scale|A uniform scale factor! 1 would be an identity             scale.|
+|float scale|A uniform scale factor! 1 would be an identity scale.|
 |RETURNS: [Matrix]({{site.url}}/preview/Pages/StereoKit/Matrix.html)|A Matrix that transforms to the given pose.|
 
 <div class='signature' markdown='1'>

@@ -16,8 +16,8 @@ let you draw one wherever you want!
 |  |  |
 |--|--|
 |[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) start|The top left corner of the Panel element.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The size of the Panel element, in hierarchy             local meters.|
-|[UIPad]({{site.url}}/preview/Pages/StereoKit/UIPad.html) padding|Only UIPad.Outsize has any effect here.             UIPad.Inside will behave the same as UIPad.None.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|The size of the Panel element, in hierarchy local meters.|
+|[UIPad]({{site.url}}/preview/Pages/StereoKit/UIPad.html) padding|Only UIPad.Outsize has any effect here. UIPad.Inside will behave the same as UIPad.None.|
 
 
 

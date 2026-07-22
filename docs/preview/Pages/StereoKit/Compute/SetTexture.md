@@ -19,7 +19,7 @@ textures that are still loading will Just Work.
 
 |  |  |
 |--|--|
-|string name|The texture name in the HLSL shader.             Must match exactly!|
+|string name|The texture name in the HLSL shader. Must match exactly!|
 |[Tex]({{site.url}}/preview/Pages/StereoKit/Tex.html) texture|The texture to bind.|
 |RETURNS: bool|True if a matching resource was found in the shader, false if the name didn't match anything.|
 

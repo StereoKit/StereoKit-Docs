@@ -15,7 +15,7 @@ are listed as variables first, then textures and buffers.
 
 |  |  |
 |--|--|
-|int index|Index of the parameter, bounded by             ParamCount.|
+|int index|Index of the parameter, bounded by ParamCount.|
 |RETURNS: [MatParamInfo]({{site.url}}/preview/Pages/StereoKit/MatParamInfo.html)|Name and type info for this parameter.|
 
 

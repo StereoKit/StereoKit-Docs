@@ -18,9 +18,9 @@ was reserved, with a Z axis dimension of 0.
 
 |  |  |
 |--|--|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Size of the layout box in Hierarchy local             meters.|
-|bool addPadding|If true, this will add the current padding             value to the total final dimensions of the space that is reserved.|
-|float depth|This allows you to quickly insert a depth into             the Bounds you're receiving. This will offset on the Z axis in             addition to increasing the dimensions, so that the bounds still             remain sitting on the surface of the UI.                          This depth value will not be reflected in the bounds provided by             LayouLast.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) size|Size of the layout box in Hierarchy local meters.|
+|bool addPadding|If true, this will add the current padding value to the total final dimensions of the space that is reserved.|
+|float depth|This allows you to quickly insert a depth into the Bounds you're receiving. This will offset on the Z axis in addition to increasing the dimensions, so that the bounds still remain sitting on the surface of the UI.  This depth value will not be reflected in the bounds provided by LayouLast.|
 |RETURNS: [Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html)|Returns the Hierarchy local bounds of the space that was reserved, with a Z axis dimension of 0.|
 
 <div class='signature' markdown='1'>
@@ -36,10 +36,10 @@ was reserved, with a Z axis dimension of 0.
 
 |  |  |
 |--|--|
-|float width|Width of the layout box in Hierarchy local             meters.|
-|float height|Height of the layout box in Hierarchy local             meters.|
-|bool addPadding|If true, this will add the current padding             value to the total final dimensions of the space that is reserved.|
-|float depth|This allows you to quickly insert a depth into             the Bounds you're receiving. This will offset on the Z axis in             addition to increasing the dimensions, so that the bounds still             remain sitting on the surface of the UI.                          This depth value will not be reflected in the bounds provided by             LayouLast.|
+|float width|Width of the layout box in Hierarchy local meters.|
+|float height|Height of the layout box in Hierarchy local meters.|
+|bool addPadding|If true, this will add the current padding value to the total final dimensions of the space that is reserved.|
+|float depth|This allows you to quickly insert a depth into the Bounds you're receiving. This will offset on the Z axis in addition to increasing the dimensions, so that the bounds still remain sitting on the surface of the UI.  This depth value will not be reflected in the bounds provided by LayouLast.|
 |RETURNS: [Bounds]({{site.url}}/preview/Pages/StereoKit/Bounds.html)|Returns the Hierarchy local bounds of the space that was reserved, with a Z axis dimension of 0.|
 
 

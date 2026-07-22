@@ -17,9 +17,9 @@ happen if you only used the layout size.
 
 |  |  |
 |--|--|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) sizeLayout|A size previously calculated using             `Text.SizeLayout`.|
-|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|The same style as used for calculating the             sizeLayout.|
-|Single& yOffset|Since the render size will ascend from the             initial position, this will be the offset from the initial position             upwards. You should add it to your Y position.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) sizeLayout|A size previously calculated using `Text.SizeLayout`.|
+|[TextStyle]({{site.url}}/preview/Pages/StereoKit/TextStyle.html) style|The same style as used for calculating the sizeLayout.|
+|Single& yOffset|Since the render size will ascend from the initial position, this will be the offset from the initial position upwards. You should add it to your Y position.|
 |RETURNS: [Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html)|The sizeLayout modified to account for the size of the most extreme glyphs.|
 
 

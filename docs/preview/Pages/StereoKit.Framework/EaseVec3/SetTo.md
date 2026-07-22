@@ -16,7 +16,7 @@ the provided value.
 
 |  |  |
 |--|--|
-|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) value|The new value that should be assigned right now             without animation.|
+|[Vec3]({{site.url}}/preview/Pages/StereoKit/Vec3.html) value|The new value that should be assigned right now without animation.|
 
 
 
