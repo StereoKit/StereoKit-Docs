@@ -35,14 +35,27 @@ namespace StereoKitDocumenter
 			comments = true;
 
 			if (type == ExampleType.CodeSample) {
-				string[] names = info.Split(' ');
+				string[] names = info.Split(new[]{' '}, StringSplitOptions.RemoveEmptyEntries);
 
-				for (int i = 0; i < Program.items.Count; i++)
+				foreach (string name in names)
 				{
-					if (Array.IndexOf(names, Program.items[i].Name) != -1)
+					bool found = false;
+					for (int i = 0; i < Program.items.Count; i++)
 					{
-						Program.items[i].AddExample(this);
+						string itemName = Program.items[i].Name;
+						// Members of nested classes can be tagged with a
+						// shorthand that skips the outer class, 'OpenXR.Time'
+						// for 'Backend.OpenXR.Time'. Only dotted names get
+						// this treatment, so a type tag like 'Material' can't
+						// accidentally attach to 'ModelNode.Material'.
+						if (itemName == name || (name.IndexOf('.') != -1 && itemName.EndsWith("." + name)))
+						{
+							Program.items[i].AddExample(this);
+							found = true;
+						}
 					}
+					if (!found)
+						Console.WriteLine($"[warning] Code sample target '{name}' didn't match any documented member!");
 				}
 			} else if (type == ExampleType.Document) {
 				string[] words = info.Split(' ');

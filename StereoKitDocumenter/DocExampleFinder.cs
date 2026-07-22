@@ -29,7 +29,7 @@ namespace StereoKitDocumenter
 				if (curr == null) { 
 					string trim = lines[i].Trim();
 					if (trim.StartsWith("///") && lines[i].Contains(":CodeSample:")) {
-						curr = new DocExample( ExampleType.CodeSample, lines[i].Substring(lines[i].LastIndexOf(':')).Trim());
+						curr = new DocExample( ExampleType.CodeSample, lines[i].Substring(lines[i].LastIndexOf(':') + 1).Trim());
 						examples.Add(curr);
 					} else if (trim.StartsWith("///") && lines[i].Contains(":CodeDoc:")) {
 						string docName = lines[i].Substring(lines[i].LastIndexOf(':') + 1).Trim();

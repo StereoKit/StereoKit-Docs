@@ -40,7 +40,7 @@ some of  their glyphs. Extreme cases can be a bit rare, so in
 general you'll only need to work with the layout size. Just watch
 out when you need to clip your text!
 
-![Text sizes]({{site.url}}/preview/img/screenshots/Docs/Text_Sizes.jpg)
+![Text sizes]({{site.url}}/preview/img/screenshots/Docs/Text_Size.jpg)
 _You can see here with Segoe UI, the ascender area for rendering looks ridiculous._
 
 In this screenshot, the black area represents the layout size,

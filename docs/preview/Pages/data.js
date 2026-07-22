@@ -132,16 +132,37 @@ var documents =
 			{name:'Device'},
 			{name:'Instance'},
 			{name:'PhysicalDevice'},
+			{name:'ExtEnabled'},
 			{name:'GetFrameFenceFd'},
+			{name:'GetFunction'},
+			{name:'GetFunctionPtr'},
 			{name:'Queue'},
 			{name:'QueueFamilyIndex'},
 			{name:'QueueLock'},
 			{name:'QueueUnlock'},
+			{name:'Request'},
+			{name:'RequestEnabled'},
 		]
 		},
 		{name:'BackendGraphics'},
 		{name:'BackendPlatform'},
+		{name:'BackendVulkanFeature',
+		 pages:[
+			{name:'size'},
+			{name:'vkStruct'},
+			{name:'BackendVulkanFeature'},
+		]
+		},
 		{name:'BackendVulkanQueue'},
+		{name:'BackendVulkanRequest',
+		 pages:[
+			{name:'deviceExtensions'},
+			{name:'features'},
+			{name:'instanceExtensions'},
+			{name:'name'},
+			{name:'required'},
+		]
+		},
 		{name:'BackendXRType'},
 		{name:'Bounds',
 		 pages:[

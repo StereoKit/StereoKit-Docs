@@ -231,14 +231,17 @@ This class is NOT of general interest, unless you are trying to add support for 
 - `static bool Backend.OpenXR.ExtEnabled(string extensionName)` — This tells if an OpenXR extension has been requested and successfully loaded by the runtime. This MUST only be called after SK.Initialize.
   - `extensionName` — The extension name as listed in the OpenXR spec. For example: "XR_EXT_hand_tracking".
   - returns — If the extension is available to use.
+  - Example: see `Backend.OpenXR.ExtEnabled` in StereoKit-docs-reference.md
 - `static TDelegate Backend.OpenXR.GetFunction(string functionName)` — This is basically `xrGetInstanceProcAddr` from OpenXR, you can use this to get and call functions from an extension you've loaded. This uses `Marshal.GetDelegateForFunctionPointer` to turn the result into a delegate that you can call.
   - `functionName` — 
   - returns — A delegate, or null on failure.
+  - Example: see `Backend.OpenXR.GetFunction` in StereoKit-docs-reference.md
 - `static IntPtr Backend.OpenXR.GetFunctionPtr(string functionName)` — This is basically `xrGetInstanceProcAddr` from OpenXR, you can use this to get and call functions from an extension you've loaded. You can use `Marshal.GetDelegateForFunctionPointer` to turn the result into a delegate that you can call.
   - `functionName` — 
   - returns — A function pointer, or null on failure. You can use `Marshal.GetDelegateForFunctionPointer` to turn this into a delegate that you can call.
 - `static void Backend.OpenXR.RequestExt(string extensionName)` — Requests that OpenXR load a particular extension. This MUST be called before SK.Initialize. Note that it's entirely possible that your extension will not load on certain runtimes, so be sure to check ExtEnabled to see if it's available to use.
   - `extensionName` — The extension name as listed in the OpenXR spec. For example: "XR_EXT_hand_tracking".
+  - Example: see `Backend.OpenXR.RequestExt` in StereoKit-docs-reference.md
 - `static void Backend.OpenXR.SetHandJointScale(float scaleFactor)` — This sets a scaling value for joints provided by the articulated hand extension. Some systems just don't seem to get their joint sizes right!
   - `scaleFactor` — 1 being the default value, 2 being twice as large as normal, and 0.5 being half as big as normal.
 
@@ -249,8 +252,17 @@ When using Vulkan for rendering, this contains a number of variables that may be
 - `static IntPtr Backend.Vulkan.Device` — The `VkDevice` StereoKit created (or was given, when running under OpenXR) for rendering. Valid after SK.Initialize.
 - `static IntPtr Backend.Vulkan.Instance` — The `VkInstance` StereoKit created (or was given, when running under OpenXR) for rendering. Valid after SK.Initialize.
 - `static IntPtr Backend.Vulkan.PhysicalDevice` — The `VkPhysicalDevice` StereoKit is rendering with. Valid after SK.Initialize.
+- `static bool Backend.Vulkan.ExtEnabled(string extensionName)` — Checks if a Vulkan extension was enabled at init, regardless of which request asked for it. This MUST only be called after SK.Initialize.
+  - `extensionName` — The extension name, for example "VK_KHR_swapchain".
+  - returns — If the extension is available to use.
 - `static int Backend.Vulkan.GetFrameFenceFd()` — Returns a sync file descriptor for the most recently submitted frame's GPU work! Waiting on it (e.g. via EGL_ANDROID_native_fence_sync) guarantees all rendering submitted up to the last frame end has completed. Call from StereoKit's main thread. The caller owns the descriptor and must close it. Only functional on platforms and devices supporting external fence export.
   - returns — A sync file descriptor, or -1 when unsupported or no frame has been submitted yet.
+- `static TDelegate Backend.Vulkan.GetFunction(string functionName)` — Resolves a Vulkan function pointer and wraps it as a delegate, using `vkGetDeviceProcAddr` with a `vkGetInstanceProcAddr` fallback. Use this to call into extensions you've enabled via [`Backend.Vulkan.Request`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/Request.html).
+  - `functionName` — The Vulkan function name, for example "vkCmdBeginRenderingKHR".
+  - returns — A delegate, or null on failure.
+- `static IntPtr Backend.Vulkan.GetFunctionPtr(string functionName)` — Resolves a Vulkan function pointer, using `vkGetDeviceProcAddr` with a `vkGetInstanceProcAddr` fallback. Use this to call into extensions you've enabled via [`Backend.Vulkan.Request`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/Request.html). You can use `Marshal.GetDelegateForFunctionPointer` to turn the result into a callable delegate.
+  - `functionName` — The Vulkan function name, for example "vkCmdBeginRenderingKHR".
+  - returns — A function pointer, or IntPtr.Zero on failure.
 - `static IntPtr Backend.Vulkan.Queue(BackendVulkanQueue queue)` — Gets the `VkQueue` StereoKit uses for the given queue family. Currently only [`BackendVulkanQueue.Graphics`]({{site.url}}/Pages/StereoKit/BackendVulkanQueue/Graphics.html) has a handle available; the others return IntPtr.Zero until StereoKit makes real use of them. If you submit work to this queue, you MUST guard it with [`Backend.Vulkan.QueueLock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueLock.html) / [`Backend.Vulkan.QueueUnlock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueUnlock.html), since StereoKit shares it across threads.
   - `queue` — Which queue family to retrieve the queue for.
   - returns — A `VkQueue` handle, or IntPtr.Zero if no queue handle is available for that family.
@@ -261,6 +273,11 @@ When using Vulkan for rendering, this contains a number of variables that may be
   - `queue` — Which queue family's lock to acquire.
 - `static void Backend.Vulkan.QueueUnlock(BackendVulkanQueue queue)` — Releases the queue family lock acquired via [`Backend.Vulkan.QueueLock`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/QueueLock.html).
   - `queue` — Which queue family's lock to release.
+- `static void Backend.Vulkan.Request(BackendVulkanRequest request)` — Registers a request for Vulkan instance/device extensions and device features. This MUST be called before SK.Initialize. A request enables atomically: only when all of its extensions are present, and every requested feature bit is supported. If [`BackendVulkanRequest.required`]({{site.url}}/Pages/StereoKit/BackendVulkanRequest/required.html) is true and the request can't be satisfied, SK.Initialize will fail! After initialization, check the result with [`Backend.Vulkan.RequestEnabled`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/RequestEnabled.html) (by name) or [`Backend.Vulkan.ExtEnabled`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/ExtEnabled.html) (by extension name).
+  - `request` — The extensions and features to request. Its arrays and feature struct pointers only need to remain valid for the duration of this call - StereoKit copies everything it needs.
+- `static bool Backend.Vulkan.RequestEnabled(string name)` — Checks if a named request registered via [`Backend.Vulkan.Request`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/Request.html) was successfully enabled. This MUST only be called after SK.Initialize.
+  - `name` — The name given to the BackendVulkanRequest.
+  - returns — If the request's extensions and features were all enabled.
 
 ## enum BackendGraphics
 
@@ -285,6 +302,16 @@ This describes the platform that StereoKit is running on.
 - `BackendPlatform.Web` — This is running in a browser.
 - `BackendPlatform.Win32` — This is running as a Windows app using the Win32 APIs.
 
+## struct BackendVulkanFeature
+
+A single Vulkan feature struct to request as part of a [`BackendVulkanRequest`]({{site.url}}/Pages/StereoKit/BackendVulkanRequest.html). See [`Backend.Vulkan.Request`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/Request.html) for details.
+
+- `int BackendVulkanFeature.size` — The size of the struct vkStruct points at, in bytes.
+- `IntPtr BackendVulkanFeature.vkStruct` — A pointer to a pinned VkPhysicalDevice*Features struct with its sType set, and the feature bits you want enabled set to VK_TRUE. This must NOT be a VkPhysicalDeviceFeatures2. The pointer only needs to remain valid for the duration of the Backend.Vulkan.Request call.
+- `void BackendVulkanFeature(IntPtr vkStruct, int size)` — Creates a feature request from a pointer to a pinned VkPhysicalDevice*Features struct and its size in bytes.
+  - `vkStruct` — A pointer to a pinned VkPhysicalDevice*Features struct, with its sType and desired VK_TRUE bits set.
+  - `size` — The size of the struct vkStruct points at, in bytes.
+
 ## enum BackendVulkanQueue
 
 Identifies a Vulkan queue family that StereoKit's Vulkan backend interacts with. Use this with the queue accessors on Backend.Vulkan.
@@ -292,6 +319,16 @@ Identifies a Vulkan queue family that StereoKit's Vulkan backend interacts with.
 - `BackendVulkanQueue.Graphics` — The primary graphics queue. This is the queue StereoKit submits all of its rendering work to, and the only queue with a handle currently available via backend_vulkan_get_queue.
 - `BackendVulkanQueue.Transfer` — A queue family suitable for transfer operations. StereoKit does not yet use a dedicated transfer queue, so no queue handle is available here yet, but the family index is provided for advanced interop.
 - `BackendVulkanQueue.VideoDecode` — A queue family suitable for Vulkan video decode. Not present on all devices, in which case the family index will be UINT32_MAX.
+
+## struct BackendVulkanRequest
+
+A request for Vulkan instance/device extensions and device features, registered via [`Backend.Vulkan.Request`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/Request.html) before SK.Initialize.
+
+- `String[] BackendVulkanRequest.deviceExtensions` — Vulkan device extension names this request needs.
+- `BackendVulkanFeature[] BackendVulkanRequest.features` — Vulkan device features this request needs. Their bits are queried for support before being enabled.
+- `String[] BackendVulkanRequest.instanceExtensions` — Vulkan instance extension names this request needs.
+- `string BackendVulkanRequest.name` — An optional name used as a handle for [`Backend.Vulkan.RequestEnabled`]({{site.url}}/Pages/StereoKit/Backend.Vulkan/RequestEnabled.html). null makes the request anonymous - it still contributes its extensions and features, but can't be queried by name.
+- `bool BackendVulkanRequest.required` — If true, SK.Initialize will fail should this request go unsatisfied. If false, an unmet request is simply left disabled.
 
 ## enum BackendXRType
 

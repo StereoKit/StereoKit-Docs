@@ -1,19 +1,23 @@
 ---
 layout: default
-title: Backend.Graphics
-description: This describes the graphics API that StereoKit is using for rendering. StereoKit is Vulkan-only, so this will report BackendGraphics.Vulkan on all supported platforms.
+title: BackendVulkanRequest
+description: A request for Vulkan instance/device extensions and device features, registered via Backend.Vulkan.Request before SK.Initialize.
 ---
-# [Backend]({{site.url}}/preview/Pages/StereoKit/Backend.html).Graphics
+# struct BackendVulkanRequest
 
-<div class='signature' markdown='1'>
-static [BackendGraphics]({{site.url}}/preview/Pages/StereoKit/BackendGraphics.html) Graphics{ get }
-</div>
+A request for Vulkan instance/device extensions and device
+features, registered via [`Backend.Vulkan.Request`]({{site.url}}/preview/Pages/StereoKit/Backend.Vulkan/Request.html) before
+SK.Initialize.
 
-## Description
-This describes the graphics API that StereoKit is using for
-rendering. StereoKit is Vulkan-only, so this will report
-[`BackendGraphics.Vulkan`]({{site.url}}/preview/Pages/StereoKit/BackendGraphics/Vulkan.html) on all supported platforms.
+## Instance Fields and Properties
 
+|  |  |
+|--|--|
+|String[] [deviceExtensions]({{site.url}}/preview/Pages/StereoKit/BackendVulkanRequest/deviceExtensions.html)|Vulkan device extension names this request needs.|
+|BackendVulkanFeature[] [features]({{site.url}}/preview/Pages/StereoKit/BackendVulkanRequest/features.html)|Vulkan device features this request needs. Their bits are queried for support before being enabled.|
+|String[] [instanceExtensions]({{site.url}}/preview/Pages/StereoKit/BackendVulkanRequest/instanceExtensions.html)|Vulkan instance extension names this request needs.|
+|string [name]({{site.url}}/preview/Pages/StereoKit/BackendVulkanRequest/name.html)|An optional name used as a handle for [`Backend.Vulkan.RequestEnabled`]({{site.url}}/preview/Pages/StereoKit/Backend.Vulkan/RequestEnabled.html). null makes the request anonymous - it still contributes its extensions and features, but can't be queried by name.|
+|bool [required]({{site.url}}/preview/Pages/StereoKit/BackendVulkanRequest/required.html)|If true, SK.Initialize will fail should this request go unsatisfied. If false, an unmet request is simply left disabled.|
 
 ## Examples
 
