@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Input.TextInjectChar
-description: This will inject a UTF32 Unicode text character into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry.  This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that.
+description: This will inject a UTF32 Unicode text character into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry.  This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that. The text queue carries insertable text only, so carriage returns become newlines, and other control characters are ignored here with a warning.
 ---
 # [Input]({{site.url}}/preview/Pages/StereoKit/Input.html).TextInjectChar
 
@@ -15,7 +15,9 @@ the next frame, and will be indistinguishable from normal text
 entry.
 
 This will _not_ submit key press/release events to StereoKit's
-input queue, use KeyInjectPress/Release for that.
+input queue, use KeyInjectPress/Release for that. The text queue
+carries insertable text only, so carriage returns become newlines,
+and other control characters are ignored here with a warning.
 </div>
 
 |  |  |
@@ -32,7 +34,9 @@ input queue. It will be available at the start of the next frame,
 and will be indistinguishable from normal text entry.
 
 This will _not_ submit key press/release events to StereoKit's
-input queue, use KeyInjectPress/Release for that.
+input queue, use KeyInjectPress/Release for that. The text queue
+carries insertable text only, so carriage returns become newlines,
+and other control characters are ignored here with a warning.
 </div>
 
 |  |  |
@@ -49,7 +53,9 @@ text input queue. It will be available at the start of the next
 frame, and will be indistinguishable from normal text entry.
 
 This will _not_ submit key press/release events to StereoKit's
-input queue, use KeyInjectPress/Release for that.
+input queue, use KeyInjectPress/Release for that. The text queue
+carries insertable text only, so carriage returns become newlines,
+and other control characters are ignored here with a warning.
 </div>
 
 |  |  |

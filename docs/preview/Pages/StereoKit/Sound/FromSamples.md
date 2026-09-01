@@ -19,6 +19,23 @@ samples. Values should range from -1 to +1, and there should be
 |Single[] samplesAt48000s|Values should range from -1 to +1, and there should be 48,000 per second of audio.|
 |RETURNS: [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html)|Returns a sound effect from the samples provided! Or null if something went wrong.|
 
+<div class='signature' markdown='1'>
+```csharp
+static Sound FromSamples(Single[] samplesAt48000s, SoundChannels channels)
+```
+Create a sound from an array of samples with an
+explicit channel format! Multi-channel data is interleaved -
+stereo alternates left/right, and Ambisonic1 packs W,Y,Z,X per
+frame in the ambiX convention. 48,000 frames per second of
+audio.
+</div>
+
+|  |  |
+|--|--|
+|Single[] samplesAt48000s|Interleaved samples from -1 to +1, 48,000 frames per second.|
+|[SoundChannels]({{site.url}}/preview/Pages/StereoKit/SoundChannels.html) channels|How the samples are laid out.|
+|RETURNS: [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html)|A sound effect from the samples provided! Or null if something went wrong.|
+
 
 
 

@@ -41,6 +41,9 @@ modern mobile. They're sample-only; you can't render to them.
 |--|--|
 |Astc4x4Rgba|ASTC 4x4 linear color with full alpha, 8 bpp. High-quality compressed format for data textures on modern mobile GPUs.|
 |Astc4x4RgbaSrgb|ASTC 4x4 sRGB color with full alpha, 8 bpp. ASTC is the modern mobile-standard compressed format - excellent quality, broadly supported. The 4x4 block size is the highest-quality (and largest-size) ASTC variant.|
+|Astc6x6Rgba|ASTC 6x6 linear color with full alpha, ~3.56 bpp. The linear counterpart to Astc6x6RgbaSrgb, for data textures.|
+|Astc6x6RgbaSrgb|ASTC 6x6 sRGB color with full alpha, ~3.56 bpp. Larger blocks than Astc4x4 for less than half the memory, at some cost to quality - a good trade for large or low-frequency textures.|
+|Astc8x8RgbaHdr|ASTC 8x8 HDR color with full alpha, 2 bpp. Compressed HDR on mobile GPUs, and much cheaper than an uncompressed float format. Requires the ASTC HDR extension, which is separate from baseline ASTC support!|
 |AtcRgb|ATC RGB on Qualcomm Adreno GPUs, 4 bpp. Historical Qualcomm-specific format - prefer Astc or Etc2 on newer Adreno hardware.|
 |AtcRgba|ATC with alpha on Qualcomm Adreno GPUs, 8 bpp. Historical Qualcomm-specific format - prefer Astc or Etc2 on newer Adreno hardware.|
 |Bc1Rgb|BC1/DXT1 linear RGB, no alpha, 4 bpp. Great for compressed data textures (normals, masks) on desktop and console GPUs. For color images for humans, use Bc1RgbSrgb.|
@@ -69,6 +72,7 @@ modern mobile. They're sample-only; you can't render to them.
 |Depth32s8|32-bit depth + 8-bit stencil (40 bpp). More depth precision than Depth24s8 but heavier on memory. Use this when you need both 32-bit depth precision and a stencil channel for masking effects.|
 |DepthStencil|24-bit depth + 8-bit stencil. Depth tracks how close to the camera each pixel is so near objects correctly occlude far ones. Stencil data can be used for clipping effects, deferred rendering, or shadow effects. A sensible default for most scenes!|
 |Etc1Rgb|ETC1 RGB, no alpha, 4 bpp. Widely supported on older Android devices and OpenGL ES 2.0+ GPUs. Quality is acceptable for diffuse color but it's been superseded - prefer Etc2 or Astc on newer hardware!|
+|Etc1RgbSrgb|ETC1 sRGB RGB, no alpha, 4 bpp. The sRGB counterpart to Etc1Rgb - the GPU converts to linear on sample, so this is the correct choice for color textures.|
 |Etc2R11|ETC2/EAC single 11-bit unsigned-normalized channel, 4 bpp. The ETC equivalent of Bc4 - great for compressed grayscale or heightmap data on mobile GPUs!|
 |Etc2Rg11|ETC2/EAC two 11-bit unsigned-normalized channels, 8 bpp. The ETC equivalent of Bc5 - great for compressed two-channel data like tangent-space normal maps on mobile GPUs!|
 |Etc2Rgba|ETC2 linear color with full alpha, 8 bpp. Standard compressed format for data textures with alpha on OpenGL ES 3.0+ mobile devices.|

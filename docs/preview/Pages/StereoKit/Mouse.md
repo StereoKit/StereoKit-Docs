@@ -14,7 +14,7 @@ pointed, do we even have one?
 |--|--|
 |bool [available]({{site.url}}/preview/Pages/StereoKit/Mouse/available.html)|Is the mouse available to use? Most MR systems likely won't have a mouse!|
 |[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) [pos]({{site.url}}/preview/Pages/StereoKit/Mouse/pos.html)|Position of the mouse relative to the window it's in! This is the number of pixels from the top left corner of the screen.|
-|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) [posChange]({{site.url}}/preview/Pages/StereoKit/Mouse/posChange.html)|How much has the mouse's position changed in the current frame? Measured in pixels.|
+|[Vec2]({{site.url}}/preview/Pages/StereoKit/Vec2.html) [posChange]({{site.url}}/preview/Pages/StereoKit/Mouse/posChange.html)|How much has the mouse moved during this frame? This is normally just the change in `pos`, measured in pixels. In relative mouse mode `pos` is frozen and this becomes the only source of motion, in the mouse's raw device units rather than pixels.|
 |[Ray]({{site.url}}/preview/Pages/StereoKit/Ray.html) [Ray]({{site.url}}/preview/Pages/StereoKit/Mouse/Ray.html)|Ray representing the position and orientation that the current Input.Mouse.pos is pointing in.|
 |float [scroll]({{site.url}}/preview/Pages/StereoKit/Mouse/scroll.html)|What's the current scroll value for the mouse's scroll wheel?|
 |float [scrollChange]({{site.url}}/preview/Pages/StereoKit/Mouse/scrollChange.html)|How much has the scroll wheel value changed during this frame?|

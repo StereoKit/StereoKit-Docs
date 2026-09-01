@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sound.CursorSamples
-description: This is the current position of the playback cursor, measured in samples from the start of the audio data.
+description: How far ReadSamples has consumed into a stream sound, in samples. Playing voices don't move this - each tracks its own position in SoundInst.Cursor. Non-stream sounds return 0.
 ---
 # [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html).CursorSamples
 
@@ -10,6 +10,7 @@ int CursorSamples{ get }
 </div>
 
 ## Description
-This is the current position of the playback cursor,
-measured in samples from the start of the audio data.
+How far ReadSamples has consumed into a stream sound,
+in samples. Playing voices don't move this - each tracks its own
+position in SoundInst.Cursor. Non-stream sounds return 0.
 

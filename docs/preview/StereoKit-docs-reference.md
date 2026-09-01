@@ -2120,6 +2120,28 @@ See `Assets.Type`
 
 See `Assets.All`
 
+## Audio.Environment
+
+### Acoustic environments
+Spatial sounds can play inside an acoustic environment - a
+shared reverb and early reflections that carry a sense of space
+and absolute distance! The default is entirely off, which costs
+nothing, and is the right resting state for AR. Preset constants
+cover common spaces:
+```csharp
+Audio.Environment = AudioEnvironment.Forest;
+
+// Or start from a preset and adjust it to taste:
+AudioEnvironment env = AudioEnvironment.Room;
+env.decay   = 0.6f;
+env.reflect = 0.7f;
+Audio.Environment = env;
+```
+
+## AudioEnvironment
+
+See `Audio.Environment`
+
 ## Backend.Graphics
 
 ### Requesting Vulkan Extensions
@@ -2871,6 +2893,114 @@ with valid finger pose data for the glow effect.
 Input.FingerGlow = false;
 ```
 
+## Input.KeyboardEventCount
+
+### Raw Keyboard Input
+```csharp
+// If you need to read the keyboard directly from a soft or hard keyboard,
+// this gives you the frame's events in the exact order the user made them.
+// Text events are language and keyboard layout sensitive, which makes them
+// the correct choice for text content, and key events carry the editing
+// intent that text can't express, like backspace and enter.
+//
+// `Input.KeyboardConsume` reads events destructively, so an element like
+// UI.Input can hide input from whatever comes after it. Reading by index
+// observes the frame's events without consuming anything, which is what a
+// display like this window wants.
+Pose         rawWinPose = new Pose(0.3f,0,0);
+List<string> uniChars   = new List<string>(Enumerable.Repeat("", 10));
+void ShowRawInputWindow()
+{
+	UI.WindowBegin("Raw keyboard events:", ref rawWinPose);
+
+	// Read each of this frame's events, even the ones an earlier UI.Input
+	// may have consumed.
+	for (int evt = 0; evt < Input.KeyboardEventCount; evt++)
+	{
+		KeyboardEvent e = Input.KeyboardEventAt(evt);
+		// Text events carry their character data in e.Text, which handles
+		// emoji and other codepoints too large for a single C# char.
+		string desc = e.type == KeyboardEventType.Text
+			? $"U+{char.ConvertToUtf32(e.Text, 0):X4} '{e.Text}'"
+			: $"{e.key} {(e.type == KeyboardEventType.KeyPress ? "down" : "up")}";
+
+		// Insert at the start of the list, and bump off any more than 10.
+		uniChars.Insert(0, desc);
+		if (uniChars.Count > 10)
+			uniChars.RemoveAt(uniChars.Count - 1);
+	}
+
+	// Show each event as a label
+	for (int i = 0; i < uniChars.Count; i++)
+		UI.Label(uniChars[i]);
+
+	UI.WindowEnd();
+}
+```
+
+## Input.MouseMode
+
+### Mouse-look camera control
+`MouseMode.Relative` hides the cursor and pins it in place, so the
+mouse can produce motion forever without ever reaching the edge of the
+screen. `Mouse.pos` stops moving in this mode, and `Mouse.posChange` is
+where all the motion shows up.
+
+Note that the Simulator uses right click for its own flycam, so this is
+best tried in the Window backend.
+```csharp
+static Vec2 lookAngle;
+static void MouseLook()
+{
+	// Capture the mouse for as long as the right button is held
+	if      (Input.Key(Key.MouseRight).IsJustActive  ()) Input.MouseMode = MouseMode.Relative;
+	else if (Input.Key(Key.MouseRight).IsJustInactive()) Input.MouseMode = MouseMode.Normal;
+
+	if (Input.MouseMode == MouseMode.Relative)
+		lookAngle -= Input.Mouse.posChange * 0.1f;
+}
+```
+
+## Input.MouseMode
+
+### Mouse look
+`MouseMode.Relative` is what you want for mouse-look style camera
+control. The cursor is hidden and pinned in place, so `Mouse.pos` stops
+changing, and `Mouse.posChange` becomes the only report of mouse motion.
+The pointer never reaches the edge of the screen, so the view can keep
+turning as far as the user cares to spin.
+
+Capture the mouse only while the user is actually looking around, and
+hand it back when they let go, so the rest of the time they still have a
+cursor to click with. Note that `posChange` is an amount of motion rather
+than a speed, so unlike a velocity it should _not_ be scaled by
+`Time.Stepf`. Doing that would tie the sensitivity to the frame rate.
+```csharp
+float lookYaw;
+float lookPitch;
+void MouseLook()
+{
+	// The Simulator mode already provides a mouselook, and XR doesn't need
+	// one, so this is only really useful in Window mode.
+	if (SK.Settings.mode != AppMode.Window)
+		return;
+
+	if (Input.Key(Key.MouseRight).IsJustActive  ()) Input.MouseMode = MouseMode.Relative;
+	if (Input.Key(Key.MouseRight).IsJustInactive()) Input.MouseMode = MouseMode.Normal;
+	if (Input.MouseMode != MouseMode.Relative) return;
+
+	// Relative mode reports raw mouse units instead of pixels, so this is
+	// degrees per unit of motion, and wants tuning by feel.
+	const float sensitivity = 0.1f;
+	lookYaw   -= Input.Mouse.posChange.x * sensitivity;
+	lookPitch -= Input.Mouse.posChange.y * sensitivity;
+	// Stop just shy of straight up and down, or the view rolls over the top
+	lookPitch  = Math.Clamp(lookPitch, -89.9f, 89.9f);
+
+	Renderer.CameraRoot = Matrix.R(lookPitch, lookYaw, 0);
+}
+```
+
 ## Input.Controller
 
 See `Controller.aim`
@@ -2939,61 +3069,56 @@ See `Input.HapticCaps`
 
 See `Input.HapticCaps`
 
-## Input.TextConsume
+## Input.KeyboardConsume
 
-### Raw Text Input
+### Reading the keyboard event queue
+`Input.KeyboardConsume` reads this frame's key presses, releases, and
+text in the exact order the user produced them, which is the right
+foundation for custom text editing. Text events carry the layout and
+language sensitive characters to insert, while key events carry the
+editing intent that text can't express, and each auto-repeat of a held
+key is its own press event.
+
+Reading consumes, so a focused `UI.Input` earlier in the frame will
+empty the queue. If observing is all you need, `Input.KeyboardEventAt`
+reads by index without consuming anything.
 ```csharp
-// If you need to read text input directly from a soft or hard keyboard,
-// these functions give you direct access to the stream of Unicode
-// characters produced! These characters are language and keyboard layout
-// sensitive, making these functions the correct ones for working with text
-// content vs. the `Input.Key` functions, which are not language specific.
-//
-// Every frame, `Input.TextConsume` will have a list of new characters that
-// have been pressed or submitted to the app. Reading them will "consume"
-// them, making them unavailable to anything that comes after. If you need
-// to bypass some earlier element consuming them, you can reset the current
-// frame's consume queue with `Input.TextReset`.
-Pose         rawWinPose = new Pose(0.3f,0,0);
-List<string> uniChars   = new List<string>(Enumerable.Repeat("", 10));
-void ShowRawInputWindow()
+static string typed = "";
+static void ReadKeyboardEvents()
 {
-	UI.WindowBegin("Raw keyboard code points:", ref rawWinPose);
-
-	// Reset the text input back to the start of the list, since any
-	// UI.Input before this will consume the characters first and we
-	// always want to show input on this window.
-	Input.TextReset();
-
-	while (true)
+	while (Input.KeyboardConsume(out KeyboardEvent e))
 	{
-		// Consume each new character, 0 marks the end of the list of new
-		// characters.
-		char c = Input.TextConsume();
-		if (c == 0) break;
-
-		// Insert the codepoint at the start of the list, and bump off any
-		// more than 10 items.
-		uniChars.Insert(0, $"{(int)c}");
-		if (uniChars.Count > 10)
-			uniChars.RemoveAt(uniChars.Count - 1);
+		switch (e.type)
+		{
+			case KeyboardEventType.Text:
+				// Text may be two chars, for emoji and other codepoints
+				// too large for a single C# char.
+				typed += e.Text;
+				break;
+			case KeyboardEventType.KeyPress:
+				if (e.key == Key.Backspace && typed.Length > 0)
+				{
+					// Erase the whole codepoint, which may be two chars
+					int last = char.IsLowSurrogate(typed[typed.Length-1]) ? 2 : 1;
+					typed = typed.Remove(typed.Length - last);
+				}
+				break;
+		}
 	}
-
-	// Show each character code as a label
-	for (int i = 0; i < uniChars.Count; i++)
-		UI.Label(uniChars[i]);
-
-	UI.WindowEnd();
 }
 ```
 
-## Input.TextReset
+## Input.KeyboardEventAt
 
-See `Input.TextConsume`
+See `Input.KeyboardEventCount`
 
 ## JointId
 
 See `Bounds.Contains`
+
+## KeyboardEvent
+
+See `Input.KeyboardConsume`
 
 ## Lines.Add
 
@@ -4400,6 +4525,22 @@ See `ModelNode.Info`
 
 See `ModelNode.Info`
 
+## Mouse.posChange
+
+See `Input.MouseMode`
+
+## MouseMode.Relative
+
+See `Input.MouseMode`
+
+## MouseMode
+
+See `Input.MouseMode`
+
+## MouseMode
+
+See `Input.MouseMode`
+
 ## OcclusionCaps
 
 ### Basic World Occlusion
@@ -4613,7 +4754,7 @@ See `Pose.Forward`
 Only in flatscreen apps, there is the option to change the main
 camera's projection mode between perspective and orthographic.
 ```csharp
-if (SK.ActiveDisplayMode == DisplayMode.Flatscreen &&
+if (Device.DisplayType == DisplayType.Flatscreen &&
 	Input.Key(Key.P).IsJustActive())
 {
 	Renderer.Projection = Renderer.Projection == Projection.Perspective
@@ -4849,6 +4990,45 @@ genSound.Play(Vec3.Zero);
 
 ## Sound.Play
 
+### Thunder along a lightning bolt
+Sounds declare real-world loudness in decibels, and
+SoundFlags.PropagationDelay delays each voice's onset by its
+distance at the speed of sound - so a thunder boom and its
+rumble arrive along the bolt just like the real thing. Energy
+sets the pitch here: bigger strikes boom deeper.
+```csharp
+// A jagged bolt across the sky: the boom fires from its nearest
+// point, then rumble instances arrive progressively later from
+// farther along it - each duller (distance is a low-pass filter)
+// and wider than the last.
+float dist  = 80 + thunderDist * 1120;
+float dir   = (float)(rand.NextDouble() * Math.PI * 2);
+Vec3  near  = new Vec3(MathF.Cos(dir), 0, MathF.Sin(dir)) * dist + Vec3.Up * 90;
+Vec3  far   = near + new Vec3(MathF.Sin(dir), 0.5f, -MathF.Cos(dir)) * (100 + (float)rand.NextDouble() * 300);
+float pitch = 1.35f - thunderEnergy * 0.7f;
+
+boomInst = boomSound.Play(near, new SoundPlay {
+	flags = SoundFlags.PropagationDelay,
+	pitch = pitch,
+});
+
+for (int i = 0; i < rumbleInsts.Length; i++)
+{
+	float t  = (i + 1) / (float)rumbleInsts.Length;
+	Vec3  at = Vec3.Lerp(near, far, t);
+	rumbleInsts[i] = rumbleSound.Play(at, new SoundPlay {
+		flags  = SoundFlags.PropagationDelay,
+		delay  = t * 0.5f,
+		pitch  = pitch * (1.0f - t * 0.25f),
+		volume = 1.0f - t * 0.3f,
+		spread = 0.2f,
+		cutoff = 900 - t * 550, // Air absorption along the bolt
+	});
+}
+```
+
+## Sound.Play
+
 See `Sound.FromFile`
 
 ## Sound.ReadSamples
@@ -4874,6 +5054,41 @@ See `Sound.Generate`
 ## Sound
 
 See `Sound.FromSamples`
+
+## SoundFlags
+
+See `Sound.Play`
+
+## SoundInst.Spread
+
+See `Sound.Play`
+
+## SoundInst.SetShape
+
+### A shaped rain emitter
+Shapes turn a looping sound into an extended source: the
+emitter follows the listener along the shape, widens as it
+fills more of the view, and goes fully diffuse inside it - a
+rain bed the listener stands inside surrounds them completely.
+```csharp
+washFarInst = washFar.Play(Vec3.Zero, new SoundPlay {
+	flags       = SoundFlags.Loop,
+	shape       = new Vec3[] { new Vec3(0, 0, 0) },
+	shapeRadius = 12,
+});
+```
+
+## SoundPlay.shape
+
+See `SoundInst.SetShape`
+
+## SoundPlay
+
+See `SoundInst.SetShape`
+
+## SoundPlay
+
+See `Sound.Play`
 
 ## Sprite.FromTex
 

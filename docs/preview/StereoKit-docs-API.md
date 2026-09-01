@@ -101,6 +101,17 @@ This is the callback signature for SK.Run's shutdown function. It receives conte
 
 This is the callback signature for SK.Run's step function. It receives context data that was passed to SK.Run.
 
+## class AppWindow
+
+A desktop OS window belonging to the app, like the one the Simulator and Window app modes render into. There is no window available in XR mode, so if you're working with this class, be prepared to gate against `AppWindow` objects being null!
+
+- `bool AppWindow.Fullscreen` — Is this window currently covering its whole display? This is always the window's real state, so it also picks up fullscreen changes the user made through the window manager. Use RequestFullscreen to change it.
+- `int AppWindow.Height` — The height of the window's drawable area, in physical pixels. This is the size the swapchain renders at, and it changes whenever the window is resized.
+- `int AppWindow.Width` — The width of the window's drawable area, in physical pixels. This is the size the swapchain renders at, and it changes whenever the window is resized.
+- `static AppWindow AppWindow.Main` — The app's main window! Only the Simulator and Window app modes have one, everywhere else this is null. This handle belongs to StereoKit, so don't hold onto it across SK.Shutdown.
+- `void AppWindow.RequestFullscreen(bool fullscreen)` — Asks for this window to cover its whole display, or to go back to a normal window. This is only ever a request, and it's never immediate! Window managers can refuse it, browsers wait for a user gesture, and some platforms don't implement it at all. None of those report back a refusal, so watch the Fullscreen property to see if and when it takes effect. Going fullscreen resizes the window, so expect the render surface to follow along.
+  - `fullscreen` — True to ask for fullscreen, false to ask for a normal window.
+
 ## delegate AssetOnLoadCallback
 
 A callback for when an asset finishes loading.
@@ -160,9 +171,49 @@ A flag for what 'type' an Asset may store.
 - `AssetType.Sprite` — A Sprite.
 - `AssetType.Tex` — A Tex.
 
+## static class Audio
+
+Global audio system controls: the master volume, per-bus category volumes, listener overrides, and an output meter for checking your mix.
+
+- `static AudioEnvironment Audio.Environment` — The acoustic environment that spatial sounds play in! This drives a shared reverb and early reflections that carry a sense of space and absolute distance. The default is fully off (wet 0), which costs nothing and never fights the real room's acoustics - the right resting state for AR. Assign a preset like AudioEnvironment.Hall - Off returns to dry, zero cost playback - or build custom values, perhaps starting from a preset.
+- `static Nullable`1 Audio.ListenerOverride` — Normally the audio listener follows the user's head. Set this to hear the scene from somewhere else - a third person camera, or a remote avatar - and set it to null to give the ears back to the head.
+- `static float Audio.OutputDecibels` — RMS level of the last mixed audio block in dBFS, -120 when silent. Useful for level meters, and for checking where your content sits relative to the limiter at 0.
+- `static float Audio.Volume` — The master volume, a 0-1 trim over everything StereoKit plays. This is an app level control - the user's system volume sits below it.
+- `static float Audio.GetBusVolume(SoundBus bus)` — Gets a bus category's current 0-1 volume trim.
+  - `bus` — The bus to inspect.
+  - returns — The bus's 0-1 volume trim.
+- `static void Audio.SetBusVolume(SoundBus bus, float volume)` — Sets a bus category's 0-1 volume trim. Every sound playing on that bus is affected, handy for sfx/music/ui sliders in a settings menu, or ducking a whole category.
+  - `bus` — The bus to adjust.
+  - `volume` — 0-1 volume trim for the bus.
+
+## delegate AudioBufferGenerator
+
+A callback for generating a whole buffer of audio samples at once! Fill the provided buffer completely with values in the -1 to +1 range. frameStart / 48,000 is the time of the buffer's first frame. For multi-channel sounds the buffer holds frames-x-channels interleaved samples - for mono, frames and samples are the same thing.
+
+## struct AudioEnvironment
+
+A perceptual description of the acoustic space sounds play in - an environment rather than a literal room, so it covers halls through forests. Spatial sounds feed a shared reverb whose level stays constant with distance, so the direct-to-reverb balance naturally carries how far away a sound is. A wet of 0 disables the system entirely at zero cost, and a zeroed struct is the off state. Language bindings provide preset values for common spaces as starting points.
+
+- `float AudioEnvironment.damp` — 0-1, extra high frequency decay. Soft or leafy spaces are high, tiled rooms are low.
+- `float AudioEnvironment.decay` — Decay time in seconds - how long the tail takes to fall 60dB at mid frequencies. Rooms are ~0.4s, cathedrals a few seconds. Clamped to 0.05-10.
+- `float AudioEnvironment.reflect` — 0-1, level of the distinct early reflections off the space's surfaces - the first bounces that glue a sound to the room. The ground bounce keeps a minimum presence; walls and ceiling scale fully with this, so outdoor spaces sit near 0.
+- `float AudioEnvironment.scatter` — 0-1, how quickly discrete echoes blur into a dense wash. Scattered spaces like forests are high, bare rooms lower.
+- `float AudioEnvironment.size` — Size of the space in meters, clamped to 2-40. Drives the spacing of the echoes that build the tail. Changing this restarts the tail, where the other fields all glide smoothly.
+- `float AudioEnvironment.wet` — Reverb level, 0-1. 0 turns environmental acoustics off completely, and is the default.
+- `static AudioEnvironment AudioEnvironment.Cave` — A cavern: a very long, dense tail with hard surfaces.
+- `static AudioEnvironment AudioEnvironment.Field` — An open field: nearly dry, the faintest hint of ground scatter. Openness itself is the cue.
+- `static AudioEnvironment AudioEnvironment.Forest` — A forest: no walls, just a short dark scatter off trunks and foliage - quiet, but unmistakably outdoors-with-presence.
+- `static AudioEnvironment AudioEnvironment.Hall` — A large hall: a long, bright, spacious tail.
+- `static AudioEnvironment AudioEnvironment.Off` — No environmental acoustics at all, sounds play dry. This is the default, and costs nothing - the right choice for AR, where synthetic reverb would fight the real room's acoustics.
+- `static AudioEnvironment AudioEnvironment.Room` — A small furnished room: a short, balanced tail.
+
 ## delegate AudioGenerator
 
-A callback for generating audio samples procedurally.
+A callback for generating audio samples procedurally, one sample at a time. Convenient, but crosses the interop boundary per sample - for long generations, prefer the buffer overload of Sound.Generate.
+
+## delegate AudioGeneratorBatch
+
+The raw native callback shape backing both public generator delegates, where samples land directly in StereoKit's own buffer. This is a low-level interop type - prefer AudioBufferGenerator or AudioGenerator with Sound.Generate.
 
 ## static class Backend
 
@@ -1103,7 +1154,9 @@ Input from the system come from this class! Hands, eyes, heads, mice and pointer
 - `static BtnState Input.EyesTracked` — If eye hardware is available and app has permission, then this is the tracking state of the eyes. Eyes may move out of bounds, hardware may fail to detect eyes, or who knows what else! On Flatscreen when MR sim is still enabled, this will report whether the user is simulating eye input with the Alt key. **Permissions** - On some platforms (like Android) explicit permission is required to access eye info. See the Permissions class for details.
 - `static bool Input.FingerGlow` — This controls the visibility of StereoKit's finger glow effect on the UI. When true, SK will fill out global shader variable `sk_fingertip[2]` with the location of the pointer finger's tips. When false, or the hand is untracked, the location will be set to an unlikely faraway position.
 - `static Pose Input.Head` — The position and orientation of the user's head in world space! This is the center point between the user's eyes, NOT the center of the user's head. Forward points the same way the user's face is facing.
+- `static int Input.KeyboardEventCount` — The number of keyboard events this frame, for reading by index with `Input.KeyboardEventAt`. This is the whole frame's count, unaffected by what `Input.KeyboardConsume` has consumed.
 - `static Mouse Input.Mouse` — Information about this system's mouse, or lack thereof!
+- `static MouseMode Input.MouseMode` — How should the mouse cursor behave? Use this to hide the cursor, or to capture it for mouse-look style camera control. Only the Simulator and Window backends have a cursor to act on, but the mode is remembered everywhere. StereoKit restores the cursor whenever the app loses focus, and this keeps reporting the mode you asked for while that happens.
 - `static BtnState Input.Button(InputButton buttonType)` — Gets a binary button state from the input system. These are on/off inputs like controller face buttons and thumbstick clicks.
   - `buttonType` — The type of button input to retrieve.
   - returns — A BtnState describing whether the button is active, just became active, or just became inactive this frame.
@@ -1194,9 +1247,17 @@ Input from the system come from this class! Hands, eyes, heads, mice and pointer
 - `static BtnState Input.Key(Key key)` — Keyboard key state! On desktop this is super handy, but even standalone MR devices can have bluetooth keyboards, or even just holographic system keyboards!
   - `key` — The key to get the state of. Any key!
   - returns — A BtnState with a number of different bits of info about whether or not the key was pressed or released this frame.
-- `static void Input.KeyInjectPress(Key key)` — This will inject a key press event into StereoKit's input event queue. It will be processed at the start of the next frame, and will be indistinguishable from a physical key press. Remember to release your key as well! This will _not_ submit text to StereoKit's text queue, and will not show up in places like UI.Input. For that, you must submit a TextInjectChar call.
+- `static bool Input.KeyboardConsume(KeyboardEvent& keyboardEvent)` — Reads the next keyboard event from this frame's queue, and advances to the one after it. Key presses, key releases, and text all arrive here in the exact order the user produced them, so a text field can apply them without guessing at what came first. Each auto-repeat of a held key is its own press event, which is why this is the right way to drive editing keys. `Input.Key` reports state for the whole frame instead, so it cannot tell one press from several. Events are consumed as they're read, and a focused `UI.Input` reads the whole queue. To observe events without consuming them, read by index with `Input.KeyboardEventCount` and `Input.KeyboardEventAt` instead. Like the rest of the input API, the queue belongs to the main thread, and is rebuilt at the start of each frame.
+  - `keyboardEvent` — The next event in this frame's queue, or an event of type `KeyboardEventType.None` if none remain.
+  - returns — True if an event was read, false once the queue is empty.
+  - Example: see `Input.KeyboardConsume` in StereoKit-docs-reference.md
+- `static KeyboardEvent Input.KeyboardEventAt(int index)` — Reads a keyboard event by index, without consuming anything. This suits code that wants to observe the frame's input even after something else, like a focused `UI.Input`, has consumed the queue.
+  - `index` — Index of the event, from 0 up to `Input.KeyboardEventCount`.
+  - returns — The event at that index, or an event of type `KeyboardEventType.None` if the index is out of range.
+  - Example: see `Input.KeyboardEventAt` in StereoKit-docs-reference.md
+- `static void Input.KeyInjectPress(Key key)` — This will inject a key press event into StereoKit's input event queue. It will be processed at the start of the next frame, and will be indistinguishable from a physical key press. Remember to release your key as well! This will _not_ submit text to StereoKit's text queue, so to type a character into something like UI.Input, you must submit a TextInject call. Editing keys are the other way around: backspace, delete, enter, and escape act on UI.Input through this call.
   - `key` — The key to press.
-- `static void Input.KeyInjectRelease(Key key)` — This will inject a key release event into StereoKit's input event queue. It will be processed at the start of the next frame, and will be indistinguishable from a physical key release. This should be preceded by a key press! This will _not_ submit text to StereoKit's text queue, and will not show up in places like UI.Input. For that, you must submit a TextInjectChar call.
+- `static void Input.KeyInjectRelease(Key key)` — This will inject a key release event into StereoKit's input event queue. It will be processed at the start of the next frame, and will be indistinguishable from a physical key release. This should be preceded by a key press! This will _not_ submit text to StereoKit's text queue, so to type a character into something like UI.Input, you must submit a TextInject call. Editing keys are the other way around: backspace, delete, enter, and escape act on UI.Input through KeyInjectPress.
   - `key` — The key to release.
 - `static Pointer Input.Pointer(int index, InputSource filter)` — This gets the pointer by filter based index.
   - `index` — Index of the pointer.
@@ -1215,18 +1276,18 @@ Input from the system come from this class! Hands, eyes, heads, mice and pointer
   - `eventSource` — What input sources do we want to listen for. This is a bit flag.
   - `eventTypes` — What events do we want to listen for. This is a bit flag.
   - `onEvent` — The callback to call when the event occurs!
-- `static Char Input.TextConsume()` — Returns the next text character from the list of characters that have been entered this frame! Will return '\0' if there are no more characters left in the list. These are from the system's text entry system, and so can be unicode, will repeat if their 'key' is held down, and could arrive from something like a copy/paste operation. If you wish to reset this function to begin at the start of the read list on the next call, you can call `Input.TextReset`.
+- `static Char Input.TextConsume()` — Returns the next text character from the list of characters that have been entered this frame! Will return '\0' if there are no more characters left in the list. These are from the system's text entry system, and so can be unicode, will repeat if their 'key' is held down, and could arrive from something like a copy/paste operation. This is insertable text only. Editing keys such as backspace, delete, enter, and escape never arrive here, so a text field must read them with `Input.Key`, the same way it reads the arrow keys. Newline and tab are text, and can arrive from a paste or an IME. If you wish to reset this function to begin at the start of the read list on the next call, you can call `Input.TextReset`.
   - returns — The next character in this frame's list, or '\0' if none remain.
-  - Example: see `Input.TextConsume` in StereoKit-docs-reference.md
-- `static void Input.TextInjectChar(uint unicodeCharUTF32)` — This will inject a UTF32 Unicode text character into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry. This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that.
+- `static void Input.TextInject(string text)` — Injects text into StereoKit's keyboard event queue, as if the user had typed or pasted it. It will be available at the start of the next frame, and is indistinguishable from normal text entry. The whole string arrives as one uninterrupted run of events. This is for text only. Carriage returns arrive as newlines, with CRLF counting as a single one. Other control characters are ignored here with a warning, since editing keys belong in `Input.KeyInjectPress`.
+  - `text` — The text to inject, as a normal string.
+- `static void Input.TextInjectChar(uint unicodeCharUTF32)` — This will inject a UTF32 Unicode text character into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry. This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that. The text queue carries insertable text only, so carriage returns become newlines, and other control characters are ignored here with a warning.
   - `unicodeCharUTF32` — An unsigned integer representing a single UTF32 character.
-- `static void Input.TextInjectChar(string chars)` — This will convert a C# string into a number of UTF32 Unicode text characters, and inject them into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry. This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that.
+- `static void Input.TextInjectChar(string chars)` — This will convert a C# string into a number of UTF32 Unicode text characters, and inject them into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry. This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that. The text queue carries insertable text only, so carriage returns become newlines, and other control characters are ignored here with a warning.
   - `chars` — A collection of characters to submit as text input.
-- `static void Input.TextInjectChar(Byte[] chars, Encoding charEncoding)` — This will convert a byte array string into a number of UTF32 Unicode text characters, and inject them into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry. This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that.
+- `static void Input.TextInjectChar(Byte[] chars, Encoding charEncoding)` — This will convert a byte array string into a number of UTF32 Unicode text characters, and inject them into StereoKit's text input queue. It will be available at the start of the next frame, and will be indistinguishable from normal text entry. This will _not_ submit key press/release events to StereoKit's input queue, use KeyInjectPress/Release for that. The text queue carries insertable text only, so carriage returns become newlines, and other control characters are ignored here with a warning.
   - `chars` — A byte array representing a string in some encoded format.
   - `charEncoding` — The encoding format of the byte array. Note that an encoding of UTF32 will skip converting bytes to UTF32.
 - `static void Input.TextReset()` — Resets the `Input.TextConsume` read list back to the start. For example, `UI.Input` will _not_ call `TextReset`, so it effectively will consume those characters, hiding them from any `TextConsume` calls following it. If you wanted to check the current frame's text, but still allow `UI.Input` to work later on in the frame, you would read everything with `TextConsume`, and then `TextReset` afterwards to reset the read list for the following `UI.Input`.
-  - Example: see `Input.TextReset` in StereoKit-docs-reference.md
 - `static void Input.Unsubscribe(InputSource eventSource, BtnState eventTypes, Action`3 onEvent)` — Unsubscribes a listener from input events.
   - `eventSource` — The source this listener was originally registered for.
   - `eventTypes` — The events this listener was originally registered for.
@@ -1561,6 +1622,34 @@ A collection of system key codes, representing keyboard characters and mouse but
 - `Key.Y` — y/Y
 - `Key.Z` — z/Z
 
+## struct KeyboardEvent
+
+A single keyboard input event, either a key press, a key release, or one codepoint of insertable text. Events preserve the exact order they were produced in, including how text and keys interleave.
+
+- `Key KeyboardEvent.key` — The key for press and release events, and none for text events. Mouse buttons arrive here too, as the mouse key values.
+- `KeyMod KeyboardEvent.modifiers` — The modifier keys held when this event was produced. A modifier's own press event includes itself, its release event does not.
+- `string KeyboardEvent.Text` — This event's text, as a string. Emoji and other codepoints outside the Basic Multilingual Plane don't fit in a single C# char, so this is the safe way to read one. Empty for key events.
+- `KeyboardEventType KeyboardEvent.type` — What kind of event this is, and which of the fields below apply.
+
+## enum KeyboardEventType
+
+Describes what kind of keyboard input event this is.
+
+- `KeyboardEventType.KeyPress` — A key was pressed. Auto-repeats arrive as additional press events with no release between them, one per repeat.
+- `KeyboardEventType.KeyRelease` — A key was released.
+- `KeyboardEventType.None` — Not an event. Consuming returns this once no events remain in this frame's queue, and reading by index returns it for an index outside the queue.
+- `KeyboardEventType.Text` — A single codepoint of insertable text.
+
+## enum KeyMod
+
+A bit flag describing which of the keyboard's modifier keys are held.
+
+- `KeyMod.Alt` — Either alt key.
+- `KeyMod.Cmd` — Either Windows/Mac Command key.
+- `KeyMod.Ctrl` — Either ctrl key.
+- `KeyMod.None` — No modifier keys are held.
+- `KeyMod.Shift` — Either shift key.
+
 ## struct LinePoint
 
 Used to represent lines for the line drawing functions! This is just a snapshot of information about each individual point on a line.
@@ -1640,7 +1729,7 @@ A callback for when log events occur.
 
 The log tool will write to the console with annotations for console colors, which helps with readability, but isn't always supported. These are the options available for configuring those colors.
 
-- `LogColors.Ansi` — Use console coloring annotations.
+- `LogColors.Ansi` — Use console coloring annotations, when the console supports them! StereoKit checks the terminal for ANSI support, whether output has been redirected to a file or pipe, and the NO_COLOR environment variable. If any of those say no, colors are scraped out and logs fall back to plain text.
 - `LogColors.None` — Scrape out any color annotations, so logs are all completely plain text.
 
 ## enum LogLevel
@@ -2241,8 +2330,9 @@ This class provides access to the hardware's microphone, and stores it in a Soun
 - `static String[] Microphone.GetDevices()` — Constructs a list of valid Microphone devices attached to the system. These names can be passed into Start to select a specific device to record from. It's recommended to cache this list if you're using it frequently, as this list is constructed each time you call it. It's good to note that a user might occasionally plug or unplug microphone devices from their system, so this list may occasionally change.
   - returns — List of human readable microphone device names.
   - Example: see `Microphone.GetDevices` in StereoKit-docs-reference.md
-- `static bool Microphone.Start(string deviceName)` — This begins recording audio from the Microphone! Audio is stored in Microphone.Sound as a stream of audio. If the Microphone is already recording with a different device, it will stop the previous recording and start again with the new device. If null is provided as the device, then they system's default input device will be used. Some systems may not provide access to devices other than the system's default. On Android, this function requires user approved permissions to use. If these permissions are not already granted when Start is called, but the permission is available to the app, then this call will request permission and fail. You can check Permission.State and explicitly manage the permission yourself if you want to avoid this function failing the first time.
+- `static bool Microphone.Start(string deviceName, SoundSampleRate sampleRate)` — This begins recording audio from the Microphone! Audio is stored in Microphone.Sound as a stream of audio. If the Microphone is already recording with a different device, it will stop the previous recording and start again with the new device. If null is provided as the device, then they system's default input device will be used. Some systems may not provide access to devices other than the system's default. On Android, this function requires user approved permissions to use. If these permissions are not already granted when Start is called, but the permission is available to the app, then this call will request permission and fail. You can check Permission.State and explicitly manage the permission yourself if you want to avoid this function failing the first time.
   - `deviceName` — The name of the microphone device to use, as seen in the GetDevices list. null will use the system's default device preference.
+  - `sampleRate` — Requested capture rate. SoundSampleRate names the common, well-supported rates with notes on each - Default uses StereoKit's native 48,000, and speech pipelines often want Speech (16,000). The enum value is the rate in Hz, so cast any integer rate to it for something off this list; miniaudio resamples the device as needed. The mic's Sound stream is created at this rate the first time recording starts, and keeps it from then on.
   - returns — True if recording started successfully, false for failure. This could fail if the app does not have mic permissions, or if the deviceName is for a mic that has since been unplugged.
   - Example: see `Microphone.Start` in StereoKit-docs-reference.md
 - `static void Microphone.Stop()` — If the Microphone is recording, this will stop it.
@@ -2473,10 +2563,18 @@ This stores information about the mouse! What's its state, where's it pointed, d
 
 - `bool Mouse.available` — Is the mouse available to use? Most MR systems likely won't have a mouse!
 - `Vec2 Mouse.pos` — Position of the mouse relative to the window it's in! This is the number of pixels from the top left corner of the screen.
-- `Vec2 Mouse.posChange` — How much has the mouse's position changed in the current frame? Measured in pixels.
+- `Vec2 Mouse.posChange` — How much has the mouse moved during this frame? This is normally just the change in `pos`, measured in pixels. In relative mouse mode `pos` is frozen and this becomes the only source of motion, in the mouse's raw device units rather than pixels.
 - `Ray Mouse.Ray` — Ray representing the position and orientation that the current Input.Mouse.pos is pointing in.
 - `float Mouse.scroll` — What's the current scroll value for the mouse's scroll wheel?
 - `float Mouse.scrollChange` — How much has the scroll wheel value changed during this frame?
+
+## enum MouseMode
+
+How should the mouse cursor behave? This is only relevant on backends with a real cursor to control, the Simulator and Window backends. Elsewhere, the mode is remembered, but has nothing to act on.
+
+- `MouseMode.Hidden` — The cursor is invisible, but behaves exactly as it does in normal mode. The mouse's position is still valid, and it can still leave the window.
+- `MouseMode.Normal` — The cursor is visible, and free to move anywhere, including outside the window. This is the default.
+- `MouseMode.Relative` — The cursor is invisible and locked in place, which is what you want for mouse-look style camera control. The mouse's position stops moving, and its position change becomes the only source of motion - reported in pixel-equivalent units, free of pointer acceleration, and never running out of room at the edge of the screen.
 
 ## enum OcclusionCaps
 
@@ -2963,11 +3061,11 @@ Do you need to draw something? Well, you're probably in the right place! This st
 - `static int Renderer.Multisample` — Allows you to set the multisample (MSAA) level of the render surface. Valid values are 1, 2, 4, and 8, though this is clamped to what the GPU actually supports. Note that while this can greatly smooth out edges, it also increases RAM usage and fill rate. How much it costs depends a lot on the GPU! Tiled renderers, like the mobile chips in most standalone XR headsets, resolve MSAA in tile memory, which makes it nearly free. Desktop GPUs instead pay memory bandwidth for the multisampled surface and for resolving it, so MSAA is far more expensive there, especially at high resolutions. A value of 1 skips the multisampled surface entirely. If known in advance, set this via SKSettings in initialization. This is a _very_ costly change to make. Defaults to 4.
 - `static float Renderer.OrthoSize` — This sets the size of the orthographic projection's viewport. You can use this feature to zoom in and out of the scene. This value only affects orthographic mode projection, which is only available in 2D window modes.
 - `static Projection Renderer.Projection` — For flatscreen applications only! This allows you to change the camera projection between perspective and orthographic projection. This may be of interest for some category of UI work, but is generally a niche piece of functionality. Swapping between perspective and orthographic will also switch the clipping planes and field of view to the values associated with that mode. See `SetClip`/`SetFov` for perspective, and `SetOrthoClip`/`SetOrthoSize` for orthographic.
-- `static float Renderer.Scaling` — OpenXR has a recommended default for the main render surface, this variable allows you to set SK's surface to a multiple of the recommended size. Note that the final resolution may also be clamped or quantized. Only works in XR mode. If known in advance, set this via SKSettings in initialization. This is a _very_ costly change to make. Consider if ViewportScaling will work for you instead, and prefer that.
+- `static float Renderer.Scaling` — This sets the size of the surface StereoKit renders to, as a multiple of the display's own resolution. In XR that's a multiple of OpenXR's recommended size, and in a window it's a multiple of the window's size, where the result is stretched back over the window at present. Note that the final resolution may also be clamped or quantized. Values above 1 have no effect in the Simulator and Window app modes, since a window is already at the display's real resolution. This property still reports what you set, so an app that also runs in XR keeps its setting. If known in advance, set this via SKSettings in initialization. This is a _very_ costly change to make, since it reallocates the render surface. Consider if ViewportScaling will work for you instead, and prefer that.
 - `static SphericalHarmonics Renderer.SkyLight` — Sets the lighting information for the scene! You can build one through `SphericalHarmonics.FromLights`, or grab one from `Tex.FromEquirectangular` or `Tex.GenCubemap`
 - `static Material Renderer.SkyMaterial` — This is the Material that StereoKit is currently using to draw the skybox! It needs a special shader that's tuned for a full-screen quad. If you just want to change the skybox image, try setting `Renderer.SkyTex` instead. This value will never be null! If you try setting this to null, it will assign SK's built-in default sky material. If you want to turn off the skybox, see `Renderer.EnableSky` instead. Recommended Material settings would be: - DepthWrite: false - DepthTest: LessOrEq - QueueOffset: 100
 - `static Tex Renderer.SkyTex` — Set a cubemap skybox texture for rendering a background! This is only visible on Opaque displays, since transparent displays have the real world behind them already! StereoKit has a a default procedurally generated skybox. You can load one with `Tex.FromEquirectangular`, `Tex.GenCubemap`. If you're trying to affect the lighting, see `Renderer.SkyLight`.
-- `static float Renderer.ViewportScaling` — This allows you to trivially scale down the area of the swapchain that StereoKit renders to! This can be used to boost performance in situations where full resolution is not needed, or to reduce GPU time. This value is locked to the 0-1 range.
+- `static float Renderer.ViewportScaling` — This allows you to trivially scale down the area of the swapchain that StereoKit renders to! This can be used to boost performance in situations where full resolution is not needed, or to reduce GPU time. Unlike Scaling, this doesn't resize the render surface, so it's cheap enough to change every frame. In the Simulator and Window app modes, the first drop below 1 does allocate a surface to present through, but it's kept around after that. This value is locked to the 0-1 range.
 - `static void Renderer.Add(Mesh mesh, Material material, Matrix transform)` — Adds a mesh to the render queue for this frame! If the Hierarchy has a transform on it, that transform is combined with the Matrix provided here.
   - `mesh` — A valid Mesh you wish to draw.
   - `material` — A Material to apply to the Mesh.
@@ -3403,6 +3501,7 @@ StereoKit initialization settings! Setup SK.settings with your data before calli
 - `int SKSettings.flatscreenPosX` — If using Runtime.Flatscreen, the pixel position of the window on the screen.
 - `int SKSettings.flatscreenPosY` — If using Runtime.Flatscreen, the pixel position of the window on the screen.
 - `int SKSettings.flatscreenWidth` — If using Runtime.Flatscreen, the pixel size of the window on the screen.
+- `bool SKSettings.fullscreen` — In the Simulator and Window app modes, ask for the desktop window to start out fullscreen! Like `AppWindow.RequestFullscreen`, this is only ever a request: window managers can refuse it, and browsers wait for a user gesture, so check `AppWindow.Main.Fullscreen` for the window's real state. Default is false.
 - `LogLevel SKSettings.logFilter` — The default log filtering level. This can be changed at runtime, but this allows you to set the log filter before Initialization occurs, so you can choose to get information from that. Default is LogLevel.Diagnostic.
 - `AppMode SKSettings.mode` — Which operation mode should we use for this app? Default is XR, and by default the app will fall back to Simulator if XR fails or is unavailable.
 - `bool SKSettings.noFlatscreenFallback` — If the preferred display fails, should we avoid falling back to flatscreen and just crash out? Default is false.
@@ -3416,38 +3515,63 @@ StereoKit initialization settings! Setup SK.settings with your data before calli
 
 ## class Sound
 
-This class represents a sound effect! Excellent for blips and bloops and little clips that you might play around your scene. Right now, this supports .wav, .mp3, and procedurally generated noises! On HoloLens 2, sounds are automatically processed on the HPU, freeing up the CPU for more of your app's code. To simulate this same effect on your development PC, you need to enable spatial sound on your audio endpoint. To do this, right click the speaker icon in your system tray, navigate to "Spatial sound", and choose "Windows Sonic for Headphones." For more information, visit https://docs.microsoft.com/en-us/windows/win32/coreaudio/spatial-sound
+This class represents a sound effect! Excellent for blips and bloops and little clips that you might play around your scene. Right now, this supports .wav, .mp3, and procedurally generated noises!
 
-- `int Sound.CursorSamples` — This is the current position of the playback cursor, measured in samples from the start of the audio data.
+- `AssetState Sound.AssetState` — Sounds loaded from file decode asynchronously - this tells you where that's at! Playing is safe at any point: a Play while still Loading is held until the data lands, then catches up as if it had started on time. Negative states mean the load failed, and any held plays die quietly.
+- `SoundChannels Sound.Channels` — The channel format of this sound's data. Only Mono sounds spatialize - Stereo plays head-locked with its image intact, and Ambisonic1 is a world-fixed sound field that counter-rotates against the head.
+- `int Sound.CursorSamples` — How far ReadSamples has consumed into a stream sound, in samples. Playing voices don't move this - each tracks its own position in SoundInst.Cursor. Non-stream sounds return 0.
+- `float Sound.Decibels` — The sound's real-world loudness at 1 meter, in decibels! StereoKit measures the audio data's loudness, so the value you declare here is the loudness you get - the waveform is the *shape* of the sound, Decibels is how loud it is. Loudness then falls off physically with distance (-6dB per doubling), so louder things carry farther with no extra tuning. Some reference points: rustling leaves 20, a whisper 30, calm conversation 60, a vacuum cleaner at arm's length 75, a busy street corner 80 (the default), shouting up close 88, a rock concert 110, thunder from a nearby strike 120.
 - `float Sound.Duration` — This will return the total length of the sound in seconds.
 - `string Sound.Id` — Gets or sets the unique identifier of this asset resource! This can be helpful for debugging, managing your assets, or finding them later on!
-- `int Sound.TotalSamples` — This will return the total number of audio samples used by the sound! StereoKit currently uses 48,000 samples per second for all audio.
-- `int Sound.UnreadSamples` — This is the maximum number of samples in the sound that are currently available for reading via ReadSamples! ReadSamples will reduce this number by the amount of samples read. This is only really valid for Stream sounds, all other sound types will just return 0.
+- `int Sound.TotalSamples` — This will return the total number of audio samples used by the sound! StereoKit currently uses 48,000 samples per second for all audio. For stream sounds this is everything ever written. Against a playing SoundInst.Cursor, the difference is how much audio is queued ahead of that voice's playback.
+- `int Sound.UnreadSamples` — This is the maximum number of samples in the sound that are currently available for reading via ReadSamples! ReadSamples will reduce this number by the amount of samples read. Playback doesn't consume samples - playing voices each keep their own cursor, see SoundInst.Cursor. This is only really valid for Stream sounds, all other sound types will just return 0.
 - `static Sound Sound.Click` — A default click sound that lasts for 300ms. It's a procedurally generated sound based on a mouse press, with extra low frequencies in it.
 - `static Sound Sound.Unclick` — A default click sound that lasts for 300ms. It's a procedurally generated sound based on a mouse release, with extra low frequencies in it.
 - `static Sound Sound.CreateStream(float streamBufferDuration)` — Create a sound used for streaming audio in or out! This is useful for things like reading from a microphone stream, or playing audio from a source streaming over the network, or even procedural sounds that are generated on the fly! Use stream sounds with the WriteSamples and ReadSamples functions.
   - `streamBufferDuration` — How much audio time should this stream be able to hold without writing back over itself?
   - returns — A stream sound that can be read and written to.
+- `static Sound Sound.CreateStream(float streamBufferDuration, SoundChannels channels, SoundSampleRate sampleRate)` — Create a stream sound with an explicit channel format and sample rate! A 16,000hz mono stream suits speech pipelines, while a stereo stream can carry pre-rendered music. Written samples are interleaved for multi-channel formats, and playback resamples to the mixer's 48,000hz automatically.
+  - `streamBufferDuration` — How much audio time should this stream be able to hold without writing back over itself?
+  - `channels` — The stream's channel format.
+  - `sampleRate` — Capture/playback rate. SoundSampleRate names the common rates with notes - Default uses the mixer's native 48,000, Speech (16,000) suits speech pipelines. The enum value is the rate in Hz, so cast any integer rate to it for something off this list; playback resamples to 48,000 automatically.
+  - returns — A stream sound that can be read and written to.
 - `static Sound Sound.Find(string soundId)` — Looks for a Sound asset that's already loaded, matching the given id!
   - `soundId` — Which Sound are you looking for?
   - returns — A link to the sound matching 'soundId', null if none is found.
-- `static Sound Sound.FromFile(string filename)` — Loads a sound effect from file! Currently, StereoKit supports .wav and .mp3 files. Audio is converted to mono.
+- `static Sound Sound.FromFile(string filename)` — Loads a sound from file! StereoKit supports .wav and .mp3 files. Mono sounds spatialize, stereo plays head-locked, and 4 channel files load as first order ambisonics: world-fixed sound fields that counter-rotate against the user's head, ideal for environmental beds like rain, wind, or crowds. Bare 4 channel content is read as ambiX (ACN order, SN3D - the YouTube 360 convention), FuMa-tagged .amb files are converted on load, and other surround layouts downmix to stereo. Check Channels for what a file loaded as. Decoding happens asynchronously, but playing right away is fine - a Play before the decode finishes catches up to real time once it lands, as if it had started on schedule.
   - `filename` — Name of the audio file! Supports .wav and .mp3 files.
-  - returns — A sound object, or null if something went wrong.
+  - returns — A sound object, or null if the file isn't found.
   - Example: see `Sound.FromFile` in StereoKit-docs-reference.md
+- `static Sound Sound.FromMemory(Byte[]& data, string id)` — Loads a sound from a file's data in memory! Same format support and async decode behavior as FromFile. The data is copied, so the array is yours again as soon as this returns.
+  - `data` — The complete contents of an audio file.
+  - `id` — A unique identifier for this sound - loading the same id again returns the already loaded sound.
+  - returns — A sound object, or null if something went wrong.
 - `static Sound Sound.FromSamples(Single[] samplesAt48000s)` — This function will create a sound from an array of samples. Values should range from -1 to +1, and there should be 48,000 values per second of audio.
   - `samplesAt48000s` — Values should range from -1 to +1, and there should be 48,000 per second of audio.
   - returns — Returns a sound effect from the samples provided! Or null if something went wrong.
+- `static Sound Sound.FromSamples(Single[] samplesAt48000s, SoundChannels channels)` — Create a sound from an array of samples with an explicit channel format! Multi-channel data is interleaved - stereo alternates left/right, and Ambisonic1 packs W,Y,Z,X per frame in the ambiX convention. 48,000 frames per second of audio.
+  - `samplesAt48000s` — Interleaved samples from -1 to +1, 48,000 frames per second.
+  - `channels` — How the samples are laid out.
+  - returns — A sound effect from the samples provided! Or null if something went wrong.
   - Example: see `Sound.FromSamples` in StereoKit-docs-reference.md
 - `static Sound Sound.Generate(AudioGenerator generator, float duration)` — This function will generate a sound from a function you provide! The function is called once for each sample in the duration. As an example, it may be called 48,000 times for each second of duration.
   - `generator` — This function takes a time value as an argument, which will range from 0-duration, and should return a value from -1 - +1 representing the audio wave at that point in time.
   - `duration` — In seconds, how long should the sound be?
+  - returns — Returns a generated sound effect! Or null if something went wrong.
+- `static Sound Sound.Generate(AudioBufferGenerator generator, float duration, SoundChannels channels)` — This function generates a sound by asking your function to fill whole buffers of samples! This is far faster than the per-sample overload, one interop call instead of one per sample. With a channel format, the buffer holds frames-x-channels interleaved samples: stereo alternates left/right, and Ambisonic1 packs W,Y,Z,X per frame in the ambiX convention - so procedural head-tracked sound fields are just a generator away.
+  - `generator` — Fills the provided buffer completely with interleaved audio sample values from -1 to +1. The second parameter is the index of the buffer's first frame, at 48,000 frames per second.
+  - `duration` — In seconds, how long should the sound be?
+  - `channels` — The channel format the generator fills.
   - returns — Returns a generated sound effect! Or null if something went wrong.
   - Example: see `Sound.Generate` in StereoKit-docs-reference.md
 - `SoundInst Sound.Play(Vec3 at, float volume)` — Plays the sound at the 3D location specified, using the volume parameter as an additional volume control option! Sound volume falls off from 3D location, and can also indicate direction and location through spatial audio cues. So make sure the position is where you want people to think it's from! Currently, if this sound is playing somewhere else, it'll be canceled, and moved to this location.
   - `at` — World space location for the audio to play at.
   - `volume` — Volume modifier for the effect! 1 means full volume, and 0 means completely silent.
   - returns — Returns a link to the Sound's play instance, which you can use to track and modify how the sound plays after the initial conditions are set.
+- `SoundInst Sound.Play(Vec3 at, SoundPlay settings)` — Plays the sound at the 3D location specified, with extra settings! Pitch, onset delay, emitter shapes, bus routing, and behavior flags all live in SoundPlay - a default struct behaves just like the plain Play call.
+  - `at` — World space location for the audio to play at. Ignored for non-mono sounds and head-locked plays.
+  - `settings` — Extra playback settings, see SoundPlay.
+  - returns — A link to the Sound's play instance for tracking and live adjustments.
   - Example: see `Sound.Play` in StereoKit-docs-reference.md
 - `int Sound.ReadSamples(Single[]& samples)` — This will read samples from the sound stream, starting from the first unread sample. Check UnreadSamples for how many samples are available to read.
   - `samples` — A pre-allocated buffer to read the samples into! This function will stop reading when this buffer is full, or when the sound runs out of unread samples.
@@ -3466,15 +3590,83 @@ This class represents a sound effect! Excellent for blips and bloops and little 
   - `samples` — A pointer to a native array of `float` audio samples, where each sample is between -1 and +1.
   - `sampleCount` — You can use this to write only a subset of the samples in the array, rather than the entire array!
 
+## enum SoundBus
+
+A category a playing sound belongs to. Each bus is just a volume control that affects every sound tagged with it, handy for separate sfx/music/ui volume sliders, or ducking categories wholesale.
+
+- `SoundBus.Music` — Background music and ambience.
+- `SoundBus.Sfx` — General sound effects, the default bus.
+- `SoundBus.Ui` — Interface feedback sounds. StereoKit's own UI sounds use this bus.
+- `SoundBus.Voice` — Dialogue, voice-over, and voice comms.
+
+## enum SoundChannels
+
+The channel format of a Sound's data. Only mono sounds spatialize - playing a non-mono sound ignores its position entirely.
+
+- `SoundChannels.Ambisonic1` — Four interleaved first order (1) ambisonic channels in the ambiX convention (ACN order W,Y,Z,X with SN3D normalization). The sound field stays world-fixed, counter-rotating against the head - the head-tracked generalization of a binaural render. Great for recorded or simulated environmental beds.
+- `SoundChannels.Mono` — One channel. Spatializes as a point or shaped source, the default and by far the most common format for game audio.
+- `SoundChannels.Stereo` — Two interleaved channels, played back head-locked and untouched. Music, and pre-rendered binaural content.
+
+## enum SoundFlags
+
+Option flags for playing a sound, see sound_play_t.
+
+- `SoundFlags.HeadLocked` — Skip spatialization entirely: no distance attenuation, panning, or filtering. The sound follows the head, good for music, UI, or pre-rendered binaural content.
+- `SoundFlags.Loop` — The sound restarts from the beginning when it reaches the end of its data, and plays until stopped. Live streams ignore this, they already wait for data forever.
+- `SoundFlags.None` — No special behavior, the default.
+- `SoundFlags.PropagationDelay` — Delay the sound's onset by its distance from the listener divided by the speed of sound (343m/s), computed once when playback starts. Great for thunder, explosions, and other far away events.
+
 ## struct SoundInst
 
 This represents a play instance of a Sound! You can get one when you call Sound.Play(). This allows you to do things like cancel a piece of audio early, or change the volume and position of it as it's playing.
 
+- `UInt64 SoundInst.Cursor` — This voice's playback position in source samples. For stream sounds this is an absolute position in the stream, so Sound.TotalSamples - Cursor is how much audio is queued ahead of this voice. Only fully in-memory sounds can Seek, streams read forward only.
 - `float SoundInst.Intensity` — The maximum intensity of the sound data since the last frame, as a value from 0-1. This is unaffected by its 3d position or volume settings, and is straight from the audio file's data.
 - `bool SoundInst.IsPlaying` — Is this Sound instance currently playing? For streaming assets, this will be true even if they don't have any new data in them, and they're just idling at the end of their data.
+- `bool SoundInst.Paused` — Pause and resume this voice. A paused voice keeps its place and stays alive until stopped or stolen.
+- `float SoundInst.Pitch` — Playback rate multiplier, clamped to 0.25-4. 1 is normal speed, 2 is twice as fast and an octave up. Animatable while playing.
 - `Vec3 SoundInst.Position` — The 3D position in world space this sound instance is currently playing at. If this instance is no longer valid, the position will be at zero.
-- `float SoundInst.Volume` — The volume multiplier of this Sound instance! A number between 0 and 1, where 0 is silent, and 1 is full volume.
+- `float SoundInst.Spread` — Apparent size of the source, 0-1. 0 is a point in space, 1 fills the whole sound field. Shaped emitters compute this themselves, treating a set value as their minimum.
+- `float SoundInst.Volume` — The volume multiplier of this Sound instance! Typically 0-1, where 0 is silent, and 1 is full volume. Values above 1 amplify, and negatives clamp to 0.
+- `void SoundInst.Seek(UInt64 sample)` — Jump this voice's playback to a sample position. Only works for fully in-memory sounds! Files up to ~10 seconds decode fully into memory on load, while longer files stream, and stream playback reads forward only.
+  - `sample` — Sample index to jump to, clamped to the sound's length.
+- `void SoundInst.SetCutoff(float cutoffHz)` — Overrides the voice's low-pass filter cutoff in Hz, replacing the automatic distance model. 0 hands control back to the distance model.
+  - `cutoffHz` — Low-pass cutoff frequency in Hz, 0 for automatic.
+- `void SoundInst.SetShape(Vec3[] points, float radius)` — Gives this voice a polyline emitter shape! The emitter follows the listener along the shape - position becomes the closest point, apparent size grows as the shape fills more of the view, and the sound goes fully diffuse inside it. Great for streams, wind lines, and shorelines. Points are copied, max 32.
+  - `points` — The polyline's points, in world space.
+  - `radius` — Radius of the polyline's tube, in meters.
+- `void SoundInst.SetShape(Vec3 center, float radius)` — Gives this voice a sphere emitter shape! The emitter follows the listener around the sphere's surface, growing to fully diffuse inside it. Great for wind volumes and rain areas.
+  - `center` — The sphere's center, in world space.
+  - `radius` — The sphere's radius, in meters.
+  - Example: see `SoundInst.SetShape` in StereoKit-docs-reference.md
 - `void SoundInst.Stop()` — This stops the sound early if it's still playing.
+
+## struct SoundPlay
+
+Optional settings for Sound.Play! The default struct plays a plain point source: full volume trim, normal pitch, no delay, on the Sfx bus.
+
+- `SoundBus SoundPlay.bus` — The volume category this sound belongs to, SoundBus.Sfx when zeroed.
+- `float SoundPlay.cutoff` — Low-pass filter cutoff override in Hz for this voice. 0 uses the automatic distance model.
+- `float SoundPlay.delay` — Seconds before the sound actually starts playing, sample accurate. SoundFlags.PropagationDelay adds distance/343m/s on top of this.
+- `SoundFlags SoundPlay.flags` — See SoundFlags!
+- `float SoundPlay.pitch` — Playback rate multiplier, clamped to 0.25-4. 1 is normal speed, 2 is twice as fast and an octave up. 0 is treated as 1.
+- `Vec3[] SoundPlay.shape` — Optional emitter shape: 1 point is a sphere, 2+ a rounded polyline. The emitter follows the listener along the shape - position becomes the closest point, and apparent size grows as the shape fills more of the view, going fully diffuse inside it. Points are copied at play, max 32. Null means a point source at the play position.
+- `float SoundPlay.shapeRadius` — Radius of the shape's sphere or polyline tube, in meters.
+- `float SoundPlay.spread` — Apparent size of the source, 0-1. 0 is a point in space, 1 fills the whole sound field evenly. Great for wind, rivers and rumble, but keep transients like impacts at 0 - width smears their attack.
+- `float SoundPlay.volume` — A 0-1 volume trim on top of the Sound's Decibels loudness. 0 is treated as the default full trim of 1, use a tiny value for real silence. Values above 1 amplify, negatives clamp to 0.
+
+## enum SoundSampleRate
+
+Common audio sample rates, in Hz, for sound streams and microphone capture. The enum value _is_ the rate in Hz, so you can cast any integer rate to this type - these are just the well-supported ones, tagged with where each is typically used. StereoKit mixes everything at 48kHz and resamples to and from other rates as needed, so any positive rate works, but a rate a device captures or plays natively avoids an extra resample.
+
+- `SoundSampleRate.Broadcast` — 32kHz, seen in some broadcast audio and Bluetooth wideband (mSBC).
+- `SoundSampleRate.Cd` — 44.1kHz, the CD-audio standard and a common consumer device default.
+- `SoundSampleRate.Default` — Use StereoKit's native mix rate, 48kHz. No resampling in the mixer, and the best default unless you have a specific reason otherwise.
+- `SoundSampleRate.Speech` — 16kHz wideband speech - the rate that speech-to-text, wake-word, and VoIP pipelines typically expect. A good low-bandwidth choice for voice.
+- `SoundSampleRate.Standard` — 48kHz, the AV/pro standard and StereoKit's native mix rate. The modern default for most capture hardware.
+- `SoundSampleRate.Studio` — 96kHz high-resolution pro audio. Rare for a microphone, and resampled down to 48kHz for mixing anyway.
+- `SoundSampleRate.Telephony` — 8kHz narrowband telephony, classic Bluetooth headset (HFP/SCO) quality. Tiny data rate, intelligible speech only.
+- `SoundSampleRate.Ultra` — 192kHz, the extreme end of pro audio interfaces. Almost never a real microphone rate, and heavily oversampled for StereoKit's purposes.
 
 ## enum SpatialNodeType
 
@@ -3843,6 +4035,9 @@ What type of color information will the texture contain? A good default here is 
 
 - `TexFormat.Astc4x4Rgba` — ASTC 4x4 linear color with full alpha, 8 bpp. High-quality compressed format for data textures on modern mobile GPUs.
 - `TexFormat.Astc4x4RgbaSrgb` — ASTC 4x4 sRGB color with full alpha, 8 bpp. ASTC is the modern mobile-standard compressed format - excellent quality, broadly supported. The 4x4 block size is the highest-quality (and largest-size) ASTC variant.
+- `TexFormat.Astc6x6Rgba` — ASTC 6x6 linear color with full alpha, ~3.56 bpp. The linear counterpart to Astc6x6RgbaSrgb, for data textures.
+- `TexFormat.Astc6x6RgbaSrgb` — ASTC 6x6 sRGB color with full alpha, ~3.56 bpp. Larger blocks than Astc4x4 for less than half the memory, at some cost to quality - a good trade for large or low-frequency textures.
+- `TexFormat.Astc8x8RgbaHdr` — ASTC 8x8 HDR color with full alpha, 2 bpp. Compressed HDR on mobile GPUs, and much cheaper than an uncompressed float format. Requires the ASTC HDR extension, which is separate from baseline ASTC support!
 - `TexFormat.AtcRgb` — ATC RGB on Qualcomm Adreno GPUs, 4 bpp. Historical Qualcomm-specific format - prefer Astc or Etc2 on newer Adreno hardware.
 - `TexFormat.AtcRgba` — ATC with alpha on Qualcomm Adreno GPUs, 8 bpp. Historical Qualcomm-specific format - prefer Astc or Etc2 on newer Adreno hardware.
 - `TexFormat.Bc1Rgb` — BC1/DXT1 linear RGB, no alpha, 4 bpp. Great for compressed data textures (normals, masks) on desktop and console GPUs. For color images for humans, use Bc1RgbSrgb.
@@ -3871,6 +4066,7 @@ What type of color information will the texture contain? A good default here is 
 - `TexFormat.Depth32s8` — 32-bit depth + 8-bit stencil (40 bpp). More depth precision than Depth24s8 but heavier on memory. Use this when you need both 32-bit depth precision and a stencil channel for masking effects.
 - `TexFormat.DepthStencil` — 24-bit depth + 8-bit stencil. Depth tracks how close to the camera each pixel is so near objects correctly occlude far ones. Stencil data can be used for clipping effects, deferred rendering, or shadow effects. A sensible default for most scenes!
 - `TexFormat.Etc1Rgb` — ETC1 RGB, no alpha, 4 bpp. Widely supported on older Android devices and OpenGL ES 2.0+ GPUs. Quality is acceptable for diffuse color but it's been superseded - prefer Etc2 or Astc on newer hardware!
+- `TexFormat.Etc1RgbSrgb` — ETC1 sRGB RGB, no alpha, 4 bpp. The sRGB counterpart to Etc1Rgb - the GPU converts to linear on sample, so this is the correct choice for color textures.
 - `TexFormat.Etc2R11` — ETC2/EAC single 11-bit unsigned-normalized channel, 4 bpp. The ETC equivalent of Bc4 - great for compressed grayscale or heightmap data on mobile GPUs!
 - `TexFormat.Etc2Rg11` — ETC2/EAC two 11-bit unsigned-normalized channels, 8 bpp. The ETC equivalent of Bc5 - great for compressed two-channel data like tangent-space normal maps on mobile GPUs!
 - `TexFormat.Etc2Rgba` — ETC2 linear color with full alpha, 8 bpp. Standard compressed format for data textures with alpha on OpenGL ES 3.0+ mobile devices.
@@ -4241,6 +4437,7 @@ This class is a collection of user interface and interaction methods! StereoKit 
 - `static Color UI.ColorScheme` — StereoKit will generate a color palette from this gamma space color, and use it to skin the UI! To explicitly adjust individual theme colors, see UI.SetThemeColor.
 - `static bool UI.Enabled` — This returns the current state of the UI's enabled status stack, set by `UI.Push/PopEnabled`.
 - `static bool UI.EnableFarInteract` — Enables or disables the far ray grab interaction for Handle elements like the Windows. It can be enabled and disabled for individual UI elements, and if this remains disabled at the start of the next frame, then the hand ray indicators will not be visible. This is enabled by default.
+- `static bool UI.HasKeyboardFocus` — Is a `UI.Input` currently focused and taking keyboard input? A focused Input reads the whole keyboard event queue, so this is how you tell whether your own keyboard handling should stand down for the frame.
 - `static BtnState UI.LastElementActive` — Tells the Active state of the most recently called UI element that used an id.
 - `static BtnState UI.LastElementFocused` — Tells the Focused state of the most recently called UI element that used an id.
 - `static Vec3 UI.LayoutAt` — The hierarchy local position of the current UI layout position. The top left point of the next UI element will be start here!
@@ -4493,14 +4690,14 @@ This class is a collection of user interface and interaction methods! StereoKit 
 - `static void UI.Image(Sprite image, Vec2 size)` — Adds an image to the UI!
   - `image` — A valid sprite.
   - `size` — Size in Hierarchy local meters. If one of the components is 0, it'll be automatically determined from the other component and the image's aspect ratio.
-- `static bool UI.Input(string id, String& value, Vec2 size, TextContext type)` — This is an input field where users can input text to the app! Selecting it will spawn a virtual keyboard, or act as the keyboard focus. Hitting escape or enter, or focusing another UI element will remove focus from this Input.
+- `static bool UI.Input(string id, String& value, Vec2 size, TextContext type)` — This is an input field where users can input text to the app! Selecting it will spawn a virtual keyboard, or act as the keyboard focus. Hitting escape or enter, or focusing another UI element will remove focus from this Input. Shift+Enter adds a newline instead, and tab adds a tab.
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The string that will store the Input's content in.
   - `size` — Size of the Input in Hierarchy local meters. Zero axes will auto-size.
   - `type` — What category of text this Input represents. This may affect what kind of soft keyboard will be displayed, if one is shown to the user.
   - returns — Returns true every time the contents of 'value' change.
   - Example: see `UI.Input` in StereoKit-docs-reference.md
-- `static bool UI.InputAt(string id, String& value, Vec3 topLeftCorner, Vec2 size, TextContext type)` — This is an input field where users can input text to the app! Selecting it will spawn a virtual keyboard, or act as the keyboard focus. Hitting escape or enter, or focusing another UI element will remove focus from this Input.
+- `static bool UI.InputAt(string id, String& value, Vec3 topLeftCorner, Vec2 size, TextContext type)` — This is an input field where users can input text to the app! Selecting it will spawn a virtual keyboard, or act as the keyboard focus. Hitting escape or enter, or focusing another UI element will remove focus from this Input. Shift+Enter adds a newline instead, and tab adds a tab.
   - `id` — An id for tracking element state. MUST be unique within current hierarchy.
   - `value` — The string that will store the Input's content in.
   - `topLeftCorner` — This is the top left corner of the UI element relative to the current Hierarchy.

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: UI.InputAt
-description: This is an input field where users can input text to the app! Selecting it will spawn a virtual keyboard, or act as the keyboard focus. Hitting escape or enter, or focusing another UI element will remove focus from this Input.
+description: This is an input field where users can input text to the app! Selecting it will spawn a virtual keyboard, or act as the keyboard focus. Hitting escape or enter, or focusing another UI element will remove focus from this Input. Shift+Enter adds a newline instead, and tab adds a tab.
 ---
 # [UI]({{site.url}}/preview/Pages/StereoKit/UI.html).InputAt
 
@@ -12,7 +12,8 @@ static bool InputAt(string id, String& value, Vec3 topLeftCorner, Vec2 size, Tex
 This is an input field where users can input text to the
 app! Selecting it will spawn a virtual keyboard, or act as the
 keyboard focus. Hitting escape or enter, or focusing another UI
-element will remove focus from this Input.
+element will remove focus from this Input. Shift+Enter adds a
+newline instead, and tab adds a tab.
 </div>
 
 |  |  |

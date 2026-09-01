@@ -27,7 +27,7 @@ that mode. See `SetClip`/`SetFov` for perspective, and
 Only in flatscreen apps, there is the option to change the main
 camera's projection mode between perspective and orthographic.
 ```csharp
-if (SK.ActiveDisplayMode == DisplayMode.Flatscreen &&
+if (Device.DisplayType == DisplayType.Flatscreen &&
 	Input.Key(Key.P).IsJustActive())
 {
 	Renderer.Projection = Renderer.Projection == Projection.Perspective

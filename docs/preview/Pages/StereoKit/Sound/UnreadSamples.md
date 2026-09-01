@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sound.UnreadSamples
-description: This is the maximum number of samples in the sound that are currently available for reading via ReadSamples! ReadSamples will reduce this number by the amount of samples read.  This is only really valid for Stream sounds, all other sound types will just return 0.
+description: This is the maximum number of samples in the sound that are currently available for reading via ReadSamples! ReadSamples will reduce this number by the amount of samples read. Playback doesn't consume samples - playing voices each keep their own cursor, see SoundInst.Cursor.  This is only really valid for Stream sounds, all other sound types will just return 0.
 ---
 # [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html).UnreadSamples
 
@@ -12,7 +12,9 @@ int UnreadSamples{ get }
 ## Description
 This is the maximum number of samples in the sound that
 are currently available for reading via ReadSamples! ReadSamples
-will reduce this number by the amount of samples read.
+will reduce this number by the amount of samples read. Playback
+doesn't consume samples - playing voices each keep their own
+cursor, see SoundInst.Cursor.
 
 This is only really valid for Stream sounds, all other sound
 types will just return 0.

@@ -21,6 +21,28 @@ second of duration.
 |float duration|In seconds, how long should the sound be?|
 |RETURNS: [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html)|Returns a generated sound effect! Or null if something went wrong.|
 
+<div class='signature' markdown='1'>
+```csharp
+static Sound Generate(AudioBufferGenerator generator, float duration, SoundChannels channels)
+```
+This function generates a sound by asking your function
+to fill whole buffers of samples! This is far faster than the
+per-sample overload, one interop call instead of one per sample.
+
+With a channel format, the buffer holds frames-x-channels
+interleaved samples: stereo alternates left/right, and
+Ambisonic1 packs W,Y,Z,X per frame in the ambiX convention -
+so procedural head-tracked sound fields are just a generator
+away.
+</div>
+
+|  |  |
+|--|--|
+|[AudioBufferGenerator]({{site.url}}/preview/Pages/StereoKit/AudioBufferGenerator.html) generator|Fills the provided buffer completely with interleaved audio sample values from -1 to +1. The second parameter is the index of the buffer's first frame, at 48,000 frames per second.|
+|float duration|In seconds, how long should the sound be?|
+|[SoundChannels]({{site.url}}/preview/Pages/StereoKit/SoundChannels.html) channels|The channel format the generator fills.|
+|RETURNS: [Sound]({{site.url}}/preview/Pages/StereoKit/Sound.html)|Returns a generated sound effect! Or null if something went wrong.|
+
 
 
 
