@@ -16,20 +16,18 @@ The minimum prerequisite for StereoKit is the .NET SDK! You can use `dotnet --ve
 
 If it is not, open up your Terminal, and run the following:
 ```bash
-winget install Microsoft.DotNet.SDK.9
+winget install Microsoft.DotNet.SDK.10
 # Restart the Terminal to refresh your Path variable
 ```
 
-On _Linux_, most distros have the .NET SDK in their package manager. You can find a [more complete list here] (https://learn.microsoft.com/en-us/dotnet/core/install/linux).
+On Linux, please do NOT install the .NET package via the OS package manager (apt-get, etc.)! These packages do NOT connect to the Android workloads necessary for Android builds! Please instead use [Microsoft's install script](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual).
 
 ```bash
-# Ubuntu
-sudo apt-get install dotnet-sdk-9.0
-# Debian
-sudo dnf install dotnet-sdk-9.0
+# From the install script docs
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+chmod +x ./dotnet-install.sh
 
-# On Ubuntu 24.04 or earlier, you need dotnet/backports
-sudo add-apt-repository ppa:dotnet / backports`
+./dotnet-install.sh --version latest
 ```
 
 With the .NET SDK installed, setting up a StereoKit project is quite simple!
@@ -54,11 +52,11 @@ dotnet watch
 ## Tools and IDEs
 
 Once you've installed the templates via `dotnet new install StereoKit.Templates`,
-you have your choice of tools! Visual Studio 2022 will recognize the
+you have your choice of tools! Visual Studio will recognize the
 StereoKit templates when creating a new project, and the Command Line
 workflow works well with VS Code and other editors.
 
-- Get [**Visual Studio 2022** here](https://visualstudio.microsoft.com/vs/).
+- Get [**Visual Studio** here](https://visualstudio.microsoft.com/vs/).
 - _Or_ get [VS Code here](https://code.visualstudio.com/).
 
 StereoKit is OpenXR based, so will work in any environment that supports
@@ -72,7 +70,7 @@ so you can test their runtime without a headset.
 ## Android
 
 When using StereoKit's sk-multi (multiplatform) template, deploying to an
-Android device is pretty straightforward! From Visual Studio 2022, you'll
+Android device is pretty straightforward! From Visual Studio, you'll
 need to set the `SKProjectName.Android` sub-project as your Startup Project
 (Solution Explorer->Right click on SKProjectName.Android->Set as Startup
 Project), and then you'll have the option to deploy to any Android device
@@ -124,7 +122,7 @@ link at the bottom of the web page to get it prioritized!
 
 ## Getting Started Native
 
-# Getting Started with StereoKit - Native Code
+# Getting Started with Native Code
 
 StereoKit's golden path is through C#, but the core of StereoKit is really
 just a C compatible library! C# is just a 1st class binding to this C
@@ -139,7 +137,7 @@ C API is really **only recommended to more advanced developers**.
 ## Native Template
 
 The recommended way to get started with developing native StereoKit
-applications is via the [CMake Template](https://github.com/StereoKit/SKTemplate-CMake).
+applications is via the [CMake Template](https://github.com/StereoKit/StereoKit.Templates.Native/tree/sk_preview).
 Please see the template repository for up-to-date details and instructions!
 This template is excellent for Linux and Windows development, and can be
 fairly straightforward to use from VS Code.

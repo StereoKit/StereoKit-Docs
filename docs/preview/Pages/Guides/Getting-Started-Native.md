@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Getting Started Native
-description: StereoKit's golden path is through C#, but the core of StereoKit is really just a C ...
+description: StereoKit's golden path is through C#, but the core of StereoKit is real...
 ---
 
-# Getting Started with StereoKit - Native Code
+# Getting Started with Native Code
 
 StereoKit's golden path is through C#, but the core of StereoKit is really
 just a C compatible library! C# is just a 1st class binding to this C
@@ -19,7 +19,7 @@ C API is really **only recommended to more advanced developers**.
 ## Native Template
 
 The recommended way to get started with developing native StereoKit
-applications is via the [CMake Template](https://github.com/StereoKit/SKTemplate-CMake).
+applications is via the [CMake Template](https://github.com/StereoKit/StereoKit.Templates.Native/tree/sk_preview).
 Please see the template repository for up-to-date details and instructions!
 This template is excellent for Linux and Windows development, and can be
 fairly straightforward to use from VS Code.
